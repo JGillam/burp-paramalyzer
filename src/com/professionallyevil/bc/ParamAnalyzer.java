@@ -18,6 +18,7 @@ package com.professionallyevil.bc;
 
 import burp.IBurpExtenderCallbacks;
 
+import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
 public class ParamAnalyzer {
@@ -30,9 +31,11 @@ public class ParamAnalyzer {
     private static Pattern decimalPattern = Pattern.compile("^[0-9]+$");
     private static Pattern bigIPPattern = Pattern.compile("^[0-9]+\\.[0-9]+\\.[0-9]+$"); // close enough
     private static Pattern urlPathPattern = Pattern.compile("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$");
+    private static Pattern urlPathPattern2 = Pattern.compile("^http[s]?://[a-zA-Z0-9]+");
     private static Pattern emailAddressPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
     private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-[0-9]{2}-[0-9]{4}$");
     private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
+    private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
 
 
     public static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
@@ -86,7 +89,14 @@ public class ParamAnalyzer {
             return output;
         } else if(isHexString(input)) {
             log.append(identify(pi, input));
-            return input;
+            String output = asciiHexDecode(input);
+            if(isPrintableCharacters(output)) {
+                log.append("\nASCII Hex Decoded to printable string -> ");
+                log.append(output);
+                return output;
+            } else {
+                return input;
+            }
         } else if(isBase64Encoded(input)) {
             byte[] decodedBytes = callbacks.getHelpers().base64Decode(input);
             String decodedString = callbacks.getHelpers().bytesToString(decodedBytes);
@@ -107,7 +117,6 @@ public class ParamAnalyzer {
             log.append(identify(pi, input));
             return input;
         }
-
     }
 
     public static String identify(ParamInstance pi, String input) {
@@ -127,7 +136,7 @@ public class ParamAnalyzer {
             pi.setFormat(ParamInstance.Format.HEX);
             log.append(guessHash(pi, input.length() * 4));
         } else if(isURLPathString(input)) {
-            log.append("Looks like a URL path.");
+            log.append("Looks like a URL or path.");
             pi.setFormat(ParamInstance.Format.URLPATH);
         } else if(isEmail(input)) {
             log.append("Looks like an email address.");
@@ -145,7 +154,12 @@ public class ParamAnalyzer {
             log.append("Looks like a ");
             log.append(input.length());
             log.append(" length string of printable characters.");
-            pi.setFormat(ParamInstance.Format.PRINTABLE);
+            if (isHTMLFragment(input)) {
+                log.append("\nThis may be XML or an HTML Fragment!");
+                pi.setFormat(ParamInstance.Format.HTMLFRAG);
+            } else {
+                pi.setFormat(ParamInstance.Format.PRINTABLE);
+            }
         } else {
             log.append("Unidentified");
         }
@@ -173,13 +187,16 @@ public class ParamAnalyzer {
         return decimalPattern.matcher(input).find();
     }
 
-    public static boolean isURLPathString(String input) { return urlPathPattern.matcher(input).find();}
+    public static boolean isURLPathString(String input) { return urlPathPattern.matcher(input).find() ||
+            urlPathPattern2.matcher(input).find();}
 
     public static boolean isSentence(String input) {return input.length() < 40 && textPattern.matcher(input).find();}
 
     public static boolean isEmail(String input) {return emailAddressPattern.matcher(input).find();}
 
     public static boolean isSSN(String input) {return ssnPattern.matcher(input).find();}
+
+    public static boolean isHTMLFragment(String input) {return htmlFragment.matcher(input).find();}
 
     public static boolean isCreditCard(String input) {
         return creditcardPattern.matcher(input).find() && applyLuhnAlgorithm(input);
@@ -266,6 +283,23 @@ public class ParamAnalyzer {
             buf.append(octetInt);
         }
         return buf.substring(separator.length());
+    }
+
+    private static String asciiHexDecode(String input) {
+        int len = input.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(input.charAt(i), 16) << 4)
+                    + Character.digit(input.charAt(i+1), 16));
+        }
+        String output = input;
+        try {
+            output = new String(data, "ASCII");
+        } catch (UnsupportedEncodingException e) {
+            return input;
+        }
+
+        return output;
     }
 
 }

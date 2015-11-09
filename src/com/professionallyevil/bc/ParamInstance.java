@@ -35,12 +35,13 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         SHA256("SHA-256"),
         SHA512("SHA-512"),
         BASE64BIN("B64 Bin"),
-        URLPATH("URL Path"),
+        URLPATH("URL/Path"),
         BIGIP("BigIP"),
         HEX("Hex String"),
         EMAIL("Email"),
         SSN("SSN"),
         CREDITCARD("CC"),
+        HTMLFRAG("XML/HTML"),
         EMPTY("Empty");
 
         private String title;

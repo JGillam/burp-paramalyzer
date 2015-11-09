@@ -51,7 +51,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "0.3.2b";
+    private static final String VERSION = "0.4.0b";
     private static final String EXTENSION_NAME = "Correlator";
 
     public Correlator() {
