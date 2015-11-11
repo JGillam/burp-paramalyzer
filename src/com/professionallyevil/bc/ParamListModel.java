@@ -23,14 +23,16 @@ import javax.swing.*;
 public class ParamListModel extends AbstractListModel<String> {
     ParamInstance[] params = new ParamInstance[0];
     CorrelatedParam correlatedParam;
+    boolean showDecoded = true;
 
     ParamListModel() {
 
     }
 
-    public void setValues(CorrelatedParam param, boolean withDuplicateValues) {
+    public void setValues(CorrelatedParam param, boolean withDuplicateValues, boolean showDecodedValues) {
         int originalLength = params.length;
         this.correlatedParam = param;
+        this.showDecoded = showDecodedValues;
         this.params = correlatedParam.getParamInstances(withDuplicateValues).toArray(new ParamInstance[correlatedParam.getParamInstances(withDuplicateValues).size()]);
         fireContentsChanged(this, 0, Math.max(params.length, originalLength));
     }
@@ -43,7 +45,11 @@ public class ParamListModel extends AbstractListModel<String> {
 
     @Override
     public String getElementAt(int index) {
-        return params[index].getValue();
+        if (showDecoded) {
+            return params[index].getDecodedValue();
+        } else {
+            return params[index].getValue();
+        }
     }
 
     public IHttpRequestResponse getMessageForIndex(int i) {

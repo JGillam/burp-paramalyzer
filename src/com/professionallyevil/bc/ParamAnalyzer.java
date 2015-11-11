@@ -72,6 +72,7 @@ public class ParamAnalyzer {
                 text.append("\n");
                 text.append(identify(pi, currentValue));
             }
+            pi.setDecodedValue(currentValue);
             return text.toString();
         } catch(Throwable t) {
             callbacks.printError(t.getMessage());

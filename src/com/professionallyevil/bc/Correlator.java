@@ -44,6 +44,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
     private JTextArea analysisTextArea;
     private JButton highlightValueButton;
     private JTextArea ignore;
+    private JCheckBox showDecodedValuesCheckBox;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -60,6 +61,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
         beginAnalysisButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                paramsTableModel.setShowDecodedValues(showDecodedValuesCheckBox.isSelected());
                 paramsTableModel.clear();
                 lastSelectedRow = -1;
                 textFieldStatus.setText("Analyzing...");
@@ -185,6 +187,16 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
                 }
             }
         });
+        showDecodedValuesCheckBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    updateParamInstanceList();
+                    int row = parametersTable.getSelectedRow();
+                    paramsTableModel.setShowDecodedValues(showDecodedValuesCheckBox.isSelected());
+                    paramsTableModel.fireTableDataChanged();
+                    parametersTable.setRowSelectionInterval(row, row);
+            }
+        });
     }
 
     private void updateParamInstanceList() {
@@ -200,7 +212,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
             textAreaRequest.setText("");
             textAreaResponse.setText("");
             analysisTextArea.setText("");
-            paramListModel.setValues(selectedParam, showDuplicatesCheckBox.isSelected());
+            paramListModel.setValues(selectedParam, showDuplicatesCheckBox.isSelected(), showDecodedValuesCheckBox.isSelected());
             listValues.clearSelection();
         }
     }

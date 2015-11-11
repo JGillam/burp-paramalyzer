@@ -100,7 +100,7 @@ public class CorrelatedParam {
         return seenParams;
     }
 
-    public IParameter getSample() {
+    public ParamInstance getSample() {
         return paramInstances.first();
     }
 

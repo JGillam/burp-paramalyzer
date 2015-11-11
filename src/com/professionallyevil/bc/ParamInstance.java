@@ -60,6 +60,16 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
     int hashCode = 0;
     Format format = Format.UNKNOWN;
 
+    public String getDecodedValue() {
+        return decodedValue;
+    }
+
+    public void setDecodedValue(String decodedValue) {
+        this.decodedValue = decodedValue;
+    }
+
+    String decodedValue;
+
 
     public ParamInstance(IParameter param, IHttpRequestResponse message) {
         this.wrappedParam = param;

@@ -26,10 +26,11 @@ import java.util.Map;
 
 public class ParametersTableModel extends AbstractTableModel {
 
+    boolean showDecodedValues = true;
     List<CorrelatedParam> entries = new ArrayList<>();
     String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Decoded?","Example Value"};
     Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, String.class};
-    Map<CorrelatedParam, IParameter> samples = new HashMap<>();
+    Map<CorrelatedParam, ParamInstance> samples = new HashMap<>();
 
     @Override
     public String getColumnName(int column) {
@@ -70,11 +71,11 @@ public class ParametersTableModel extends AbstractTableModel {
     public Object getValueAt(int rowIndex, int columnIndex) {
         CorrelatedParam param = entries.get(rowIndex);
         if (!samples.keySet().contains(param)) {
-            IParameter sample = param.getSample();
+            ParamInstance sample = param.getSample();
             samples.put(param, sample);
         }
 
-        IParameter sample = samples.get(param);
+        ParamInstance sample = samples.get(param);
 
         switch (columnIndex){
             case 0:
@@ -105,10 +106,18 @@ public class ParametersTableModel extends AbstractTableModel {
             case 7:
                 return param.getDecodedReflectedCount() > 0;
             case 8:
-                return sample.getValue();
+                if(showDecodedValues) {
+                    return sample.getDecodedValue();
+                }  else {
+                    return sample.getValue();
+                }
             default:
                 return "";
         }
+    }
+
+    public void setShowDecodedValues(boolean decoded) {
+        showDecodedValues = decoded;
     }
 
 
