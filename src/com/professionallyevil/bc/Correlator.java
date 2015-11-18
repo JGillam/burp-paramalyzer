@@ -23,13 +23,17 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.Caret;
 import java.awt.*;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.ClipboardOwner;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
-public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener {
+public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener, ClipboardOwner {
     private JPanel mainPanel;
     private JButton beginAnalysisButton;
     private JTextField textFieldStatus;
@@ -52,7 +56,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "0.4.0b";
+    private static final String VERSION = "0.4.1b";
     private static final String EXTENSION_NAME = "Correlator";
 
     public Correlator() {
@@ -168,6 +172,52 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
                 }
             }
         });
+        listValues.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                popup(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                popup(e);
+            }
+
+            private void popup(MouseEvent e) {
+                if (e.isPopupTrigger() && paramListModel.getSize() > 0 ) { //if the event shows the menu
+                    JPopupMenu menu = new JPopupMenu();
+                    menu.add(new AbstractAction() {
+                        @Override
+                        public Object getValue(String key) {
+                            if (Action.NAME.equals(key)) {
+                                return "Copy List To Clipboard";
+                            } else {
+                                return super.getValue(key);
+                            }
+                        }
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            StringBuilder buf = new StringBuilder();
+                            for (int i=0;i<paramListModel.getSize();i++) {
+                                buf.append(paramListModel.getElementAt(i));
+                                buf.append("\n");
+                            }
+                            Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+                            StringSelection contents = new StringSelection(buf.toString());
+                            clipboard.setContents(contents, Correlator.this);
+                        }
+                    });
+
+
+                    menu.show(listValues, e.getX(), e.getY());
+                }
+            }
+        });
+
+
         showDuplicatesCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -278,4 +328,8 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
         }
     }
 
+    @Override
+    public void lostOwnership(Clipboard clipboard, Transferable contents) {
+
+    }
 }
