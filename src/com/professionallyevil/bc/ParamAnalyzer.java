@@ -31,7 +31,7 @@ public class ParamAnalyzer {
     private static Pattern printableCharsPattern = Pattern.compile("^\\p{Print}+$");
     private static Pattern textPattern = Pattern.compile("^([\\w']+ )*[\\w']+[\\.?!]?$");
     private static Pattern hexStringPattern = Pattern.compile("^([A-F0-9]{2})+$", Pattern.CASE_INSENSITIVE);
-    private static Pattern decimalPattern = Pattern.compile("^[0-9]+$");
+    private static Pattern decimalPattern = Pattern.compile("^[-]?[0-9]+$");
     private static Pattern bigIPPattern = Pattern.compile("^[0-9]+\\.[0-9]+\\.[0-9]+$"); // close enough
     private static Pattern urlPathPattern = Pattern.compile("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$");
     private static Pattern urlPathPattern2 = Pattern.compile("^http[s]?://[a-zA-Z0-9]+");
@@ -84,38 +84,42 @@ public class ParamAnalyzer {
     }
 
     public static String smartDecode(ParamInstance pi, String input, IBurpExtenderCallbacks callbacks, StringBuilder log) {
-        if(isURLEncoded(input)) {
+        if (isURLEncoded(input)) {
             String output = callbacks.getHelpers().urlDecode(input);
-            if(!output.equals(input)) {
+            if (!output.equals(input)) {
                 log.append("\nURL Decode -> ");
                 log.append(output);
             }
             return output;
-        } else if(isHexString(input)) {
+        } else if (isHexString(input)) {
             log.append(identify(pi, input));
             String output = asciiHexDecode(input);
-            if(isPrintableCharacters(output)) {
+            if (isPrintableCharacters(output)) {
                 log.append("\nASCII Hex Decoded to printable string -> ");
                 log.append(output);
                 return output;
             } else {
                 return input;
             }
-        } else if(isBase64Encoded(input)) {
+        } else if(isURLPathString(input)) {    // This is a bit of a hack to exit out for things that might accidentally be interpreted as base64
+            log.append("\n");
+            log.append(identify(pi, input));
+            return input;
+        }else if(isBase64Encoded(input)) {
             byte[] decodedBytes = callbacks.getHelpers().base64Decode(input);
             String decodedString = callbacks.getHelpers().bytesToString(decodedBytes);
             if(isPrintableCharacters(decodedString)) {
                 log.append("\nBase64 Decode -> ");
-                log.append(decodedString);
-                return decodedString;
+                log.append(decodedString).append(" ...");
             } else {
                 log.append("\nBase64 Decode -> (Looks like a ");
                 log.append(decodedBytes.length);
-                log.append(" bit binary value)\nHash best guess is: ");
+                log.append(" byte binary value)\nHash best guess is: ");
                 log.append(guessHash(pi, decodedBytes.length));
                 pi.setFormat(ParamInstance.Format.BASE64BIN);
                 return input;
             }
+            return decodedString;
         } else {
             log.append("\n");
             log.append(identify(pi, input));
@@ -125,7 +129,10 @@ public class ParamAnalyzer {
 
     public static String identify(ParamInstance pi, String input) {
         StringBuilder log = new StringBuilder();
-        if(isDecimalString(input)) {
+        if (isCreditCard(input)) {
+            log.append("Looks like a credit card (passed Luhn).");
+            pi.setFormat(ParamInstance.Format.CREDITCARD);
+        } else if(isDecimalString(input)) {
             log.append("A ");
             log.append(input.length());
             log.append(" digit numeric value.");
@@ -148,10 +155,7 @@ public class ParamAnalyzer {
         } else if (isSSN(input)) {
             log.append("Looks like a SSN.");
             pi.setFormat(ParamInstance.Format.SSN);
-        } else if (isCreditCard(input)) {
-            log.append("Looks like a credit card (passed Luhn).");
-            pi.setFormat(ParamInstance.Format.CREDITCARD);
-        } else if(isSentence(input)) {
+        }  else if(isSentence(input)) {
             log.append("Looks like a word or sentence.");
             pi.setFormat(ParamInstance.Format.TEXT);
         } else if(isPrintableCharacters(input)) {
@@ -208,7 +212,6 @@ public class ParamAnalyzer {
 
     // Based on code from http://www.journaldev.com/1443/java-credit-card-validation-program-using-luhn-algorithm
     private static boolean applyLuhnAlgorithm(String str) {
-
         int[] ints = new int[str.length()];
         for(int i = 0;i < str.length(); i++){
             ints[i] = Integer.parseInt(str.substring(i, i+1));
