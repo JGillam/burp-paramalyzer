@@ -28,8 +28,8 @@ public class ParametersTableModel extends AbstractTableModel {
 
     boolean showDecodedValues = true;
     List<CorrelatedParam> entries = new ArrayList<>();
-    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Decoded?","Example Value"};
-    Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, String.class};
+    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Deflected?", "Decodeable", "Example Value"};
+    Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, Boolean.class, String.class};
     Map<CorrelatedParam, ParamInstance> samples = new HashMap<>();
 
     @Override
@@ -106,6 +106,8 @@ public class ParametersTableModel extends AbstractTableModel {
             case 7:
                 return param.getDecodedReflectedCount() > 0;
             case 8:
+                return !(sample.getDecodedValue() == null) && !sample.getDecodedValue().equals(sample.getValue());
+            case 9:
                 if(showDecodedValues) {
                     return sample.getDecodedValue();
                 }  else {
