@@ -21,6 +21,9 @@ import burp.IBurpExtenderCallbacks;
 import java.io.UnsupportedEncodingException;
 import java.util.regex.Pattern;
 
+/**
+ * This class contains the analysis logic that identifies formats and decodes values.
+ */
 public class ParamAnalyzer {
 
     private static Pattern urlEncodedPattern = Pattern.compile("%[0-9a-zA-Z]{2}");

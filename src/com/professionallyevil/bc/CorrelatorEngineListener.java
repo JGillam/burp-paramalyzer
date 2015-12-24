@@ -16,6 +16,9 @@
 
 package com.professionallyevil.bc;
 
+/**
+ * Simple listener to receive progress updates while analysis is underway.
+ */
 public interface CorrelatorEngineListener {
 
     void setStatus(String statusText);

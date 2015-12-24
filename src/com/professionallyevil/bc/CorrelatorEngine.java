@@ -22,6 +22,10 @@ import javax.swing.*;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * This class manages the actual analysis of parameters in web traffic.  This is handled on a background thread so that
+ * the UI can receive updates if it takes a while.
+ */
 public class CorrelatorEngine extends SwingWorker<String, Object> {
     IBurpExtenderCallbacks callbacks;
     CorrelatorEngineListener listener;
@@ -59,6 +63,11 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         return "";
     }
 
+    /**
+     * Analyze and categorize each of the parameters in scope.
+     * @param helpers The standard burp ExtensionHelpers object.
+     * @param messages The set of request messages to be processed.
+     */
     private void firstPass(IExtensionHelpers helpers, IHttpRequestResponse[] messages) {
         publish("Examining parameters...");
         for (int i = 0; i < messages.length; i++) {

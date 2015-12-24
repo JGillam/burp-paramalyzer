@@ -33,6 +33,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 
+/**
+ * Main class for the Correlator burp extension.
+ */
 public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener, ClipboardOwner {
     private JPanel mainPanel;
     private JButton beginAnalysisButton;
@@ -56,7 +59,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "0.4.1b";
+    private static final String VERSION = "0.4.2b";
     private static final String EXTENSION_NAME = "Correlator";
 
     public Correlator() {
@@ -84,6 +87,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
 
             }
         });
+
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

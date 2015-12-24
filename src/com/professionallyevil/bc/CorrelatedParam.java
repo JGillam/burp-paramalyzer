@@ -20,6 +20,9 @@ import burp.*;
 
 import java.util.*;
 
+/**
+ * This class represents a parameter in the web traffic.  It includes analysis of all instances of that parameter.
+ */
 public class CorrelatedParam {
     SortedSet<ParamInstance> paramInstances = new TreeSet<>();
     Set<String> uniqueURLs = new HashSet<>();
