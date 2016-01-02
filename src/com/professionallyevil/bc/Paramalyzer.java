@@ -36,7 +36,7 @@ import java.net.URL;
 /**
  * Main class for the Correlator burp extension.
  */
-public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener, ClipboardOwner {
+public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListener, ClipboardOwner {
     private JPanel mainPanel;
     private JButton beginAnalysisButton;
     private JTextField textFieldStatus;
@@ -59,10 +59,10 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "0.4.2b";
-    private static final String EXTENSION_NAME = "Correlator";
+    private static final String VERSION = "0.4.2";
+    private static final String EXTENSION_NAME = "Paramalyzer";
 
-    public Correlator() {
+    public Paramalyzer() {
         parametersTable.setModel(paramsTableModel);
         parametersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         beginAnalysisButton.addActionListener(new ActionListener() {
@@ -75,7 +75,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
                 progressBar.setIndeterminate(false);
                 progressBar.setValue(0);
                 progressBar.setStringPainted(true);
-                engine = new CorrelatorEngine(callbacks, Correlator.this, ignoreEmptyCheckBox.isSelected(), ignore.getText());
+                engine = new CorrelatorEngine(callbacks, Paramalyzer.this, ignoreEmptyCheckBox.isSelected(), ignore.getText());
                 engine.execute();
             }
         });
@@ -211,7 +211,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
                             }
                             Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
                             StringSelection contents = new StringSelection(buf.toString());
-                            clipboard.setContents(contents, Correlator.this);
+                            clipboard.setContents(contents, Paramalyzer.this);
                         }
                     });
 
@@ -302,7 +302,7 @@ public class Correlator implements IBurpExtender, ITab, CorrelatorEngineListener
 
     @Override
     public String getTabCaption() {
-        return "Correlator";
+        return EXTENSION_NAME;
     }
 
     @Override

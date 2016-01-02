@@ -16,11 +16,11 @@
 
 package burp;
 
-import com.professionallyevil.bc.Correlator;
+import com.professionallyevil.bc.Paramalyzer;
 
 public class BurpExtender implements IBurpExtender{
 
-    Correlator bc = new Correlator();
+    Paramalyzer bc = new Paramalyzer();
 
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
