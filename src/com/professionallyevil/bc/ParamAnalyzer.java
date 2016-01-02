@@ -61,6 +61,7 @@ public class ParamAnalyzer {
                 currentValue = smartDecode(pi, currentValue, callbacks, smartDecodeLog);
             }
 
+
             StringBuilder text = new StringBuilder();
             if (!currentValue.equals(value)) {
                 text.append("Decoded value:\n");
@@ -68,6 +69,9 @@ public class ParamAnalyzer {
                 text.append("\n\nDecoding sequence:\nStarting value: ");
                 text.append(value);
                 text.append(smartDecodeLog.toString());
+                text.append("\n");
+                pi.setDecodedValue(currentValue);
+                text.append(identify(pi, currentValue));
 
             } else {
                 text.append("Value: ");
@@ -84,6 +88,9 @@ public class ParamAnalyzer {
     }
 
     public static String smartDecode(ParamInstance pi, String input, IBurpExtenderCallbacks callbacks, StringBuilder log) {
+        if (isCreditCard(input))  {
+            return input;
+        }
         if (isURLEncoded(input)) {
             String output = callbacks.getHelpers().urlDecode(input);
             if (!output.equals(input)) {
@@ -155,7 +162,15 @@ public class ParamAnalyzer {
         } else if (isSSN(input)) {
             log.append("Looks like a SSN.");
             pi.setFormat(ParamInstance.Format.SSN);
-        }  else if(isSentence(input)) {
+        } else if (isBigIP(input)) {
+            log.append("Looks like a big IP cookie.");
+            String decoded = decodeBigIP(pi, input);
+            log.append("\nBigIP decoded value: ").append(decoded);
+            pi.setFormat(ParamInstance.Format.BIGIP);
+
+        }
+
+        else if(isSentence(input)) {
             log.append("Looks like a word or sentence.");
             pi.setFormat(ParamInstance.Format.TEXT);
         } else if(isPrintableCharacters(input)) {
@@ -205,6 +220,8 @@ public class ParamAnalyzer {
     public static boolean isSSN(String input) {return ssnPattern.matcher(input).find();}
 
     public static boolean isHTMLFragment(String input) {return htmlFragment.matcher(input).find();}
+
+    public static boolean isBigIP(String input) {return bigIPPattern.matcher(input).find();}
 
     public static boolean isCreditCard(String input) {
         return creditcardPattern.matcher(input).find() && applyLuhnAlgorithm(input);
