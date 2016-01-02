@@ -184,7 +184,7 @@ public class ParamAnalyzer {
                 pi.setFormat(ParamInstance.Format.PRINTABLE);
             }
         } else {
-            log.append("Unidentified");
+            log.append("Unidentified.");
         }
 
         return log.toString();
