@@ -52,14 +52,16 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
     private JButton highlightValueButton;
     private JTextArea ignore;
     private JCheckBox showDecodedValuesCheckBox;
+    private JTable cookieTable;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
+    private CookieStatisticsTableModel cookieStatisticsTableModel = new CookieStatisticsTableModel();
     private ParamListModel paramListModel = new ParamListModel();
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "0.4.2";
+    private static final String VERSION = "0.6.0 RC1";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
@@ -88,6 +90,8 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
             }
         });
 
+        cookieTable.setModel(cookieStatisticsTableModel);
+
         clearButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,6 +103,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
                 textAreaRequest.setText("");
                 textAreaResponse.setText("");
                 analysisTextArea.setText("");
+                cookieStatisticsTableModel.clear();
             }
         });
 
@@ -289,6 +294,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
         paramsTableModel.addParameters(engine.getUrlParameters());
         paramsTableModel.addParameters(engine.getBodyParameters());
         paramsTableModel.addParameters(engine.getCookieParameters());
+        cookieStatisticsTableModel.setCookieStatistics(engine.getCookieStatistics(), callbacks);
     }
 
 

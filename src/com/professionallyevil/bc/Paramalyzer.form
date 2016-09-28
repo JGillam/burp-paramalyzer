@@ -18,217 +18,266 @@
         <properties/>
         <border type="none"/>
         <children>
-          <splitpane id="d9b1b">
+          <tabbedpane id="bac17">
             <constraints>
               <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
                 <preferred-size width="200" height="200"/>
               </grid>
             </constraints>
-            <properties>
-              <orientation value="0"/>
-            </properties>
+            <properties/>
             <border type="none"/>
             <children>
-              <scrollpane id="9e8fe">
-                <constraints>
-                  <splitpane position="left"/>
-                </constraints>
-                <properties>
-                  <minimumSize width="21" height="180"/>
-                </properties>
-                <border type="none"/>
-                <children>
-                  <component id="f2c1b" class="javax.swing.JTable" binding="parametersTable">
-                    <constraints/>
-                    <properties>
-                      <autoCreateRowSorter value="true"/>
-                      <fillsViewportHeight value="true"/>
-                    </properties>
-                  </component>
-                </children>
-              </scrollpane>
-              <grid id="69d61" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+              <grid id="ebe49" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
                 <margin top="0" left="0" bottom="0" right="0"/>
                 <constraints>
-                  <splitpane position="right"/>
+                  <tabbedpane title="Analysis"/>
                 </constraints>
                 <properties/>
-                <border type="none" title="Details"/>
+                <border type="none"/>
                 <children>
-                  <grid id="1fb0c" layout-manager="GridBagLayout">
+                  <splitpane id="d9b1b">
                     <constraints>
-                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                        <preferred-size width="200" height="200"/>
+                      </grid>
+                    </constraints>
+                    <properties>
+                      <orientation value="0"/>
+                    </properties>
+                    <border type="none"/>
+                    <children>
+                      <scrollpane id="9e8fe">
+                        <constraints>
+                          <splitpane position="left"/>
+                        </constraints>
+                        <properties>
+                          <minimumSize width="21" height="180"/>
+                        </properties>
+                        <border type="none"/>
+                        <children>
+                          <component id="f2c1b" class="javax.swing.JTable" binding="parametersTable">
+                            <constraints/>
+                            <properties>
+                              <autoCreateRowSorter value="true"/>
+                              <fillsViewportHeight value="true"/>
+                            </properties>
+                          </component>
+                        </children>
+                      </scrollpane>
+                      <grid id="69d61" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                        <margin top="0" left="0" bottom="0" right="0"/>
+                        <constraints>
+                          <splitpane position="right"/>
+                        </constraints>
+                        <properties/>
+                        <border type="none" title="Details"/>
+                        <children>
+                          <grid id="1fb0c" layout-manager="GridBagLayout">
+                            <constraints>
+                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                            </constraints>
+                            <properties/>
+                            <border type="none"/>
+                            <children>
+                              <splitpane id="21394">
+                                <constraints>
+                                  <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
+                                    <preferred-size width="200" height="200"/>
+                                  </grid>
+                                  <gridbag weightx="1.0" weighty="1.0"/>
+                                </constraints>
+                                <properties>
+                                  <dividerLocation value="460"/>
+                                  <resizeWeight value="1.0"/>
+                                </properties>
+                                <border type="none"/>
+                                <children>
+                                  <grid id="e18ef" layout-manager="BorderLayout" hgap="0" vgap="0">
+                                    <constraints>
+                                      <splitpane position="left"/>
+                                    </constraints>
+                                    <properties/>
+                                    <border type="none" title="Values"/>
+                                    <children>
+                                      <component id="c3f89" class="javax.swing.JCheckBox" binding="showDuplicatesCheckBox" default-binding="true">
+                                        <constraints border-constraint="North"/>
+                                        <properties>
+                                          <enabled value="true"/>
+                                          <minimumSize width="60" height="20"/>
+                                          <selected value="false"/>
+                                          <text value="Show Duplicates"/>
+                                        </properties>
+                                      </component>
+                                      <scrollpane id="77e0f">
+                                        <constraints border-constraint="Center"/>
+                                        <properties>
+                                          <maximumSize width="120" height="32767"/>
+                                        </properties>
+                                        <border type="none"/>
+                                        <children>
+                                          <component id="7ee73" class="javax.swing.JList" binding="listValues">
+                                            <constraints/>
+                                            <properties>
+                                              <selectionBackground color="-869022"/>
+                                              <selectionMode value="0"/>
+                                            </properties>
+                                          </component>
+                                        </children>
+                                      </scrollpane>
+                                    </children>
+                                  </grid>
+                                  <splitpane id="d4627">
+                                    <constraints>
+                                      <splitpane position="right"/>
+                                    </constraints>
+                                    <properties>
+                                      <dividerLocation value="161"/>
+                                      <lastDividerLocation value="292"/>
+                                      <resizeWeight value="1.0"/>
+                                    </properties>
+                                    <border type="none"/>
+                                    <children>
+                                      <grid id="ab3e8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+                                        <margin top="0" left="0" bottom="0" right="0"/>
+                                        <constraints>
+                                          <splitpane position="left"/>
+                                        </constraints>
+                                        <properties/>
+                                        <border type="none" title="What is it?"/>
+                                        <children>
+                                          <scrollpane id="47bbe">
+                                            <constraints>
+                                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                            </constraints>
+                                            <properties/>
+                                            <border type="none"/>
+                                            <children>
+                                              <component id="7f44f" class="javax.swing.JTextArea" binding="analysisTextArea">
+                                                <constraints/>
+                                                <properties>
+                                                  <editable value="false"/>
+                                                  <minimumSize width="100" height="16"/>
+                                                </properties>
+                                              </component>
+                                            </children>
+                                          </scrollpane>
+                                        </children>
+                                      </grid>
+                                      <grid id="8600" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
+                                        <margin top="0" left="0" bottom="0" right="0"/>
+                                        <constraints>
+                                          <splitpane position="right"/>
+                                        </constraints>
+                                        <properties/>
+                                        <border type="none"/>
+                                        <children>
+                                          <tabbedpane id="898b4" default-binding="true">
+                                            <constraints>
+                                              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="2" use-parent-layout="false"/>
+                                            </constraints>
+                                            <properties/>
+                                            <border type="none" title="Message"/>
+                                            <children>
+                                              <grid id="12f94" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                                <margin top="0" left="0" bottom="0" right="0"/>
+                                                <constraints>
+                                                  <tabbedpane title="Request"/>
+                                                </constraints>
+                                                <properties/>
+                                                <border type="none"/>
+                                                <children>
+                                                  <scrollpane id="3a4d5">
+                                                    <constraints>
+                                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                                    </constraints>
+                                                    <properties/>
+                                                    <border type="none"/>
+                                                    <children>
+                                                      <component id="b591" class="javax.swing.JTextArea" binding="textAreaRequest">
+                                                        <constraints/>
+                                                        <properties/>
+                                                      </component>
+                                                    </children>
+                                                  </scrollpane>
+                                                </children>
+                                              </grid>
+                                              <grid id="58fcf" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                                                <margin top="0" left="0" bottom="0" right="0"/>
+                                                <constraints>
+                                                  <tabbedpane title="Response"/>
+                                                </constraints>
+                                                <properties/>
+                                                <border type="none"/>
+                                                <children>
+                                                  <scrollpane id="31b0a">
+                                                    <constraints>
+                                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+                                                    </constraints>
+                                                    <properties/>
+                                                    <border type="none"/>
+                                                    <children>
+                                                      <component id="a779d" class="javax.swing.JTextArea" binding="textAreaResponse">
+                                                        <constraints/>
+                                                        <properties/>
+                                                      </component>
+                                                    </children>
+                                                  </scrollpane>
+                                                </children>
+                                              </grid>
+                                            </children>
+                                          </tabbedpane>
+                                          <component id="91008" class="javax.swing.JButton" binding="highlightValueButton" default-binding="true">
+                                            <constraints>
+                                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+                                            </constraints>
+                                            <properties>
+                                              <text value="Highlight Value"/>
+                                            </properties>
+                                          </component>
+                                        </children>
+                                      </grid>
+                                    </children>
+                                  </splitpane>
+                                </children>
+                              </splitpane>
+                            </children>
+                          </grid>
+                        </children>
+                      </grid>
+                    </children>
+                  </splitpane>
+                </children>
+              </grid>
+              <grid id="a4024" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+                <margin top="0" left="0" bottom="0" right="0"/>
+                <constraints>
+                  <tabbedpane title="Cookies"/>
+                </constraints>
+                <properties/>
+                <border type="none"/>
+                <children>
+                  <vspacer id="cbfc3">
+                    <constraints>
+                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+                    </constraints>
+                  </vspacer>
+                  <scrollpane id="7dde5">
+                    <constraints>
+                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                     </constraints>
                     <properties/>
                     <border type="none"/>
                     <children>
-                      <splitpane id="21394">
-                        <constraints>
-                          <grid row="0" column="0" row-span="1" col-span="3" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false">
-                            <preferred-size width="200" height="200"/>
-                          </grid>
-                          <gridbag weightx="1.0" weighty="1.0"/>
-                        </constraints>
-                        <properties>
-                          <dividerLocation value="466"/>
-                          <resizeWeight value="1.0"/>
-                        </properties>
-                        <border type="none"/>
-                        <children>
-                          <grid id="e18ef" layout-manager="BorderLayout" hgap="0" vgap="0">
-                            <constraints>
-                              <splitpane position="left"/>
-                            </constraints>
-                            <properties/>
-                            <border type="none" title="Values"/>
-                            <children>
-                              <component id="c3f89" class="javax.swing.JCheckBox" binding="showDuplicatesCheckBox" default-binding="true">
-                                <constraints border-constraint="North"/>
-                                <properties>
-                                  <enabled value="true"/>
-                                  <minimumSize width="60" height="20"/>
-                                  <selected value="false"/>
-                                  <text value="Show Duplicates"/>
-                                </properties>
-                              </component>
-                              <scrollpane id="77e0f">
-                                <constraints border-constraint="Center"/>
-                                <properties>
-                                  <maximumSize width="120" height="32767"/>
-                                </properties>
-                                <border type="none"/>
-                                <children>
-                                  <component id="7ee73" class="javax.swing.JList" binding="listValues">
-                                    <constraints/>
-                                    <properties>
-                                      <selectionBackground color="-869022"/>
-                                      <selectionMode value="0"/>
-                                    </properties>
-                                  </component>
-                                </children>
-                              </scrollpane>
-                            </children>
-                          </grid>
-                          <splitpane id="d4627">
-                            <constraints>
-                              <splitpane position="right"/>
-                            </constraints>
-                            <properties>
-                              <dividerLocation value="292"/>
-                              <lastDividerLocation value="-1"/>
-                              <resizeWeight value="1.0"/>
-                            </properties>
-                            <border type="none"/>
-                            <children>
-                              <grid id="ab3e8" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
-                                <margin top="0" left="0" bottom="0" right="0"/>
-                                <constraints>
-                                  <splitpane position="left"/>
-                                </constraints>
-                                <properties/>
-                                <border type="none" title="What is it?"/>
-                                <children>
-                                  <scrollpane id="47bbe">
-                                    <constraints>
-                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                                    </constraints>
-                                    <properties/>
-                                    <border type="none"/>
-                                    <children>
-                                      <component id="7f44f" class="javax.swing.JTextArea" binding="analysisTextArea">
-                                        <constraints/>
-                                        <properties>
-                                          <editable value="false"/>
-                                          <minimumSize width="100" height="16"/>
-                                        </properties>
-                                      </component>
-                                    </children>
-                                  </scrollpane>
-                                </children>
-                              </grid>
-                              <grid id="8600" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="true" same-size-vertically="false" hgap="-1" vgap="-1">
-                                <margin top="0" left="0" bottom="0" right="0"/>
-                                <constraints>
-                                  <splitpane position="right"/>
-                                </constraints>
-                                <properties/>
-                                <border type="none"/>
-                                <children>
-                                  <tabbedpane id="898b4" default-binding="true">
-                                    <constraints>
-                                      <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="2" use-parent-layout="false"/>
-                                    </constraints>
-                                    <properties/>
-                                    <border type="none" title="Message"/>
-                                    <children>
-                                      <grid id="12f94" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                                        <margin top="0" left="0" bottom="0" right="0"/>
-                                        <constraints>
-                                          <tabbedpane title="Request"/>
-                                        </constraints>
-                                        <properties/>
-                                        <border type="none"/>
-                                        <children>
-                                          <scrollpane id="3a4d5">
-                                            <constraints>
-                                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                                            </constraints>
-                                            <properties/>
-                                            <border type="none"/>
-                                            <children>
-                                              <component id="b591" class="javax.swing.JTextArea" binding="textAreaRequest">
-                                                <constraints/>
-                                                <properties/>
-                                              </component>
-                                            </children>
-                                          </scrollpane>
-                                        </children>
-                                      </grid>
-                                      <grid id="58fcf" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-                                        <margin top="0" left="0" bottom="0" right="0"/>
-                                        <constraints>
-                                          <tabbedpane title="Response"/>
-                                        </constraints>
-                                        <properties/>
-                                        <border type="none"/>
-                                        <children>
-                                          <scrollpane id="31b0a">
-                                            <constraints>
-                                              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
-                                            </constraints>
-                                            <properties/>
-                                            <border type="none"/>
-                                            <children>
-                                              <component id="a779d" class="javax.swing.JTextArea" binding="textAreaResponse">
-                                                <constraints/>
-                                                <properties/>
-                                              </component>
-                                            </children>
-                                          </scrollpane>
-                                        </children>
-                                      </grid>
-                                    </children>
-                                  </tabbedpane>
-                                  <component id="91008" class="javax.swing.JButton" binding="highlightValueButton" default-binding="true">
-                                    <constraints>
-                                      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-                                    </constraints>
-                                    <properties>
-                                      <text value="Highlight Value"/>
-                                    </properties>
-                                  </component>
-                                </children>
-                              </grid>
-                            </children>
-                          </splitpane>
-                        </children>
-                      </splitpane>
+                      <component id="60fdb" class="javax.swing.JTable" binding="cookieTable">
+                        <constraints/>
+                        <properties/>
+                      </component>
                     </children>
-                  </grid>
+                  </scrollpane>
                 </children>
               </grid>
             </children>
-          </splitpane>
+          </tabbedpane>
         </children>
       </grid>
       <grid id="75a78" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">

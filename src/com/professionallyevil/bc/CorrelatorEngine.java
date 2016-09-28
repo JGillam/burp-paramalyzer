@@ -36,6 +36,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     Map<String, CorrelatedParam> bodyParameters = new HashMap<>();
     Map<String, CorrelatedParam> cookieParameters = new HashMap<>();
     Set<IHttpRequestResponse> inScopeMessagesWithResponses = new HashSet<>();
+    Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
     public CorrelatorEngine(IBurpExtenderCallbacks callbacks, CorrelatorEngineListener l, boolean ignoreEmpty, String ignoreThese) {
         this.callbacks = callbacks;
@@ -73,6 +74,16 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         for (int i = 0; i < messages.length; i++) {
             publish(100 * i / messages.length);
             messages[i].getHttpService();
+            //  Analyze response for cookies
+            if(messages[i].getResponse().length > 0) {
+                IResponseInfo responseInfo = helpers.analyzeResponse(messages[i].getResponse());
+                List<String> headers = responseInfo.getHeaders();
+                for (String header: headers){
+                    if (startsWithIgnoreCase(header, "set-cookie:")) {
+                        processCookieHeader(header);
+                    }
+                }
+            }
             IRequestInfo requestInfo = helpers.analyzeRequest(messages[i]);
             if (callbacks.isInScope(requestInfo.getUrl())) {
                 byte[] responseBytes = messages[i].getResponse();
@@ -205,6 +216,49 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         } catch (Throwable e) {
             listener.setStatus(e.getMessage());
         }
+    }
+
+    public static boolean startsWithIgnoreCase(String str, String prefix) {
+        return str.regionMatches(true, 0, prefix, 0, prefix.length());
+    }
+
+    public void processCookieHeader(String header) {
+        String[] parts = header.substring("set-cookie:".length()).split(";");
+        boolean httpOnly = false;
+        boolean secure = false;
+        String name = "";
+        int count = 0;
+        for (String part: parts) {
+            String[] pair = part.split("=");
+            String key = pair[0].trim().toUpperCase();
+            switch(key) {
+                case "HTTPONLY":
+                    httpOnly = true;
+                    break;
+                case "SECURE":
+                    secure = true;
+                    break;
+                default:
+                    // pass
+            }
+            if(count==0) {
+                name = pair[0].trim();
+            }
+            count+=1;
+        }
+        CookieStatistics cs;
+        if(cookieStatistics.get(name) != null) {
+            cs = cookieStatistics.get(name);
+        } else {
+            cs = new CookieStatistics(name);
+            cookieStatistics.put(name, cs);
+        }
+        cs.addCookieValues(httpOnly, secure);
+
+    }
+
+    public Map<String, CookieStatistics> getCookieStatistics() {
+        return cookieStatistics;
     }
 
     public Map<String, CorrelatedParam> getUrlParameters() {
