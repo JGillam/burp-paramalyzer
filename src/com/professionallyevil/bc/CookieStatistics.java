@@ -24,12 +24,16 @@ public class CookieStatistics {
         return this.name;
     }
 
+    public String getCount() {
+        return ""+count;
+    }
+
     public String getHttpOnly() {
-        return httpOnlyCount==count?"Always":(httpOnlyCount==0?"Never":""+httpOnlyCount+"/"+"count");
+        return httpOnlyCount==count?"Always":(httpOnlyCount==0?"Never":""+httpOnlyCount+"/"+count);
     }
 
     public String getSecure() {
-        return secureCount==count?"Always":(secureCount==0?"Never":""+secureCount+"/"+"count");
+        return secureCount==count?"Always":(secureCount==0?"Never":""+secureCount+"/"+count);
     }
 
 

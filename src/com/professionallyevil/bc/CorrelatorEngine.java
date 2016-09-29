@@ -246,14 +246,16 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
             }
             count+=1;
         }
-        CookieStatistics cs;
-        if(cookieStatistics.get(name) != null) {
-            cs = cookieStatistics.get(name);
-        } else {
-            cs = new CookieStatistics(name);
-            cookieStatistics.put(name, cs);
+        if(!name.isEmpty()) {
+            CookieStatistics cs;
+            if (cookieStatistics.get(name) != null) {
+                cs = cookieStatistics.get(name);
+            } else {
+                cs = new CookieStatistics(name);
+                cookieStatistics.put(name, cs);
+            }
+            cs.addCookieValues(httpOnly, secure);
         }
-        cs.addCookieValues(httpOnly, secure);
 
     }
 

@@ -8,7 +8,7 @@ import java.util.TreeMap;
 
 public class CookieStatisticsTableModel extends AbstractTableModel {
 
-    String[] columnNames = {"Name", "HttpOnly Flag", "Secure Flag"};
+    String[] columnNames = {"Name", "Count", "HttpOnly Flag", "Secure Flag"};
 
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
@@ -51,8 +51,10 @@ public class CookieStatisticsTableModel extends AbstractTableModel {
             case 0:
                 return key;
             case 1:
-                return cs.getHttpOnly();
+                return cs.getCount();
             case 2:
+                return cs.getHttpOnly();
+            case 3:
                 return cs.getSecure();
             default:
                 return "";
