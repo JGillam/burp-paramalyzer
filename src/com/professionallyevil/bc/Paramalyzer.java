@@ -96,6 +96,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
         });
 
         cookieTable.setModel(cookieStatisticsTableModel);
+        cookieTable.setAutoCreateRowSorter(true);
 
         clearButton.addActionListener(new ActionListener() {
             @Override
