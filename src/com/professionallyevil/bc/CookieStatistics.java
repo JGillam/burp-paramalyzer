@@ -24,8 +24,8 @@ public class CookieStatistics {
         return this.name;
     }
 
-    public String getCount() {
-        return ""+count;
+    public int getCount() {
+        return count;
     }
 
     public String getHttpOnly() {

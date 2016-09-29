@@ -9,6 +9,7 @@ import java.util.TreeMap;
 public class CookieStatisticsTableModel extends AbstractTableModel {
 
     String[] columnNames = {"Name", "Count", "HttpOnly Flag", "Secure Flag"};
+    Class[] columnClasses = {String.class, Integer.class, String.class, String.class};
 
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
@@ -30,7 +31,7 @@ public class CookieStatisticsTableModel extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return String.class;
+        return columnClasses[columnIndex];
     }
 
     @Override
