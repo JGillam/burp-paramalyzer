@@ -66,7 +66,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
 
-    private static final String VERSION = "1.0.0";
+    private static final String VERSION = "1.0.1";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {

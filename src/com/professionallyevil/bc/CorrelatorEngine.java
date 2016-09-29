@@ -19,6 +19,7 @@ package com.professionallyevil.bc;
 import burp.*;
 
 import javax.swing.*;
+import java.io.PrintStream;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -75,7 +76,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
             publish(100 * i / messages.length);
             messages[i].getHttpService();
             //  Analyze response for cookies
-            if(messages[i].getResponse().length > 0) {
+            if(messages[i].getResponse() != null) {
                 IResponseInfo responseInfo = helpers.analyzeResponse(messages[i].getResponse());
                 List<String> headers = responseInfo.getHeaders();
                 for (String header: headers){
@@ -211,10 +212,13 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
             listener.done();
         } catch (InterruptedException e) {
             listener.setStatus("Interrupted Exception: " + e.getMessage());
+            e.printStackTrace(new PrintStream(callbacks.getStderr()));
         } catch (ExecutionException e) {
             listener.setStatus("Execution Exception: " + e.getMessage());
+            e.printStackTrace(new PrintStream(callbacks.getStderr()));
         } catch (Throwable e) {
             listener.setStatus(e.getMessage());
+            e.printStackTrace(new PrintStream(callbacks.getStderr()));
         }
     }
 
