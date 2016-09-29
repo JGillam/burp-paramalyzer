@@ -31,6 +31,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 
 /**
@@ -53,6 +57,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
     private JTextArea ignore;
     private JCheckBox showDecodedValuesCheckBox;
     private JTable cookieTable;
+    private JButton saveCookieStatsButton;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -254,6 +259,43 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
                     paramsTableModel.setShowDecodedValues(showDecodedValuesCheckBox.isSelected());
                     paramsTableModel.fireTableDataChanged();
                     parametersTable.setRowSelectionInterval(row, row);
+            }
+        });
+
+        saveCookieStatsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser();
+                int result = chooser.showSaveDialog(mainPanel);
+                if(result == JFileChooser.APPROVE_OPTION) {
+                    File f = chooser.getSelectedFile();
+                    try {
+                        PrintWriter w = new PrintWriter(new FileWriter(f));
+                        StringBuilder buf = new StringBuilder();
+                        for(int col = 0 ; col < cookieStatisticsTableModel.getColumnCount(); col ++){
+                            buf.append(cookieStatisticsTableModel.getColumnName(col));
+                            buf.append(',');
+                        }
+                        buf.deleteCharAt(buf.length()-1);
+                        w.println(buf.toString());
+
+                        for(int row = 0; row < cookieStatisticsTableModel.getRowCount(); row ++) {
+                            buf = new StringBuilder();
+                            for(int col = 0 ; col < cookieStatisticsTableModel.getColumnCount(); col ++){
+                                buf.append(cookieStatisticsTableModel.getValueAt(row, col));
+                                buf.append(',');
+                            }
+                            buf.deleteCharAt(buf.length()-1);
+                            w.println(buf.toString());
+                        }
+
+                        w.flush();
+                        w.close();
+                    } catch (IOException e1) {
+                        callbacks.printError("Unable to write to file: "+ e1.getMessage());
+                    }
+                }
+
             }
         });
     }
