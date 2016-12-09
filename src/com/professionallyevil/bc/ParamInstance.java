@@ -42,7 +42,8 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         SSN("SSN"),
         CREDITCARD("CC"),
         HTMLFRAG("XML/HTML"),
-        EMPTY("Empty");
+        EMPTY("Empty"),
+        JSON("JSON Object");
 
         private String title;
 

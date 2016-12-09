@@ -39,6 +39,7 @@ public class ParamAnalyzer {
     private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-[0-9]{2}-[0-9]{4}$");
     private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
     private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
+    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\w*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\w*\"))*\\}$");
 
 
     public static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
@@ -167,10 +168,7 @@ public class ParamAnalyzer {
             String decoded = decodeBigIP(pi, input);
             log.append("\nBigIP decoded value: ").append(decoded);
             pi.setFormat(ParamInstance.Format.BIGIP);
-
-        }
-
-        else if(isSentence(input)) {
+        } else if(isSentence(input)) {
             log.append("Looks like a word or sentence.");
             pi.setFormat(ParamInstance.Format.TEXT);
         } else if(isPrintableCharacters(input)) {
@@ -180,6 +178,8 @@ public class ParamAnalyzer {
             if (isHTMLFragment(input)) {
                 log.append("\nThis may be XML or an HTML Fragment!");
                 pi.setFormat(ParamInstance.Format.HTMLFRAG);
+            } else if (isJSONObject(input)) {
+                pi.setFormat(ParamInstance.Format.JSON);
             } else {
                 pi.setFormat(ParamInstance.Format.PRINTABLE);
             }
@@ -225,6 +225,10 @@ public class ParamAnalyzer {
 
     public static boolean isCreditCard(String input) {
         return creditcardPattern.matcher(input).find() && applyLuhnAlgorithm(input);
+    }
+
+    public static boolean isJSONObject(String input) {
+        return jsonObjectPattern.matcher(input).find();
     }
 
     // Based on code from http://www.journaldev.com/1443/java-credit-card-validation-program-using-luhn-algorithm
