@@ -337,6 +337,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
         paramsTableModel.addParameters(engine.getUrlParameters());
         paramsTableModel.addParameters(engine.getBodyParameters());
         paramsTableModel.addParameters(engine.getCookieParameters());
+        paramsTableModel.addParameters(engine.getJSONParameters());
         cookieStatisticsTableModel.setCookieStatistics(engine.getCookieStatistics(), callbacks);
     }
 

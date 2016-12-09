@@ -46,8 +46,10 @@ public class CorrelatedParam {
         ParamInstance pi = new ParamInstance(param, message);
         paramInstances.add(pi);
         addURL(requestInfo);
-        if(!uniqueValues.contains(param.getValue())) {
-            uniqueValues.add(param.getValue());
+
+        String value = param.getValue();
+        if(!uniqueValues.contains(value)) {
+            uniqueValues.add(value);
             uniqueParamInstances.add(pi);
         }
         checkReflection(param, responseString, helpers);

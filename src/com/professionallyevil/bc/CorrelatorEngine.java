@@ -36,6 +36,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     Map<String, CorrelatedParam> urlParameters = new HashMap<>();
     Map<String, CorrelatedParam> bodyParameters = new HashMap<>();
     Map<String, CorrelatedParam> cookieParameters = new HashMap<>();
+    Map<String, CorrelatedParam> jsonParameters = new HashMap<>();
     Set<IHttpRequestResponse> inScopeMessagesWithResponses = new HashSet<>();
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
@@ -109,6 +110,9 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                             case IParameter.PARAM_COOKIE:
                                 paramMap = cookieParameters;
                                 break;
+                            case IParameter.PARAM_JSON:
+                                paramMap = jsonParameters;
+                                break;
                             default:
                                 paramMap = null;
                                 // nothing
@@ -135,7 +139,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
 
     private void parameterFormatAnalysis() {
         publish("Parameter Format Analysis...");
-        int total = urlParameters.size() + bodyParameters.size() + cookieParameters.size();
+        int total = urlParameters.size() + bodyParameters.size() + cookieParameters.size() + jsonParameters.size();
         int i=0;
         publish(0);
         for(CorrelatedParam cp: urlParameters.values()){
@@ -149,6 +153,11 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
             publish(100*i/total);
         }
         for(CorrelatedParam cp: cookieParameters.values()){
+            cp.analyzeAll(callbacks);
+            i+=1;
+            publish(100*i/total);
+        }
+        for(CorrelatedParam cp: jsonParameters.values()){
             cp.analyzeAll(callbacks);
             i+=1;
             publish(100*i/total);
@@ -278,4 +287,6 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     public Map<String, CorrelatedParam> getCookieParameters() {
         return cookieParameters;
     }
+
+    public Map<String, CorrelatedParam> getJSONParameters() { return jsonParameters; }
 }

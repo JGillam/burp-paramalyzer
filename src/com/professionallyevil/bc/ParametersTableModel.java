@@ -89,6 +89,8 @@ public class ParametersTableModel extends AbstractTableModel {
                         return "Body";
                     case IParameter.PARAM_COOKIE:
                         return "Cookie";
+                    case IParameter.PARAM_JSON:
+                        return "JSON";
                     default:
                         return "Other";
                 }
