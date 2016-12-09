@@ -32,14 +32,14 @@ public class ParamAnalyzer {
     private static Pattern textPattern = Pattern.compile("^([\\w']+ )*[\\w']+[\\.?!]?$");
     private static Pattern hexStringPattern = Pattern.compile("^([A-F0-9]{2})+$", Pattern.CASE_INSENSITIVE);
     private static Pattern decimalPattern = Pattern.compile("^[-]?[0-9]+$");
-    private static Pattern bigIPPattern = Pattern.compile("^[0-9]+\\.[0-9]+\\.[0-9]+$"); // close enough
+    private static Pattern bigIPPattern = Pattern.compile("^[0-9]{4,}\\.[0-9]{4,}\\.[0-9]{4,}$"); // close enough
     private static Pattern urlPathPattern = Pattern.compile("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$");
     private static Pattern urlPathPattern2 = Pattern.compile("^http[s]?://[a-zA-Z0-9]+");
     private static Pattern emailAddressPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
     private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-[0-9]{2}-[0-9]{4}$");
     private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
     private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
-    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\w*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\w*\"))*\\}$");
+    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\"))*\\}$");
 
 
     public static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
