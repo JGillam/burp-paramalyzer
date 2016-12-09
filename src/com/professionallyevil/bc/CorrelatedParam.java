@@ -78,7 +78,7 @@ public class CorrelatedParam {
     }
 
     private void checkReflection(IParameter param, String responseString, IExtensionHelpers helpers) {
-        if(param.getValue().length()>0) {
+        if(param.getValue().length()>2) {
             if (responseString.contains(param.getValue())) {
              reflectedCount += 1;
             }
