@@ -8,4 +8,4 @@ ProOnly: False
 Author: Jason Gillam
 ShortDescription: Improves efficiency of manual parameter analysis for web penetration tests.
 EntryPoint: build/libs/paramalyzer-all.jar
-BuildCommand: gradle -PburpJar=$BURP_JAR fatJar
+BuildCommand: gradle fatJar
