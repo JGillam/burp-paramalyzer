@@ -1,0 +1,11 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="burp-paramalyzer">
+    <output-path>$PROJECT_DIR$/out/artifacts/burp_paramalyzer</output-path>
+    <root id="archive" name="burp-paramalyzer.jar">
+      <element id="module-output" name="burp-paramalyzer" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
