@@ -28,6 +28,7 @@ public class ParamAnalyzer {
 
     private static Pattern urlEncodedPattern = Pattern.compile("%[0-9a-zA-Z]{2}");
     private static Pattern base64EncodedPattern = Pattern.compile("^(?:[A-Za-z0-9+/]{4}(==)?)*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
+    private static Pattern base62EncodedPattern = Pattern.compile("^[A-Za-z0-9]{1,11}$");
     private static Pattern printableCharsPattern = Pattern.compile("^\\p{Print}+$");
     private static Pattern textPattern = Pattern.compile("^([\\w']+ )*[\\w']+[\\.?!]?$");
     private static Pattern hexStringPattern = Pattern.compile("^([A-F0-9]{2})+$", Pattern.CASE_INSENSITIVE);
@@ -41,6 +42,7 @@ public class ParamAnalyzer {
     private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
     private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\"))*\\}$");
 
+    private static Base62 base62 = new Base62();
 
     public static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
         try {
@@ -170,11 +172,30 @@ public class ParamAnalyzer {
             pi.setFormat(ParamInstance.Format.BIGIP);
         } else if(isSentence(input)) {
             log.append("Looks like a word or sentence.");
+            if (isBase62Encoded(input)) {
+                try {
+                    long result = Base62.decode(input);
+                    log.append("\n\nThis may be a base62 encoded value (rare)." +
+                            "\n  It decodes to: ").append(result);
+                } catch (Exception e) {
+                    // ignore - our regex isn't precise enough to catch everything.
+                }
+            }
             pi.setFormat(ParamInstance.Format.TEXT);
         } else if(isPrintableCharacters(input)) {
             log.append("Looks like a ");
             log.append(input.length());
             log.append(" length string of printable characters.");
+            if (isBase62Encoded(input)) {
+                try {
+                    long result = Base62.decode(input);
+                    log.append("\n\nThis may be a base62 encoded value (rare)." +
+                            "\n  It decodes to: ").append(result);
+                } catch (Exception e) {
+                    // ignore - our regex isn't precise enough to catch everything.
+                }
+            }
+
             if (isHTMLFragment(input)) {
                 log.append("\nThis may be XML or an HTML Fragment!");
                 pi.setFormat(ParamInstance.Format.HTMLFRAG);
@@ -196,6 +217,10 @@ public class ParamAnalyzer {
 
     public static boolean isBase64Encoded(String input) {
         return base64EncodedPattern.matcher(input).find();
+    }
+
+    public static boolean isBase62Encoded(String input) {
+        return base62EncodedPattern.matcher(input).find();
     }
 
     public static boolean isPrintableCharacters(String input) {
