@@ -22,23 +22,17 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by jgillam on 4/18/2017.
  */
-public class DeepAnalysisTab extends SwingWorker<String, Object> {
-    private final IBurpExtenderCallbacks callbacks;
-    private final ParamInstance pi;
+
+public class DeepAnalysisTab implements WorkerStatusListener {
     private JLabel titleLabel;
     private JList listMatches;
     private JTextArea textDetails;
@@ -46,107 +40,67 @@ public class DeepAnalysisTab extends SwingWorker<String, Object> {
     private JPanel mainPanel;
 
     private final Paramalyzer parent;
+    private DeepAnalyzer analyzer;
 
-
-    public DeepAnalysisTab(ParamInstance pi, final Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
+    DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
         this.parent = parent;
-        this.callbacks = callbacks;
-        this.pi = pi;
         titleLabel.setText("Deep Analysis: " + pi.getDecodedValue() + " (from parameter " + pi.getName() + ")");
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                parent.tabPane.remove(mainPanel);
+                DeepAnalysisTab.this.parent.tabPane.remove(mainPanel);
 
             }
         });
-        textDetails.setText("Nothing found...");
+        listMatches.setCellRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof ParamInstance) {
+                    String title = ((ParamInstance) value).summarize();
+                    return super.getListCellRendererComponent(list, title, index, isSelected, cellHasFocus);
+                } else {
+                    return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                }
+            }
+        });
+
+        textDetails.setText("Processing...");
+        analyzer = new DeepAnalyzer(pi, ((ParametersTableModel) parent.parametersTable.getModel()).getEntries(), callbacks, this);
+        listMatches.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                ParamInstance pi = (ParamInstance) listMatches.getSelectedValue();
+                textDetails.setText(analyzer.getResultsMap().get(pi));
+            }
+        });
     }
 
-    public JPanel getMainPanel() {
+    public void begin() {
+        analyzer.execute();
+    }
+
+    JPanel getMainPanel() {
         return mainPanel;
     }
 
     @Override
-    protected String doInBackground() throws Exception {
-        publish(0);
-
-        ParametersTableModel model = (ParametersTableModel) parent.parametersTable.getModel();
-
-        try {
-            switch (pi.getFormat()) {
-                case MD5:
-                    processHash(MessageDigest.getInstance("MD5"), model);
-                    break;
-                case SHA1:
-                    processHash(MessageDigest.getInstance("SHA-1"), model);
-                    break;
-                case SHA256:
-                    processHash(MessageDigest.getInstance("SHA-256"), model);
-                    break;
-                default:
-            }
-        } catch (NoSuchAlgorithmException e) {
-            callbacks.printError(e.getMessage());
-        }
-
-        publish("Done.");
-        return "";
-    }
-
-    private void processHash(MessageDigest md, ParametersTableModel model) {
-        String value = pi.getDecodedValue();
-        byte[] valueBytes = ParamAnalyzer.hexStringToByteArray(value);
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-            CorrelatedParam param = model.getParameter(i);
-            Set<String> paramValues = param.getUniqueValues();
-            for (String paramValue : paramValues) {
-                md.reset();
-                md.update(paramValue.getBytes());  //TODO: also check decoded values
-                byte[] digest = md.digest();
-                if (Arrays.equals(digest, valueBytes)) {
-                    textDetails.append("\n" + paramValue);
-                }
-            }
-
-            publish(i / model.getRowCount());
-        }
+    public void setStatus(String statusText) {
+        parent.setStatus(statusText);
     }
 
     @Override
-    protected void process(List<Object> chunks) {
-        super.process(chunks);
-        String lastMessage = null;
-        int lastPercent = -1;
-
-        for (Object chunk : chunks) {
-            if (chunk instanceof String) {
-                lastMessage = (String) chunk;
-            } else if (chunk instanceof Integer) {
-                lastPercent = (Integer) chunk;
-            }
-        }
-
-        if (lastMessage != null) {
-            parent.setStatus(lastMessage);
-        }
-        if (lastPercent > -1) {
-            parent.setProgress(lastPercent);
-        }
+    public void setProgress(int percentDone) {
+        parent.setProgress(percentDone);
     }
 
     @Override
-    protected void done() {
-        parent.setStatus("Deep analysis complete.");
-        parent.setProgress(100);
-        try {
-            this.get();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            callbacks.printError(e.getMessage());
-        } catch (ExecutionException e) {
-            callbacks.printError(e.getMessage());
+    public void done() {
+
+        if (analyzer.getResultsMap().size() == 0) {
+            textDetails.setText("Sorry, no matches found for this parameter.");
+        } else {
+            listMatches.setListData(analyzer.getResultsMap().keySet().toArray());
+            textDetails.setText(analyzer.getResultsMap().get(listMatches.getModel().getElementAt(0)));
         }
     }
 

@@ -43,7 +43,7 @@ import java.net.URL;
 /**
  * Main class for the Correlator burp extension.
  */
-public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListener, ClipboardOwner {
+public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, ClipboardOwner {
     private JPanel mainPanel;
     private JButton beginAnalysisButton;
     private JTextField textFieldStatus;
@@ -71,7 +71,7 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
     private IHttpRequestResponse displayedRequest = null;
     private int deepTabCount = 0;
 
-    private static final String VERSION = "1.0.3";
+    private static final String VERSION = "1.0.4";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
@@ -234,14 +234,20 @@ public class Paramalyzer implements IBurpExtender, ITab, CorrelatorEngineListene
                     menu.add(new AbstractAction() {
                         @Override
                         public void actionPerformed(ActionEvent e) {
-                            int selected = listValues.getSelectedIndex();
-                            if (selected > -1) {
-                                ParamInstance pi = paramListModel.getParamInstance(selected);
-                                textFieldStatus.setText("Starting deep analysis of " + pi.getDecodedValue() + "...");
-                                DeepAnalysisTab tab = new DeepAnalysisTab(pi, Paramalyzer.this, callbacks);
-                                tabPane.add("Deep " + (deepTabCount++), tab.getMainPanel());
-                                tabPane.setSelectedComponent(tabPane);
-                                tab.execute();
+                            try {
+                                int selected = listValues.getSelectedIndex();
+                                if (selected > -1) {
+                                    ParamInstance pi = paramListModel.getParamInstance(selected);
+                                    setProgress(0);
+                                    setStatus("Starting deep analysis of " + pi.getDecodedValue() + "...");
+                                    callbacks.printOutput("Starting deep analysis...");
+                                    DeepAnalysisTab tab = new DeepAnalysisTab(pi, Paramalyzer.this, callbacks);
+                                    tabPane.add("Deep " + (deepTabCount++), tab.getMainPanel());
+                                    tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
+                                    tab.begin();
+                                }
+                            } catch (Throwable t) {
+                                callbacks.printError(t.getMessage());
                             }
                         }
 

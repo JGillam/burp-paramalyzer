@@ -174,4 +174,50 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
     public void setFormat(Format f){
         format = f;
     }
+
+    public String describe() {
+        StringBuilder buf = new StringBuilder();
+        buf.append("Name: ").append(getName());
+        buf.append("\nType: ");
+        appendType(buf);
+        buf.append("\nValue: ").append(getValue());
+        if(!getValue().equals(decodedValue)){
+            buf.append("\nDecoded Value: ").append(getDecodedValue());
+        }
+        buf.append("\nFormat: ").append(getFormat().getTitle());
+        return buf.toString();
+    }
+
+    public String summarize() {
+        StringBuilder buf = new StringBuilder();
+        buf.append(getName()).append(" (");
+        appendType(buf);
+        buf.append(")");
+        return buf.toString();
+    }
+
+    private void appendType(StringBuilder buf) {
+        switch (getType()){
+            case IParameter.PARAM_BODY:
+                buf.append("Body");
+                break;
+            case IParameter.PARAM_COOKIE:
+                buf.append("Cookie");
+                break;
+            case IParameter.PARAM_URL:
+                buf.append("URL");
+                break;
+            case IParameter.PARAM_JSON:
+                buf.append("JSON");
+                break;
+            case IParameter.PARAM_MULTIPART_ATTR:
+                buf.append("Multipart Attribute");
+                break;
+            case IParameter.PARAM_XML:
+                buf.append("XML");
+                break;
+            default:
+                buf.append("Unknown");
+        }
+    }
 }

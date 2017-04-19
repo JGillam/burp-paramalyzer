@@ -11,17 +11,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/Professionally_Evil.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/scopes/Professionally_Evil.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngineListener.java" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java" />
     </list>
     <ignored path="burp-correlator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,8 +42,18 @@
       <file leaf-file-name="CorrelatorEngine.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
+            <state relative-caret-position="170">
+              <caret line="216" column="19" lean-forward="false" selection-start-line="216" selection-start-column="19" selection-end-line="216" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CorrelatedParam.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -55,12 +62,9 @@
       <file leaf-file-name="ParamInstance.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
-              <folding>
-                <element signature="e#4704#4705#0" expanded="true" />
-                <element signature="e#4733#4734#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="433">
+              <caret line="195" column="30" lean-forward="false" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -68,29 +72,72 @@
       <file leaf-file-name="ParamAnalyzer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="336" column="5" lean-forward="false" selection-start-line="336" selection-start-column="5" selection-end-line="336" selection-end-column="5" />
+            <state relative-caret-position="121">
+              <caret line="326" column="5" lean-forward="false" selection-start-line="326" selection-start-column="5" selection-end-line="326" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DeepAnalysisTab.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java">
+      <file leaf-file-name="DeepAnalyzer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="91">
+              <caret line="146" column="75" lean-forward="true" selection-start-line="146" selection-start-column="75" selection-end-line="146" selection-end-column="75" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8233#8234#0" expanded="true" />
+                <element signature="e#8266#8267#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DetailsListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="WorkerStatusListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="187">
-              <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+              <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DeepAnalysisTab.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="212">
+              <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
               <folding>
-                <element signature="e#0#7401#0" expanded="true" />
+                <element signature="e#0#6312#0" expanded="true" />
                 <element signature="imports" expanded="true" />
-                <element signature="e#1917#2093#0" expanded="true" />
-                <element signature="e#2092#2093#0" expanded="true" />
-                <element signature="e#2185#2186#0" expanded="true" />
-                <element signature="e#2217#2218#0" expanded="true" />
+                <element signature="e#1652#1849#0" expanded="true" />
+                <element signature="e#1848#1849#0" expanded="true" />
+                <element signature="e#1888#2494#0" expanded="true" />
+                <element signature="e#2493#2494#0" expanded="true" />
+                <element signature="e#2720#3010#0" expanded="true" />
+                <element signature="e#3044#3045#0" expanded="true" />
+                <element signature="e#3078#3079#0" expanded="true" />
+                <element signature="e#3107#3108#0" expanded="true" />
+                <element signature="e#3139#3140#0" expanded="true" />
+                <element signature="e#3201#3202#0" expanded="true" />
+                <element signature="e#3245#3246#0" expanded="true" />
+                <element signature="e#3307#3308#0" expanded="true" />
+                <element signature="e#3354#3355#0" expanded="true" />
                 <element signature="initializer##0;class#DeepAnalysisTab#0" expanded="true" />
                 <element signature="initializer##0;class#DeepAnalysisTab#0" expanded="true" />
-                <element signature="e#7365#7366#0" expanded="true" />
-                <element signature="e#7397#7398#0" expanded="true" />
+                <element signature="e#6276#6277#0" expanded="true" />
+                <element signature="e#6308#6309#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -106,8 +153,8 @@
       <file leaf-file-name="Paramalyzer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-401">
-              <caret line="244" column="29" lean-forward="false" selection-start-line="244" selection-start-column="29" selection-end-line="244" selection-end-column="29" />
+            <state relative-caret-position="-378">
+              <caret line="164" column="13" lean-forward="false" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="initializer##0;class#Paramalyzer#0" expanded="true" />
@@ -130,7 +177,9 @@
       <find>right</find>
       <find>popup</find>
       <find>copy list</find>
+      <find>Started</find>
       <find>deep</find>
+      <find>toString</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,9 +204,7 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParameter.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Base62.java" />
@@ -165,8 +212,11 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" />
       </list>
     </option>
   </component>
@@ -183,8 +233,8 @@
     </order>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="224" />
-    <option name="y" value="55" />
+    <option name="x" value="255" />
+    <option name="y" value="93" />
     <option name="width" value="1519" />
     <option name="height" value="914" />
   </component>
@@ -229,126 +279,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.8 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.8 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.8 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.8 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="&lt; 1.8 &gt;" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.NamedLibraryElementNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rt.jar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="javax" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="swing" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="SwingWorker" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="burp-correlator" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="burp-correlator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -370,10 +300,6 @@
               <option name="myItemId" value="bc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Paramalyzer" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -393,11 +319,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Paramalyzer" />
-              <option name="myItemType" value="com.intellij.uiDesigner.projectView.FormNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Paramalyzer" />
+              <option name="myItemId" value="WorkerStatusListener" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -418,6 +340,10 @@
               <option name="myItemId" value="bc" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ParamInstance" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -437,7 +363,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CorrelatorEngine" />
+              <option name="myItemId" value="DeepAnalyzer" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ClassTreeNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -469,8 +395,8 @@
     <property name="MemberChooser.showClasses" value="true" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="settings.editor.selected.configurable" value="project.propGUI" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../TestProjects" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="220" />
@@ -478,6 +404,7 @@
     <property name="dynamic.classpath" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/burp-api/src/burp/IParameter.java" />
+    <property name="extract.method.default.visibility" value="private" />
   </component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
@@ -951,11 +878,18 @@
       <option name="project" value="LOCAL" />
       <updated>1492552219172</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Added skeleton for deep analysis functionality.">
+      <created>1492569065680</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1492569065680</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="224" y="55" width="1519" height="914" extended-state="0" />
+    <frame x="255" y="93" width="1519" height="914" extended-state="0" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -974,7 +908,7 @@
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30157644" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25695366" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3139073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1020,7 +954,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
-    <MESSAGE value="Improved some of the analysis logic.  Now supports identification and decoding of ascii hex encoded values." />
     <MESSAGE value="Added &quot;Show Decoded Values&quot; checkbox." />
     <MESSAGE value="Decoded values fix.  and a few other minor changes.  :)" />
     <MESSAGE value="Fixed decoded field in table.  Added &quot;Deflected&quot;." />
@@ -1045,7 +978,8 @@
     <MESSAGE value="Updated version number to 1.0.2" />
     <MESSAGE value="Revert file mode." />
     <MESSAGE value="Added detection of base62 encoding." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added detection of base62 encoding." />
+    <MESSAGE value="Added skeleton for deep analysis functionality." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added skeleton for deep analysis functionality." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1056,21 +990,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="44" column="0" lean-forward="false" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="31" column="61" lean-forward="false" selection-start-line="31" selection-start-column="61" selection-end-line="31" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1084,7 +1003,7 @@
         <state relative-caret-position="0">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4137#0" expanded="false" />
+            <element signature="e#0#4215#0" expanded="false" />
             <element signature="imports" expanded="false" />
             <element signature="e#1420#1421#0" expanded="false" />
             <element signature="e#1458#1459#0" expanded="false" />
@@ -1092,12 +1011,12 @@
             <element signature="e#1576#1577#0" expanded="false" />
             <element signature="e#1795#1796#0" expanded="false" />
             <element signature="e#1834#1835#0" expanded="false" />
-            <element signature="e#1995#1996#0" expanded="false" />
-            <element signature="e#2032#2033#0" expanded="false" />
-            <element signature="e#2081#2082#0" expanded="false" />
-            <element signature="e#2118#2119#0" expanded="false" />
-            <element signature="e#4088#4089#0" expanded="false" />
-            <element signature="e#4131#4132#0" expanded="false" />
+            <element signature="e#2073#2074#0" expanded="false" />
+            <element signature="e#2110#2111#0" expanded="false" />
+            <element signature="e#2159#2160#0" expanded="false" />
+            <element signature="e#2196#2197#0" expanded="false" />
+            <element signature="e#4166#4167#0" expanded="false" />
+            <element signature="e#4209#4210#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1114,10 +1033,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4733#4734#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,7 +1084,7 @@
         <state relative-caret-position="0">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4137#0" expanded="false" />
+            <element signature="e#0#4215#0" expanded="false" />
             <element signature="imports" expanded="false" />
             <element signature="e#1420#1421#0" expanded="false" />
             <element signature="e#1458#1459#0" expanded="false" />
@@ -1176,12 +1092,12 @@
             <element signature="e#1576#1577#0" expanded="false" />
             <element signature="e#1795#1796#0" expanded="false" />
             <element signature="e#1834#1835#0" expanded="false" />
-            <element signature="e#1995#1996#0" expanded="false" />
-            <element signature="e#2032#2033#0" expanded="false" />
-            <element signature="e#2081#2082#0" expanded="false" />
-            <element signature="e#2118#2119#0" expanded="false" />
-            <element signature="e#4088#4089#0" expanded="false" />
-            <element signature="e#4131#4132#0" expanded="false" />
+            <element signature="e#2073#2074#0" expanded="false" />
+            <element signature="e#2110#2111#0" expanded="false" />
+            <element signature="e#2159#2160#0" expanded="false" />
+            <element signature="e#2196#2197#0" expanded="false" />
+            <element signature="e#4166#4167#0" expanded="false" />
+            <element signature="e#4209#4210#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1198,10 +1114,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4733#4734#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1252,7 +1165,7 @@
         <state relative-caret-position="0">
           <caret line="52" column="28" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding>
-            <element signature="e#0#4137#0" expanded="false" />
+            <element signature="e#0#4215#0" expanded="false" />
             <element signature="imports" expanded="false" />
             <element signature="e#1420#1421#0" expanded="false" />
             <element signature="e#1458#1459#0" expanded="false" />
@@ -1260,12 +1173,12 @@
             <element signature="e#1576#1577#0" expanded="false" />
             <element signature="e#1795#1796#0" expanded="false" />
             <element signature="e#1834#1835#0" expanded="false" />
-            <element signature="e#1995#1996#0" expanded="false" />
-            <element signature="e#2032#2033#0" expanded="false" />
-            <element signature="e#2081#2082#0" expanded="false" />
-            <element signature="e#2118#2119#0" expanded="false" />
-            <element signature="e#4088#4089#0" expanded="false" />
-            <element signature="e#4131#4132#0" expanded="false" />
+            <element signature="e#2073#2074#0" expanded="false" />
+            <element signature="e#2110#2111#0" expanded="false" />
+            <element signature="e#2159#2160#0" expanded="false" />
+            <element signature="e#2196#2197#0" expanded="false" />
+            <element signature="e#4166#4167#0" expanded="false" />
+            <element signature="e#4209#4210#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1282,10 +1195,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="62" column="37" lean-forward="false" selection-start-line="62" selection-start-column="37" selection-end-line="62" selection-end-column="37" />
-          <folding>
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4733#4734#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1328,10 +1238,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="37" column="21" lean-forward="false" selection-start-line="37" selection-start-column="21" selection-end-line="37" selection-end-column="21" />
-          <folding>
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4733#4734#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1347,13 +1254,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngineListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="19" column="73" lean-forward="false" selection-start-line="19" selection-start-column="73" selection-end-line="19" selection-end-column="73" />
         </state>
       </provider>
     </entry>
@@ -1414,29 +1314,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#4137#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#1420#1421#0" expanded="false" />
-            <element signature="e#1458#1459#0" expanded="false" />
-            <element signature="e#1527#1528#0" expanded="false" />
-            <element signature="e#1576#1577#0" expanded="false" />
-            <element signature="e#1795#1796#0" expanded="false" />
-            <element signature="e#1834#1835#0" expanded="false" />
-            <element signature="e#1995#1996#0" expanded="false" />
-            <element signature="e#2032#2033#0" expanded="false" />
-            <element signature="e#2081#2082#0" expanded="false" />
-            <element signature="e#2118#2119#0" expanded="false" />
-            <element signature="e#4088#4089#0" expanded="false" />
-            <element signature="e#4131#4132#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -1449,14 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="765">
           <caret line="45" column="31" lean-forward="false" selection-start-line="45" selection-start-column="31" selection-end-line="45" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="35" column="30" lean-forward="false" selection-start-line="35" selection-start-column="30" selection-end-line="35" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1486,11 +1355,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form">
-      <provider selected="true" editor-type-id="ui-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1502,37 +1366,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="30" column="24" lean-forward="false" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="408">
+          <caret line="56" column="31" lean-forward="false" selection-start-line="56" selection-start-column="31" selection-end-line="56" selection-end-column="31" />
           <folding>
-            <element signature="e#4704#4705#0" expanded="true" />
-            <element signature="e#4733#4734#0" expanded="true" />
+            <element signature="e#1997#1998#0" expanded="true" />
+            <element signature="e#2027#2028#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="19" column="9" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="42" column="20" lean-forward="false" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="336" column="5" lean-forward="false" selection-start-line="336" selection-start-column="5" selection-end-line="336" selection-end-column="5" />
+        <state relative-caret-position="170">
+          <caret line="216" column="19" lean-forward="false" selection-start-line="216" selection-start-column="19" selection-end-line="216" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-401">
-          <caret line="244" column="29" lean-forward="false" selection-start-line="244" selection-start-column="29" selection-end-line="244" selection-end-column="29" />
+        <state relative-caret-position="-378">
+          <caret line="164" column="13" lean-forward="false" selection-start-line="164" selection-start-column="13" selection-end-line="164" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="initializer##0;class#Paramalyzer#0" expanded="true" />
@@ -1540,21 +1404,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="121">
+          <caret line="326" column="5" lean-forward="false" selection-start-line="326" selection-start-column="5" selection-end-line="326" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="29" column="39" lean-forward="false" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
-          <caret line="77" column="25" lean-forward="false" selection-start-line="77" selection-start-column="25" selection-end-line="77" selection-end-column="25" />
+          <caret line="25" column="9" lean-forward="false" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="195" column="30" lean-forward="false" selection-start-line="195" selection-start-column="30" selection-end-line="195" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="73" column="13" lean-forward="true" selection-start-line="73" selection-start-column="13" selection-end-line="73" selection-end-column="13" />
           <folding>
-            <element signature="e#0#7401#0" expanded="true" />
+            <element signature="e#0#6312#0" expanded="true" />
             <element signature="imports" expanded="true" />
-            <element signature="e#1917#2093#0" expanded="true" />
-            <element signature="e#2092#2093#0" expanded="true" />
-            <element signature="e#2185#2186#0" expanded="true" />
-            <element signature="e#2217#2218#0" expanded="true" />
+            <element signature="e#1652#1849#0" expanded="true" />
+            <element signature="e#1848#1849#0" expanded="true" />
+            <element signature="e#1888#2494#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2720#3010#0" expanded="true" />
+            <element signature="e#3044#3045#0" expanded="true" />
+            <element signature="e#3078#3079#0" expanded="true" />
+            <element signature="e#3107#3108#0" expanded="true" />
+            <element signature="e#3139#3140#0" expanded="true" />
+            <element signature="e#3201#3202#0" expanded="true" />
+            <element signature="e#3245#3246#0" expanded="true" />
+            <element signature="e#3307#3308#0" expanded="true" />
+            <element signature="e#3354#3355#0" expanded="true" />
             <element signature="initializer##0;class#DeepAnalysisTab#0" expanded="true" />
             <element signature="initializer##0;class#DeepAnalysisTab#0" expanded="true" />
-            <element signature="e#7365#7366#0" expanded="true" />
-            <element signature="e#7397#7398#0" expanded="true" />
+            <element signature="e#6276#6277#0" expanded="true" />
+            <element signature="e#6308#6309#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="146" column="75" lean-forward="true" selection-start-line="146" selection-start-column="75" selection-end-line="146" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8233#8234#0" expanded="true" />
+            <element signature="e#8266#8267#0" expanded="true" />
           </folding>
         </state>
       </provider>

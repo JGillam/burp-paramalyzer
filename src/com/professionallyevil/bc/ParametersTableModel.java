@@ -57,6 +57,10 @@ public class ParametersTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    public List<CorrelatedParam> getEntries(){
+        return entries;
+    }
+
     @Override
     public int getRowCount() {
         return entries.size();

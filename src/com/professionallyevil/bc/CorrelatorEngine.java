@@ -29,7 +29,7 @@ import java.util.concurrent.ExecutionException;
  */
 public class CorrelatorEngine extends SwingWorker<String, Object> {
     IBurpExtenderCallbacks callbacks;
-    CorrelatorEngineListener listener;
+    WorkerStatusListener listener;
     boolean ignoreEmpty;
     Set<String> ignoreList = new HashSet<>();
 
@@ -40,7 +40,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     Set<IHttpRequestResponse> inScopeMessagesWithResponses = new HashSet<>();
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
-    public CorrelatorEngine(IBurpExtenderCallbacks callbacks, CorrelatorEngineListener l, boolean ignoreEmpty, String ignoreThese) {
+    public CorrelatorEngine(IBurpExtenderCallbacks callbacks, WorkerStatusListener l, boolean ignoreEmpty, String ignoreThese) {
         this.callbacks = callbacks;
         this.listener = l;
         this.ignoreEmpty = ignoreEmpty;
