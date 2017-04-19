@@ -242,7 +242,9 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                                     setStatus("Starting deep analysis of " + pi.getDecodedValue() + "...");
                                     callbacks.printOutput("Starting deep analysis...");
                                     DeepAnalysisTab tab = new DeepAnalysisTab(pi, Paramalyzer.this, callbacks);
-                                    tabPane.add("Deep " + (deepTabCount++), tab.getMainPanel());
+                                    String title = "Deep " + (deepTabCount++);
+                                    tabPane.add(title, tab.getMainPanel());
+                                    tab.setTitle(title);
                                     tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
                                     tab.begin();
                                 }

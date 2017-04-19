@@ -17,8 +17,10 @@
 package com.professionallyevil.bc;
 
 import burp.IBurpExtenderCallbacks;
+import burp.IRequestInfo;
 
 import javax.swing.*;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
@@ -177,10 +179,12 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
 
     private void addOrAppendResult(ParamInstance paramInstance, String resultText) {
         if(resultsMap.containsKey(paramInstance)) {
-            String message = resultsMap.get(paramInstance)+"\n\n";
-            resultsMap.put(paramInstance, message += resultText);
+            String message = resultsMap.get(paramInstance)+"\n\n"+resultText;
+            resultsMap.put(paramInstance, message);
         }else {
-            resultsMap.put(paramInstance, resultText+"\n\n"+paramInstance.describe());
+            IRequestInfo info = callbacks.getHelpers().analyzeRequest(paramInstance.getMessage());
+            URL url = info.getUrl();
+            resultsMap.put(paramInstance, resultText+"\n\n"+paramInstance.describe()+"\nURL: "+url);
         }
     }
 

@@ -17,6 +17,7 @@
 package com.professionallyevil.bc;
 
 import burp.IBurpExtenderCallbacks;
+import burp.IRequestInfo;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -27,6 +28,9 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URL;
 
 /**
  * Created by jgillam on 4/18/2017.
@@ -41,9 +45,12 @@ public class DeepAnalysisTab implements WorkerStatusListener {
 
     private final Paramalyzer parent;
     private DeepAnalyzer analyzer;
+    IBurpExtenderCallbacks callbacks;
+    String title;
 
     DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
         this.parent = parent;
+        this.callbacks = callbacks;
         titleLabel.setText("Deep Analysis: " + pi.getDecodedValue() + " (from parameter " + pi.getName() + ")");
         closeButton.addActionListener(new ActionListener() {
             @Override
@@ -73,6 +80,14 @@ public class DeepAnalysisTab implements WorkerStatusListener {
                 textDetails.setText(analyzer.getResultsMap().get(pi));
             }
         });
+
+        PopupMouseListener pml = new PopupMouseListener();
+        listMatches.addMouseListener(pml);
+        textDetails.addMouseListener(pml);
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void begin() {
@@ -100,7 +115,8 @@ public class DeepAnalysisTab implements WorkerStatusListener {
             textDetails.setText("Sorry, no matches found for this parameter.");
         } else {
             listMatches.setListData(analyzer.getResultsMap().keySet().toArray());
-            textDetails.setText(analyzer.getResultsMap().get(listMatches.getModel().getElementAt(0)));
+            listMatches.setSelectedIndex(0);
+            //textDetails.setText(analyzer.getResultsMap().get(listMatches.getModel().getElementAt(0)));
         }
     }
 
@@ -150,4 +166,56 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
+    class PopupMouseListener extends MouseAdapter {
+
+        @Override
+        public void mousePressed(MouseEvent e) {
+            super.mousePressed(e);
+            popup(e);
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent e) {
+            super.mouseReleased(e);
+            popup(e);
+        }
+
+        private void popup(MouseEvent e) {
+            if (e.isPopupTrigger() && listMatches.getModel().getSize() > 0) { //if the event shows the menu
+                JPopupMenu menu = new JPopupMenu();
+
+                menu.add(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        try {
+                            Object selected = listMatches.getSelectedValue();
+                            if (selected != null && selected instanceof ParamInstance) {
+                                IRequestInfo info =  callbacks.getHelpers().analyzeRequest(((ParamInstance) selected).getMessage());
+                                URL url = info.getUrl();
+                                callbacks.sendToRepeater(url.getHost(), url.getPort(), url.getProtocol().toLowerCase().endsWith("s"),
+                                        ((ParamInstance) selected).getMessage().getRequest(), title+"."+listMatches.getSelectedIndex());
+                            }
+
+                        } catch (Throwable t) {
+                            callbacks.printError(t.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public Object getValue(String key) {
+                        if (Action.NAME.equals(key)) {
+                            return "Send to Repeater";
+                        } else {
+                            return super.getValue(key);
+                        }
+                    }
+                });
+
+                menu.show(e.getComponent(), e.getX(), e.getY());
+            }
+        }
+
+    }
+
 }
