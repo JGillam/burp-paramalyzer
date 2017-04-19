@@ -1,3 +1,8 @@
 <component name="CopyrightManager">
-  <settings default="" />
+  <settings>
+    <module2copyright>
+      <element module="Production" copyright="Professionally Evil" />
+      <element module="Professionally Evil" copyright="Professionally Evil" />
+    </module2copyright>
+  </settings>
 </component>

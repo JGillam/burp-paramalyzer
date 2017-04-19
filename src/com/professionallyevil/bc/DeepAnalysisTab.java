@@ -1,0 +1,199 @@
+/*
+ * Copyright (c) 2017 Jason Gillam
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.professionallyevil.bc;
+
+import burp.IBurpExtenderCallbacks;
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
+import java.util.concurrent.ExecutionException;
+
+/**
+ * Created by jgillam on 4/18/2017.
+ */
+public class DeepAnalysisTab extends SwingWorker<String, Object> {
+    private final IBurpExtenderCallbacks callbacks;
+    private final ParamInstance pi;
+    private JLabel titleLabel;
+    private JList listMatches;
+    private JTextArea textDetails;
+    private JButton closeButton;
+    private JPanel mainPanel;
+
+    private final Paramalyzer parent;
+
+
+    public DeepAnalysisTab(ParamInstance pi, final Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
+        this.parent = parent;
+        this.callbacks = callbacks;
+        this.pi = pi;
+        titleLabel.setText("Deep Analysis: " + pi.getDecodedValue() + " (from parameter " + pi.getName() + ")");
+        closeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                parent.tabPane.remove(mainPanel);
+
+            }
+        });
+        textDetails.setText("Nothing found...");
+    }
+
+    public JPanel getMainPanel() {
+        return mainPanel;
+    }
+
+    @Override
+    protected String doInBackground() throws Exception {
+        publish(0);
+
+        ParametersTableModel model = (ParametersTableModel) parent.parametersTable.getModel();
+
+        try {
+            switch (pi.getFormat()) {
+                case MD5:
+                    processHash(MessageDigest.getInstance("MD5"), model);
+                    break;
+                case SHA1:
+                    processHash(MessageDigest.getInstance("SHA-1"), model);
+                    break;
+                case SHA256:
+                    processHash(MessageDigest.getInstance("SHA-256"), model);
+                    break;
+                default:
+            }
+        } catch (NoSuchAlgorithmException e) {
+            callbacks.printError(e.getMessage());
+        }
+
+        publish("Done.");
+        return "";
+    }
+
+    private void processHash(MessageDigest md, ParametersTableModel model) {
+        String value = pi.getDecodedValue();
+        byte[] valueBytes = ParamAnalyzer.hexStringToByteArray(value);
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            CorrelatedParam param = model.getParameter(i);
+            Set<String> paramValues = param.getUniqueValues();
+            for (String paramValue : paramValues) {
+                md.reset();
+                md.update(paramValue.getBytes());  //TODO: also check decoded values
+                byte[] digest = md.digest();
+                if (Arrays.equals(digest, valueBytes)) {
+                    textDetails.append("\n" + paramValue);
+                }
+            }
+
+            publish(i / model.getRowCount());
+        }
+    }
+
+    @Override
+    protected void process(List<Object> chunks) {
+        super.process(chunks);
+        String lastMessage = null;
+        int lastPercent = -1;
+
+        for (Object chunk : chunks) {
+            if (chunk instanceof String) {
+                lastMessage = (String) chunk;
+            } else if (chunk instanceof Integer) {
+                lastPercent = (Integer) chunk;
+            }
+        }
+
+        if (lastMessage != null) {
+            parent.setStatus(lastMessage);
+        }
+        if (lastPercent > -1) {
+            parent.setProgress(lastPercent);
+        }
+    }
+
+    @Override
+    protected void done() {
+        parent.setStatus("Deep analysis complete.");
+        parent.setProgress(100);
+        try {
+            this.get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+            callbacks.printError(e.getMessage());
+        } catch (ExecutionException e) {
+            callbacks.printError(e.getMessage());
+        }
+    }
+
+    {
+// GUI initializer generated by IntelliJ IDEA GUI Designer
+// >>> IMPORTANT!! <<<
+// DO NOT EDIT OR ADD ANY CODE HERE!
+        $$$setupUI$$$();
+    }
+
+    /**
+     * Method generated by IntelliJ IDEA GUI Designer
+     * >>> IMPORTANT!! <<<
+     * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
+     */
+    private void $$$setupUI$$$() {
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
+        titleLabel = new JLabel();
+        titleLabel.setText("Deep Analysis:");
+        mainPanel.add(titleLabel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JSplitPane splitPane1 = new JSplitPane();
+        mainPanel.add(splitPane1, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        final JScrollPane scrollPane1 = new JScrollPane();
+        splitPane1.setLeftComponent(scrollPane1);
+        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Matches"));
+        listMatches = new JList();
+        listMatches.setSelectionMode(0);
+        scrollPane1.setViewportView(listMatches);
+        final JScrollPane scrollPane2 = new JScrollPane();
+        splitPane1.setRightComponent(scrollPane2);
+        scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Details"));
+        textDetails = new JTextArea();
+        scrollPane2.setViewportView(textDetails);
+        closeButton = new JButton();
+        closeButton.setText("Close");
+        mainPanel.add(closeButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer1 = new Spacer();
+        mainPanel.add(spacer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$() {
+        return mainPanel;
+    }
+}
