@@ -71,7 +71,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private IHttpRequestResponse displayedRequest = null;
     private int deepTabCount = 0;
 
-    private static final String VERSION = "1.0.4";
+    private static final String VERSION = "1.1.0";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
