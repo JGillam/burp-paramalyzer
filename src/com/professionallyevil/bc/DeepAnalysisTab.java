@@ -191,10 +191,10 @@ public class DeepAnalysisTab implements WorkerStatusListener {
                         try {
                             Object selected = listMatches.getSelectedValue();
                             if (selected != null && selected instanceof ParamInstance) {
-                                IRequestInfo info =  callbacks.getHelpers().analyzeRequest(((ParamInstance) selected).getMessage());
+                                IRequestInfo info = callbacks.getHelpers().analyzeRequest(((ParamInstance) selected).getMessage());
                                 URL url = info.getUrl();
                                 callbacks.sendToRepeater(url.getHost(), url.getPort(), url.getProtocol().toLowerCase().endsWith("s"),
-                                        ((ParamInstance) selected).getMessage().getRequest(), title+"."+listMatches.getSelectedIndex());
+                                        ((ParamInstance) selected).getMessage().getRequest(), title + "." + listMatches.getSelectedIndex());
                             }
 
                         } catch (Throwable t) {
