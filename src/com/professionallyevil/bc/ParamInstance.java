@@ -43,7 +43,8 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         CREDITCARD("CC"),
         HTMLFRAG("XML/HTML"),
         EMPTY("Empty"),
-        JSON("JSON Object");
+        JSON("JSON Object"),
+        PHP("PHP Serialized");
 
         private String title;
 

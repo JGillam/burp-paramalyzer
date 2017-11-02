@@ -41,6 +41,8 @@ public class ParamAnalyzer {
     private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
     private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
     private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\"))*\\}$");
+    private static Pattern phpSerializedPatternQuick = Pattern.compile("^([si]:\\d+.*;)|(N;)|[oa]:\\d+:.*\\{.*}$");
+    private static Pattern phpSerializedPattern = Pattern.compile("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$");
 
     private static Base62 base62 = new Base62();
 
@@ -94,6 +96,9 @@ public class ParamAnalyzer {
         if (isCreditCard(input))  {
             return input;
         }
+        if(isPHPSerialized(input, true)){
+            return input;
+        }
         if (isURLEncoded(input)) {
             String output = callbacks.getHelpers().urlDecode(input);
             if (!output.equals(input)) {
@@ -142,6 +147,9 @@ public class ParamAnalyzer {
         if (isCreditCard(input)) {
             log.append("Looks like a credit card (passed Luhn).");
             pi.setFormat(ParamInstance.Format.CREDITCARD);
+        } else if(isPHPSerialized(input, false)) {
+            log.append("Looks like a PHP serialized data structure.");
+            pi.setFormat(ParamInstance.Format.PHP);
         } else if(isDecimalString(input)) {
             log.append("A ");
             log.append(input.length());
@@ -247,6 +255,10 @@ public class ParamAnalyzer {
     public static boolean isHTMLFragment(String input) {return htmlFragment.matcher(input).find();}
 
     public static boolean isBigIP(String input) {return bigIPPattern.matcher(input).find();}
+
+    public static boolean isPHPSerialized(String input, boolean quick) {
+        return quick?phpSerializedPatternQuick.matcher(input).find():phpSerializedPattern.matcher(input).find();
+    }
 
     public static boolean isCreditCard(String input) {
         return creditcardPattern.matcher(input).find() && applyLuhnAlgorithm(input);
