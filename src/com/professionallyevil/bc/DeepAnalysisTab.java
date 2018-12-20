@@ -135,26 +135,23 @@ public class DeepAnalysisTab implements WorkerStatusListener {
      * @noinspection ALL
      */
     private void $$$setupUI$$$() {
-        mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayoutManager(2, 4, new Insets(0, 0, 0, 0), -1, -1));
-        titleLabel = new JLabel();
-        titleLabel.setText("Deep Analysis:");
+        mainPanel = new javax.swing.JPanel();
+        mainPanel.setLayout(new GridLayoutManager(2, 4, new java.awt.Insets(0, 0, 0, 0), -1, -1));
+        titleLabel = new javax.swing.JLabel();
         mainPanel.add(titleLabel, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JSplitPane splitPane1 = new JSplitPane();
-        mainPanel.add(splitPane1, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JScrollPane scrollPane1 = new JScrollPane();
+        final javax.swing.JSplitPane splitPane1 = new javax.swing.JSplitPane();
+        mainPanel.add(splitPane1, new GridConstraints(1, 0, 1, 4, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new java.awt.Dimension(200, 200), null, 0, false));
+        final javax.swing.JScrollPane scrollPane1 = new javax.swing.JScrollPane();
         splitPane1.setLeftComponent(scrollPane1);
-        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Matches"));
-        listMatches = new JList();
-        listMatches.setSelectionMode(0);
+        scrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Matches"));
+        listMatches = new javax.swing.JList();
         scrollPane1.setViewportView(listMatches);
-        final JScrollPane scrollPane2 = new JScrollPane();
+        final javax.swing.JScrollPane scrollPane2 = new javax.swing.JScrollPane();
         splitPane1.setRightComponent(scrollPane2);
-        scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Details"));
-        textDetails = new JTextArea();
+        scrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Details"));
+        textDetails = new javax.swing.JTextArea();
         scrollPane2.setViewportView(textDetails);
-        closeButton = new JButton();
-        closeButton.setText("Close");
+        closeButton = new javax.swing.JButton();
         mainPanel.add(closeButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         mainPanel.add(spacer1, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
@@ -163,7 +160,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     /**
      * @noinspection ALL
      */
-    public JComponent $$$getRootComponent$$$() {
+    public javax.swing.JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
 
