@@ -34,16 +34,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
 import java.net.URL;
+import java.util.ArrayList;
 
 /**
  * Main class for the Correlator burp extension.
  */
-public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, ClipboardOwner {
+public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, ClipboardOwner, IContextMenuFactory {
     private JPanel mainPanel;
     private JButton beginAnalysisButton;
     private JTextField textFieldStatus;
@@ -62,6 +60,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JTable cookieTable;
     private JButton saveCookieStatsButton;
     protected JTabbedPane tabPane;
+    private JTabbedPane sessionsTabbedPane;
+    private JTextPane TODOTextPane;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -242,7 +242,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                                     setStatus("Starting deep analysis of " + pi.getDecodedValue() + "...");
                                     String label = pi.getName();
                                     if (label.length() > 20) {
-                                        label = label.substring(0,17) + "...";
+                                        label = label.substring(0, 17) + "...";
                                     }
                                     callbacks.printOutput("Starting deep analysis...");
                                     DeepAnalysisTab tab = new DeepAnalysisTab(pi, Paramalyzer.this, callbacks);
@@ -389,6 +389,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.addSuiteTab(this);
         callbacks.setExtensionName(EXTENSION_NAME);
         callbacks.printOutput("Started " + EXTENSION_NAME + " version " + VERSION);
+        callbacks.registerContextMenuFactory(this);
     }
 
     @Override
@@ -399,6 +400,39 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     @Override
     public Component getUiComponent() {
         return mainPanel;
+    }
+
+    @Override
+    public java.util.List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
+        IHttpRequestResponse[] messages = invocation.getSelectedMessages();
+        if (messages != null && messages.length > 0) {
+            java.util.List<JMenuItem> list = new ArrayList<>();
+            IHttpRequestResponse selectedMessage = messages[0];
+            final byte[] requestBytes = selectedMessage.getRequest();
+            final IHttpService service = selectedMessage.getHttpService();
+            JMenuItem menuItem = new JMenuItem("Paramalyzer: Session");
+            menuItem.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        SessionAnalysisTab tab = new SessionAnalysisTab(Paramalyzer.this, callbacks, requestBytes, service);
+                        sessionsTabbedPane.addTab("S:" + sessionsTabbedPane.getTabCount(), tab.getSessionTabPanel());
+                        tab.initializeTab();
+                        callbacks.customizeUiComponent(tab.getSessionTabPanel());
+                        // sessionsTabbedPane.setSelectedIndex(sessionsTabbedPane.getTabCount() - 1);
+                    } catch (Exception e1) {
+                        StringWriter sw = new StringWriter();
+                        PrintWriter pw = new PrintWriter(sw);
+                        e1.printStackTrace(pw);
+                        callbacks.printError(sw.toString());
+                    }
+                }
+            });
+            list.add(menuItem);
+            return list;
+        }
+
+        return null;
     }
 
     {
@@ -426,7 +460,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel1.add(tabPane, new GridConstraints(0, 0, 2, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Analysis", panel2);
+        tabPane.addTab("Parameters", panel2);
         final JSplitPane splitPane1 = new JSplitPane();
         splitPane1.setOrientation(0);
         panel2.add(splitPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
@@ -527,40 +561,54 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final Spacer spacer2 = new Spacer();
         panel10.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel11 = new JPanel();
-        panel11.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        mainPanel.add(panel11, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-        panel11.setBorder(BorderFactory.createTitledBorder("Status"));
+        panel11.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Sessions", panel11);
+        sessionsTabbedPane = new JTabbedPane();
+        panel11.add(sessionsTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        final JPanel panel12 = new JPanel();
+        panel12.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        sessionsTabbedPane.addTab("Help", panel12);
+        final JScrollPane scrollPane7 = new JScrollPane();
+        panel12.add(scrollPane7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        TODOTextPane = new JTextPane();
+        TODOTextPane.setEditable(false);
+        TODOTextPane.setText("TODO...");
+        scrollPane7.setViewportView(TODOTextPane);
+        final JPanel panel13 = new JPanel();
+        panel13.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(panel13, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        panel13.setBorder(BorderFactory.createTitledBorder("Status"));
         textFieldStatus = new JTextField();
         textFieldStatus.setEditable(false);
-        panel11.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel13.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         progressBar = new JProgressBar();
-        panel11.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JPanel panel12 = new JPanel();
-        panel12.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        mainPanel.add(panel12, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-        final JScrollPane scrollPane7 = new JScrollPane();
-        panel12.add(scrollPane7, new GridConstraints(1, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        scrollPane7.setBorder(BorderFactory.createTitledBorder("Ignore These"));
+        panel13.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel14 = new JPanel();
+        panel14.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(panel14, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        final JScrollPane scrollPane8 = new JScrollPane();
+        panel14.add(scrollPane8, new GridConstraints(1, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        scrollPane8.setBorder(BorderFactory.createTitledBorder("Ignore These"));
         ignore = new JTextArea();
         ignore.setText("__VIEWSTATE\n__VIEWSTATEGENERATOR");
         ignore.setToolTipText("List parameters with large values you want to skip over.");
-        scrollPane7.setViewportView(ignore);
+        scrollPane8.setViewportView(ignore);
         ignoreEmptyCheckBox = new JCheckBox();
         ignoreEmptyCheckBox.setSelected(true);
         ignoreEmptyCheckBox.setText("Ignore Empty Values");
         ignoreEmptyCheckBox.setToolTipText("Skip processing parameters without values.");
-        panel12.add(ignoreEmptyCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel14.add(ignoreEmptyCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clearButton = new JButton();
         clearButton.setText("Clear");
-        panel12.add(clearButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel14.add(clearButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         beginAnalysisButton = new JButton();
         beginAnalysisButton.setText("Analyze");
         beginAnalysisButton.setToolTipText("Begin analysis of all requests in scope.");
-        panel12.add(beginAnalysisButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel14.add(beginAnalysisButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showDecodedValuesCheckBox = new JCheckBox();
         showDecodedValuesCheckBox.setSelected(true);
         showDecodedValuesCheckBox.setText("Show Decoded Values");
-        panel12.add(showDecodedValuesCheckBox, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel14.add(showDecodedValuesCheckBox, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

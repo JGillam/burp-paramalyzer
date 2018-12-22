@@ -25,5 +25,6 @@ public class BurpExtender implements IBurpExtender{
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
         bc.registerExtenderCallbacks(callbacks);
+
     }
 }
