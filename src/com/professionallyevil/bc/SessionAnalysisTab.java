@@ -107,9 +107,22 @@ public class SessionAnalysisTab implements WorkerStatusListener {
                             @Override
                             public void actionPerformed(ActionEvent e) {
                                 callbacks.sendToRepeater(service.getHost(), service.getPort(), "https".equals(service.getProtocol()), testCase.getTestRequest(), testCase.getName());
-                                //IRequestInfo info = callbacks.getHelpers().analyzeRequest(displayedRequest);
-                                //URL url = info.getUrl();
-                                //callbacks.sendToRepeater(url.getHost(), url.getPort(), url.getProtocol().toLowerCase().endsWith("s"), displayedRequest.getRequest(), null);
+                            }
+                        });
+
+                        menu.add(new AbstractAction() {
+                            @Override
+                            public Object getValue(String key) {
+                                if (Action.NAME.equals(key)) {
+                                    return "Send response to Comparer";
+                                } else {
+                                    return super.getValue(key);
+                                }
+                            }
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                callbacks.sendToComparer(testCase.getTestResponse());
                             }
                         });
 
