@@ -30,6 +30,9 @@ public class SessionTestCase {
 
 
 
+    private int responseTime = -1;
+
+
     byte[] testRequest;
     byte[] testResponse;
 
@@ -122,6 +125,14 @@ public class SessionTestCase {
 
     public byte[] getTestResponse() {
         return testResponse;
+    }
+
+    public int getResponseTime() {
+        return responseTime;
+    }
+
+    public void setResponseTime(int responseTime) {
+        this.responseTime = responseTime;
     }
 
 

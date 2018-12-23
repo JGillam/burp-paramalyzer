@@ -46,7 +46,9 @@ public class SessionAnalyzer extends SwingWorker {
         for(SessionTestCase testCase:testCases){
             byte[] testRequest = testCase.generateTestRequest(baselineRequest, callbacks);
             publish("Testcase "+testCase.getName());
+            long startTime = System.currentTimeMillis();
             IHttpRequestResponse message = callbacks.makeHttpRequest(model.getService(), testRequest);
+            testCase.setResponseTime((int) (System.currentTimeMillis() - startTime));
             IResponseInfo responseInfo = callbacks.getHelpers().analyzeResponse(message.getResponse());
             testCase.analyzeResults(responseInfo, message.getResponse());
             TableModelEvent ev = new TableModelEvent(model, row);

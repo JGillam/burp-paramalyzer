@@ -31,8 +31,8 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
     IBurpExtenderCallbacks callbacks;
     private IHttpService service;
     private List<SessionTestCase> tests = new ArrayList<>();
-    private String[] columns = {"Name", "Type", "Test?", "Response Code", "Size"};
-    private Class[] columnClasses = {String.class, String.class, Boolean.class, String.class, Integer.class};
+    private String[] columns = {"Name", "Type", "Test?", "Response Code", "Size", "Time (ms)"};
+    private Class[] columnClasses = {String.class, String.class, Boolean.class, String.class, Integer.class, Integer.class};
     private static byte[] SUPPORTED_PARAM_TYPES = {IParameter.PARAM_COOKIE};
 
 
@@ -119,6 +119,8 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
                 return test.getResponseCode();
             case 4:
                 return test.getResponseSize();
+            case 5:
+                return test.getResponseTime();
             default:
                 return "?";
         }
