@@ -410,7 +410,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
             IHttpRequestResponse selectedMessage = messages[0];
             final byte[] requestBytes = selectedMessage.getRequest();
             final IHttpService service = selectedMessage.getHttpService();
-            JMenuItem menuItem = new JMenuItem("Paramalyzer: Session");
+            JMenuItem menuItem = new JMenuItem("Send to Paramalyzer");
             menuItem.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -419,6 +419,23 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                         sessionsTabbedPane.addTab("S:" + sessionsTabbedPane.getTabCount(), tab.getSessionTabPanel());
                         tab.initializeTab();
                         callbacks.customizeUiComponent(tab.getSessionTabPanel());
+
+                        Component tabComponent = tab.getSessionTabPanel();
+                        if (tabComponent != null) {
+                            Container parent = tabComponent.getParent();
+                            if (parent instanceof JTabbedPane) {
+                                ((JTabbedPane) parent).setSelectedComponent(tabComponent);
+                            }
+
+                            tabPane.setSelectedIndex(2);
+
+                            Container mainParent = mainPanel.getParent();
+                            if (mainParent instanceof JTabbedPane) {
+                                ((JTabbedPane) mainParent).setSelectedComponent(mainPanel);
+                            }
+                        }
+
+
                         // sessionsTabbedPane.setSelectedIndex(sessionsTabbedPane.getTabCount() - 1);
                     } catch (Exception e1) {
                         StringWriter sw = new StringWriter();
