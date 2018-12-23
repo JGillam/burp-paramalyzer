@@ -24,8 +24,7 @@ import com.intellij.uiDesigner.core.Spacer;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class SessionAnalysisTab implements WorkerStatusListener {
 
@@ -73,6 +72,50 @@ public class SessionAnalysisTab implements WorkerStatusListener {
             public void actionPerformed(ActionEvent e) {
                 SessionAnalyzer analyzer = new SessionAnalyzer(sessionTableModel, callbacks, SessionAnalysisTab.this);
                 analyzer.execute();
+            }
+        });
+        resultsTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                popup(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                popup(e);
+            }
+
+            private void popup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    int selectedRow = resultsTable.getSelectedRow();
+                    if (selectedRow > -1) {
+                        SessionTestCase testCase = sessionTableModel.getSessionTestCase(selectedRow);
+
+                        JPopupMenu menu = new JPopupMenu();
+                        menu.add(new AbstractAction() {
+                            @Override
+                            public Object getValue(String key) {
+                                if (Action.NAME.equals(key)) {
+                                    return "Send to Repeater";
+                                } else {
+                                    return super.getValue(key);
+                                }
+                            }
+
+                            @Override
+                            public void actionPerformed(ActionEvent e) {
+                                callbacks.sendToRepeater(service.getHost(), service.getPort(), "https".equals(service.getProtocol()), testCase.getTestRequest(), testCase.getName());
+                                //IRequestInfo info = callbacks.getHelpers().analyzeRequest(displayedRequest);
+                                //URL url = info.getUrl();
+                                //callbacks.sendToRepeater(url.getHost(), url.getPort(), url.getProtocol().toLowerCase().endsWith("s"), displayedRequest.getRequest(), null);
+                            }
+                        });
+
+                        menu.show(resultsTable, e.getX(), e.getY());
+                    }
+                }
             }
         });
     }

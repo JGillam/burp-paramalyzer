@@ -123,4 +123,9 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
                 return "?";
         }
     }
+
+    public SessionTestCase getSessionTestCase(int i) {
+        return tests.get(i);
+    }
+
 }

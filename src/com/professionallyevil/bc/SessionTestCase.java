@@ -28,6 +28,11 @@ public class SessionTestCase {
     private int responseSize = 0;
     private String responseCode;
 
+
+
+    byte[] testRequest;
+    byte[] testResponse;
+
     SessionTestCase(){
     }
 
@@ -36,14 +41,14 @@ public class SessionTestCase {
     }
 
     SessionTestCase(String header){
-        this.testcaseHeader = header;
+        this.testcaseHeader = header.substring(0, header.indexOf(":"));;
     }
 
 
     String getName() {
         if (param == null) {
             if (testcaseHeader != null) {
-                return testcaseHeader.substring(0, testcaseHeader.indexOf(":"));
+                return testcaseHeader;
             } else {
                 return "***baseline***";
             }
@@ -78,17 +83,15 @@ public class SessionTestCase {
     }
 
     boolean isBaseline() {
-        return param == null;
+        return param == null && testcaseHeader == null;
     }
 
     byte[] generateTestRequest(byte[] baseline, IBurpExtenderCallbacks callbacks) {
-        if (isBaseline()) {
-            return baseline;
-        } else if (param != null){
+        if (param != null){
             IExtensionHelpers helpers = callbacks.getHelpers();
             switch(param.getType()) {
                 default:
-                    return helpers.removeParameter(baseline, param);
+                    testRequest = helpers.removeParameter(baseline, param);
             }
         } else if (testcaseHeader != null) {
             IRequestInfo requestInfo = callbacks.getHelpers().analyzeRequest(baseline);
@@ -103,16 +106,28 @@ public class SessionTestCase {
             System.arraycopy(baseline, requestInfo.getBodyOffset(), body, 0, body.length);
             byte[] newRequest = callbacks.getHelpers().buildHttpMessage(newHeaders, body);
             callbacks.printOutput(new String(newRequest));
-            return newRequest;
+            testRequest = newRequest;
 
         } else {
-            return baseline;
+            testRequest = baseline;
         }
+        return testRequest;
 
     }
+
+    public byte[] getTestRequest() {
+        return testRequest;
+    }
+
+
+    public byte[] getTestResponse() {
+        return testResponse;
+    }
+
 
     public void analyzeResults(IResponseInfo responseInfo, byte[] response) {
         responseSize = response.length - responseInfo.getBodyOffset();
         responseCode = Short.toString(responseInfo.getStatusCode());
+        testResponse = response;
     }
 }
