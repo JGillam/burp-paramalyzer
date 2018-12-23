@@ -40,10 +40,10 @@ public class SessionAnalyzer extends SwingWorker {
     protected Object doInBackground() throws Exception {
         byte[] baselineRequest = model.getBaselineRequest();
 
-        List<SessionTestRow> testCases = model.getSessionTestCases();
+        List<SessionTestCase> testCases = model.getSessionTestCases();
         int row = 0;
         publish(0);
-        for(SessionTestRow testCase:testCases){
+        for(SessionTestCase testCase:testCases){
             byte[] testRequest = testCase.generateTestRequest(baselineRequest, callbacks);
             publish("Testcase "+testCase.getName());
             IHttpRequestResponse message = callbacks.makeHttpRequest(model.getService(), testRequest);

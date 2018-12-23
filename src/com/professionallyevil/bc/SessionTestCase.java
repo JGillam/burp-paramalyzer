@@ -21,13 +21,13 @@ import burp.IExtensionHelpers;
 import burp.IParameter;
 import burp.IResponseInfo;
 
-public class SessionTestRow {
+public class SessionTestCase {
 
     private IParameter param;
     private int responseSize = 0;
     private String responseCode;
 
-    SessionTestRow(IParameter param){
+    SessionTestCase(IParameter param){
         this.param = param;
     }
 

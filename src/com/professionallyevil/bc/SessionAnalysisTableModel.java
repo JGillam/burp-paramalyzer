@@ -23,8 +23,6 @@ import burp.IRequestInfo;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class SessionAnalysisTableModel extends AbstractTableModel {
@@ -32,7 +30,7 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
     private byte[] baselineRequestBytes;
     IBurpExtenderCallbacks callbacks;
     private IHttpService service;
-    private List<SessionTestRow> tests = new ArrayList<>();
+    private List<SessionTestCase> tests = new ArrayList<>();
     private String[] columns = {"Name", "Type", "Test?", "Response Code", "Size"};
     private Class[] columnClasses = {String.class, String.class, Boolean.class, String.class, Integer.class};
     private static byte[] SUPPORTED_PARAM_TYPES = {IParameter.PARAM_COOKIE};
@@ -59,10 +57,10 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
         IRequestInfo requestInfo = this.callbacks.getHelpers().analyzeRequest(request);
         List<IParameter> params = requestInfo.getParameters();
         tests.clear();
-        tests.add(new SessionTestRow(null));  // add null entry for baseline.
+        tests.add(new SessionTestCase(null));  // add null entry for baseline.
         for (IParameter param:params){
             if(isSupportedType(param)) {
-                tests.add(new SessionTestRow(param));
+                tests.add(new SessionTestCase(param));
             }
         }
 
@@ -73,7 +71,7 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
         return baselineRequestBytes;
     }
 
-    List<SessionTestRow> getSessionTestCases(){
+    List<SessionTestCase> getSessionTestCases(){
         return tests;
     }
 
@@ -103,7 +101,7 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        SessionTestRow test = tests.get(rowIndex);
+        SessionTestCase test = tests.get(rowIndex);
         switch(columnIndex) {
             case 0:
                 return test.getName();
