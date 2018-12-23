@@ -29,13 +29,13 @@ import java.util.List;
 
 public class SessionAnalysisTableModel extends AbstractTableModel {
 
-    byte[] baselineRequestBytes;
+    private byte[] baselineRequestBytes;
     IBurpExtenderCallbacks callbacks;
-    IHttpService service;
-    List<SessionTestRow> tests = new ArrayList<>();
-    String[] columns = {"Name", "Type", "Test?", "Response Code", "Size"};
-    Class[] columnClasses = {String.class, String.class, Boolean.class, String.class, Integer.class};
-    static byte[] SUPPORTED_PARAM_TYPES = {IParameter.PARAM_COOKIE};
+    private IHttpService service;
+    private List<SessionTestRow> tests = new ArrayList<>();
+    private String[] columns = {"Name", "Type", "Test?", "Response Code", "Size"};
+    private Class[] columnClasses = {String.class, String.class, Boolean.class, String.class, Integer.class};
+    private static byte[] SUPPORTED_PARAM_TYPES = {IParameter.PARAM_COOKIE};
 
 
     SessionAnalysisTableModel(IBurpExtenderCallbacks callbacks, IHttpService service, byte[] request){
