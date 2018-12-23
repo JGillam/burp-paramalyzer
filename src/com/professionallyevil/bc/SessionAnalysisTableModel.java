@@ -57,10 +57,16 @@ public class SessionAnalysisTableModel extends AbstractTableModel {
         IRequestInfo requestInfo = this.callbacks.getHelpers().analyzeRequest(request);
         List<IParameter> params = requestInfo.getParameters();
         tests.clear();
-        tests.add(new SessionTestCase(null));  // add null entry for baseline.
+        tests.add(new SessionTestCase());  // add null entry for baseline.
         for (IParameter param:params){
             if(isSupportedType(param)) {
                 tests.add(new SessionTestCase(param));
+            }
+        }
+        List<String> headers = requestInfo.getHeaders();
+        for(String header:headers) {
+            if (header.toLowerCase().startsWith("authorization:")) {
+                tests.add(new SessionTestCase(header));
             }
         }
 

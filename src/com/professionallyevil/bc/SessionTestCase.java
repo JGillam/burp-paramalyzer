@@ -16,28 +16,49 @@
 
 package com.professionallyevil.bc;
 
-import burp.IBurpExtenderCallbacks;
-import burp.IExtensionHelpers;
-import burp.IParameter;
-import burp.IResponseInfo;
+import burp.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SessionTestCase {
 
     private IParameter param;
+    private String testcaseHeader;
     private int responseSize = 0;
     private String responseCode;
+
+    SessionTestCase(){
+    }
 
     SessionTestCase(IParameter param){
         this.param = param;
     }
 
+    SessionTestCase(String header){
+        this.testcaseHeader = header;
+    }
+
+
     String getName() {
-        return param == null?"***baseline***":param.getName();
+        if (param == null) {
+            if (testcaseHeader != null) {
+                return testcaseHeader.substring(0, testcaseHeader.indexOf(":"));
+            } else {
+                return "***baseline***";
+            }
+        } else {
+            return param.getName();
+        }
     }
 
     String getType() {
         if (param == null) {
-            return "";
+            if (testcaseHeader != null) {
+                return "Header";
+            } else {
+                return "";
+            }
         } else {
             switch (param.getType()) {
                 case IParameter.PARAM_COOKIE:
@@ -63,14 +84,31 @@ public class SessionTestCase {
     byte[] generateTestRequest(byte[] baseline, IBurpExtenderCallbacks callbacks) {
         if (isBaseline()) {
             return baseline;
-        } else {
+        } else if (param != null){
             IExtensionHelpers helpers = callbacks.getHelpers();
             switch(param.getType()) {
                 default:
                     return helpers.removeParameter(baseline, param);
             }
+        } else if (testcaseHeader != null) {
+            IRequestInfo requestInfo = callbacks.getHelpers().analyzeRequest(baseline);
+            List<String> originalHeaders = requestInfo.getHeaders();
+            List<String> newHeaders = new ArrayList<>(originalHeaders.size() - 1);
+            for (String header: originalHeaders) {
+                if (!header.startsWith(testcaseHeader)) {
+                    newHeaders.add(header);
+                }
+            }
+            byte[] body = new byte[baseline.length - requestInfo.getBodyOffset()];
+            System.arraycopy(baseline, requestInfo.getBodyOffset(), body, 0, body.length);
+            byte[] newRequest = callbacks.getHelpers().buildHttpMessage(newHeaders, body);
+            callbacks.printOutput(new String(newRequest));
+            return newRequest;
 
+        } else {
+            return baseline;
         }
+
     }
 
     public void analyzeResults(IResponseInfo responseInfo, byte[] response) {
