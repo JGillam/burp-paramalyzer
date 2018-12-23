@@ -61,7 +61,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JButton saveCookieStatsButton;
     protected JTabbedPane tabPane;
     private JTabbedPane sessionsTabbedPane;
-    private JTextPane TODOTextPane;
+    private JTextPane thisToolWillHelpTextPane;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -250,6 +250,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                                     tab.setTitle(label);
                                     tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
                                     tabPane.setToolTipTextAt(tabPane.getTabCount() - 1, pi.getName() + "=" + pi.getDecodedValue());
+                                    callbacks.customizeUiComponent(tab.getMainPanel());
                                     tab.begin();
                                 }
                             } catch (Throwable t) {
@@ -390,6 +391,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.setExtensionName(EXTENSION_NAME);
         callbacks.printOutput("Started " + EXTENSION_NAME + " version " + VERSION);
         callbacks.registerContextMenuFactory(this);
+        callbacks.customizeUiComponent(mainPanel);
     }
 
     @Override
@@ -587,10 +589,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         sessionsTabbedPane.addTab("Help", panel12);
         final JScrollPane scrollPane7 = new JScrollPane();
         panel12.add(scrollPane7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        TODOTextPane = new JTextPane();
-        TODOTextPane.setEditable(false);
-        TODOTextPane.setText("TODO...");
-        scrollPane7.setViewportView(TODOTextPane);
+        thisToolWillHelpTextPane = new JTextPane();
+        thisToolWillHelpTextPane.setEditable(false);
+        thisToolWillHelpTextPane.setText("This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.\n\nTo perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and \"Send to Paramalyzer\".  This will create a new tab next to this help tab.\n\nOnce in that tab, use the \"Verify Baseline\" button to make sure your request is  still producing authenticated responses, then press the \"Analyze\" button.");
+        scrollPane7.setViewportView(thisToolWillHelpTextPane);
         final JPanel panel13 = new JPanel();
         panel13.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel13, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
