@@ -109,7 +109,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     }
 
     @Override
-    public void done() {
+    public void done(Object result) {
 
         if (analyzer.getResultsMap().size() == 0) {
             textDetails.setText("Sorry, no matches found for this parameter.");

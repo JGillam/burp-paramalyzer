@@ -218,7 +218,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         super.done();
         try {
             this.get();
-            listener.done();
+            listener.done(null);
         } catch (InterruptedException e) {
             listener.setStatus("Interrupted Exception: " + e.getMessage());
             e.printStackTrace(new PrintStream(callbacks.getStderr()));

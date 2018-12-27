@@ -217,7 +217,7 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
         l.setProgress(100);
         try {
             this.get();
-            l.done();
+            l.done(null);
         } catch (InterruptedException e) {
             e.printStackTrace();
             callbacks.printError(e.getMessage());

@@ -27,9 +27,6 @@ public class SessionTestCase {
     private String testcaseHeader;
     private int responseSize = 0;
     private String responseCode;
-
-
-
     private int responseTime = -1;
 
 
@@ -44,7 +41,7 @@ public class SessionTestCase {
     }
 
     SessionTestCase(String header){
-        this.testcaseHeader = header.substring(0, header.indexOf(":"));;
+        this.testcaseHeader = header.substring(0, header.indexOf(":"));
     }
 
 
@@ -85,10 +82,6 @@ public class SessionTestCase {
         return responseCode;
     }
 
-    boolean isBaseline() {
-        return param == null && testcaseHeader == null;
-    }
-
     byte[] generateTestRequest(byte[] baseline, IBurpExtenderCallbacks callbacks) {
         if (param != null){
             IExtensionHelpers helpers = callbacks.getHelpers();
@@ -118,27 +111,31 @@ public class SessionTestCase {
 
     }
 
-    public byte[] getTestRequest() {
+    byte[] getTestRequest() {
         return testRequest;
     }
 
 
-    public byte[] getTestResponse() {
+    byte[] getTestResponse() {
         return testResponse;
     }
 
-    public int getResponseTime() {
+    int getResponseTime() {
         return responseTime;
     }
 
-    public void setResponseTime(int responseTime) {
+    void setResponseTime(int responseTime) {
         this.responseTime = responseTime;
     }
 
 
-    public void analyzeResults(IResponseInfo responseInfo, byte[] response) {
+    void analyzeResults(IResponseInfo responseInfo, byte[] response) {
         responseSize = response.length - responseInfo.getBodyOffset();
         responseCode = Short.toString(responseInfo.getStatusCode());
         testResponse = response;
+    }
+
+    IParameter getParameter() {
+        return param;
     }
 }

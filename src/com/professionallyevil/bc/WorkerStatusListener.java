@@ -25,5 +25,6 @@ public interface WorkerStatusListener {
 
     void setProgress(int percentDone);
 
-    void done();
+    void done(Object result);
+
 }

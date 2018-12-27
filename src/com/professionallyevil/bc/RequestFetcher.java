@@ -49,7 +49,7 @@ public class RequestFetcher extends SwingWorker {
         }else {
             statusListener.setStatus("Request failed to complete.");
         }
-        statusListener.done();
+        statusListener.done(null);
         return null;
     }
 
