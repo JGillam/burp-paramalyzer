@@ -16,23 +16,42 @@
 
 package com.professionallyevil.bc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class CookieStatistics {
     private String name;
     private int count = 0;
     private int httpOnlyCount = 0;
     private int secureCount = 0;
+    private String cookieType = "Session";
+    private List<String> domainList = new ArrayList<>();
+    private String domains = "(Never Set)";
+    private List<String> pathList = new ArrayList<>();
+    private String paths = "(Never Set)";
 
     public CookieStatistics(String name) {
         this.name = name;
     }
 
-    void addCookieValues(boolean httpOnly, boolean secure) {
+    void addCookieValues(boolean httpOnly, boolean secure, String expires, String maxAge, String domain, String path) {
         count+=1;
         if(httpOnly) {
             httpOnlyCount += 1;
         }
         if(secure) {
             secureCount += 1;
+        }
+        if (expires != null || maxAge != null) {
+            cookieType = "Persistent";
+        }
+        if(domain != null && !domainList.contains(domain)) {
+            domainList.add(domain);
+            domains = String.join(",", domainList);
+        }
+        if(path != null && !pathList.contains(path)) {
+            pathList.add(path);
+            paths = String.join(",", pathList);
         }
     }
 
@@ -50,6 +69,18 @@ public class CookieStatistics {
 
     public String getSecure() {
         return secureCount==count?"Always":(secureCount==0?"Never":""+secureCount+"/"+count);
+    }
+
+    String getType(){
+        return cookieType;
+    }
+
+    String getDomains(){
+        return domains;
+    }
+
+    String getPaths(){
+        return paths;
     }
 
 

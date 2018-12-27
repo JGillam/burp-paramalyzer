@@ -239,6 +239,10 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         String[] parts = header.substring("set-cookie:".length()).split(";");
         boolean httpOnly = false;
         boolean secure = false;
+        String expires = null;
+        String maxAge = null;
+        String domain = null;
+        String path = null;
         String name = "";
         int count = 0;
         for (String part: parts) {
@@ -250,6 +254,18 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     break;
                 case "SECURE":
                     secure = true;
+                    break;
+                case "EXPIRES":
+                    expires = pair[1].trim();
+                    break;
+                case "MAX-AGE":
+                    maxAge = pair[1].trim();
+                    break;
+                case "DOMAIN":
+                    domain = pair[1].trim();
+                    break;
+                case "PATH":
+                    path = pair[1].trim();
                     break;
                 default:
                     // pass
@@ -267,7 +283,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                 cs = new CookieStatistics(name);
                 cookieStatistics.put(name, cs);
             }
-            cs.addCookieValues(httpOnly, secure);
+            cs.addCookieValues(httpOnly, secure, expires, maxAge, domain, path);
         }
 
     }
