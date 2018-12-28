@@ -1,0 +1,14 @@
+site_name: Paramalyzer Docs
+repo_url: https://github.com/JGillam/burp-paramalyzer
+site_author: Jason Gillam
+markdown_extensions:
+  - toc:
+      permalink: True
+      toc_depth: 3
+theme: readthedocs
+nav:
+  - 'Paramalyzer Overview': 'index.md'
+  - 'Paramalyzer Tools':
+    - 'Parameter Analysis': 'parameter-analysis.md'
+    - 'Cookie Analysis': 'cookie-analysis.md'
+    - 'Session Analysis': 'session-analysis.md'
