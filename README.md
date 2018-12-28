@@ -7,4 +7,7 @@ The purpose of this extension is to improve efficiency of manual parameter analy
 
 [Read the docs](http://jgillam.github.io/burp-paramalyzer/)
 
+## Issues and Enhancements
+Use the Issues tab above to report any problems or enhancement requests.
+
 _Note: You must install Burp Suite (either the community or pro version) first.  Then download the latest burp-paramalyzer release (.jar file) and install it through the Burp Extender tab._
