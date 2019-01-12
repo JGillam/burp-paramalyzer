@@ -282,13 +282,16 @@
                             <constraints>
                               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
                             </constraints>
-                            <properties/>
+                            <properties>
+                              <enabled value="false"/>
+                            </properties>
                             <border type="none"/>
                             <children>
-                              <component id="2d5f7" class="javax.swing.JTextPane" binding="thisToolWillHelpTextPane" default-binding="true">
+                              <component id="1125b" class="javax.swing.JTextArea" binding="sessionsHelpTextPane">
                                 <constraints/>
                                 <properties>
                                   <editable value="false"/>
+                                  <lineWrap value="true"/>
                                   <text value="This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.&#10;&#10;To perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and &quot;Send to Paramalyzer&quot;.  This will create a new tab next to this help tab.&#10;&#10;Once in that tab, use the &quot;Verify Baseline&quot; button to make sure your request is  still producing authenticated responses, then press the &quot;Analyze&quot; button."/>
                                 </properties>
                               </component>

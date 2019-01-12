@@ -61,7 +61,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JButton saveCookieStatsButton;
     protected JTabbedPane tabPane;
     private JTabbedPane sessionsTabbedPane;
-    private JTextPane thisToolWillHelpTextPane;
+    private JTextArea sessionsHelpTextPane;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -392,6 +392,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.printOutput("Started " + EXTENSION_NAME + " version " + VERSION);
         callbacks.registerContextMenuFactory(this);
         callbacks.customizeUiComponent(mainPanel);
+        callbacks.customizeUiComponent(sessionsHelpTextPane);
     }
 
     @Override
@@ -569,11 +570,13 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel11.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         sessionsTabbedPane.addTab("Help", panel11);
         final JScrollPane scrollPane7 = new JScrollPane();
+        scrollPane7.setEnabled(false);
         panel11.add(scrollPane7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        thisToolWillHelpTextPane = new JTextPane();
-        thisToolWillHelpTextPane.setEditable(false);
-        thisToolWillHelpTextPane.setText("This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.\n\nTo perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and \"Send to Paramalyzer\".  This will create a new tab next to this help tab.\n\nOnce in that tab, use the \"Verify Baseline\" button to make sure your request is  still producing authenticated responses, then press the \"Analyze\" button.");
-        scrollPane7.setViewportView(thisToolWillHelpTextPane);
+        sessionsHelpTextPane = new JTextArea();
+        sessionsHelpTextPane.setEditable(false);
+        sessionsHelpTextPane.setLineWrap(true);
+        sessionsHelpTextPane.setText("This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.\n\nTo perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and \"Send to Paramalyzer\".  This will create a new tab next to this help tab.\n\nOnce in that tab, use the \"Verify Baseline\" button to make sure your request is  still producing authenticated responses, then press the \"Analyze\" button.");
+        scrollPane7.setViewportView(sessionsHelpTextPane);
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel12, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
