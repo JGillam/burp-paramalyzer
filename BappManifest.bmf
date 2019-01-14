@@ -2,8 +2,8 @@ Uuid: 0ac13c45adff4e31a3ca8dc76dd6286c
 ExtensionType: 1
 Name: Paramalyzer
 RepoName: paramalyzer
-ScreenVersion: 1.0.2
-SerialVersion: 5
+ScreenVersion: 2.0
+SerialVersion: 6
 MinPlatformVersion: 0
 ProOnly: False
 Author: Jason Gillam
