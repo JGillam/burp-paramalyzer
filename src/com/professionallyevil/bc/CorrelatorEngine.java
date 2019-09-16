@@ -20,6 +20,7 @@ import burp.*;
 
 import javax.swing.*;
 import java.io.PrintStream;
+import java.net.URL;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 
@@ -37,6 +38,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     Map<String, CorrelatedParam> bodyParameters = new HashMap<>();
     Map<String, CorrelatedParam> cookieParameters = new HashMap<>();
     Map<String, CorrelatedParam> jsonParameters = new HashMap<>();
+    Map<String, CorrelatedParam> restParameters = new HashMap<>();
     Set<IHttpRequestResponse> inScopeMessagesWithResponses = new HashSet<>();
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
@@ -133,13 +135,29 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                         }
                     }
                 }
+
+                // look at path for REST variables
+                URL url = requestInfo.getUrl();
+                String[] pathElements = url.getPath().substring(1).split("/");
+
+                for (int p=0; p < pathElements.length -1; p++){
+                    RestParamInstance param = new RestParamInstance(pathElements[p], pathElements[p+1], messages[i]);
+
+                    if (restParameters.containsKey(param.getName())) {
+                        restParameters.get(param.getName()).put(param, messages[i], requestInfo, responseString,
+                                helpers);
+                    } else {
+                        restParameters.put(param.getName(), new CorrelatedParam(param, messages[i], requestInfo,
+                                responseString, helpers));
+                    }
+                }
             }
         }
     }
 
     private void parameterFormatAnalysis() {
         publish("Parameter Format Analysis...");
-        int total = urlParameters.size() + bodyParameters.size() + cookieParameters.size() + jsonParameters.size();
+        int total = urlParameters.size() + bodyParameters.size() + cookieParameters.size() + jsonParameters.size() + restParameters.size();
         int i=0;
         publish(0);
         for(CorrelatedParam cp: urlParameters.values()){
@@ -162,6 +180,11 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
             i+=1;
             publish(100*i/total);
         }
+        for(CorrelatedParam cp: restParameters.values()){
+            cp.analyzeAll(callbacks);
+            i+=1;
+            publish(100*i/total);
+        }
     }
 
     private void secondPass(IExtensionHelpers helpers) {
@@ -171,6 +194,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         allStats.add(urlParameters);
         allStats.add(bodyParameters);
         allStats.add(cookieParameters);
+        allStats.add(restParameters);
         int x = 0;
         for (IHttpRequestResponse message : inScopeMessagesWithResponses) {
             publish(100 * x / inScopeMessagesWithResponses.size());
@@ -305,4 +329,6 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     }
 
     public Map<String, CorrelatedParam> getJSONParameters() { return jsonParameters; }
+
+    public Map<String, CorrelatedParam> getRestParameters() {return restParameters; }
 }

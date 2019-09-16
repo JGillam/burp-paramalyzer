@@ -16,8 +16,6 @@
 
 package com.professionallyevil.bc;
 
-import burp.IParameter;
-
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -85,19 +83,7 @@ public class ParametersTableModel extends AbstractTableModel {
             case 0:
                 return sample.getName();
             case 1:
-                int type = sample.getType();
-                switch(type){
-                    case IParameter.PARAM_URL:
-                        return "URL";
-                    case IParameter.PARAM_BODY:
-                        return "Body";
-                    case IParameter.PARAM_COOKIE:
-                        return "Cookie";
-                    case IParameter.PARAM_JSON:
-                        return "JSON";
-                    default:
-                        return "Other";
-                }
+                return sample.getTypeName();
             case 2:
                 return param.getParamInstances(true).size();
             case 3:

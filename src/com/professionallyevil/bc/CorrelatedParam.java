@@ -40,6 +40,11 @@ public class CorrelatedParam {
         put(param, message, requestInfo, responseString, helpers);
     }
 
+    CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+                    IExtensionHelpers helpers) {
+        put(param, message, requestInfo, responseString, helpers);
+    }
+
 
     public void put(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
@@ -51,6 +56,18 @@ public class CorrelatedParam {
         if(!uniqueValues.contains(value)) {
             uniqueValues.add(value);
             uniqueParamInstances.add(pi);
+        }
+        checkReflection(param, responseString, helpers);
+    }
+
+    public void put(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+                    IExtensionHelpers helpers) {
+        paramInstances.add(param);
+        addURL((requestInfo));
+        String value = param.getValue();
+        if(!uniqueValues.contains(value)) {
+            uniqueValues.add(value);
+            uniqueParamInstances.add(param);
         }
         checkReflection(param, responseString, helpers);
     }

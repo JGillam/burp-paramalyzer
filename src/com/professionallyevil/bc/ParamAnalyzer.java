@@ -19,6 +19,7 @@ package com.professionallyevil.bc;
 import burp.IBurpExtenderCallbacks;
 
 import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
 import java.util.regex.Pattern;
 
 /**
@@ -37,12 +38,13 @@ public class ParamAnalyzer {
     private static Pattern urlPathPattern = Pattern.compile("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$");
     private static Pattern urlPathPattern2 = Pattern.compile("^http[s]?://[a-zA-Z0-9]+");
     private static Pattern emailAddressPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
-    private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-[0-9]{2}-[0-9]{4}$");
+    private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$");
     private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
     private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
-    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\")( *, *(\\w*|\"\\w*\") ?: ?(\\w*|\"\\p{Print}*\"))*\\}$");
-    private static Pattern phpSerializedPatternQuick = Pattern.compile("^([si]:\\d+.*;)|(N;)|[oa]:\\d+:.*\\{.*}$");
+    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\"\\w+?\"\\s*:\\s*(((\"\\w+?\")|(\\d+)|(\\[((\"?\\w\"?)\\s*,?)*\\])|(\\{(\"[\\w]*\"\\s*:\\s*[\\w\",\\s]*)*\\})),?\\s*))*\\}$");
+    private static Pattern phpSerializedPatternQuick = Pattern.compile("^([si]:\\d+:\\w+?;)(N;)|[oa]:\\d+:.*\\{.*}$");
     private static Pattern phpSerializedPattern = Pattern.compile("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$");
+
 
     private static Base62 base62 = new Base62();
 
@@ -93,6 +95,13 @@ public class ParamAnalyzer {
     }
 
     public static String smartDecode(ParamInstance pi, String input, IBurpExtenderCallbacks callbacks, StringBuilder log) {
+        if(input.length() > 2 && input.startsWith("\"") && input.endsWith("\"")) {
+            String output = input.substring(1, input.length()-1);
+            log.append("\nquoted value -> ");
+            log.append(output);
+            return output;
+        }
+
         if (isCreditCard(input))  {
             return input;
         }
@@ -137,12 +146,12 @@ public class ParamAnalyzer {
             return decodedString;
         } else {
             log.append("\n");
-            log.append(identify(pi, input));
+//            log.append(identify(pi, input));
             return input;
         }
     }
 
-    public static String identify(ParamInstance pi, String input) {
+    private static String identify(ParamInstance pi, String input) {
         StringBuilder log = new StringBuilder();
         if (isCreditCard(input)) {
             log.append("Looks like a credit card (passed Luhn).");
@@ -208,6 +217,7 @@ public class ParamAnalyzer {
                 log.append("\nThis may be XML or an HTML Fragment!");
                 pi.setFormat(ParamInstance.Format.HTMLFRAG);
             } else if (isJSONObject(input)) {
+                log.append("\nThis may be a JSON-formatted String.");
                 pi.setFormat(ParamInstance.Format.JSON);
             } else {
                 pi.setFormat(ParamInstance.Format.PRINTABLE);
@@ -236,7 +246,11 @@ public class ParamAnalyzer {
     }
 
     public static boolean isHexString(String input) {
-        return hexStringPattern.matcher(input).find();
+        if (input.length() > 5) {
+            return hexStringPattern.matcher(input).find();
+        } else {
+            return false;
+        }
     }
 
     public static boolean isDecimalString(String input) {
@@ -265,6 +279,8 @@ public class ParamAnalyzer {
     }
 
     public static boolean isJSONObject(String input) {
+
+
         return jsonObjectPattern.matcher(input).find();
     }
 
@@ -375,6 +391,17 @@ public class ParamAnalyzer {
         }
 
         return output;
+    }
+
+    public static void test(String name, String input, Pattern pattern){
+        System.out.println("Test "+name+": "+pattern.matcher(input).find());
+    }
+
+    public static void main(String[] args) {
+        test("JSON 1", "{\"foo\": \"bar\"}", jsonObjectPattern);
+        test("JSON 2", "[\"foo\": \"bar\"]", jsonObjectPattern);
+
+
     }
 
 }

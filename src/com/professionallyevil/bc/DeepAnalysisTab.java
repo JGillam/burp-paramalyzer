@@ -42,16 +42,17 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     private JTextArea textDetails;
     private JButton closeButton;
     private JPanel mainPanel;
+    private ParamInstanceListModel listModel = new ParamInstanceListModel();
 
     private final Paramalyzer parent;
     private DeepAnalyzer analyzer;
     IBurpExtenderCallbacks callbacks;
-    String title;
+    private String title;
 
     DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
         this.parent = parent;
         this.callbacks = callbacks;
-        titleLabel.setText("Deep Analysis: " + pi.getDecodedValue() + " (from parameter " + pi.getName() + ")");
+        titleLabel.setText("Deep Analysis: [" + pi.getTypeName() + "] " + pi.getName() + " = " + pi.getDecodedValue() + " (Inferred Format: "+pi.getFormat()+")");
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,24 +60,30 @@ public class DeepAnalysisTab implements WorkerStatusListener {
 
             }
         });
-        listMatches.setCellRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                if (value instanceof ParamInstance) {
-                    String title = ((ParamInstance) value).summarize();
-                    return super.getListCellRendererComponent(list, title, index, isSelected, cellHasFocus);
-                } else {
-                    return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                }
-            }
-        });
+
+        listMatches.setModel(listModel);
+
+//        listMatches.setCellRenderer(new DefaultListCellRenderer() {
+//            @Override
+//            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//                if (value instanceof ParamInstance) {
+//                    String title = "--" + ((ParamInstance) value).summarize();
+//                    return super.getListCellRendererComponent(list, title, index, isSelected, cellHasFocus);
+//                } else {
+//                    return super.getListCellRendererComponent(list, "+" + value, index, isSelected, cellHasFocus);
+//                }
+//            }
+//
+//
+//        });
 
         textDetails.setText("Processing...");
         analyzer = new DeepAnalyzer(pi, ((ParametersTableModel) parent.parametersTable.getModel()).getEntries(), callbacks, this);
         listMatches.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                ParamInstance pi = (ParamInstance) listMatches.getSelectedValue();
+//                ParamInstance pi = (ParamInstance) listMatches.getSelectedValue();
+                ParamInstance pi = (ParamInstance) listModel.getParamInstanceAt(listMatches.getSelectedIndex());
                 textDetails.setText(analyzer.getResultsMap().get(pi));
             }
         });
@@ -110,13 +117,14 @@ public class DeepAnalysisTab implements WorkerStatusListener {
 
     @Override
     public void done(Object result) {
+        listMatches.setModel(listModel);
 
         if (analyzer.getResultsMap().size() == 0) {
             textDetails.setText("Sorry, no matches found for this parameter.");
         } else {
-            listMatches.setListData(analyzer.getResultsMap().keySet().toArray());
+
+            listModel.setListData(analyzer.getResultsMap().keySet());
             listMatches.setSelectedIndex(0);
-            //textDetails.setText(analyzer.getResultsMap().get(listMatches.getModel().getElementAt(0)));
         }
     }
 

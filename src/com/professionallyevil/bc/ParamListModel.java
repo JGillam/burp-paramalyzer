@@ -24,6 +24,7 @@ public class ParamListModel extends AbstractListModel<String> {
     ParamInstance[] params = new ParamInstance[0];
     CorrelatedParam correlatedParam;
     boolean showDecoded = true;
+    boolean showFormat = false;
 
     ParamListModel() {
 
@@ -45,10 +46,17 @@ public class ParamListModel extends AbstractListModel<String> {
 
     @Override
     public String getElementAt(int index) {
+        ParamInstance param = params[index];
+        String prefix = "";
+
+        if (showFormat) {
+            prefix = "["+param.getFormat()+"]: ";
+        }
+
         if (showDecoded) {
-            return params[index].getDecodedValue();
+            return prefix + param.getDecodedValue();
         } else {
-            return params[index].getValue();
+            return prefix + param.getValue();
         }
     }
 

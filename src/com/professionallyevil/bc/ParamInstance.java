@@ -55,6 +55,12 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         public String getTitle(){
             return title;
         }
+
+
+        @Override
+        public String toString() {
+            return this.title;
+        }
     }
 
     IParameter wrappedParam;
@@ -197,28 +203,30 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         return buf.toString();
     }
 
-    private void appendType(StringBuilder buf) {
+    public String getTypeName() {
         switch (getType()){
             case IParameter.PARAM_BODY:
-                buf.append("Body");
-                break;
+                return "Body";
             case IParameter.PARAM_COOKIE:
-                buf.append("Cookie");
-                break;
+                return "Cookie";
             case IParameter.PARAM_URL:
-                buf.append("URL");
-                break;
+                return "URL";
             case IParameter.PARAM_JSON:
-                buf.append("JSON");
-                break;
+                return "JSON";
             case IParameter.PARAM_MULTIPART_ATTR:
-                buf.append("Multipart Attribute");
-                break;
+                return "Multi";
             case IParameter.PARAM_XML:
-                buf.append("XML");
-                break;
+                return "XML";
+            case RestParamInstance.TYPE:
+                return "REST";
             default:
-                buf.append("Unknown");
+                return "Unknown";
         }
     }
+
+    private void appendType(StringBuilder buf) {
+        buf.append(getTypeName());
+    }
+
+
 }
