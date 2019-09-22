@@ -39,6 +39,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
     Map<String, CorrelatedParam> cookieParameters = new HashMap<>();
     Map<String, CorrelatedParam> jsonParameters = new HashMap<>();
     Map<String, CorrelatedParam> restParameters = new HashMap<>();
+    Map<String, CorrelatedParam> jsonPartParameters = new HashMap<>();
     Set<IHttpRequestResponse> inScopeMessagesWithResponses = new HashSet<>();
     Map<String, CookieStatistics> cookieStatistics = new TreeMap<>();
 
@@ -162,28 +163,55 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         publish(0);
         for(CorrelatedParam cp: urlParameters.values()){
             cp.analyzeAll(callbacks);
+            processJSON(cp);
             i+=1;
             publish(100*i/total);
         }
         for(CorrelatedParam cp: bodyParameters.values()){
             cp.analyzeAll(callbacks);
+            processJSON(cp);
             i+=1;
             publish(100*i/total);
         }
         for(CorrelatedParam cp: cookieParameters.values()){
             cp.analyzeAll(callbacks);
+            processJSON(cp);
             i+=1;
             publish(100*i/total);
         }
         for(CorrelatedParam cp: jsonParameters.values()){
             cp.analyzeAll(callbacks);
+            processJSON(cp);
             i+=1;
             publish(100*i/total);
         }
         for(CorrelatedParam cp: restParameters.values()){
             cp.analyzeAll(callbacks);
+            processJSON(cp);
             i+=1;
             publish(100*i/total);
+        }
+
+        for(CorrelatedParam cp: jsonPartParameters.values()) {
+            publish("Analyzing JSON params...");
+            cp.analyzeAll(callbacks);
+        }
+
+        jsonParameters.putAll(jsonPartParameters);
+    }
+
+    private void processJSON(CorrelatedParam cp) {
+        for(ParamInstance param: cp.uniqueParamInstances) {
+            if(param.getFormat() == ParamInstance.Format.JSON) {
+                List<JSONParamInstance> jsonParams = JSONParamParser.parseObjectString(param.decodedValue, param);
+                for(JSONParamInstance jsonParam: jsonParams) {
+                    if (jsonPartParameters.containsKey(jsonParam.getName())) {
+                        jsonPartParameters.get(jsonParam.getName()).put(jsonParam);
+                    } else {
+                        jsonPartParameters.put(jsonParam.getName(), new CorrelatedParam(jsonParam));
+                    }
+                }
+            }
         }
     }
 

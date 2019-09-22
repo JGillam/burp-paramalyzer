@@ -7,6 +7,7 @@ repositories {
 dependencies {
     compile 'net.portswigger.burp.extender:burp-extender-api:1.7.13'
     compile 'com.intellij:forms_rt:7.0.3'
+    compile group: 'org.json', name: 'json', version: '20190722'
 }
 
 sourceSets {

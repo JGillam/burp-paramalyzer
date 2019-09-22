@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/burp-api/burp-api.iml" filepath="$PROJECT_DIR$/burp-api/burp-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/burp-paramalyzer.iml" filepath="$PROJECT_DIR$/burp-paramalyzer.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/paramalyzer.iml" filepath="$PROJECT_DIR$/.idea/modules/paramalyzer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/paramalyzer.iml" filepath="$PROJECT_DIR$/.idea/modules/paramalyzer.iml" group="paramalyzer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paramalyzer_main.iml" filepath="$PROJECT_DIR$/.idea/modules/paramalyzer_main.iml" group="paramalyzer" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/paramalyzer_test.iml" filepath="$PROJECT_DIR$/.idea/modules/paramalyzer_test.iml" group="paramalyzer" />
     </modules>

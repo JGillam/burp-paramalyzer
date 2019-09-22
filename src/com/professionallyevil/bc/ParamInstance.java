@@ -219,6 +219,8 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
                 return "XML";
             case RestParamInstance.TYPE:
                 return "REST";
+            case JSONParamInstance.TYPE:
+                return "JSON Part";
             default:
                 return "Unknown";
         }

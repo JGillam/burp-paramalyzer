@@ -45,6 +45,10 @@ public class CorrelatedParam {
         put(param, message, requestInfo, responseString, helpers);
     }
 
+    CorrelatedParam(JSONParamInstance param) {
+        put(param);
+    }
+
 
     public void put(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
@@ -70,6 +74,15 @@ public class CorrelatedParam {
             uniqueParamInstances.add(param);
         }
         checkReflection(param, responseString, helpers);
+    }
+
+    public void put(JSONParamInstance param) {
+        paramInstances.add(param);
+        String value = param.getValue();
+        if(!uniqueValues.contains(value)) {
+            uniqueValues.add(value);
+            uniqueParamInstances.add(param);
+        }
     }
 
     private void addURL(IRequestInfo requestInfo) {

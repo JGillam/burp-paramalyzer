@@ -19,7 +19,8 @@ package com.professionallyevil.bc;
 import burp.IBurpExtenderCallbacks;
 
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
+import java.util.Arrays;
+import java.util.List;
 import java.util.regex.Pattern;
 
 /**
@@ -27,28 +28,63 @@ import java.util.regex.Pattern;
  */
 public class ParamAnalyzer {
 
-    private static Pattern urlEncodedPattern = Pattern.compile("%[0-9a-zA-Z]{2}");
-    private static Pattern base64EncodedPattern = Pattern.compile("^(?:[A-Za-z0-9+/]{4}(==)?)*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$");
-    private static Pattern base62EncodedPattern = Pattern.compile("^[A-Za-z0-9]{1,11}$");
-    private static Pattern printableCharsPattern = Pattern.compile("^\\p{Print}+$");
-    private static Pattern textPattern = Pattern.compile("^([\\w']+ )*[\\w']+[\\.?!]?$");
-    private static Pattern hexStringPattern = Pattern.compile("^([A-F0-9]{2})+$", Pattern.CASE_INSENSITIVE);
-    private static Pattern decimalPattern = Pattern.compile("^[-]?[0-9]+$");
-    private static Pattern bigIPPattern = Pattern.compile("^[0-9]{4,}\\.[0-9]{4,}\\.[0-9]{4,}$"); // close enough
-    private static Pattern urlPathPattern = Pattern.compile("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$");
-    private static Pattern urlPathPattern2 = Pattern.compile("^http[s]?://[a-zA-Z0-9]+");
-    private static Pattern emailAddressPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE);
-    private static Pattern ssnPattern = Pattern.compile("^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$");
-    private static Pattern creditcardPattern = Pattern.compile("^[0-9]{14,16}$");
-    private static Pattern htmlFragment = Pattern.compile("</[a-z]+>");
-    private static Pattern jsonObjectPattern = Pattern.compile("^\\{(\"\\w+?\"\\s*:\\s*(((\"\\w+?\")|(\\d+)|(\\[((\"?\\w\"?)\\s*,?)*\\])|(\\{(\"[\\w]*\"\\s*:\\s*[\\w\",\\s]*)*\\})),?\\s*))*\\}$");
-    private static Pattern phpSerializedPatternQuick = Pattern.compile("^([si]:\\d+:\\w+?;)(N;)|[oa]:\\d+:.*\\{.*}$");
-    private static Pattern phpSerializedPattern = Pattern.compile("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$");
+    enum ValuePattern {
+        URL_ENCODED("%[0-9a-zA-Z]{2}"),
+        BASE64_ENCODED("^(?:[A-Za-z0-9+/]{4}(==)?)*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"),
+        BASE62_ENCODED("^[A-Za-z0-9]{1,11}$"),
+        PRINTABLE_CHARS("^\\p{Print}+$"),
+        TEXT("^([\\w']+ ){1,15}[\\w']+[\\.?!]?$"),
+        HEX_STRING("^([A-F0-9]{2}){2,}$", Pattern.CASE_INSENSITIVE),
+        DECIMAL("^[-]?[0-9]+$"),
+        BIG_IP("\"^[0-9]{4,}\\.[0-9]{4,}\\.[0-9]{4,}$\""),
+        URL_PATH("^(/([\\p{Alnum}!$&'()*+,-.:;<=>?@_]|%[0-9]{2})+)+/?$"),
+        URL_PATH2("^http[s]?://[a-zA-Z0-9]+"),
+        EMAIL_ADDRESS("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,4}$", Pattern.CASE_INSENSITIVE),
+        SSN("^[0-9]{3}-?[0-9]{2}-?[0-9]{4}$"),
+        CREDIT_CARD_QUICK("^[0-9 -]{14,20}$", "DECIMAL", "HEX_STRING", "PRINTABLE_CHARS", "BASE64_ENCODED", "TEXT"),
+        CREDIT_CARD("^[0-9]{14,16}$", "DECIMAL", "HEX_STRING", "PRINTABLE_CHARS", "BASE64_ENCODED", "CREDIT_CARD_QUICK"),
+        HTML_FRAGMENT("</[a-z]+>"),
+        JSON_VALUE_QUICK("^(\\s*((\\d+)|(\"[\\w ]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*)$", "PRINTABLE_CHARS"),
+        JSON_OBJECT(JSONParamParser.JSONValue.OBJECT.getRegex(), "PRINTABLE_CHARS", "JSON_VALUE_QUICK"),
+        PHP_SERIALIZED_QUICK("^([si]:\\d+:\\w+?;)(N;)|[oa]:\\d+:.*\\{.*}$"),
+        PHP_SERIALIZED("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$");
+
+
+        private Pattern pattern;
+        private List<String> dependencies;
+
+        private ValuePattern(String regex, String ...dependency) {
+            this.pattern = Pattern.compile(regex);
+            this.dependencies = Arrays.asList(dependency);
+        }
+
+        private ValuePattern(String regex, int flags, String ...dependency){
+            this.pattern = Pattern.compile(regex, flags);
+            this.dependencies = Arrays.asList(dependency);
+        }
+
+        public boolean matches(String input){
+            return pattern.matcher(input).find();
+        }
+
+        public Pattern getPattern() {
+            return pattern;
+        }
+
+        public boolean isDependency(String patternName) {
+            return dependencies.contains(patternName);
+        }
+
+    }
 
 
     private static Base62 base62 = new Base62();
 
-    public static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
+    public static boolean isBase62Encoded(String testValue) {
+        return ValuePattern.BASE62_ENCODED.matches(testValue);
+    }
+
+    static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
         try {
             String value = pi.getValue();
             if (value.isEmpty() || "[EMPTY]".equals(value)) {
@@ -56,7 +92,7 @@ public class ParamAnalyzer {
                 return "An empty string.";
             } else if (value.trim().isEmpty()) {
                 return "A string of " + value.length() + " whitespace characters.";
-            } else if (pi.getName().toLowerCase().contains("bigip") && bigIPPattern.matcher(value).find()) {
+            } else if (pi.getName().toLowerCase().contains("bigip") && ValuePattern.BIG_IP.matches(value)) {
                 return "Appears to be a BigIP value: " + value + "\nDecodes to: " + decodeBigIP(pi, value);
             }
 
@@ -94,7 +130,7 @@ public class ParamAnalyzer {
         }
     }
 
-    public static String smartDecode(ParamInstance pi, String input, IBurpExtenderCallbacks callbacks, StringBuilder log) {
+    private static String smartDecode(ParamInstance pi, String input, IBurpExtenderCallbacks callbacks, StringBuilder log) {
         if(input.length() > 2 && input.startsWith("\"") && input.endsWith("\"")) {
             String output = input.substring(1, input.length()-1);
             log.append("\nquoted value -> ");
@@ -108,31 +144,31 @@ public class ParamAnalyzer {
         if(isPHPSerialized(input, true)){
             return input;
         }
-        if (isURLEncoded(input)) {
+        if (ValuePattern.URL_ENCODED.matches(input)) {
             String output = callbacks.getHelpers().urlDecode(input);
             if (!output.equals(input)) {
                 log.append("\nURL Decode -> ");
                 log.append(output);
             }
             return output;
-        } else if (isHexString(input)) {
+        } else if (ValuePattern.HEX_STRING.matches(input)) {
             log.append(identify(pi, input));
             String output = asciiHexDecode(input);
-            if (isPrintableCharacters(output)) {
+            if (ValuePattern.PRINTABLE_CHARS.matches(output)) {
                 log.append("\nASCII Hex Decoded to printable string -> ");
                 log.append(output);
                 return output;
             } else {
                 return input;
             }
-        } else if(isURLPathString(input)) {    // This is a bit of a hack to exit out for things that might accidentally be interpreted as base64
+        } else if(ValuePattern.URL_PATH.matches(input)) {    // This is a bit of a hack to exit out for things that might accidentally be interpreted as base64
             log.append("\n");
             log.append(identify(pi, input));
             return input;
-        }else if(isBase64Encoded(input)) {
+        }else if(ValuePattern.BASE64_ENCODED.matches(input)) {
             byte[] decodedBytes = callbacks.getHelpers().base64Decode(input);
             String decodedString = callbacks.getHelpers().bytesToString(decodedBytes);
-            if(isPrintableCharacters(decodedString)) {
+            if(ValuePattern.PRINTABLE_CHARS.matches(decodedString)) {
                 log.append("\nBase64 Decode -> ");
                 log.append(decodedString).append(" ...");
             } else {
@@ -159,12 +195,12 @@ public class ParamAnalyzer {
         } else if(isPHPSerialized(input, false)) {
             log.append("Looks like a PHP serialized data structure.");
             pi.setFormat(ParamInstance.Format.PHP);
-        } else if(isDecimalString(input)) {
+        } else if(ValuePattern.DECIMAL.matches(input)) {
             log.append("A ");
             log.append(input.length());
             log.append(" digit numeric value.");
             pi.setFormat(ParamInstance.Format.NUMERIC);
-        } else if(isHexString(input)) {
+        } else if(ValuePattern.HEX_STRING.matches(input)) {
             log.append("Looks like a hex string of length ");
             log.append(input.length());
             log.append(" (");
@@ -173,50 +209,50 @@ public class ParamAnalyzer {
             log.append(": ");
             pi.setFormat(ParamInstance.Format.HEX);
             log.append(guessHash(pi, input.length() * 4));
-        } else if(isURLPathString(input)) {
+        } else if(ValuePattern.URL_PATH2.matches(input)) {
             log.append("Looks like a URL or path.");
             pi.setFormat(ParamInstance.Format.URLPATH);
-        } else if(isEmail(input)) {
+        } else if(ValuePattern.EMAIL_ADDRESS.matches(input)) {
             log.append("Looks like an email address.");
             pi.setFormat(ParamInstance.Format.EMAIL);
-        } else if (isSSN(input)) {
+        } else if (ValuePattern.SSN.matches(input)) {
             log.append("Looks like a SSN.");
             pi.setFormat(ParamInstance.Format.SSN);
-        } else if (isBigIP(input)) {
+        } else if (ValuePattern.BIG_IP.matches(input)) {
             log.append("Looks like a big IP cookie.");
             String decoded = decodeBigIP(pi, input);
             log.append("\nBigIP decoded value: ").append(decoded);
             pi.setFormat(ParamInstance.Format.BIGIP);
-        } else if(isSentence(input)) {
+        } else if(ValuePattern.TEXT.matches(input)) {
             log.append("Looks like a word or sentence.");
-            if (isBase62Encoded(input)) {
+            if (ValuePattern.BASE62_ENCODED.matches(input)) {
                 try {
                     long result = Base62.decode(input);
                     log.append("\n\nThis may be a base62 encoded value (rare)." +
-                            "\n  It decodes to: ").append(result);
+                            "\n  If it is, it decodes to: ").append(result);
                 } catch (Exception e) {
                     // ignore - our regex isn't precise enough to catch everything.
                 }
             }
             pi.setFormat(ParamInstance.Format.TEXT);
-        } else if(isPrintableCharacters(input)) {
+        } else if(ValuePattern.PRINTABLE_CHARS.matches(input)) {
             log.append("Looks like a ");
             log.append(input.length());
             log.append(" length string of printable characters.");
-            if (isBase62Encoded(input)) {
+            if (ValuePattern.BASE62_ENCODED.matches(input)) {
                 try {
                     long result = Base62.decode(input);
                     log.append("\n\nThis may be a base62 encoded value (rare)." +
-                            "\n  It decodes to: ").append(result);
+                            "\n  If it is, it decodes to: ").append(result);
                 } catch (Exception e) {
                     // ignore - our regex isn't precise enough to catch everything.
                 }
             }
 
-            if (isHTMLFragment(input)) {
+            if (ValuePattern.HTML_FRAGMENT.matches(input)) {
                 log.append("\nThis may be XML or an HTML Fragment!");
                 pi.setFormat(ParamInstance.Format.HTMLFRAG);
-            } else if (isJSONObject(input)) {
+            } else if (ValuePattern.JSON_OBJECT.matches(input)) {
                 log.append("\nThis may be a JSON-formatted String.");
                 pi.setFormat(ParamInstance.Format.JSON);
             } else {
@@ -229,59 +265,20 @@ public class ParamAnalyzer {
         return log.toString();
     }
 
-    public static boolean isURLEncoded(String input) {
-        return urlEncodedPattern.matcher(input).find();
+
+
+    private static boolean isPHPSerialized(String input, boolean quick) {
+        return quick?ValuePattern.PHP_SERIALIZED_QUICK.matches(input):ValuePattern.PHP_SERIALIZED.matches(input);
     }
 
-    public static boolean isBase64Encoded(String input) {
-        return base64EncodedPattern.matcher(input).find();
-    }
-
-    public static boolean isBase62Encoded(String input) {
-        return base62EncodedPattern.matcher(input).find();
-    }
-
-    public static boolean isPrintableCharacters(String input) {
-        return printableCharsPattern.matcher(input).find();
-    }
-
-    public static boolean isHexString(String input) {
-        if (input.length() > 5) {
-            return hexStringPattern.matcher(input).find();
+    private static boolean isCreditCard(String input) {
+        if (ValuePattern.CREDIT_CARD_QUICK.matches(input)) {
+            String[] parts = input.split("[ -]");
+            String squashedInput = String.join("", parts);
+            return ValuePattern.CREDIT_CARD.matches(squashedInput) && applyLuhnAlgorithm(squashedInput);
         } else {
             return false;
         }
-    }
-
-    public static boolean isDecimalString(String input) {
-        return decimalPattern.matcher(input).find();
-    }
-
-    public static boolean isURLPathString(String input) { return urlPathPattern.matcher(input).find() ||
-            urlPathPattern2.matcher(input).find();}
-
-    public static boolean isSentence(String input) {return input.length() < 40 && textPattern.matcher(input).find();}
-
-    public static boolean isEmail(String input) {return emailAddressPattern.matcher(input).find();}
-
-    public static boolean isSSN(String input) {return ssnPattern.matcher(input).find();}
-
-    public static boolean isHTMLFragment(String input) {return htmlFragment.matcher(input).find();}
-
-    public static boolean isBigIP(String input) {return bigIPPattern.matcher(input).find();}
-
-    public static boolean isPHPSerialized(String input, boolean quick) {
-        return quick?phpSerializedPatternQuick.matcher(input).find():phpSerializedPattern.matcher(input).find();
-    }
-
-    public static boolean isCreditCard(String input) {
-        return creditcardPattern.matcher(input).find() && applyLuhnAlgorithm(input);
-    }
-
-    public static boolean isJSONObject(String input) {
-
-
-        return jsonObjectPattern.matcher(input).find();
     }
 
     // Based on code from http://www.journaldev.com/1443/java-credit-card-validation-program-using-luhn-algorithm
@@ -393,15 +390,37 @@ public class ParamAnalyzer {
         return output;
     }
 
-    public static void test(String name, String input, Pattern pattern){
-        System.out.println("Test "+name+": "+pattern.matcher(input).find());
+    public static void test(String name, String input, ValuePattern ...shouldMatch){
+        for (ValuePattern testPattern: ValuePattern.values()) {
+            boolean result = testPattern.matches(input);
+            if(Arrays.asList(shouldMatch).contains(testPattern)) {
+                System.out.println(name+":  "+(result?"pass":"FAIL" + " for " + input));
+            } else {
+                if (result) {
+                    boolean dependencyMatch = false;
+                    for (ValuePattern aMatch: shouldMatch) {
+                        if (aMatch.isDependency(testPattern.name())){
+                            dependencyMatch = true;
+                        }
+                    }
+
+                    if (!dependencyMatch) {
+                        System.out.println(name + ": FALSE POSITIVE.  Passed " + testPattern.name()+ " for " + input);
+                    }
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
-        test("JSON 1", "{\"foo\": \"bar\"}", jsonObjectPattern);
-        test("JSON 2", "[\"foo\": \"bar\"]", jsonObjectPattern);
-
-
+        test("credit card", "4242424242424242", ValuePattern.CREDIT_CARD);
+        test("credit card 2", "424242424242424", ValuePattern.CREDIT_CARD);
+        System.out.println("credit card 3: "+(isCreditCard("4242 4242 4242 4242")?"pass":"FAIL"));
+        System.out.println("credit card 4: "+(isCreditCard("4242-4242-4242-4242")?"pass":"FAIL"));
+        test("JSON 1", "{\"foo\": \"bar\"}", ValuePattern.JSON_OBJECT);
+        test("JSON 2", "{\"foo\": {\"foo1\": [1,2,3]}}", ValuePattern.JSON_OBJECT);
+        test("JSON 3", "{\"foo\": \"bar\", \"foo2\": [42, 99], \"foo3\": {\"secret1\": \"4242-4242-4242-4242\", \"secret2\": false}}", ValuePattern.JSON_OBJECT);
+        test("JSON 4", "{\"secret1\": \"4242-4242-4242-4242\", \"secret2\": false}", ValuePattern.JSON_OBJECT);
     }
 
 }

@@ -52,7 +52,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
         this.parent = parent;
         this.callbacks = callbacks;
-        titleLabel.setText("Deep Analysis: [" + pi.getTypeName() + "] " + pi.getName() + " = " + pi.getDecodedValue() + " (Inferred Format: "+pi.getFormat()+")");
+        titleLabel.setText("Deep Analysis: [" + pi.getTypeName() + "] " + pi.getName() + " = " + pi.getDecodedValue() + "\n (Inferred Format: " + pi.getFormat() + ")");
         closeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,26 +63,11 @@ public class DeepAnalysisTab implements WorkerStatusListener {
 
         listMatches.setModel(listModel);
 
-//        listMatches.setCellRenderer(new DefaultListCellRenderer() {
-//            @Override
-//            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-//                if (value instanceof ParamInstance) {
-//                    String title = "--" + ((ParamInstance) value).summarize();
-//                    return super.getListCellRendererComponent(list, title, index, isSelected, cellHasFocus);
-//                } else {
-//                    return super.getListCellRendererComponent(list, "+" + value, index, isSelected, cellHasFocus);
-//                }
-//            }
-//
-//
-//        });
-
         textDetails.setText("Processing...");
         analyzer = new DeepAnalyzer(pi, ((ParametersTableModel) parent.parametersTable.getModel()).getEntries(), callbacks, this);
         listMatches.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-//                ParamInstance pi = (ParamInstance) listMatches.getSelectedValue();
                 ParamInstance pi = (ParamInstance) listModel.getParamInstanceAt(listMatches.getSelectedIndex());
                 textDetails.setText(analyzer.getResultsMap().get(pi));
             }

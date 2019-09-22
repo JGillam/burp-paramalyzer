@@ -55,7 +55,7 @@
                 <properties/>
                 <border type="etched" title="Matches"/>
                 <children>
-                  <component id="f467a" class="javax.swing.JList" binding="listMatches" custom-create="true">
+                  <component id="f467a" class="javax.swing.JList" binding="listMatches">
                     <constraints/>
                     <properties>
                       <selectionMode value="0"/>
