@@ -27,7 +27,7 @@ import java.util.regex.Pattern;
 class JSONParamParser {
 
     enum JSONValue {
-        OBJECT("^\\{(\\s*\"([^\\\"^\\\\^\\p{Cntrl}]+)\"\\s*:(\\s*((-?\\d+)|(\"[^\\\"^\\\\^\\p{Cntrl}]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*))(,\\s*\"([^\\\"^\\\\^\\p{Cntrl}]*)\"\\s*:(\\s*((\\-?d+)|(\"[^\\\"^\\\\^\\p{Cntrl}]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*))*\\}$");
+        OBJECT("^\\{(\\s*\"([^\\\"^\\\\^\\p{Cntrl}]+)\"\\s*:(\\s*((-?\\d+)|(\"[^\\\"^\\\\^\\p{Cntrl}]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*))(,\\s*\"([^\\\"^\\\\^\\p{Cntrl}]*)\"\\s*:(\\s*((-?\\d+)|(\"[^\\\"^\\\\^\\p{Cntrl}]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*))*\\}$");
 
 
         private String regex;

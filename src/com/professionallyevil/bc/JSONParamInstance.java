@@ -38,6 +38,10 @@ public class JSONParamInstance extends ParamInstance {
         return TYPE;
     }
 
+    public ParamInstance getParent() {
+        return parent;
+    }
+
     @Override
     public String getName() {
         return paramName;

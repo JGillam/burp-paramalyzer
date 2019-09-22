@@ -202,7 +202,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
 
     private void processJSON(CorrelatedParam cp) {
         for(ParamInstance param: cp.uniqueParamInstances) {
-            if(param.getFormat() == ParamInstance.Format.JSON) {
+            if(param.getFormat() == ParamInstance.Format.JSON || param.getFormat() == ParamInstance.Format.JWT) {
                 List<JSONParamInstance> jsonParams = JSONParamParser.parseObjectString(param.decodedValue, param);
                 for(JSONParamInstance jsonParam: jsonParams) {
                     if (jsonPartParameters.containsKey(jsonParam.getName())) {

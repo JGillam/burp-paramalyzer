@@ -12,16 +12,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" afterDir="false" />
     </list>
@@ -86,34 +80,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2067">
-              <caret line="209" column="28" lean-forward="true" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
-              <folding>
-                <element signature="e#13481#13482#0" expanded="true" />
-                <element signature="e#13579#13580#0" expanded="true" />
-                <element signature="e#13679#13680#0" expanded="true" />
-                <element signature="e#13783#13784#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="24" selection-start-line="20" selection-start-column="24" selection-end-line="20" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="421">
-              <caret line="422" column="111" lean-forward="true" selection-start-line="422" selection-start-column="111" selection-end-line="422" selection-end-column="111" />
+            <state relative-caret-position="289">
+              <caret line="100" column="104" lean-forward="true" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1122#1123#0" expanded="true" />
@@ -124,99 +94,39 @@
                 <element signature="e#2961#2962#0" expanded="true" />
                 <element signature="e#2743#2744#0" expanded="true" />
                 <element signature="e#2792#2793#0" expanded="true" />
+                <element signature="e#3613#3614#0" expanded="true" />
+                <element signature="e#3644#3645#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="731">
-              <caret line="57" column="77" lean-forward="true" selection-start-line="57" selection-start-column="77" selection-end-line="57" selection-end-column="77" />
+            <state relative-caret-position="-500">
+              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1180#1181#0" expanded="true" />
-                <element signature="e#1215#1216#0" expanded="true" />
-                <element signature="e#1223#1224#0" expanded="true" />
-                <element signature="e#1261#1262#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BappManifest.bmf">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-248">
-              <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+            <state relative-caret-position="238">
+              <caret line="196" column="20" selection-start-line="196" selection-start-column="20" selection-end-line="196" selection-end-column="20" />
               <folding>
-                <element signature="e#1128#1129#0" expanded="true" />
-                <element signature="e#1166#1167#0" expanded="true" />
-                <element signature="e#1211#1212#0" expanded="true" />
-                <element signature="e#1249#1250#0" expanded="true" />
-                <element signature="e#1295#1296#0" expanded="true" />
-                <element signature="e#1334#1335#0" expanded="true" />
-                <element signature="e#1381#1382#0" expanded="true" />
-                <element signature="e#1424#1425#0" expanded="true" />
-                <element signature="e#1469#1470#0" expanded="true" />
-                <element signature="e#1510#1511#0" expanded="true" />
-                <element signature="e#1558#1559#0" expanded="true" />
-                <element signature="e#1602#1603#0" expanded="true" />
-                <element signature="e#1648#1649#0" expanded="true" />
-                <element signature="e#1690#1691#0" expanded="true" />
-                <element signature="e#1752#1753#0" expanded="true" />
-                <element signature="e#1793#1794#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="262">
-              <caret line="33" column="32" selection-start-line="22" selection-start-column="2" selection-end-line="43" selection-end-column="5" />
-              <folding>
-                <element signature="e#1525#1526#0" expanded="true" />
-                <element signature="e#1571#1572#0" expanded="true" />
-                <element signature="e#1641#1642#0" expanded="true" />
-                <element signature="e#1692#1693#0" expanded="true" />
-                <element signature="e#1735#1736#0" expanded="true" />
-                <element signature="e#1762#1763#0" expanded="true" />
-                <element signature="e#1807#1808#0" expanded="true" />
-                <element signature="e#1844#1845#0" expanded="true" />
-                <element signature="e#1890#1891#0" expanded="true" />
-                <element signature="e#1928#1929#0" expanded="true" />
-                <element signature="e#1975#1976#0" expanded="true" />
-                <element signature="e#2007#2008#0" expanded="true" />
-                <element signature="e#2052#2053#0" expanded="true" />
-                <element signature="e#2082#2083#0" expanded="true" />
-                <element signature="e#2130#2131#0" expanded="true" />
-                <element signature="e#2163#2164#0" expanded="true" />
-                <element signature="e#2209#2210#0" expanded="true" />
-                <element signature="e#2240#2241#0" expanded="true" />
-                <element signature="e#2302#2303#0" expanded="true" />
-                <element signature="e#2343#2344#0" expanded="true" />
-                <element signature="e#2398#2399#0" expanded="true" />
-                <element signature="e#2438#2439#0" expanded="true" />
-                <element signature="e#2481#2482#0" expanded="true" />
-                <element signature="e#2520#2521#0" expanded="true" />
-                <element signature="e#2579#2580#0" expanded="true" />
-                <element signature="e#2620#2621#0" expanded="true" />
-                <element signature="e#2667#2668#0" expanded="true" />
-                <element signature="e#2707#2708#0" expanded="true" />
-                <element signature="e#2760#2761#0" expanded="true" />
-                <element signature="e#2794#2795#0" expanded="true" />
-                <element signature="e#2840#2841#0" expanded="true" />
-                <element signature="e#2879#2880#0" expanded="true" />
-                <element signature="e#2926#2927#0" expanded="true" />
-                <element signature="e#2966#2967#0" expanded="true" />
+                <element signature="e#13442#13443#0" expanded="true" />
+                <element signature="e#13481#13482#0" expanded="true" />
+                <element signature="e#13543#13544#0" expanded="true" />
+                <element signature="e#13579#13580#0" expanded="true" />
+                <element signature="e#13642#13643#0" expanded="true" />
+                <element signature="e#13679#13680#0" expanded="true" />
+                <element signature="e#13744#13745#0" expanded="true" />
+                <element signature="e#13783#13784#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -225,8 +135,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+            <state relative-caret-position="-146">
+              <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
               <folding>
                 <element signature="e#1635#1636#0" expanded="true" />
                 <element signature="e#1676#1677#0" expanded="true" />
@@ -235,14 +145,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="151" column="16" selection-start-line="151" selection-start-column="16" selection-end-line="151" selection-end-column="16" />
+            <state relative-caret-position="185">
+              <caret line="146" column="137" selection-start-line="146" selection-start-column="137" selection-end-line="146" selection-end-column="137" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="408">
+              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
               <folding>
-                <element signature="e#1883#1884#0" expanded="true" />
-                <element signature="e#1903#1904#0" expanded="true" />
+                <element signature="e#1184#1185#0" expanded="true" />
+                <element signature="e#1211#1212#0" expanded="true" />
+                <element signature="e#1255#1256#0" expanded="true" />
+                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#1334#1335#0" expanded="true" />
+                <element signature="e#1367#1368#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -276,6 +199,7 @@
       <find>rest</find>
       <find>join</find>
       <find>This may be a json</find>
+      <find>base64</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Projects\burp-paramalyzer\src\com\professionallyevil\bc</dir>
@@ -328,13 +252,13 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" />
       </list>
     </option>
   </component>
@@ -344,8 +268,8 @@
     </order>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="82" />
-    <option name="y" value="28" />
+    <option name="x" value="103" />
+    <option name="y" value="64" />
     <option name="width" value="3578" />
     <option name="height" value="2013" />
   </component>
@@ -388,6 +312,18 @@
               <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
               <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="burp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="bc" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -694,8 +630,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
-        <item itemvalue="Gradle.burp-paramalyzer [build]" />
         <item itemvalue="Application.ParamAnalyzer" />
+        <item itemvalue="Gradle.burp-paramalyzer [build]" />
         <item itemvalue="Gradle.burp-paramalyzer [jar]" />
         <item itemvalue="Gradle.burp-paramalyzer [wrapper]" />
       </list>
@@ -1059,12 +995,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="55" y="19" width="2385" height="1342" extended-state="0" />
+    <frame x="69" y="43" width="2385" height="1342" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="2" visible="true" weight="0.22666667" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.22666667" />
       <window_info id="Palette&#9;" order="3" />
       <window_info id="Structure" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
@@ -1078,7 +1014,7 @@
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Regex Tester" order="7" weight="0.4768595" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49908033" visible="true" weight="0.43471074" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49908033" visible="true" weight="0.43471074" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3128898" />
       <window_info anchor="bottom" id="Debug" order="10" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
@@ -1503,34 +1439,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="151" column="16" selection-start-line="151" selection-start-column="16" selection-end-line="151" selection-end-column="16" />
-          <folding>
-            <element signature="e#1883#1884#0" expanded="true" />
-            <element signature="e#1903#1904#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2067">
-          <caret line="209" column="28" lean-forward="true" selection-start-line="209" selection-start-column="28" selection-end-line="209" selection-end-column="28" />
-          <folding>
-            <element signature="e#13481#13482#0" expanded="true" />
-            <element signature="e#13579#13580#0" expanded="true" />
-            <element signature="e#13679#13680#0" expanded="true" />
-            <element signature="e#13783#13784#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="32" column="22" selection-start-line="32" selection-start-column="22" selection-end-line="32" selection-end-column="22" />
+        <state relative-caret-position="-146">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
           <folding>
             <element signature="e#1635#1636#0" expanded="true" />
             <element signature="e#1676#1677#0" expanded="true" />
@@ -1538,35 +1450,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-248">
-          <caret line="30" column="45" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        <state relative-caret-position="-500">
+          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
           <folding>
-            <element signature="e#1128#1129#0" expanded="true" />
-            <element signature="e#1166#1167#0" expanded="true" />
-            <element signature="e#1211#1212#0" expanded="true" />
-            <element signature="e#1249#1250#0" expanded="true" />
-            <element signature="e#1295#1296#0" expanded="true" />
-            <element signature="e#1334#1335#0" expanded="true" />
-            <element signature="e#1381#1382#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1469#1470#0" expanded="true" />
-            <element signature="e#1510#1511#0" expanded="true" />
-            <element signature="e#1558#1559#0" expanded="true" />
-            <element signature="e#1602#1603#0" expanded="true" />
-            <element signature="e#1648#1649#0" expanded="true" />
-            <element signature="e#1690#1691#0" expanded="true" />
-            <element signature="e#1752#1753#0" expanded="true" />
-            <element signature="e#1793#1794#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="422" column="111" lean-forward="true" selection-start-line="422" selection-start-column="111" selection-end-line="422" selection-end-column="111" />
+        <state relative-caret-position="289">
+          <caret line="100" column="104" lean-forward="true" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1122#1123#0" expanded="true" />
@@ -1577,21 +1474,48 @@
             <element signature="e#2961#2962#0" expanded="true" />
             <element signature="e#2743#2744#0" expanded="true" />
             <element signature="e#2792#2793#0" expanded="true" />
+            <element signature="e#3613#3614#0" expanded="true" />
+            <element signature="e#3644#3645#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="731">
-          <caret line="57" column="77" lean-forward="true" selection-start-line="57" selection-start-column="77" selection-end-line="57" selection-end-column="77" />
+        <state relative-caret-position="238">
+          <caret line="196" column="20" selection-start-line="196" selection-start-column="20" selection-end-line="196" selection-end-column="20" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1215#1216#0" expanded="true" />
-            <element signature="e#1223#1224#0" expanded="true" />
-            <element signature="e#1261#1262#0" expanded="true" />
+            <element signature="e#13442#13443#0" expanded="true" />
+            <element signature="e#13481#13482#0" expanded="true" />
+            <element signature="e#13543#13544#0" expanded="true" />
+            <element signature="e#13579#13580#0" expanded="true" />
+            <element signature="e#13642#13643#0" expanded="true" />
+            <element signature="e#13679#13680#0" expanded="true" />
+            <element signature="e#13744#13745#0" expanded="true" />
+            <element signature="e#13783#13784#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+          <folding>
+            <element signature="e#1184#1185#0" expanded="true" />
+            <element signature="e#1211#1212#0" expanded="true" />
+            <element signature="e#1255#1256#0" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#1334#1335#0" expanded="true" />
+            <element signature="e#1367#1368#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="146" column="137" selection-start-line="146" selection-start-column="137" selection-end-line="146" selection-end-column="137" />
         </state>
       </provider>
     </entry>
@@ -1722,8 +1646,8 @@
       <map>
         <entry key="flags" value="40" />
         <entry key="mode" value="0" />
-        <entry key="regex" value="&quot;[^\&quot;^\\^\p{Cntrl}]+&quot;" />
-        <entry key="text" value="&quot;foo&quot;&#10;&quot;foo&quot;&quot;&#10;&quot;\nfoo&quot;&#10;&quot;\tfoo&quot;&#10;&quot;foo bar&quot;" />
+        <entry key="regex" value="^\{(\s*\&quot;([^\&quot;^\\^\p{Cntrl}]+)\&quot;\s*:(\s*((-?\d+)||(\&quot;[^\&quot;^\\^\p{Cntrl}]*\&quot;)||true||false||null||\[.*\]||\{.*\})\s*))(,\s*\&quot;([^\&quot;^\\^\p{Cntrl}]*)\&quot;\s*:(\s*((-?\d+)||(\&quot;[^\&quot;^\\^\p{Cntrl}]*\&quot;)||true||false||null||\[.*\]||\{.*\})\s*))*\}|d" />
+        <entry key="text" value="&quot;foo&quot;&#10;&quot;foo&quot;&quot;&#10;&quot;\nfoo&quot;&#10;&quot;\tfoo&quot;&#10;&quot;foo bar&quot;&#10;{&quot;foo&quot;: &quot;bar&quot;}&#10;{&quot;sub&quot;:&quot;1234567890&quot;,&quot;name&quot;:&quot;Jason Gillam&quot;,&quot;secret&quot;:42}&#10;{&quot;sub&quot;:&quot;1234567890&quot;,&quot;name&quot;:&quot;Jason Gillam&quot;}&#10;{&quot;sub&quot;:&quot;1234567890&quot;,&quot;secret&quot;:42}&#10;{&quot;secret&quot;:42}&#10;{&quot;sub&quot;:&quot;1234567890&quot;}" />
       </map>
     </option>
   </component>

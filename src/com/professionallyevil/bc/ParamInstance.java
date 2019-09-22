@@ -44,7 +44,8 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         HTMLFRAG("XML/HTML"),
         EMPTY("Empty"),
         JSON("JSON Object"),
-        PHP("PHP Serialized");
+        PHP("PHP Serialized"),
+        JWT("JWT");
 
         private String title;
 

@@ -143,7 +143,14 @@ public class CorrelatedParam {
         if(analysisText.containsKey(pi)) {
             return analysisText.get(pi);
         } else {
-            String text = ParamAnalyzer.analyze(pi, callbacks);
+            String text = "";
+            if (pi instanceof JSONParamInstance) {
+                String logPrefix = "This parameter was derived from a JSON object: "+ ((JSONParamInstance)pi).getParent().getName()+"\n";
+                text = ParamAnalyzer.analyze(pi, callbacks, logPrefix);
+            } else {
+                text = ParamAnalyzer.analyze(pi, callbacks);
+            }
+
             analysisText.put(pi, text);
             return text;
         }

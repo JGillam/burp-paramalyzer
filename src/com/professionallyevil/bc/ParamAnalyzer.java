@@ -47,7 +47,8 @@ public class ParamAnalyzer {
         JSON_VALUE_QUICK("^(\\s*((\\d+)|(\"[\\w ]*\")|true|false|null|\\[.*\\]|\\{.*\\})\\s*)$", "PRINTABLE_CHARS"),
         JSON_OBJECT(JSONParamParser.JSONValue.OBJECT.getRegex(), "PRINTABLE_CHARS", "JSON_VALUE_QUICK"),
         PHP_SERIALIZED_QUICK("^([si]:\\d+:\\w+?;)(N;)|[oa]:\\d+:.*\\{.*}$"),
-        PHP_SERIALIZED("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$");
+        PHP_SERIALIZED("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$"),
+        JWT("^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$", "PRINTABLE_CHARS");
 
 
         private Pattern pattern;
@@ -85,6 +86,10 @@ public class ParamAnalyzer {
     }
 
     static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks) {
+        return analyze(pi, callbacks, "");
+    }
+
+    static String analyze(ParamInstance pi, IBurpExtenderCallbacks callbacks, String logPrefix) {
         try {
             String value = pi.getValue();
             if (value.isEmpty() || "[EMPTY]".equals(value)) {
@@ -96,7 +101,7 @@ public class ParamAnalyzer {
                 return "Appears to be a BigIP value: " + value + "\nDecodes to: " + decodeBigIP(pi, value);
             }
 
-            StringBuilder smartDecodeLog = new StringBuilder();
+            StringBuilder smartDecodeLog = new StringBuilder(logPrefix);
             String currentValue = value;
             String lastValue = "";
             while (!lastValue.equals(currentValue)) {
@@ -165,7 +170,17 @@ public class ParamAnalyzer {
             log.append("\n");
             log.append(identify(pi, input));
             return input;
-        }else if(ValuePattern.BASE64_ENCODED.matches(input)) {
+        } else if(ValuePattern.JWT.matches(input)) {
+            String[] parts = input.split("[\\.]");
+            byte[] algorithmBytes = callbacks.getHelpers().base64Decode(parts[0]);
+            String algorithm = callbacks.getHelpers().bytesToString(algorithmBytes);
+            byte[] decodedBytes = callbacks.getHelpers().base64Decode(parts[1]);
+            String decodedString = callbacks.getHelpers().bytesToString(decodedBytes);
+            pi.setFormat(ParamInstance.Format.JWT);
+            log.append("\nLooks to be a JWT: \n  The algorithm section is: \n").append(algorithm);
+            log.append("\n  The body section is: \n").append(decodedString);
+            return decodedString;
+        } else if(ValuePattern.BASE64_ENCODED.matches(input)) {
             byte[] decodedBytes = callbacks.getHelpers().base64Decode(input);
             String decodedString = callbacks.getHelpers().bytesToString(decodedBytes);
             if(ValuePattern.PRINTABLE_CHARS.matches(decodedString)) {
@@ -186,6 +201,7 @@ public class ParamAnalyzer {
             return input;
         }
     }
+
 
     private static String identify(ParamInstance pi, String input) {
         StringBuilder log = new StringBuilder();
@@ -254,7 +270,9 @@ public class ParamAnalyzer {
                 pi.setFormat(ParamInstance.Format.HTMLFRAG);
             } else if (ValuePattern.JSON_OBJECT.matches(input)) {
                 log.append("\nThis may be a JSON-formatted String.");
-                pi.setFormat(ParamInstance.Format.JSON);
+                if (pi.getFormat() != ParamInstance.Format.JWT) {
+                    pi.setFormat(ParamInstance.Format.JSON);
+                }
             } else {
                 pi.setFormat(ParamInstance.Format.PRINTABLE);
             }
@@ -421,6 +439,11 @@ public class ParamAnalyzer {
         test("JSON 2", "{\"foo\": {\"foo1\": [1,2,3]}}", ValuePattern.JSON_OBJECT);
         test("JSON 3", "{\"foo\": \"bar\", \"foo2\": [42, 99], \"foo3\": {\"secret1\": \"4242-4242-4242-4242\", \"secret2\": false}}", ValuePattern.JSON_OBJECT);
         test("JSON 4", "{\"secret1\": \"4242-4242-4242-4242\", \"secret2\": false}", ValuePattern.JSON_OBJECT);
+        test("JWT 1", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6Ikphc29uIEdpbGxhbSIsInNlY3JldCI6NDJ9.Yo-96trF4CAU_v-mrJLYuqigEGC3QBDul7C41RM2RL4", ValuePattern.JWT);
+        test("JSON 5", "{\"sub\":\"1234567890\",\"name\":\"Jason Gillam\",\"secret\":42}", ValuePattern.JSON_OBJECT);
+
+
+
     }
 
 }
