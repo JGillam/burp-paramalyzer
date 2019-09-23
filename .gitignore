@@ -50,9 +50,6 @@ cmake-build-release/
 # File-based project format
 *.iws
 
-# IntelliJ
-out/
-
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
@@ -96,3 +93,10 @@ fabric.properties
 hs_err_pid*
 
 /.idea/compiler.xml
+/gradlew.bat
+/.gradle/
+/site/
+/gradle/
+/gradlew
+/.idea/markdown-navigator/
+/.idea/markdown-navigator.xml

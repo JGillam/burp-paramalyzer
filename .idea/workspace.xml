@@ -12,12 +12,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/paramalyzer.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/paramalyzer_main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules/paramalyzer_test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" afterDir="false" />
     </list>
     <ignored path="burp-correlator.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,6 +33,9 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/burp_correlator$burp_paramalyzer__jar_.ic" NAME="burp-paramalyzer [jar] Coverage Results" MODIFIED="1547258140359" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
@@ -82,20 +89,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="100" column="104" lean-forward="true" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
+            <state relative-caret-position="1207">
+              <caret line="100" column="104" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1122#1123#0" expanded="true" />
-                <element signature="e#1182#1183#0" expanded="true" />
-                <element signature="e#1200#1201#0" expanded="true" />
-                <element signature="e#1238#1239#0" expanded="true" />
-                <element signature="e#2919#2920#0" expanded="true" />
-                <element signature="e#2961#2962#0" expanded="true" />
-                <element signature="e#2743#2744#0" expanded="true" />
-                <element signature="e#2792#2793#0" expanded="true" />
                 <element signature="e#3613#3614#0" expanded="true" />
-                <element signature="e#3644#3645#0" expanded="true" />
+                <element signature="e#3662#3663#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -104,11 +103,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-500">
-              <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="68">
+              <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -116,18 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
+            <state relative-caret-position="2992">
               <caret line="196" column="20" selection-start-line="196" selection-start-column="20" selection-end-line="196" selection-end-column="20" />
-              <folding>
-                <element signature="e#13442#13443#0" expanded="true" />
-                <element signature="e#13481#13482#0" expanded="true" />
-                <element signature="e#13543#13544#0" expanded="true" />
-                <element signature="e#13579#13580#0" expanded="true" />
-                <element signature="e#13642#13643#0" expanded="true" />
-                <element signature="e#13679#13680#0" expanded="true" />
-                <element signature="e#13744#13745#0" expanded="true" />
-                <element signature="e#13783#13784#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -135,21 +121,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-146">
+            <state relative-caret-position="544">
               <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
-              <folding>
-                <element signature="e#1635#1636#0" expanded="true" />
-                <element signature="e#1676#1677#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="146" column="137" selection-start-line="146" selection-start-column="137" selection-end-line="146" selection-end-column="137" />
+            <state relative-caret-position="2023">
+              <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -162,13 +144,33 @@
               <folding>
                 <element signature="e#1184#1185#0" expanded="true" />
                 <element signature="e#1211#1212#0" expanded="true" />
-                <element signature="e#1255#1256#0" expanded="true" />
-                <element signature="e#1283#1284#0" expanded="true" />
-                <element signature="e#1334#1335#0" expanded="true" />
-                <element signature="e#1367#1368#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form">
+          <provider selected="true" editor-type-id="ui-designer" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="274">
+              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.idea/modules/paramalyzer.iml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -200,10 +202,14 @@
       <find>join</find>
       <find>This may be a json</find>
       <find>base64</find>
+      <find>jdialog</find>
+      <find>textAreaR</find>
+      <find>textAreaRequest</find>
+      <find>pop</find>
     </findStrings>
     <dirStrings>
-      <dir>C:\Projects\burp-paramalyzer\src\com\professionallyevil\bc</dir>
       <dir>C:\Projects\burp-paramalyzer\src</dir>
+      <dir>C:\Projects\burp-paramalyzer\src\com\professionallyevil\bc</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -227,7 +233,6 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionTestRow.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTableModel.java" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginFinder.java" />
@@ -236,8 +241,6 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form" />
         <option value="$PROJECT_DIR$/docs/index.md" />
         <option value="$PROJECT_DIR$/mkdocs.yml" />
@@ -247,8 +250,6 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" />
-        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" />
@@ -259,6 +260,11 @@
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" />
         <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" />
+        <option value="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -268,10 +274,10 @@
     </order>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="103" />
-    <option name="y" value="64" />
-    <option name="width" value="3578" />
-    <option name="height" value="2013" />
+    <option name="x" value="135" />
+    <option name="y" value="111" />
+    <option name="width" value="3180" />
+    <option name="height" value="1884" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -296,6 +302,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -306,7 +313,29 @@
             <path>
               <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
               <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="burp-api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="burp-paramalyzer" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="gradle" type="462c0819:PsiDirectoryNode" />
+              <item name="wrapper" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="burp-correlator" type="b2602c69:ProjectViewProjectNode" />
@@ -329,7 +358,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -345,15 +373,15 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="6" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="312" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="479" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="249" />
     <property name="add_unversioned_files" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547258486493" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.35977012" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.project.gradle" />
@@ -620,18 +648,18 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.ParamAnalyzer" />
       <item itemvalue="Gradle.burp-paramalyzer" />
       <item itemvalue="Gradle.burp-paramalyzer [wrapper]" />
       <item itemvalue="Gradle.burp-paramalyzer [jar]" />
       <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
-      <item itemvalue="Application.ParamAnalyzer" />
       <item itemvalue="Gradle.burp-paramalyzer [build]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
-        <item itemvalue="Application.ParamAnalyzer" />
         <item itemvalue="Gradle.burp-paramalyzer [build]" />
+        <item itemvalue="Application.ParamAnalyzer" />
         <item itemvalue="Gradle.burp-paramalyzer [jar]" />
         <item itemvalue="Gradle.burp-paramalyzer [wrapper]" />
       </list>
@@ -995,14 +1023,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="43" width="2385" height="1342" extended-state="0" />
-    <editor active="true" />
+    <frame x="90" y="74" width="2120" height="1256" extended-state="0" />
     <layout>
       <window_info id="UI Designer" order="0" />
       <window_info id="Favorites" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.22666667" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" sideWeight="0.49916247" visible="true" weight="0.25873786" />
       <window_info id="Palette&#9;" order="3" />
-      <window_info id="Structure" order="4" side_tool="true" />
+      <window_info id="Structure" order="4" sideWeight="0.5008375" side_tool="true" weight="0.2559495" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Nl-Palette" order="7" />
@@ -1010,12 +1037,12 @@
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.3294347" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5009197" side_tool="true" weight="0.09737098" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.24537487" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.3264463" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32591274" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Regex Tester" order="7" weight="0.4768595" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49908033" visible="true" weight="0.43471074" />
-      <window_info anchor="bottom" id="Find" order="9" weight="0.3128898" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49908033" weight="0.29919857" />
+      <window_info anchor="bottom" id="Find" order="9" weight="0.31255564" />
       <window_info anchor="bottom" id="Debug" order="10" />
       <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
@@ -1029,7 +1056,7 @@
       <window_info anchor="right" id="Ant Build" order="6" weight="0.32914045" />
       <window_info anchor="right" id="Capture Analysis" order="7" />
       <window_info anchor="right" id="Theme Preview" order="8" />
-      <window_info anchor="right" id="Gradle" order="9" visible="true" weight="0.19569893" />
+      <window_info anchor="right" id="Gradle" order="9" weight="0.36901864" />
       <window_info anchor="right" id="Coverage" order="10" side_tool="true" />
       <window_info anchor="right" id="Maven" order="11" />
     </layout>
@@ -1142,26 +1169,13 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/burp-paramalyzer.iml" />
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParameter.java" />
     <entry file="file://$PROJECT_DIR$/burp-api/src/burp/IParameter.java" />
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/PathParam.java" />
     <entry file="jar://D:/java/src.zip!/javax/swing/SwingWorker.java" />
     <entry file="file://$PROJECT_DIR$/BappDescription.html" />
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java" />
-    <entry file="file://$PROJECT_DIR$/gradlew">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1173" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/BurpMessageEditorController.java" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
@@ -1204,13 +1218,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="44" column="72" selection-start-line="44" selection-start-column="72" selection-end-line="44" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1241">
@@ -1250,6 +1257,11 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor relative-caret-position="221">
@@ -1260,16 +1272,16 @@
           </second_editor>
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form">
       <provider selected="true" editor-type-id="ui-designer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/index.md">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;MarkdownPreviewEditor]">
         <state split_layout="SPLIT">
           <first_editor />
@@ -1278,23 +1290,11 @@
           </second_editor>
         </state>
       </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="7" selection-start-line="18" selection-start-column="7" selection-end-line="18" selection-end-column="7" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="38" selection-start-line="38" selection-end-line="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2056">
-          <caret line="192" lean-forward="true" selection-start-line="192" selection-end-line="192" />
         </state>
       </provider>
     </entry>
@@ -1324,22 +1324,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3757">
-          <caret line="255" column="44" selection-start-line="255" selection-start-column="44" selection-end-line="255" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/burp/BurpExtender.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="27" selection-start-line="27" selection-end-line="27" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form">
-      <provider selected="true" editor-type-id="ui-designer" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1439,61 +1429,85 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-146">
-          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        <state relative-caret-position="5780">
+          <caret line="374" column="11" selection-start-line="374" selection-start-column="11" selection-end-line="374" selection-end-column="11" />
           <folding>
-            <element signature="e#1635#1636#0" expanded="true" />
-            <element signature="e#1676#1677#0" expanded="true" />
+            <element signature="e#17378#17379#0" expanded="true" />
+            <element signature="e#17429#17430#0" expanded="true" />
+            <element signature="e#17491#17492#0" expanded="true" />
+            <element signature="e#17540#17541#0" expanded="true" />
+            <element signature="e#18653#18654#0" expanded="true" />
+            <element signature="e#18690#18691#0" expanded="true" />
+            <element signature="e#18745#18746#0" expanded="true" />
+            <element signature="e#18777#18778#0" expanded="true" />
+            <element signature="e#38805#38806#0" expanded="true" />
+            <element signature="e#38837#38838#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-500">
-          <caret line="48" lean-forward="true" selection-start-line="48" selection-end-line="48" />
+        <state relative-caret-position="2584">
+          <caret line="179" selection-start-line="179" selection-end-line="179" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="31" column="78" selection-start-line="31" selection-start-column="78" selection-end-line="31" selection-end-column="78" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#2375#2376#0" expanded="true" />
+            <element signature="e#2430#2431#0" expanded="true" />
+            <element signature="e#2478#2479#0" expanded="true" />
+            <element signature="e#2529#2530#0" expanded="true" />
+            <element signature="e#2578#2579#0" expanded="true" />
+            <element signature="e#2630#2631#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="100" column="104" lean-forward="true" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
+        <state relative-caret-position="1207">
+          <caret line="100" column="104" selection-start-line="100" selection-start-column="104" selection-end-line="100" selection-end-column="104" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1122#1123#0" expanded="true" />
-            <element signature="e#1182#1183#0" expanded="true" />
-            <element signature="e#1200#1201#0" expanded="true" />
-            <element signature="e#1238#1239#0" expanded="true" />
-            <element signature="e#2919#2920#0" expanded="true" />
-            <element signature="e#2961#2962#0" expanded="true" />
-            <element signature="e#2743#2744#0" expanded="true" />
-            <element signature="e#2792#2793#0" expanded="true" />
             <element signature="e#3613#3614#0" expanded="true" />
-            <element signature="e#3644#3645#0" expanded="true" />
+            <element signature="e#3662#3663#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="18" column="15" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
+        <state relative-caret-position="2992">
           <caret line="196" column="20" selection-start-line="196" selection-start-column="20" selection-end-line="196" selection-end-column="20" />
-          <folding>
-            <element signature="e#13442#13443#0" expanded="true" />
-            <element signature="e#13481#13482#0" expanded="true" />
-            <element signature="e#13543#13544#0" expanded="true" />
-            <element signature="e#13579#13580#0" expanded="true" />
-            <element signature="e#13642#13643#0" expanded="true" />
-            <element signature="e#13679#13680#0" expanded="true" />
-            <element signature="e#13744#13745#0" expanded="true" />
-            <element signature="e#13783#13784#0" expanded="true" />
-          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="47" column="16" selection-start-line="47" selection-start-column="16" selection-end-line="47" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2023">
+          <caret line="151" column="13" selection-start-line="151" selection-start-column="13" selection-end-line="151" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1512,12 +1526,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java">
+    <entry file="file://$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form">
+      <provider selected="true" editor-type-id="ui-designer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradlew">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="146" column="137" selection-start-line="146" selection-start-column="137" selection-end-line="146" selection-end-column="137" />
+        <state relative-caret-position="274">
+          <caret line="51" selection-start-line="51" selection-end-line="51" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/modules/paramalyzer.iml">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="gradleExecuteTaskHistory">
@@ -1534,7 +1560,6 @@
             <option name="proportions">
               <list>
                 <option value="0.35977012" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1590,7 +1615,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>paramalyzer|paramalyzer</last-edited>
+          <last-edited>paramalyzer_test|paramalyzer</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1614,7 +1639,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>org.json:json:20190722</last-edited>
+          <last-edited>Gradle: jdom:jdom:1.0</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
