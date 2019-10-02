@@ -48,7 +48,7 @@ public class ParamAnalyzer {
         JSON_OBJECT(JSONParamParser.JSONValue.OBJECT.getRegex(), "PRINTABLE_CHARS", "JSON_VALUE_QUICK"),
         PHP_SERIALIZED_QUICK("^([si]:\\d+:\\w+?;)(N;)|[oa]:\\d+:.*\\{.*}$"),
         PHP_SERIALIZED("^((s:\\d+:\".*\";)|(i:\\d+;)|(N;)|(a:\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;)|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))*})|(o:\\d+:\"[a-z0-9_]+\":\\d+:\\{((s:\\d+:\".*?\";)|(i:\\d+;)|(N;))*}))$"),
-        JWT("^[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$", "PRINTABLE_CHARS");
+        JWT("^ey[A-Za-z0-9-_=]+\\.[A-Za-z0-9-_=]+\\.?[A-Za-z0-9-_.+/=]*$", "PRINTABLE_CHARS");
 
 
         private Pattern pattern;
