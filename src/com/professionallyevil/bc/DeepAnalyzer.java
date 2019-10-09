@@ -20,6 +20,8 @@ import burp.IBurpExtenderCallbacks;
 import burp.IRequestInfo;
 
 import javax.swing.*;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -38,7 +40,7 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
 
     private Map<ParamInstance,String> resultsMap = new HashMap<>();
 
-    protected DeepAnalyzer(ParamInstance pi, List<CorrelatedParam> correlatedParams, IBurpExtenderCallbacks callbacks, WorkerStatusListener listener) {
+    DeepAnalyzer(ParamInstance pi, List<CorrelatedParam> correlatedParams, IBurpExtenderCallbacks callbacks, WorkerStatusListener listener) {
         this.pi = pi;
         this.correlatedParams = correlatedParams;
         this.callbacks = callbacks;
@@ -46,7 +48,7 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
     }
 
     @Override
-    protected String doInBackground() throws Exception {
+    protected String doInBackground()  {
         publish(0);
         Map<String,Set<ParamInstance>> valueMap = generateValueMap(correlatedParams);
 
@@ -147,7 +149,7 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
     }
 
     private void processMatches(Map<String, Set<ParamInstance>> valueMap) {
-        Map<String,String> matches = new HashMap();
+        Map<String,String> matches = new HashMap<>();
         matches.put(pi.getValue(), "The value of this parameter matches the target value.");
         if(!pi.getDecodedValue().equals(pi.getValue())) {
             matches.put(pi.getDecodedValue(), "The value of this parameter matches the decoded target value.");
@@ -219,14 +221,20 @@ public class DeepAnalyzer extends SwingWorker<String, Object> {
             this.get();
             l.done(null);
         } catch (InterruptedException e) {
-            e.printStackTrace();
-            callbacks.printError(e.getMessage());
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            callbacks.printError(sw.toString());
         } catch (ExecutionException e) {
-            callbacks.printError(e.getMessage());
+            StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+            callbacks.printError(sw.toString());
+//            callbacks.printError(e.getMessage());
         }
     }
 
-    public Map<ParamInstance, String> getResultsMap() {
+    Map<ParamInstance, String> getResultsMap() {
         return resultsMap;
     }
 

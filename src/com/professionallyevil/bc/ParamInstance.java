@@ -70,7 +70,7 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
     Format format = Format.UNKNOWN;
 
     public String getDecodedValue() {
-        return decodedValue;
+        return decodedValue==null?getValue():decodedValue;
     }
 
     public void setDecodedValue(String decodedValue) {

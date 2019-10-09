@@ -104,10 +104,11 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     public void done(Object result) {
         listMatches.setModel(listModel);
 
+        callbacks.printOutput("Deep analysis complete.  Results: "+analyzer.getResultsMap().size());
+
         if (analyzer.getResultsMap().size() == 0) {
             textDetails.setText("Sorry, no matches found for this parameter.");
         } else {
-
             listModel.setListData(analyzer.getResultsMap().keySet());
             listMatches.setSelectedIndex(0);
         }

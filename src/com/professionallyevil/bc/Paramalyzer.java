@@ -73,7 +73,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private IHttpRequestResponse displayedRequest = null;
     private int deepTabCount = 0;
 
-    private static final String VERSION = "2.1.0";
+    private static final boolean DEBUG_STATUS = true;
+    private static final String VERSION = "2.1.1";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
@@ -381,6 +382,9 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
 
     @Override
     public void setStatus(String statusText) {
+        if (DEBUG_STATUS) {
+            callbacks.printOutput("STATUS: "+statusText);
+        }
         textFieldStatus.setText(statusText);
     }
 
@@ -392,7 +396,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
 
     @Override
     public void done(Object result) {
-        textFieldStatus.setText("Analysis complete.");
+        setStatus("Analysis complete.");
         progressBar.setValue(100);
         paramsTableModel.addParameters(engine.getUrlParameters());
         paramsTableModel.addParameters(engine.getBodyParameters());
