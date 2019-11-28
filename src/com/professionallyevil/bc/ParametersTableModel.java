@@ -26,7 +26,7 @@ public class ParametersTableModel extends AbstractTableModel {
 
     boolean showDecodedValues = true;
     List<CorrelatedParam> entries = new ArrayList<>();
-    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Deflected?", "Decodeable", "Example Value"};
+    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Interesting", "Decodeable", "Example Value"};
     Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, Boolean.class, String.class};
     Map<CorrelatedParam, ParamInstance> samples = new HashMap<>();
 
@@ -96,7 +96,7 @@ public class ParametersTableModel extends AbstractTableModel {
                 int count = param.getReflectedCount();
                 return count == 0?0:(100 * count / param.getParamInstances(true).size());
             case 7:
-                return param.getDecodedReflectedCount() > 0;
+                return param.isInteresting() ;
             case 8:
                 return !(sample.getDecodedValue() == null) && !sample.getDecodedValue().equals(sample.getValue());
             case 9:
@@ -107,6 +107,19 @@ public class ParametersTableModel extends AbstractTableModel {
                 }
             default:
                 return "";
+        }
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex == 7;
+    }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        if(columnIndex == 7) {
+            CorrelatedParam param = entries.get(rowIndex);
+            param.setInteresting(!param.isInteresting());
         }
     }
 

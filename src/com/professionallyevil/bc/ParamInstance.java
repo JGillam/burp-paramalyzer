@@ -29,33 +29,38 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         NUMERIC("Numeric"),
         TEXT("Word"),
         PRINTABLE("Printable"),
-        MD5("MD5"),
-        SHA1("SHA-1"),
+        MD5("MD5", true),
+        SHA1("SHA-1", true),
         SHA224("SHA-224"),
-        SHA256("SHA-256"),
+        SHA256("SHA-256", true),
         SHA512("SHA-512"),
         BASE64BIN("B64 Bin"),
         URLPATH("URL/Path"),
         BIGIP("BigIP"),
         HEX("Hex String"),
         EMAIL("Email"),
-        SSN("SSN"),
-        CREDITCARD("CC"),
+        SSN("SSN", true),
+        CREDITCARD("CC", true),
         HTMLFRAG("XML/HTML"),
         EMPTY("Empty"),
         JSON("JSON Object"),
-        PHP("PHP Serialized"),
-        JWT("JWT");
+        PHP("PHP Serialized", true),
+        JWT("JWT", true);
 
         private String title;
+        private boolean interesting = false;
 
         private Format(String title) {
             this.title = title;
         }
 
+        private Format(String title, boolean interesting) { this.title = title; this.interesting = interesting; }
+
         public String getTitle(){
             return title;
         }
+
+        public boolean isInteresting() {return interesting; }
 
 
         @Override

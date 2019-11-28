@@ -29,11 +29,12 @@ public class CorrelatedParam {
     Set<String> uniqueValues = new HashSet<>();
     SortedSet<ParamInstance> uniqueParamInstances = new TreeSet<>();
     int reflectedCount = 0;
-    int decodedReflectedCount = 0;
+    boolean isInteresting = false;
     Map<String, IHttpRequestResponse> seenParams = new HashMap<>();
     Map<ParamInstance,String> analysisText = new HashMap<>();
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
     int bestFormatPercent = 0;
+    private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
 
     CorrelatedParam(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
@@ -109,12 +110,11 @@ public class CorrelatedParam {
 
     private void checkReflection(IParameter param, String responseString, IExtensionHelpers helpers) {
         if(param.getValue().length()>2) {
+            String decodedValue = helpers.urlDecode(param.getValue());
             if (responseString.contains(param.getValue())) {
              reflectedCount += 1;
-            }
-            String decodedValue = helpers.urlDecode(param.getValue());
-            if (!decodedValue.equals(param.getValue()) && responseString.contains(decodedValue)) {
-                decodedReflectedCount += 1;
+            } else if (!decodedValue.equals(param.getValue()) && responseString.contains(decodedValue)) {
+                reflectedCount += 1;
             }
         }
     }
@@ -123,8 +123,12 @@ public class CorrelatedParam {
         return reflectedCount;
     }
 
-    public int getDecodedReflectedCount() {
-        return decodedReflectedCount;
+    public boolean isInteresting() {
+        return isInteresting;
+    }
+
+    public void setInteresting(boolean s) {
+        isInteresting = s;
     }
 
     public SortedSet<ParamInstance> getParamInstances(boolean withDuplicates) {
@@ -182,6 +186,16 @@ public class CorrelatedParam {
         }
         this.bestFormat = bestFormat;
         this.bestFormatPercent = totalCount > 0 ? 100 * bestCount / totalCount : 0;
+
+        if (bestFormat.isInteresting()){
+            isInteresting = true;
+        } else {
+            for (String hint : INTERESTING_HINTS) {
+                if (getSample().getName().toLowerCase().contains(hint)) {
+                    isInteresting = true;
+                }
+            }
+        }
     }
 
     public String getFormatString() {
