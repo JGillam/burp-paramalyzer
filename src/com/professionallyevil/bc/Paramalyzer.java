@@ -383,7 +383,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     @Override
     public void setStatus(String statusText) {
         if (DEBUG_STATUS) {
-            callbacks.printOutput("STATUS: "+statusText);
+            callbacks.printOutput("STATUS: " + statusText);
         }
         textFieldStatus.setText(statusText);
     }
