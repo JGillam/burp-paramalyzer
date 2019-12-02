@@ -71,7 +71,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private ParamListModel paramListModel = new ParamListModel();
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
-    private int deepTabCount = 0;
+    private ParamTracker paramTracker = null;
 
     private static final boolean DEBUG_STATUS = true;
     private static final String VERSION = "2.1.1";
@@ -360,6 +360,14 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 updateParamInstanceList();
             }
         });
+
+        paramTracker = new ParamTracker();
+        for (int t = 0; t < tabPane.getTabCount(); t++) {
+            if (tabPane.getTitleAt(t).equals("Tracker")) {
+                tabPane.setComponentAt(t, paramTracker.getMainPanel());
+            }
+        }
+
     }
 
     private void updateParamInstanceList() {
@@ -639,7 +647,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         scrollPane7.setViewportView(sessionsHelpTextPane);
         final JPanel panel16 = new JPanel();
         panel16.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Deep Analysis", panel16);
+        tabPane.addTab("Tracker", panel16);
         final JPanel panel17 = new JPanel();
         panel17.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabPane.addTab("Settings", panel17);
