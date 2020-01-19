@@ -73,6 +73,7 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
     IHttpRequestResponse message;
     int hashCode = 0;
     Format format = Format.UNKNOWN;
+    int msgIndex;
 
     public String getDecodedValue() {
         return decodedValue==null?getValue():decodedValue;
@@ -85,9 +86,10 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
     String decodedValue;
 
 
-    public ParamInstance(IParameter param, IHttpRequestResponse message) {
+    public ParamInstance(IParameter param, IHttpRequestResponse message, int msgIndex) {
         this.wrappedParam = param;
         this.message = message;
+        this.msgIndex = msgIndex;
     }
 
 
@@ -176,7 +178,8 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         if(this.hashCode() == o.hashCode()) {
             return 0;
         } else {
-            return (this.getName() + ':' + this.getValue()).compareTo(o.getName() + ':' + o.getValue())==-1?-1:1;
+//            return (this.getName() + ':' + this.getValue()).compareTo(o.getName() + ':' + o.getValue())==-1?-1:1;
+            return this.getMessageIndex() > o.getMessageIndex() ? -1:1;
         }
     }
 
@@ -230,6 +233,10 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
             default:
                 return "Unknown";
         }
+    }
+
+    public int getMessageIndex() {
+        return msgIndex;
     }
 
     private void appendType(StringBuilder buf) {

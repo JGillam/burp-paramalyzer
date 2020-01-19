@@ -28,8 +28,8 @@ public class RestParamInstance extends ParamInstance {
     private int valueEnd = -1;
     static final byte TYPE = 32;
 
-    public RestParamInstance(String name, String value, IHttpRequestResponse message) {
-        super(null, message);
+    public RestParamInstance(String name, String value, IHttpRequestResponse message, int msgIndex) {
+        super(null, message, msgIndex);
         this.paramName = name;
         this.paramValue = value;
         String requestString = new String(message.getRequest());

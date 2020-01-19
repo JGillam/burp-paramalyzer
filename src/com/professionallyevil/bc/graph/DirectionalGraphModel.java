@@ -65,6 +65,13 @@ public class DirectionalGraphModel<T> {
         fireGraphModelUpdated();
     }
 
+    public void clear() {
+        vertices.clear();
+        parentMap.clear();
+        modelHasChanged = true;
+        fireGraphModelUpdated();
+    }
+
     void planLayout() {
         if(modelHasChanged) {
             for (T vertex:vertices.keySet()) {
@@ -109,6 +116,10 @@ public class DirectionalGraphModel<T> {
         for (T key:vertices.keySet()) {
             System.out.println(key + ": " + vertices.get(key).getColumn());
         }
+    }
+
+    public Set<T> getVertices() {
+        return vertices.keySet();
     }
 
     public static void main(String[] args) {

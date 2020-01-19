@@ -127,10 +127,10 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                             }
 
                             if (paramMap.containsKey(param.getName())) {
-                                paramMap.get(param.getName()).put(param, messages[i], requestInfo, responseString,
+                                paramMap.get(param.getName()).put(param, messages[i], i, requestInfo, responseString,
                                         helpers);
                             } else {
-                                paramMap.put(param.getName(), new CorrelatedParam(param, messages[i], requestInfo,
+                                paramMap.put(param.getName(), new CorrelatedParam(param, messages[i], i, requestInfo,
                                         responseString, helpers));
                             }
                         }
@@ -142,13 +142,13 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                 String[] pathElements = url.getPath().substring(1).split("/");
 
                 for (int p=0; p < pathElements.length -1; p++){
-                    RestParamInstance param = new RestParamInstance(pathElements[p], pathElements[p+1], messages[i]);
+                    RestParamInstance param = new RestParamInstance(pathElements[p], pathElements[p+1], messages[i], i);
 
                     if (restParameters.containsKey(param.getName())) {
-                        restParameters.get(param.getName()).put(param, messages[i], requestInfo, responseString,
+                        restParameters.get(param.getName()).put(param, messages[i], i, requestInfo, responseString,
                                 helpers);
                     } else {
-                        restParameters.put(param.getName(), new CorrelatedParam(param, messages[i], requestInfo,
+                        restParameters.put(param.getName(), new CorrelatedParam(param, messages[i], i, requestInfo,
                                 responseString, helpers));
                     }
                 }
@@ -215,33 +215,33 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         }
     }
 
-    private void secondPass(IExtensionHelpers helpers) {
-        publish("Second Pass...");
-        publish(0);
-        Set<Map<String, CorrelatedParam>> allStats = new HashSet<>();
-        allStats.add(urlParameters);
-        allStats.add(bodyParameters);
-        allStats.add(cookieParameters);
-        allStats.add(restParameters);
-        int x = 0;
-        for (IHttpRequestResponse message : inScopeMessagesWithResponses) {
-            publish(100 * x / inScopeMessagesWithResponses.size());
-            x += 1;
-            String responseString = helpers.bytesToString(message.getResponse());
-            for (Map<String, CorrelatedParam> paramMap : allStats) {
-                for (String paramName : paramMap.keySet()) {
-                    publish("Analyzing " + paramName + "...");
-                    for (CorrelatedParam param : paramMap.values()) {
-                        for (String value: param.getUniqueValues()) {
-                            if (responseString.contains(value)) {
-                                param.putSeenParam(value, message);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+//    private void secondPass(IExtensionHelpers helpers) {
+//        publish("Second Pass...");
+//        publish(0);
+//        Set<Map<String, CorrelatedParam>> allStats = new HashSet<>();
+//        allStats.add(urlParameters);
+//        allStats.add(bodyParameters);
+//        allStats.add(cookieParameters);
+//        allStats.add(restParameters);
+//        int x = 0;
+//        for (IHttpRequestResponse message : inScopeMessagesWithResponses) {
+//            publish(100 * x / inScopeMessagesWithResponses.size());
+//            x += 1;
+//            String responseString = helpers.bytesToString(message.getResponse());
+//            for (Map<String, CorrelatedParam> paramMap : allStats) {
+//                for (String paramName : paramMap.keySet()) {
+//                    publish("Analyzing " + paramName + "...");
+//                    for (CorrelatedParam param : paramMap.values()) {
+//                        for (String value: param.getUniqueValues()) {
+//                            if (responseString.contains(value)) {
+//                                param.putSeenParam(value, message);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//    }
 
     @Override
     protected void process(List<Object> chunks) {

@@ -36,14 +36,14 @@ public class CorrelatedParam {
     int bestFormatPercent = 0;
     private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
 
-    CorrelatedParam(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    CorrelatedParam(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
                     IExtensionHelpers helpers) {
-        put(param, message, requestInfo, responseString, helpers);
+        put(param, message, msgNum, requestInfo, responseString, helpers);
     }
 
-    CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
                     IExtensionHelpers helpers) {
-        put(param, message, requestInfo, responseString, helpers);
+        put(param, message, msgNum, requestInfo, responseString, helpers);
     }
 
     CorrelatedParam(JSONParamInstance param) {
@@ -51,9 +51,9 @@ public class CorrelatedParam {
     }
 
 
-    public void put(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    public void put(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
-        ParamInstance pi = new ParamInstance(param, message);
+        ParamInstance pi = new ParamInstance(param, message, msgNum);
         paramInstances.add(pi);
         addURL(requestInfo);
 
@@ -65,7 +65,7 @@ public class CorrelatedParam {
         checkReflection(param, responseString, helpers);
     }
 
-    public void put(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    public void put(RestParamInstance param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
         paramInstances.add(param);
         addURL((requestInfo));

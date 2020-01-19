@@ -26,7 +26,7 @@ public class JSONParamInstance extends ParamInstance {
     static final byte TYPE = 64;
 
     public JSONParamInstance(String name, String value, ParamInstance parent) {
-        super(null, parent.getMessage());
+        super(null, parent.getMessage(), parent.getMessageIndex());
         this.paramName = name;
         String[] parts = value.split("\n\r");
         this.paramValue = String.join(" ", parts);

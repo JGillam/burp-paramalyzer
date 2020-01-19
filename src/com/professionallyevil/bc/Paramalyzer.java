@@ -20,6 +20,7 @@ import burp.*;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.professionallyevil.bc.tracker.ParamTracker;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
@@ -64,7 +65,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JCheckBox showEncodedValues;
     private JCheckBox showFormatPrefix;
     private JCheckBox showDuplicates;
-    private IBurpExtenderCallbacks callbacks;
+    IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
     private CookieStatisticsTableModel cookieStatisticsTableModel = new CookieStatisticsTableModel();
@@ -361,13 +362,23 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
             }
         });
 
-        paramTracker = new ParamTracker();
+        paramTracker = new ParamTracker(this);
         for (int t = 0; t < tabPane.getTabCount(); t++) {
             if (tabPane.getTitleAt(t).equals("Tracker")) {
                 tabPane.setComponentAt(t, paramTracker.getMainPanel());
             }
         }
 
+    }
+
+    public java.util.List<CorrelatedParam> getParamSecrets() {
+        java.util.List<CorrelatedParam> paramSecrets = new ArrayList<>();
+        for (CorrelatedParam param : paramsTableModel.getEntries()) {
+            if (param.isInteresting) {
+                paramSecrets.add(param);
+            }
+        }
+        return paramSecrets;
     }
 
     private void updateParamInstanceList() {
@@ -424,6 +435,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.registerContextMenuFactory(this);
         callbacks.customizeUiComponent(mainPanel);
         callbacks.customizeUiComponent(sessionsHelpTextPane);
+        paramTracker.registerExtenderCallbacks(callbacks);
     }
 
     @Override
@@ -434,6 +446,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     @Override
     public Component getUiComponent() {
         return mainPanel;
+    }
+
+    public IBurpExtenderCallbacks getCallbacks() {
+        return callbacks;
     }
 
     @Override
