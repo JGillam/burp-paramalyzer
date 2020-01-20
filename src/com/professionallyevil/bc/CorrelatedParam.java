@@ -35,6 +35,12 @@ public class CorrelatedParam {
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
     int bestFormatPercent = 0;
     private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
+    private static String[] INTERESTING_BLACKLIST = {"true","false","0","1","null"};
+    private static Set<String> blacklist = new HashSet<>();
+
+    static {
+        blacklist.addAll(Arrays.asList(INTERESTING_BLACKLIST));
+    }
 
     CorrelatedParam(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
                     IExtensionHelpers helpers) {
@@ -49,7 +55,6 @@ public class CorrelatedParam {
     CorrelatedParam(JSONParamInstance param) {
         put(param);
     }
-
 
     public void put(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
@@ -191,7 +196,7 @@ public class CorrelatedParam {
             isInteresting = true;
         } else {
             for (String hint : INTERESTING_HINTS) {
-                if (getSample().getName().toLowerCase().contains(hint)) {
+                if (getSample().getName().toLowerCase().contains(hint) && !blacklist.contains(getSample().getValue().toLowerCase())) {
                     isInteresting = true;
                 }
             }

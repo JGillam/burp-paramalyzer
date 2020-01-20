@@ -448,10 +448,6 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         return mainPanel;
     }
 
-    public IBurpExtenderCallbacks getCallbacks() {
-        return callbacks;
-    }
-
     @Override
     public java.util.List<JMenuItem> createMenuItems(IContextMenuInvocation invocation) {
         IHttpRequestResponse[] messages = invocation.getSelectedMessages();

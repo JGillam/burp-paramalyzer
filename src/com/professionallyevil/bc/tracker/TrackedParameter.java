@@ -20,11 +20,16 @@ import burp.IBurpExtenderCallbacks;
 import com.professionallyevil.bc.CorrelatedParam;
 import com.professionallyevil.bc.ParamInstance;
 
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.SortedSet;
 
 public class TrackedParameter {
     CorrelatedParam correlatedParam;
+    Set<TrackedParameter> origins = new HashSet<>();
     ValueQueueMap<String, ParamInstance> values = new ValueQueueMap<>(10);
+
 
     public TrackedParameter(CorrelatedParam param) {
         this.correlatedParam = param;
@@ -40,5 +45,28 @@ public class TrackedParameter {
         for(ParamInstance param: paramInstances) {
             values.put(param.getValue(), param);
         }
+        origins.clear();
     }
+
+    public boolean identifyPresence(String response, TrackedParameter origin, ParamInstance pi){
+        for(Iterator<String> valueIterator = values.keys(); valueIterator.hasNext();) {
+            String key = valueIterator.next();
+            String decodedValue = values.get(key).getDecodedValue();
+            String value = values.get(key).getValue();
+
+            if (response.contains(value) || response.contains(decodedValue)) {
+                if (!pi.getValue().equals(value) && !pi.getDecodedValue().equals(decodedValue)) {
+                    origins.add(origin);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public Iterator<ParamInstance> paramInstanceIterator() {
+        return values.values();
+    }
+
+
 }

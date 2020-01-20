@@ -77,6 +77,10 @@ public class ValueQueueMap<K,T> {
         return queue.iterator();
     }
 
+    public Iterator<T> values() {
+        return items.values().iterator();
+    }
+
     // Just for testing/tinkering around with behavior.
     public static void main(String[] args) {
 

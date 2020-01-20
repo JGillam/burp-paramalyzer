@@ -17,46 +17,63 @@
 package com.professionallyevil.bc.tracker;
 
 import burp.IBurpExtenderCallbacks;
+import burp.IHttpRequestResponse;
+import com.professionallyevil.bc.ParamInstance;
+import com.professionallyevil.bc.WorkerStatusListener;
 
 import javax.swing.*;
+import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ParamTrackerInitializer extends SwingWorker<Object,Object> {
-    JLabel label;
-    JProgressBar progressBar;
     java.util.Set<TrackedParameter> params;
     IBurpExtenderCallbacks callbacks;
+    WorkerStatusListener listener;
 
-    public ParamTrackerInitializer(JLabel label, JProgressBar bar, IBurpExtenderCallbacks callbacks, java.util.Set<TrackedParameter> params) {
-        this.label = label;
-        this.progressBar = bar;
+    public ParamTrackerInitializer(IBurpExtenderCallbacks callbacks, java.util.Set<TrackedParameter> params, WorkerStatusListener l) {
         this.params = params;
         this.callbacks = callbacks;
+        this.listener = l;
     }
-
 
     @Override
     protected Object doInBackground() throws Exception {
-        progressBar.setMaximum(params.size());
         int progress = 0;
         this.publish(progress);
+        this.publish("Initializing...");
         for(TrackedParameter param: params) {
-            this.publish("Initializing "+param.toString()+"...");
             param.initialize(callbacks);
-            progress++;
-            this.publish(progress);
+            progress+=1;
+            this.publish(progress*100 / params.size());
         }
+
+        this.publish("Finding edges...");
+        for(TrackedParameter param: params) {
+            for(Iterator<ParamInstance> i = param.paramInstanceIterator(); i.hasNext();) {
+                ParamInstance pi = i.next();
+                IHttpRequestResponse message = pi.getMessage();
+                if (message.getResponse() != null){
+                    String response = callbacks.getHelpers().bytesToString(message.getResponse());
+                    for(TrackedParameter refParam: params) {
+                        refParam.identifyPresence(response, param, pi);
+                    }
+                }
+            }
+        }
+        this.publish("Initialization done.");
 
         return null;
     }
 
     @Override
     protected void process(List<Object> chunks) {
+        super.process(chunks);
         for(Object chunk: chunks) {
-            if(chunk instanceof Integer && progressBar != null) {
-                progressBar.setValue((int)chunk);
-            } else if (chunk instanceof String && label != null) {
-                label.setText((String)chunk);
+            if (chunk instanceof Integer) {
+                listener.setProgress((int)chunk);
+            } else if (chunk instanceof String) {
+                listener.setStatus((String)chunk);
             }
         }
     }
@@ -64,5 +81,12 @@ public class ParamTrackerInitializer extends SwingWorker<Object,Object> {
     @Override
     protected void done() {
         super.done();
+        try {
+            listener.done(get());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
