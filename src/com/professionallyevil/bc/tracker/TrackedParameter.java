@@ -48,7 +48,7 @@ public class TrackedParameter {
         origins.clear();
     }
 
-    public boolean identifyPresence(String response, TrackedParameter origin, ParamInstance pi){
+    public void identifyPresence(String response, TrackedParameter origin, ParamInstance pi){
         for(Iterator<String> valueIterator = values.keys(); valueIterator.hasNext();) {
             String key = valueIterator.next();
             String decodedValue = values.get(key).getDecodedValue();
@@ -57,11 +57,10 @@ public class TrackedParameter {
             if (response.contains(value) || response.contains(decodedValue)) {
                 if (!pi.getValue().equals(value) && !pi.getDecodedValue().equals(decodedValue)) {
                     origins.add(origin);
-                    return true;
+                    return;
                 }
             }
         }
-        return false;
     }
 
     public Iterator<ParamInstance> paramInstanceIterator() {
