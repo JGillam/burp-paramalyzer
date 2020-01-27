@@ -27,6 +27,7 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
 
     DirectionalGraphModel<T> model = new DirectionalGraphModel<>();
     VertexRenderer<T> renderer = new DefaultVertexRenderer<>();
+    java.util.List<GraphPanelListener<T>> listeners = new java.util.ArrayList<>();
     T focus = null;
     IBurpExtenderCallbacks callbacks;  // TODO: temporary
 
@@ -42,6 +43,7 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
     public DirectionalGraphPanel(VertexRenderer<T> renderer) {
         this.renderer = renderer;
     }
+
 
     private void drawArrowLine(Graphics g, int x1, int y1, int x2, int y2, int d, int h) {
         int dx = x2 - x1, dy = y2 - y1;
@@ -164,8 +166,11 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
     }
 
     private void setFocus(T vertex) {
-        this.focus = vertex;
-        repaint();
+        if(this.focus != vertex) {
+            this.focus = vertex;
+            repaint();
+            fireFocusSelected(vertex);
+        }
     }
 
     private void choseFocus(int x, int y) {
@@ -182,6 +187,20 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
         }
         if (!hit) {
             setFocus(null);
+        }
+    }
+
+    public void addGraphPanelListener(GraphPanelListener<T> l) {
+        listeners.add(l);
+    }
+
+    public void removeGraphPanelListener(GraphPanelListener<T> l){
+        listeners.remove(l);
+    }
+
+    void fireFocusSelected(T focus) {
+        for (GraphPanelListener<T> listener : listeners) {
+            listener.focusSelected(focus);
         }
     }
 

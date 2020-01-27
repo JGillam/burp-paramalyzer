@@ -24,13 +24,14 @@ import com.professionallyevil.bc.CorrelatedParam;
 import com.professionallyevil.bc.Paramalyzer;
 import com.professionallyevil.bc.WorkerStatusListener;
 import com.professionallyevil.bc.graph.DirectionalGraphPanel;
+import com.professionallyevil.bc.graph.GraphPanelListener;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ParamTracker implements WorkerStatusListener {
+public class ParamTracker implements WorkerStatusListener, GraphPanelListener<TrackedParameter> {
     private JPanel mainPanel;
     private DirectionalGraphPanel<TrackedParameter> directionalGraph;
     private JButton analyzeButton;
@@ -46,6 +47,7 @@ public class ParamTracker implements WorkerStatusListener {
         $$$setupUI$$$();
         valueTable.setModel(trackedValueTableModel);
         valueTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        directionalGraph.addGraphPanelListener(this);
         analyzeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -82,6 +84,11 @@ public class ParamTracker implements WorkerStatusListener {
                 directionalGraph.getModel().addEdge(origin, param);
             }
         }
+    }
+
+    @Override
+    public void focusSelected(TrackedParameter vertex) {
+        trackedValueTableModel.setTrackedParameter(vertex);
     }
 
     void initializeTracking() {

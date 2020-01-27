@@ -16,6 +16,8 @@
 
 package com.professionallyevil.bc.tracker;
 
+import com.professionallyevil.bc.ParamInstance;
+
 import javax.swing.table.AbstractTableModel;
 
 public class TrackedValueTableModel extends AbstractTableModel {
@@ -39,9 +41,21 @@ public class TrackedValueTableModel extends AbstractTableModel {
 
     }
 
+    TrackedParameter trackedParameter;
+    java.util.List<ParamInstance> instanceList = new java.util.ArrayList<>();
+
+    public void setTrackedParameter(TrackedParameter trackedParameter) {
+        if(trackedParameter != this.trackedParameter) {
+            this.trackedParameter = trackedParameter;
+            this.instanceList.clear();
+            trackedParameter.paramInstanceIterator().forEachRemaining(this.instanceList::add);
+            fireTableDataChanged();
+        }
+    }
+
     @Override
     public int getRowCount() {
-        return 0;
+        return this.instanceList.size();
     }
 
     @Override
@@ -52,7 +66,24 @@ public class TrackedValueTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Column col = Column.values()[columnIndex];
-        return null;
+        ParamInstance row = instanceList.get(rowIndex);
+        switch(col){
+            case VALUE:
+                return row.getValue();
+            case DIRECTION:
+                return "Request";
+            case ORIGIN:
+                break;
+            case PATH:
+                break;
+            case IN_SCOPE:
+                break;
+            case SOURCE_SECRETS:
+                break;
+            default:
+                return "";
+        }
+        return "";
     }
 
     @Override

@@ -30,7 +30,6 @@ public class TrackedParameter {
     Set<TrackedParameter> origins = new HashSet<>();
     ValueQueueMap<String, ParamInstance> values = new ValueQueueMap<>(10);
 
-
     public TrackedParameter(CorrelatedParam param) {
         this.correlatedParam = param;
     }
