@@ -30,6 +30,7 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
     java.util.List<GraphPanelListener<T>> listeners = new java.util.ArrayList<>();
     T focus = null;
     IBurpExtenderCallbacks callbacks;  // TODO: temporary
+    boolean autoPosition = true;
 
     public DirectionalGraphPanel(){
         this.addMouseListener(this);
@@ -66,32 +67,83 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
         g.fillPolygon(xpoints, ypoints, 3);
     }
 
+    public void fireAutoPosition() {
+        autoPosition = true;
+        repaint();
+    }
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        model.planLayout();
-        // Calculate all the sizes
-        int[] colWidths = new int[model.getColumns().size()];
-        int maxHeight = 0;
-        int totalWidth = 0;
+        arrangeAndSize(g);
+
+        // Render Vertices
         for(int col=0 ; col< model.getColumns().size(); col++) {
             int colHeight = 0;
             for(T vertex: model.getColumns().get(col)) {
-                colWidths[col] = Math.max(colWidths[col], renderer.getWidth(vertex, g));
-                colHeight = colHeight + renderer.getHeight(vertex, g) + model.rowGap;
+                renderer.render(vertex, g, model.vertices.get(vertex));
             }
-            maxHeight = Math.max(maxHeight, colHeight);
-            totalWidth += colWidths[col];
-            totalWidth += model.columnGap;
         }
-        maxHeight = maxHeight + model.rowGap;
 
-        Dimension newSize = new Dimension(totalWidth, maxHeight);
-        setSize(newSize);
-        setPreferredSize(newSize);
 
-        // Render Vertices
+        // Render Directional edges
+        for (T child: model.parentMap.keySet()) {
+            for (T parent: model.parentMap.get(child)) {
+                if(parent.equals(focus) || child.equals(focus)) {
+                    g.setColor(Color.BLUE);
+                }else {
+                    g.setColor(Color.BLACK);
+                }
+
+                VertexInfo childInfo = model.vertices.get(child);
+                if (!child.equals(parent)) {
+                    VertexInfo parentInfo = model.vertices.get(parent);
+                    drawArrowLine(g, parentInfo.getXRight(), parentInfo.getYRight(), childInfo.getXLeft(), childInfo.getYLeft(), 12, 5);
+                } else {
+                    g.drawArc(childInfo.getXLeft(), childInfo.getYLeft() - renderer.getHeight(child, g), renderer.getWidth(child, g), 20,  0, 180);
+                }
+            }
+        }
+    }
+
+    /**
+     * Size the vertices and, if autolayout is on, arrange them.
+     * @param g Graphics context
+     */
+    private void arrangeAndSize(Graphics g) {
+        if (model.planLayout()) {
+
+            // Calculate all the sizes
+            int[] colWidths = new int[model.getColumns().size()];
+            int maxHeight = 0;
+            int totalWidth = 0;
+            for (int col = 0; col < model.getColumns().size(); col++) {
+                int colHeight = 0;
+                for (T vertex : model.getColumns().get(col)) {
+                    colWidths[col] = Math.max(colWidths[col], renderer.getWidth(vertex, g));
+                    colHeight = colHeight + renderer.getHeight(vertex, g) + model.rowGap;
+                    model.vertices.get(vertex).setDimensions(renderer.getWidth(vertex, g), renderer.getHeight(vertex, g));
+                }
+                maxHeight = Math.max(maxHeight, colHeight);
+                totalWidth += colWidths[col];
+                totalWidth += model.columnGap;
+            }
+            maxHeight = maxHeight + model.rowGap;
+
+            Dimension newSize = new Dimension(totalWidth, maxHeight);
+            setSize(newSize);
+            setPreferredSize(newSize);
+
+            // Position Vertices
+            if (autoPosition) {
+                autoLayoutVertices(g, colWidths, maxHeight);
+                autoPosition = false;
+            }
+        }
+    }
+
+    private void autoLayoutVertices(Graphics g, int[] colWidths, int maxHeight) {
         int xOffset = model.columnGap / 2;
 
         for(int col=0 ; col< model.getColumns().size(); col++) {
@@ -108,31 +160,9 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
                 } else {
                     g.setColor(Color.BLACK);
                 }
-                renderer.render(vertex, g, xCenter, yOffset);
 
-                model.vertices.get(vertex).setDimensions(renderer.getWidth(vertex, g), renderer.getHeight(vertex, g));
                 model.vertices.get(vertex).setPosition(xCenter, yOffset);
                 yOffset += rowSpacing;
-            }
-        }
-
-        // Render Directional edges
-        for (T child: model.parentMap.keySet()) {
-            for (T parent: model.parentMap.get(child)) {
-                if(parent.equals(focus) || child.equals(focus)) {
-                    g.setColor(Color.BLUE);
-                }else {
-                    g.setColor(Color.BLACK);
-                }
-
-                if(!child.equals(parent)) {
-                    VertexInfo childInfo = model.vertices.get(child);
-                    VertexInfo parentInfo = model.vertices.get(parent);
-                    drawArrowLine(g, parentInfo.getXRight(), parentInfo.getYRight(), childInfo.getXLeft(), childInfo.getYLeft(), 12, 5);
-                } else {
-                    VertexInfo childInfo = model.vertices.get(child);
-                    g.drawArc(childInfo.getXLeft(), childInfo.getYLeft() - renderer.getHeight(child, g), renderer.getWidth(child, g), 20,  0, 180);
-                }
             }
         }
     }

@@ -26,7 +26,7 @@ public interface VertexRenderer<T> {
 
     int getHeight(T vertexObject, Graphics g);
 
-    void render(T vertexObject, Graphics g, int xCenter, int yCenter);
+    void render(T vertexObject, Graphics g, VertexInfo info);
 
 
 }

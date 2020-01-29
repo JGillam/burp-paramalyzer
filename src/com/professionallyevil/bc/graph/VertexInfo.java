@@ -70,6 +70,10 @@ public class VertexInfo {
         return x;
     }
 
+    public int getXCenter() {return x; }
+
+    public int getYCenter() {return y; }
+
 
     public void setDimensions(int width, int height) {
         this.width = width;

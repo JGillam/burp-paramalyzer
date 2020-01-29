@@ -84,6 +84,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
                 directionalGraph.getModel().addEdge(origin, param);
             }
         }
+        directionalGraph.fireAutoPosition();
     }
 
     @Override

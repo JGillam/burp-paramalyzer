@@ -72,7 +72,7 @@ public class DirectionalGraphModel<T> {
         fireGraphModelUpdated();
     }
 
-    void planLayout() {
+    boolean planLayout() {
         if(modelHasChanged) {
             for (T vertex:vertices.keySet()) {
                 vertices.get(vertex).reset();
@@ -91,8 +91,10 @@ public class DirectionalGraphModel<T> {
                 columns.get(column).add(vertex);
                 largestColumnSize = Math.max(largestColumnSize, columns.get(column).size());
             }
+            modelHasChanged = false;
+            return true;
         }
-        modelHasChanged = false;
+        return false;
     }
 
     public List<List<T>> getColumns() {

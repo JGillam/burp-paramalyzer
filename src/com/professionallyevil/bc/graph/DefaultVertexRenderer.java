@@ -43,9 +43,9 @@ public class DefaultVertexRenderer<T> implements VertexRenderer<T>{
     }
 
     @Override
-    public void render(T vertexObject, Graphics g, int xCenter, int yCenter) {
-        int x = xCenter - (getWidth(vertexObject, g) / 2);
-        int y = yCenter - (getHeight(vertexObject, g) / 2);
+    public void render(T vertexObject, Graphics g, VertexInfo info) {
+        int x = info.getXCenter() - (getWidth(vertexObject, g) / 2);
+        int y = info.getYCenter() - (getHeight(vertexObject, g) / 2);
         g.drawRect(x, y, getWidth(vertexObject, g), getHeight(vertexObject, g));
 
         g.drawString(vertexObject.toString(), x + xInset, y + yInset + g.getFontMetrics().getHeight());
