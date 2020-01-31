@@ -22,8 +22,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
-public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, GraphModelListener {
+public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, MouseMotionListener, GraphModelListener {
 
     DirectionalGraphModel<T> model = new DirectionalGraphModel<>();
     VertexRenderer<T> renderer = new DefaultVertexRenderer<>();
@@ -31,9 +32,13 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
     T focus = null;
     IBurpExtenderCallbacks callbacks;  // TODO: temporary
     boolean autoPosition = true;
+    T draggingVertex = null;
+    int dragRelativeX = 0;
+    int dragRelativeY = 0;
 
     public DirectionalGraphPanel(){
         this.addMouseListener(this);
+        this.addMouseMotionListener(this);
     }
 
     public void setCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -82,7 +87,7 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
         for(int col=0 ; col< model.getColumns().size(); col++) {
             int colHeight = 0;
             for(T vertex: model.getColumns().get(col)) {
-                renderer.render(vertex, g, model.vertices.get(vertex));
+                renderer.render(vertex, g, model.vertices.get(vertex), vertex == focus);
             }
         }
 
@@ -99,7 +104,10 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
                 VertexInfo childInfo = model.vertices.get(child);
                 if (!child.equals(parent)) {
                     VertexInfo parentInfo = model.vertices.get(parent);
-                    drawArrowLine(g, parentInfo.getXRight(), parentInfo.getYRight(), childInfo.getXLeft(), childInfo.getYLeft(), 12, 5);
+                    int xStart = parentInfo.getXCenter() < childInfo.getXCenter() ? parentInfo.getXRight() : parentInfo.getXLeft();
+                    int xEnd = parentInfo.getXCenter() < childInfo.getXCenter() ? childInfo.getXLeft() : childInfo.getXRight();
+
+                    drawArrowLine(g, xStart, parentInfo.getYRight(), xEnd, childInfo.getYLeft(), 12, 5);
                 } else {
                     g.drawArc(childInfo.getXLeft(), childInfo.getYLeft() - renderer.getHeight(child, g), renderer.getWidth(child, g), 20,  0, 180);
                 }
@@ -203,21 +211,16 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
         }
     }
 
-    private void choseFocus(int x, int y) {
-        boolean hit = false;
+    private T findVertexAt(int x, int y) {
         for(T vertex: model.vertices.keySet()) {
             VertexInfo vi = model.vertices.get(vertex);
             if (x > vi.getXLeft() &&  x < vi.getXRight()) {  // inside X bounds
                 if (y > vi.getYTop() && y < vi.getYBottom()) {
-                    hit = true;
-                    setFocus(vertex);
-                    break;
+                    return vertex;
                 }
             }
         }
-        if (!hit) {
-            setFocus(null);
-        }
+        return null;
     }
 
     public void addGraphPanelListener(GraphPanelListener<T> l) {
@@ -242,15 +245,27 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        choseFocus(e.getX(), e.getY());
+        T vertex = findVertexAt(e.getX(), e.getY());
+        if (vertex != null) {
+            setFocus(vertex);
+        }
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
+        T vertex = findVertexAt(e.getX(), e.getY());
+        if(vertex != null) {
+            draggingVertex = vertex;
+            dragRelativeX = e.getX() - model.vertices.get(vertex).getXCenter();
+            dragRelativeY = e.getY() - model.vertices.get(vertex).getYCenter();
+        }
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
+        draggingVertex = null;
+        dragRelativeX = 0;
+        dragRelativeY = 0;
     }
 
     @Override
@@ -259,6 +274,22 @@ public class DirectionalGraphPanel<T> extends JPanel implements MouseListener, G
 
     @Override
     public void mouseExited(MouseEvent e) {
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+        if(draggingVertex != null) {
+            VertexInfo info = model.vertices.get(draggingVertex);
+            int newX = Math.max(0, Math.min(e.getX() + dragRelativeX, this.getSize().width));
+            int newY = Math.max(0, Math.min(e.getY() + dragRelativeY, this.getSize().height));
+
+            info.setPosition(newX, newY);
+            repaint();
+        }
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
 
     }
 

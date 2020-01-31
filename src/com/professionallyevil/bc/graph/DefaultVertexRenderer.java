@@ -43,7 +43,12 @@ public class DefaultVertexRenderer<T> implements VertexRenderer<T>{
     }
 
     @Override
-    public void render(T vertexObject, Graphics g, VertexInfo info) {
+    public void render(T vertexObject, Graphics g, VertexInfo info, boolean isFocus) {
+        if(isFocus) {
+            g.setColor(Color.blue);
+        } else {
+            g.setColor(Color.black);
+        }
         int x = info.getXCenter() - (getWidth(vertexObject, g) / 2);
         int y = info.getYCenter() - (getHeight(vertexObject, g) / 2);
         g.drawRect(x, y, getWidth(vertexObject, g), getHeight(vertexObject, g));
