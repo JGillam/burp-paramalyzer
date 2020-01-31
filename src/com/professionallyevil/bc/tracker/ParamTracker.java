@@ -38,6 +38,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     private JTextField progressText;
     private JProgressBar progressBar;
     private JTable valueTable;
+    private JLabel focusLabel;
     private Paramalyzer paramalyzer;
     private IBurpExtenderCallbacks callbacks;
     TrackedValueTableModel trackedValueTableModel = new TrackedValueTableModel();
@@ -55,7 +56,9 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
                 try {
                     directionalGraph.getModel().clear();
                     initializeTracking();
-                    callbacks.printOutput("Tracked parameters: " + directionalGraph.getModel().getVertices().size());
+                    trackedValueTableModel.setTrackedParameter(null);
+                    focusLabel.setText("(nothing selected)");
+                    //callbacks.printOutput("Tracked parameters: " + directionalGraph.getModel().getVertices().size());
 
                 } catch (Error ex) {
                     callbacks.printError(ex.getMessage());
@@ -90,6 +93,8 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     @Override
     public void focusSelected(TrackedParameter vertex) {
         trackedValueTableModel.setTrackedParameter(vertex);
+        String text = "<html><b>Name:</b> " + vertex.toString() + " (" + vertex.getTypeName() + ")</html>";
+        focusLabel.setText(text);
     }
 
     void initializeTracking() {
@@ -142,17 +147,21 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
         mainPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         final JSplitPane splitPane1 = new JSplitPane();
         splitPane1.setOrientation(0);
+        splitPane1.setResizeWeight(0.5);
         mainPanel.add(splitPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(2, 2, new Insets(0, 0, 0, 0), -1, -1));
         splitPane1.setRightComponent(panel1);
-        panel1.setBorder(BorderFactory.createTitledBorder("Values"));
+        panel1.setBorder(BorderFactory.createTitledBorder("Selected Item"));
         final Spacer spacer1 = new Spacer();
-        panel1.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel1.add(spacer1, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        panel1.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(scrollPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         valueTable = new JTable();
         scrollPane1.setViewportView(valueTable);
+        focusLabel = new JLabel();
+        focusLabel.setText("(nothing selected)");
+        panel1.add(focusLabel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel2 = new JPanel();
         panel2.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         splitPane1.setLeftComponent(panel2);

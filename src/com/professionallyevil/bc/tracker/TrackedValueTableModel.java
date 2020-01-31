@@ -45,7 +45,11 @@ public class TrackedValueTableModel extends AbstractTableModel {
     java.util.List<ParamInstance> instanceList = new java.util.ArrayList<>();
 
     public void setTrackedParameter(TrackedParameter trackedParameter) {
-        if(trackedParameter != this.trackedParameter) {
+        if (trackedParameter == null) {
+            this.trackedParameter = trackedParameter;
+            this.instanceList.clear();
+            fireTableDataChanged();
+        } else if(trackedParameter != this.trackedParameter) {
             this.trackedParameter = trackedParameter;
             this.instanceList.clear();
             trackedParameter.paramInstanceIterator().forEachRemaining(this.instanceList::add);

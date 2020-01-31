@@ -47,6 +47,10 @@ public class TrackedParameter {
         origins.clear();
     }
 
+    public String getTypeName() {
+        return correlatedParam.getSample().getTypeName();
+    }
+
     public void identifyPresence(String response, TrackedParameter origin, ParamInstance pi){
         for(Iterator<String> valueIterator = values.keys(); valueIterator.hasNext();) {
             String key = valueIterator.next();
