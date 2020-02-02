@@ -40,7 +40,7 @@ public class SecretHunter {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 for (CorrelatedParam correlatedParam : parametersTableModel.getEntries()) {
-                    if (correlatedParam.isSecret()) {
+                    if (correlatedParam.setSecret()) {
                         ParameterSecret secret = new ParameterSecret(correlatedParam);
                         secretsTableModel.add(secret);
                     }

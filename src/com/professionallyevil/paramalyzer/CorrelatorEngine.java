@@ -137,8 +137,6 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     }
                 }
 
-                // look at path for REST variables
-                URL url = requestInfo.getUrl();
                 String[] pathElements = url.getPath().substring(1).split("/");
 
                 for (int p=0; p < pathElements.length -1; p++){
@@ -208,7 +206,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     if (jsonPartParameters.containsKey(jsonParam.getName())) {
                         jsonPartParameters.get(jsonParam.getName()).put(jsonParam);
                     } else {
-                        jsonPartParameters.put(jsonParam.getName(), new CorrelatedParam(jsonParam));
+                        jsonPartParameters.put(jsonParam.getName(), new CorrelatedParam(jsonParam, cp.getOrigin()));
                     }
                 }
             }

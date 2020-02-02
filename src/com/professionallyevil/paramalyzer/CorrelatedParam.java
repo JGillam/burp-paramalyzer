@@ -123,7 +123,7 @@ public class CorrelatedParam {
         return reflectedCount;
     }
 
-    public boolean isSecret() {
+    public boolean setSecret() {
         return isSecret;
     }
 
