@@ -82,11 +82,6 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
     @Override
     public void done(Object result) {
-        for (TrackedParameter param : directionalGraph.getModel().getVertices()) {
-            for (TrackedParameter origin : param.origins) {
-                directionalGraph.getModel().addEdge(origin, param);
-            }
-        }
         directionalGraph.fireAutoPosition();
     }
 
@@ -107,21 +102,6 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
         ParamTrackerInitializer initializer = new ParamTrackerInitializer(callbacks, directionalGraph.getModel().getVertices(), this);
         initializer.execute();
-
-        try {
-            callbacks.printOutput("Looping on initializer done...");
-
-            while (!initializer.isDone()) {
-                callbacks.printOutput("initializer not done.  Waiting a few millis...");
-                Thread.currentThread().wait(500);
-            }
-            callbacks.printOutput("initializer done.");
-
-        } catch (InterruptedException e) {
-            callbacks.printOutput("initializer was interrupted.");
-            e.printStackTrace();
-        }
-        callbacks.printOutput("Done initializing.  Parameters tracked: " + directionalGraph.getModel().getVertices().size());
     }
 
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {

@@ -220,4 +220,8 @@ public class CorrelatedParam {
             return bestFormat.getTitle() + " (" +bestFormatPercent+"%)";
         }
     }
+
+    public ParamInstance.Format getBestFormat() {
+        return bestFormat;
+    }
 }

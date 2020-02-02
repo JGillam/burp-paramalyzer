@@ -17,12 +17,9 @@
 package com.professionallyevil.bc.tracker;
 
 import burp.IBurpExtenderCallbacks;
-import burp.IHttpRequestResponse;
-import com.professionallyevil.bc.ParamInstance;
 import com.professionallyevil.bc.WorkerStatusListener;
 
 import javax.swing.*;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -48,19 +45,19 @@ public class ParamTrackerInitializer extends SwingWorker<Object,Object> {
             this.publish(progress*100 / params.size());
         }
 
-        this.publish("Finding edges...");
-        for(TrackedParameter param: params) {
-            for(Iterator<ParamInstance> i = param.paramInstanceIterator(); i.hasNext();) {
-                ParamInstance pi = i.next();
-                IHttpRequestResponse message = pi.getMessage();
-                if (message.getResponse() != null){
-                    String response = callbacks.getHelpers().bytesToString(message.getResponse());
-                    for(TrackedParameter refParam: params) {
-                        refParam.identifyPresence(response, param, pi);
-                    }
-                }
-            }
-        }
+//        this.publish("Finding edges...");
+//        for(TrackedParameter param: params) {
+//            for(Iterator<ParamInstance> i = param.paramInstanceIterator(); i.hasNext();) {
+//                ParamInstance pi = i.next();
+//                IHttpRequestResponse message = pi.getMessage();
+//                if (message.getResponse() != null){
+//                    String response = callbacks.getHelpers().bytesToString(message.getResponse());
+//                    for(TrackedParameter refParam: params) {
+//                        refParam.identifyPresence(response, param, pi);
+//                    }
+//                }
+//            }
+//        }
         this.publish("Initialization done.");
 
         return null;

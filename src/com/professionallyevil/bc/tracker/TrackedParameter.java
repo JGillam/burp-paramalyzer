@@ -28,10 +28,14 @@ import java.util.SortedSet;
 public class TrackedParameter {
     CorrelatedParam correlatedParam;
     Set<TrackedParameter> origins = new HashSet<>();
-    ValueQueueMap<String, ParamInstance> values = new ValueQueueMap<>(10);
+    ParamInstance.Format format;
+    String paramTypeName;
+    ValueQueueMap<String, ParamInstance> valueMap = new ValueQueueMap<>(10);  // track most recently seen values
+    java.util.List<ParamSign> signs = new java.util.ArrayList<>();
 
     public TrackedParameter(CorrelatedParam param) {
         this.correlatedParam = param;
+        this.format = param.getBestFormat();
     }
 
     @Override
@@ -42,7 +46,8 @@ public class TrackedParameter {
     public void initialize(IBurpExtenderCallbacks callbacks) {
         SortedSet<ParamInstance> paramInstances = correlatedParam.getParamInstances(true);
         for(ParamInstance param: paramInstances) {
-            values.put(param.getValue(), param);
+            valueMap.put(param.getValue(), param);
+            paramTypeName = param.getTypeName();
         }
         origins.clear();
     }
@@ -52,10 +57,10 @@ public class TrackedParameter {
     }
 
     public void identifyPresence(String response, TrackedParameter origin, ParamInstance pi){
-        for(Iterator<String> valueIterator = values.keys(); valueIterator.hasNext();) {
+        for(Iterator<String> valueIterator = valueMap.keys(); valueIterator.hasNext();) {
             String key = valueIterator.next();
-            String decodedValue = values.get(key).getDecodedValue();
-            String value = values.get(key).getValue();
+            String decodedValue = valueMap.get(key).getDecodedValue();
+            String value = valueMap.get(key).getValue();
 
             if (response.contains(value) || response.contains(decodedValue)) {
                 if (!pi.getValue().equals(value) && !pi.getDecodedValue().equals(decodedValue)) {
@@ -67,7 +72,11 @@ public class TrackedParameter {
     }
 
     public Iterator<ParamInstance> paramInstanceIterator() {
-        return values.values();
+        return valueMap.values();
+    }
+
+    public ParamInstance.Format getFormat() {
+        return format;
     }
 
     public String getOrigin() {

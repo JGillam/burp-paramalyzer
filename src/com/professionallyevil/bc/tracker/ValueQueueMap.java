@@ -41,15 +41,14 @@ public class ValueQueueMap<K,T> {
         items = new HashMap<>(capacity);
     }
 
-    public boolean put(K key, T value) {
+    public void put(K key, T value) {
         if (items.containsKey(key)) {
             items.put(key, value);
             queue.remove(key);
-            return queue.offer(key);
+            queue.offer(key);
         } else {
             if(queue.offer(key)) {
                 items.put(key, value);
-                return true;
             } else {
                 K staleKey = queue.poll();
                 if(staleKey != null) {
@@ -57,9 +56,6 @@ public class ValueQueueMap<K,T> {
                 }
                 if(queue.offer(key)) {
                     items.put(key, value);
-                    return true;
-                } else {
-                    return false;
                 }
             }
         }
@@ -81,22 +77,4 @@ public class ValueQueueMap<K,T> {
         return items.values().iterator();
     }
 
-    // Just for testing/tinkering around with behavior.
-    public static void main(String[] args) {
-
-        ValueQueueMap<String, String> vqm = new ValueQueueMap<>(3);
-
-        vqm.put("one", "value one");
-        vqm.put("two", "value two");
-        vqm.put("three", "value three");
-        vqm.put("one", "value five");
-        vqm.put("four", "value four");
-
-        Iterator<String> stringIterator = vqm.keys();
-        while(stringIterator.hasNext()) {
-            String key = stringIterator.next();
-            System.out.println(key + ": "+vqm.get(key));
-        }
-
-    }
 }
