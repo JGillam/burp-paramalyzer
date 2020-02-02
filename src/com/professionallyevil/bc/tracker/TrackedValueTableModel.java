@@ -95,3 +95,5 @@ public class TrackedValueTableModel extends AbstractTableModel {
         return Column.values()[column].getTitle();
     }
 }
+
+// TODO: We want a row for each relationship/edge.  So pairs of current value, request secret (name and value) - even if request secret is none.
