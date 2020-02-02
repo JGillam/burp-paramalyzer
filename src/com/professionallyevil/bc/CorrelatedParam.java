@@ -34,13 +34,13 @@ public class CorrelatedParam {
     Map<ParamInstance,String> analysisText = new HashMap<>();
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
     int bestFormatPercent = 0;
-    private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
-    private static String[] INTERESTING_BLACKLIST = {"true","false","0","1","null"};
+    private static String[] SECRET_HINTS = {"session","key","user","password","token","ssn", "auth"};
+    private static String[] SECRET_VALUE_BLACKLIST = {"true","false","0","1","null"};
     private static Set<String> blacklist = new HashSet<>();
     String origin;
 
     static {
-        blacklist.addAll(Arrays.asList(INTERESTING_BLACKLIST));
+        blacklist.addAll(Arrays.asList(SECRET_VALUE_BLACKLIST));
     }
 
     CorrelatedParam(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
@@ -203,7 +203,7 @@ public class CorrelatedParam {
         if (bestFormat.isInteresting()){
             isInteresting = true;
         } else {
-            for (String hint : INTERESTING_HINTS) {
+            for (String hint : SECRET_HINTS) {
                 if (getSample().getName().toLowerCase().contains(hint) && !blacklist.contains(getSample().getValue().toLowerCase())) {
                     isInteresting = true;
                 }
