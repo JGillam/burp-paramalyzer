@@ -24,20 +24,63 @@ import java.util.Map;
 
 public class ParametersTableModel extends AbstractTableModel {
 
+    enum Column {
+        NAME("Name"),
+        TYPE("Type"),
+        ORIGIN("Origin"),
+        REQUESTS("Requests", Integer.class),
+        UNIQUE_URLS("Unique URLs", Integer.class),
+        UNIQUE_VALUES("Unique Values", Integer.class),
+        FORMAT("Format"),
+        REFLECT("Reflect %", Integer.class),
+        SECRET("Secret", Boolean.class, true),
+        DECODABLE("Decodable", Boolean.class),
+        EXAMPLE("Example Value");
+
+        private final String title;
+        private final Class clazz;
+        private final boolean isEditable;
+
+        private Column(String title) {
+            this.title = title;
+            this.clazz = String.class;
+            this.isEditable = false;
+        }
+
+        private Column(String title, Class clazz) {
+            this.title = title;
+            this.clazz = clazz;
+            this.isEditable = false;
+        }
+
+        private Column(String title, Class clazz, boolean isEditable) {
+            this.title = title;
+            this.clazz = clazz;
+            this.isEditable = isEditable;
+        }
+
+        public String getTitle(){
+            return title;
+        }
+
+        public Class getClazz() { return clazz; }
+
+        public boolean isEditable() {return this.isEditable; }
+
+    }
+
     boolean showDecodedValues = true;
     List<CorrelatedParam> entries = new ArrayList<>();
-    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Interesting", "Decodeable", "Example Value"};
-    Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, Boolean.class, String.class};
     Map<CorrelatedParam, ParamInstance> samples = new HashMap<>();
 
     @Override
     public String getColumnName(int column) {
-        return columns[column];
+        return Column.values()[column].getTitle();
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return columnClasses[columnIndex];
+        return Column.values()[columnIndex].getClazz();
     }
 
     public void addParameters(Map<String, CorrelatedParam> parametersToAdd) {
@@ -66,40 +109,44 @@ public class ParametersTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return columns.length;
+        return Column.values().length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         CorrelatedParam param = entries.get(rowIndex);
-        if (!samples.keySet().contains(param)) {
+        if (!samples.containsKey(param)) {
             ParamInstance sample = param.getSample();
             samples.put(param, sample);
         }
 
         ParamInstance sample = samples.get(param);
 
-        switch (columnIndex){
-            case 0:
+        Column col = Column.values()[columnIndex];
+
+        switch (col){
+            case NAME:
                 return sample.getName();
-            case 1:
+            case TYPE:
                 return sample.getTypeName();
-            case 2:
+            case ORIGIN:
+                return param.getOrigin();
+            case REQUESTS:
                 return param.getParamInstances(true).size();
-            case 3:
+            case UNIQUE_URLS:
                 return param.getUniqueURLs().size();
-            case 4:
+            case UNIQUE_VALUES:
                 return param.getParamInstances(false).size();
-            case 5:
+            case FORMAT:
                 return param.getFormatString();
-            case 6:
+            case REFLECT:
                 int count = param.getReflectedCount();
                 return count == 0?0:(100 * count / param.getParamInstances(true).size());
-            case 7:
+            case SECRET:
                 return param.isInteresting() ;
-            case 8:
+            case DECODABLE:
                 return !(sample.getDecodedValue() == null) && !sample.getDecodedValue().equals(sample.getValue());
-            case 9:
+            case EXAMPLE:
                 if(showDecodedValues) {
                     return sample.getDecodedValue();
                 }  else {
@@ -112,12 +159,12 @@ public class ParametersTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        return columnIndex == 7;
+        return Column.values()[columnIndex].isEditable();
     }
 
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-        if(columnIndex == 7) {
+        if(columnIndex == Column.SECRET.ordinal()) {
             CorrelatedParam param = entries.get(rowIndex);
             param.setInteresting(!param.isInteresting());
         }

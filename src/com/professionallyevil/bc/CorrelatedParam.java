@@ -37,22 +37,26 @@ public class CorrelatedParam {
     private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
     private static String[] INTERESTING_BLACKLIST = {"true","false","0","1","null"};
     private static Set<String> blacklist = new HashSet<>();
+    String origin;
 
     static {
         blacklist.addAll(Arrays.asList(INTERESTING_BLACKLIST));
     }
 
     CorrelatedParam(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
-                    IExtensionHelpers helpers) {
+                    String origin, IExtensionHelpers helpers) {
+        this.origin = origin;
         put(param, message, msgNum, requestInfo, responseString, helpers);
     }
 
     CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
-                    IExtensionHelpers helpers) {
+                    String origin, IExtensionHelpers helpers) {
+        this.origin = origin;
         put(param, message, msgNum, requestInfo, responseString, helpers);
     }
 
-    CorrelatedParam(JSONParamInstance param) {
+    CorrelatedParam(JSONParamInstance param, String origin) {
+        this.origin = origin;
         put(param);
     }
 
@@ -99,6 +103,10 @@ public class CorrelatedParam {
         } else{
             uniqueURLs.add(externalForm.substring(0, paramStart));
         }
+    }
+
+    public String getOrigin() {
+        return this.origin;
     }
 
     public void putSeenParam(String value, IHttpRequestResponse message) {

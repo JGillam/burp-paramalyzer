@@ -98,6 +98,9 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     inScopeMessagesWithResponses.add(messages[i]);
                 }
 
+                URL url = requestInfo.getUrl();
+                String origin = String.format("%s://%s:%d", url.getProtocol(),  url.getHost(), url.getPort());
+
                 List<IParameter> params = requestInfo.getParameters();
                 for (IParameter param : params) {
                     if((!ignoreEmpty || param.getValue().length() > 0) && !ignoreList.contains(param.getName())) {
@@ -126,30 +129,34 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                                 callbacks.printOutput("Warning... adding null message!");
                             }
 
-                            if (paramMap.containsKey(param.getName())) {
-                                paramMap.get(param.getName()).put(param, messages[i], i, requestInfo, responseString,
+                            String key = String.format("%S|%S", origin, param.getName());
+
+                            if (paramMap.containsKey(key)) {
+                                paramMap.get(key).put(param, messages[i], i, requestInfo, responseString,
                                         helpers);
                             } else {
-                                paramMap.put(param.getName(), new CorrelatedParam(param, messages[i], i, requestInfo,
-                                        responseString, helpers));
+                                paramMap.put(key, new CorrelatedParam(param, messages[i], i, requestInfo,
+                                        responseString, origin, helpers));
                             }
                         }
                     }
                 }
 
                 // look at path for REST variables
-                URL url = requestInfo.getUrl();
+
                 String[] pathElements = url.getPath().substring(1).split("/");
 
                 for (int p=0; p < pathElements.length -1; p++){
                     RestParamInstance param = new RestParamInstance(pathElements[p], pathElements[p+1], messages[i], i);
 
-                    if (restParameters.containsKey(param.getName())) {
-                        restParameters.get(param.getName()).put(param, messages[i], i, requestInfo, responseString,
+                    String key = String.format("%S|%S", origin, param.getName());
+
+                    if (restParameters.containsKey(key)) {
+                        restParameters.get(key).put(param, messages[i], i, requestInfo, responseString,
                                 helpers);
                     } else {
-                        restParameters.put(param.getName(), new CorrelatedParam(param, messages[i], i, requestInfo,
-                                responseString, helpers));
+                        restParameters.put(key, new CorrelatedParam(param, messages[i], i, requestInfo,
+                                responseString, origin, helpers));
                     }
                 }
             }
@@ -208,7 +215,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     if (jsonPartParameters.containsKey(jsonParam.getName())) {
                         jsonPartParameters.get(jsonParam.getName()).put(jsonParam);
                     } else {
-                        jsonPartParameters.put(jsonParam.getName(), new CorrelatedParam(jsonParam));
+                        jsonPartParameters.put(jsonParam.getName(), new CorrelatedParam(jsonParam, cp.getOrigin()));
                     }
                 }
             }
