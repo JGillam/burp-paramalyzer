@@ -65,6 +65,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JCheckBox showEncodedValues;
     private JCheckBox showFormatPrefix;
     private JCheckBox showDuplicates;
+    private JButton trackSecretsButton;
     IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -369,16 +370,17 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
             }
         }
 
-    }
-
-    public java.util.List<CorrelatedParam> getParamSecrets() {
-        java.util.List<CorrelatedParam> paramSecrets = new ArrayList<>();
-        for (CorrelatedParam param : paramsTableModel.getEntries()) {
-            if (param.isInteresting) {
-                paramSecrets.add(param);
+        trackSecretsButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                for (CorrelatedParam param : paramsTableModel.getEntries()) {
+                    if (param.isInteresting) {
+                        paramTracker.addParameter(param);
+                    }
+                }
+                paramTracker.initializeTracking();
             }
-        }
-        return paramSecrets;
+        });
     }
 
     private void updateParamInstanceList() {
@@ -608,7 +610,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel10.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel10, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(348, 95), null, 0, false));
         final JPanel panel11 = new JPanel();
-        panel11.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel11.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         beginAnalysisButton = new JButton();
         beginAnalysisButton.setText("Analyze");
@@ -617,6 +619,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         clearButton = new JButton();
         clearButton.setText("Clear");
         panel11.add(clearButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        trackSecretsButton = new JButton();
+        trackSecretsButton.setText("Track");
+        trackSecretsButton.setToolTipText("Send the selected Secrets to the Secret Tracker.");
+        panel11.add(trackSecretsButton, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel12, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));

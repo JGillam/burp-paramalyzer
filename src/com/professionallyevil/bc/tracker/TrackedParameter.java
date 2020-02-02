@@ -83,5 +83,12 @@ public class TrackedParameter {
         return correlatedParam.getOrigin();
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TrackedParameter) {
+            return ((TrackedParameter) obj).correlatedParam.equals(this.correlatedParam);
+        } else {
+            return false;
+        }
+    }
 }

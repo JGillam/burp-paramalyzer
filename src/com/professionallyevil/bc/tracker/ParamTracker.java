@@ -39,9 +39,11 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     private JProgressBar progressBar;
     private JTable valueTable;
     private JLabel focusLabel;
+    private JButton clearButton;
     private Paramalyzer paramalyzer;
     private IBurpExtenderCallbacks callbacks;
     TrackedValueTableModel trackedValueTableModel = new TrackedValueTableModel();
+    private boolean hasBeenModified;
 
     public ParamTracker(Paramalyzer p) {
         this.paramalyzer = p;
@@ -54,7 +56,6 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
             public void actionPerformed(ActionEvent e) {
 
                 try {
-                    directionalGraph.getModel().clear();
                     initializeTracking();
                     trackedValueTableModel.setTrackedParameter(null);
                     focusLabel.setText("(nothing selected)");
@@ -66,6 +67,14 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 //                directionalGraph.getModel().addEdge("user", "session");
 //                directionalGraph.getModel().addEdge("password", "session");
 //                directionalGraph.getModel().addEdge("session", "account");
+            }
+        });
+        clearButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                directionalGraph.getModel().clear();
+                trackedValueTableModel.setTrackedParameter(null);
+                focusLabel.setText("(nothing selected)");
             }
         });
     }
@@ -88,20 +97,15 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     @Override
     public void focusSelected(TrackedParameter vertex) {
         trackedValueTableModel.setTrackedParameter(vertex);
-        String text = "<html><b>Name:</b> " + vertex.toString() + " (" + vertex.getTypeName() + ") at origin "+vertex.getOrigin()+"</html>";
+        String text = "<html><b>Name:</b> " + vertex.toString() + " (" + vertex.getTypeName() + ") at origin " + vertex.getOrigin() + "</html>";
         focusLabel.setText(text);
     }
 
-    void initializeTracking() {
-        java.util.List<CorrelatedParam> params = paramalyzer.getParamSecrets();
-        directionalGraph.getModel().clear();  // TODO: optimize so we don't have to reanalyze parameters that have not changed.
-
-        for (CorrelatedParam param : params) {
-            directionalGraph.getModel().addVertex(new TrackedParameter(param));
+    public void initializeTracking() {
+        if (hasBeenModified) {
+            ParamTrackerInitializer initializer = new ParamTrackerInitializer(callbacks, directionalGraph.getModel().getVertices(), this);
+            initializer.execute();
         }
-
-        ParamTrackerInitializer initializer = new ParamTrackerInitializer(callbacks, directionalGraph.getModel().getVertices(), this);
-        initializer.execute();
     }
 
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -111,6 +115,14 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
     public JPanel getMainPanel() {
         return mainPanel;
+    }
+
+    public void addParameter(CorrelatedParam param) {
+        TrackedParameter tp = new TrackedParameter(param);
+        if (!directionalGraph.getModel().getVertices().contains(tp)) {
+            directionalGraph.getModel().addVertex(tp);
+            hasBeenModified = true;
+        }
     }
 
 
@@ -155,7 +167,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
         directionalGraph.setRequestFocusEnabled(false);
         scrollPane2.setViewportView(directionalGraph);
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(4, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel3.setLayout(new GridLayoutManager(5, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel3, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         analyzeButton = new JButton();
         analyzeButton.setText("Analyze");
@@ -174,7 +186,10 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
         progressBar = new JProgressBar();
         panel4.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(240, -1), null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel3.add(spacer4, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel3.add(spacer4, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        clearButton = new JButton();
+        clearButton.setText("Clear");
+        panel3.add(clearButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -188,4 +203,6 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
         // TODO: place custom component creation code here
         directionalGraph = new DirectionalGraphPanel<>();
     }
+
+
 }
