@@ -93,7 +93,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     @Override
     public void focusSelected(TrackedParameter vertex) {
         trackedValueTableModel.setTrackedParameter(vertex);
-        String text = "<html><b>Name:</b> " + vertex.toString() + " (" + vertex.getTypeName() + ")</html>";
+        String text = "<html><b>Name:</b> " + vertex.toString() + " (" + vertex.getTypeName() + ") at origin "+vertex.getOrigin()+"</html>";
         focusLabel.setText(text);
     }
 
