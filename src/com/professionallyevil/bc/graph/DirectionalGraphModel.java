@@ -72,7 +72,7 @@ public class DirectionalGraphModel<T> {
         fireGraphModelUpdated();
     }
 
-    boolean planLayout() {
+    boolean planLayout() {  //TODO: special layout when there are no edges
         if(modelHasChanged) {
             for (T vertex:vertices.keySet()) {
                 vertices.get(vertex).reset();
