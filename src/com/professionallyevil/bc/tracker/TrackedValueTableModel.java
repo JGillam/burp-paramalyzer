@@ -16,84 +16,43 @@
 
 package com.professionallyevil.bc.tracker;
 
-import com.professionallyevil.bc.ParamInstance;
-
 import javax.swing.table.AbstractTableModel;
 
 public class TrackedValueTableModel extends AbstractTableModel {
-    enum Column {
-        VALUE("Value"),
-        DIRECTION("Direction"),
-        ORIGIN("Origin"),
-        PATH("Path"),
-        IN_SCOPE("In Scope"),
-        SOURCE_SECRETS("Source Secrets");
-
-        private final String title;
-
-        private Column(String title) {
-            this.title = title;
-        }
-
-        public String getTitle(){
-            return title;
-        }
-
-    }
-
     TrackedParameter trackedParameter;
-    java.util.List<ParamInstance> instanceList = new java.util.ArrayList<>();
 
     public void setTrackedParameter(TrackedParameter trackedParameter) {
         if (trackedParameter == null) {
             this.trackedParameter = trackedParameter;
-            this.instanceList.clear();
             fireTableDataChanged();
         } else if(trackedParameter != this.trackedParameter) {
             this.trackedParameter = trackedParameter;
-            this.instanceList.clear();
-            trackedParameter.paramInstanceIterator().forEachRemaining(this.instanceList::add);
             fireTableDataChanged();
         }
     }
 
     @Override
     public int getRowCount() {
-        return this.instanceList.size();
+        return trackedParameter == null ? 0 : trackedParameter.getEdges().size();
     }
 
     @Override
     public int getColumnCount() {
-        return Column.values().length;
+        return ParamTrackerEdge.Column.values().length;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Column col = Column.values()[columnIndex];
-        ParamInstance row = instanceList.get(rowIndex);
-        switch(col){
-            case VALUE:
-                return row.getValue();
-            case DIRECTION:
-                return "Request";
-            case ORIGIN:
-                break;
-            case PATH:
-                break;
-            case IN_SCOPE:
-                break;
-            case SOURCE_SECRETS:
-                break;
-            default:
-                return "";
+        if (trackedParameter == null) {
+            return null;
+        } else {
+            ParamTrackerEdge.Column col = ParamTrackerEdge.Column.values()[columnIndex];
+            return trackedParameter.getEdges().get(rowIndex).getValue(col);
         }
-        return "";
     }
 
     @Override
     public String getColumnName(int column) {
-        return Column.values()[column].getTitle();
+        return ParamTrackerEdge.Column.values()[column].getTitle();
     }
 }
-
-// TODO: We want a row for each relationship/edge.  So pairs of current value, request secret (name and value) - even if request secret is none.

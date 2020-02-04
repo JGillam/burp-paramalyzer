@@ -20,10 +20,7 @@ import burp.IBurpExtenderCallbacks;
 import com.professionallyevil.bc.CorrelatedParam;
 import com.professionallyevil.bc.ParamInstance;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.SortedSet;
+import java.util.*;
 
 public class TrackedParameter {
     CorrelatedParam correlatedParam;
@@ -32,6 +29,7 @@ public class TrackedParameter {
     String paramTypeName;
     ValueQueueMap<String, ParamInstance> valueMap = new ValueQueueMap<>(10);  // track most recently seen values
     java.util.List<ParamSign> signs = new java.util.ArrayList<>();
+    java.util.List<ParamTrackerEdge> edges = new java.util.ArrayList<>();
 
     public TrackedParameter(CorrelatedParam param) {
         this.correlatedParam = param;
@@ -90,5 +88,32 @@ public class TrackedParameter {
         } else {
             return false;
         }
+    }
+
+    public void addSign(ParamSign sign) {
+        int i = signs.indexOf(sign);
+        if (i>-1) {
+            signs.set(i, sign);  // replace a sign with a later version of the sign.
+        } else {
+            signs.add(sign);
+        }
+    }
+
+    public List<ParamSign> getSigns() {
+        return signs;
+    }
+
+    public void clearEdges() {
+        edges.clear();
+    }
+
+    public void addEdge(ParamTrackerEdge edge){
+        if(!edges.contains(edge)) {
+            edges.add(edge);
+        }
+    }
+
+    public List<ParamTrackerEdge> getEdges() {
+        return edges;
     }
 }

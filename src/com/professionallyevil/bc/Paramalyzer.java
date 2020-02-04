@@ -363,7 +363,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
             }
         });
 
-        paramTracker = new ParamTracker(this);
+        paramTracker = new ParamTracker();
         for (int t = 0; t < tabPane.getTabCount(); t++) {
             if (tabPane.getTitleAt(t).equals("Tracker")) {
                 tabPane.setComponentAt(t, paramTracker.getMainPanel());
@@ -379,6 +379,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                     }
                 }
                 paramTracker.initializeTracking();
+                tabPane.setSelectedIndex(3);
             }
         });
     }

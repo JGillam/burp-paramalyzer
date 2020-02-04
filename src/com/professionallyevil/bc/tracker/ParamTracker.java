@@ -21,7 +21,6 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.professionallyevil.bc.CorrelatedParam;
-import com.professionallyevil.bc.Paramalyzer;
 import com.professionallyevil.bc.WorkerStatusListener;
 import com.professionallyevil.bc.graph.DirectionalGraphPanel;
 import com.professionallyevil.bc.graph.GraphPanelListener;
@@ -40,13 +39,11 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
     private JTable valueTable;
     private JLabel focusLabel;
     private JButton clearButton;
-    private Paramalyzer paramalyzer;
     private IBurpExtenderCallbacks callbacks;
     TrackedValueTableModel trackedValueTableModel = new TrackedValueTableModel();
     private boolean hasBeenModified;
 
-    public ParamTracker(Paramalyzer p) {
-        this.paramalyzer = p;
+    public ParamTracker() {
         $$$setupUI$$$();
         valueTable.setModel(trackedValueTableModel);
         valueTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -59,10 +56,14 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
                     initializeTracking();
                     trackedValueTableModel.setTrackedParameter(null);
                     focusLabel.setText("(nothing selected)");
-                    //callbacks.printOutput("Tracked parameters: " + directionalGraph.getModel().getVertices().size());
+                    ParamTrackingHunter hunter = new ParamTrackingHunter(directionalGraph.getModel().getVertices(), callbacks, ParamTracker.this);
+                    hunter.execute();
+//                    callbacks.printOutput("Tracked parameters: " + directionalGraph.getModel().getVertices().size());
 
                 } catch (Error ex) {
-                    callbacks.printError(ex.getMessage());
+                    if(callbacks != null) {
+                        callbacks.printError(ex.getMessage());
+                    }
                 }
 //                directionalGraph.getModel().addEdge("user", "session");
 //                directionalGraph.getModel().addEdge("password", "session");
@@ -81,6 +82,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
     @Override
     public void setStatus(String statusText) {
+        callbacks.printOutput("Status: "+statusText);
         progressText.setText(statusText);
     }
 
@@ -91,6 +93,29 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
     @Override
     public void done(Object result) {
+        progressText.setText("Done");
+        System.out.println("DONE");
+        System.out.println("Result is "+result.getClass());
+        try {
+            if (result instanceof java.util.HashSet) {
+                java.util.Set<ParamTrackerEdge> set = (java.util.HashSet<ParamTrackerEdge>)result;
+                for (ParamTrackerEdge edge :set) {
+                        if (edge.requestSecret == null) {
+                            System.out.println("Adding vertex..." + edge.responseSecret.paramTypeName);
+                            directionalGraph.getModel().addVertex(edge.responseSecret);
+                        } else {
+                            System.out.println("Adding edge... " + edge.requestSecret.paramTypeName);
+                            directionalGraph.getModel().addEdge(edge.requestSecret, edge.responseSecret);
+                        }
+
+                }
+            } else {
+                callbacks.printOutput("Result was not a list");
+            }
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+
         directionalGraph.fireAutoPosition();
     }
 
@@ -103,6 +128,7 @@ public class ParamTracker implements WorkerStatusListener, GraphPanelListener<Tr
 
     public void initializeTracking() {
         if (hasBeenModified) {
+            hasBeenModified = false;
             ParamTrackerInitializer initializer = new ParamTrackerInitializer(callbacks, directionalGraph.getModel().getVertices(), this);
             initializer.execute();
         }
