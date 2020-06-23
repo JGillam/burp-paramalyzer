@@ -10,19 +10,102 @@
       <artifact name="burp-paramalyzer" />
     </artifacts-to-build>
   </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamTracker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamTrackerTab.form" afterDir="false" />
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added table structure for">
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/burp_paramalyzer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/Professionally_Evil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copyright/Professionally_Evil.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/jasong.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/jasong.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer_test.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/scopes/Professionally_Evil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scopes/Professionally_Evil.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BappDescription.html" beforeDir="false" afterPath="$PROJECT_DIR$/BappDescription.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BappManifest.bmf" beforeDir="false" afterPath="$PROJECT_DIR$/BappManifest.bmf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/burp-api/burp-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/burp-api/burp-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/cookie-analysis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/cookie-analysis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/parameter-analysis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/parameter-analysis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/session-analysis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/session-analysis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/burp/BurpExtender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/burp/BurpExtender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Base62.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Base62.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionTestCase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DefaultVertexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DefaultVertexRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DirectionalGraphModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DirectionalGraphModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DirectionalGraphPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/DirectionalGraphPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/GraphModelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/GraphModelListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/GraphPanelListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/GraphPanelListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/VertexInfo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/VertexInfo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/VertexRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/graph/VertexRenderer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamSign.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamSign.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTracker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTracker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerEdge.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerEdge.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerInitializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerInitializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackerTab.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackingHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ParamTrackingHunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/TrackedParameter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/TrackedParameter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/TrackedValueTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/TrackedValueTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ValueQueueMap.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/tracker/ValueQueueMap.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,64 +134,27 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build setup" type="c8890929:TasksNode$1" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
       </state>
     </system>
   </component>
-  <component name="FavoritesManager">
-    <favorites_list name="burp-correlator" />
-  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="NamedScopeManager">
@@ -136,10 +182,10 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -150,17 +196,18 @@
     <property name="Repository.Attach.Annotations" value="false" />
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="312" />
+    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="87" />
     <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="385" />
+    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="241" />
     <property name="add_unversioned_files" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547258486493" />
     <property name="dynamic.classpath" value="false" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.35977012" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -169,6 +216,14 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.professionallyevil.bc" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.professionallyevil.bc.tracker" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/burp-api/src" />
+      <recent name="$PROJECT_DIR$/burp-api" />
+      <recent name="C:\Projects\burp-paramalyzer\src\com\professionallyevil\bc\tracker" />
+    </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
@@ -176,7 +231,17 @@
     </option>
   </component>
   <component name="RunManager" selected="Gradle.burp-paramalyzer [fatJar]">
-    <configuration default="true" type="AndroidRunConfigurationType">
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
+      <Host>localhost</Host>
+      <Port>5050</Port>
+    </configuration>
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
@@ -190,8 +255,6 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
       <Profilers>
@@ -205,20 +268,19 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType">
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
       <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="EXTRA_OPTIONS" value="" />
+      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
       <Profilers>
@@ -231,33 +293,30 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="Applet">
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
+    <configuration name="DirectionalGraphPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.professionallyevil.bc.graph.DirectionalGraphPanel" />
+      <module name="paramalyzer.main" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <properties />
-      <listeners />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.professionallyevil.bc.graph.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
-      <Host>localhost</Host>
-      <Port>5050</Port>
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
+    <configuration name="ValueQueueMap" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.professionallyevil.bc.tracker.ValueQueueMap" />
+      <module name="paramalyzer.main" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.professionallyevil.bc.tracker.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -267,25 +326,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="burp-paramalyzer [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="buildDependents" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
     </configuration>
     <configuration name="burp-paramalyzer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -306,7 +346,7 @@
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="burp-paramalyzer [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="burp-paramalyzer [compileJava]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -317,7 +357,7 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="classes" />
+            <option value="compileJava" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -340,25 +380,6 @@
           </list>
         </option>
         <option name="vmOptions" value="" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
-    <configuration name="burp-paramalyzer [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="init" />
-          </list>
-        </option>
-        <option name="vmOptions" />
       </ExternalSystemSettings>
       <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
       <method v="2" />
@@ -390,7 +411,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
       <option name="vmParameters" />
       <option name="alternativeJrePath" />
@@ -424,35 +445,44 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
+      <item itemvalue="Application.DirectionalGraphPanel" />
+      <item itemvalue="Application.ValueQueueMap" />
       <item itemvalue="Gradle.burp-paramalyzer" />
       <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
       <item itemvalue="Gradle.burp-paramalyzer [build]" />
-      <item itemvalue="Gradle.burp-paramalyzer [classes]" />
-      <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
-      <item itemvalue="Gradle.burp-paramalyzer [init]" />
+      <item itemvalue="Gradle.burp-paramalyzer [compileJava]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
         <item itemvalue="Gradle.burp-paramalyzer [build]" />
-        <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
-        <item itemvalue="Gradle.burp-paramalyzer [classes]" />
-        <item itemvalue="Gradle.burp-paramalyzer [init]" />
+        <item itemvalue="Application.ValueQueueMap" />
+        <item itemvalue="Gradle.burp-paramalyzer [compileJava]" />
+        <item itemvalue="Application.DirectionalGraphPanel" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -464,139 +494,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Fixed decoded field in table.  Added &quot;Deflected&quot;.">
-      <created>1450967932074</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1450967932074</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated class level docs">
-      <created>1450969557055</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1450969557055</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed multiple format detection, including issue #2, issue #3">
-      <created>1450977110319</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1450977110319</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Renamed Correlator to Paramalyser">
-      <created>1451767506571</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1451767506571</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed some of the analyzer logic to make it work a bit better.">
-      <created>1451769839726</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1451769839726</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Minor change">
-      <created>1451770468673</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1451770468673</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added a cookie tab.">
-      <created>1475075363431</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1475075363431</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added export button to export to csv file.">
-      <created>1475107269509</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107269509</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Cleaned up formatting of cookie statistics table.">
-      <created>1475107464176</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107464176</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fixed column count">
-      <created>1475107630824</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107630824</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Make table sortable">
-      <created>1475107834808</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107834808</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Fixed sorting of count column">
-      <created>1475108206280</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1475108206280</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Updated version number to 1.0.0">
-      <created>1475108246077</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1475108246077</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Fixed NPE">
-      <created>1475181692618</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1475181692618</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added support for basic JSON objects. (lists not handled... yet)">
-      <created>1481252026244</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1481252026244</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Added recognition of JSON parameters.">
-      <created>1481256193341</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1481256193341</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Improved some of the pattern matching.">
-      <created>1481256990497</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1481256990497</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Skip reflection check for values less than 3 characters.">
-      <created>1481257322992</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257322992</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Change default to ignore empty values.">
-      <created>1481257452340</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257452340</updated>
     </task>
     <task id="LOCAL-00023" summary="Updated version number to 1.0.2">
       <created>1481257670298</created>
@@ -808,19 +705,180 @@
       <option name="project" value="LOCAL" />
       <updated>1574997589910</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Renamed project to burp-paramalyzer.">
+      <created>1575219567091</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1575219567092</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Param Tracker tab">
+      <created>1575253053940</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1575253053941</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Directional Graph initial implementation.">
+      <created>1579382833156</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1579382833156</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Bulk commit - functional initialization.">
+      <created>1579477018117</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1579477018117</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Edge detection basically working.">
+      <created>1579561901106</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1579561901108</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Switched return on identifyPresence to void.">
+      <created>1580091087458</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1580091087458</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Basic table for map values.">
+      <created>1580091692494</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1580091692494</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Hooked up focus selection from map to value table.">
+      <created>1580094425529</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1580094425529</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Setup hooks to make positioning more dynamic.">
+      <created>1580262295436</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1580262295436</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Draggable boxes on the graph.">
+      <created>1580430800454</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1580430800454</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Added selected item label.">
+      <created>1580432555540</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1580432555540</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Added todo reminder for how this needs to be changed.">
+      <created>1580603667865</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1580603667865</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Added tracking of parameters by origin.">
+      <created>1580606584949</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1580606584949</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Added origin to label.">
+      <created>1580607067643</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1580607067643</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Added &quot;auth&quot; to secret hints.">
+      <created>1580607264172</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1580607264172</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Remove edge calculations and start organizing tracked parameters into ParamSign objects.">
+      <created>1580667142610</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1580667142610</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Modified workflow to push secrets from main tab to tracker tab instead of pulling.">
+      <created>1580668474807</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1580668474807</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Added reminder about layout.">
+      <created>1580693547312</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1580693547312</updated>
+    </task>
+    <task id="LOCAL-00071" summary="New edge-hunting algorithm is basically working but there are way too many duplicates.">
+      <created>1580783485789</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1580783485789</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
-        <entry key="MAIN">
+        <entry key="1">
           <value>
             <State>
-              <option name="COLUMN_ORDER" />
+              <option name="SHOW_ONLY_AFFECTED_CHANGES" value="true" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                  <entry key="structure">
+                    <value>
+                      <list>
+                        <option value="dir:C:/Projects/burp-paramalyzer/src/com/professionallyevil/bc/tracker" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
           </value>
         </entry>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="1" value="TOOL_WINDOW" />
       </map>
     </option>
     <option name="RECENT_FILTERS">
@@ -837,6 +895,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -849,78 +908,78 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added popup menu to send request to Repeater." />
-    <MESSAGE value="Updated copyright." />
-    <MESSAGE value="Deep analysis functionality updates." />
-    <MESSAGE value="Project file cleanup." />
-    <MESSAGE value="Cleared up some UI issues." />
-    <MESSAGE value="Added Session Analyzer tab." />
-    <MESSAGE value="Fixed some member scopes." />
-    <MESSAGE value="Renamed SessionTestRow to SessionTestCase" />
-    <MESSAGE value="Added support for authorization header." />
-    <MESSAGE value="Send to repeater." />
-    <MESSAGE value="send response to comparer" />
-    <MESSAGE value="Add response time to table." />
-    <MESSAGE value="Added a close button for session analysis tabs." />
-    <MESSAGE value="Open correct tab when sending to Paramalyzer" />
-    <MESSAGE value="Tidy up UI" />
-    <MESSAGE value="Added more stuff to .gitignore." />
-    <MESSAGE value="Uniform horizontal sizing of detail pane columns." />
-    <MESSAGE value="Put Deep Analysis tab close button in the same place as the session analysis tab." />
-    <MESSAGE value="Added Type, Domains, and Paths to the Cookie Analysis Tab." />
     <MESSAGE value="Added origin response search." />
     <MESSAGE value="Added docs using mkdocs." />
     <MESSAGE value="Fixed quirky looking session help tab in dark mode." />
     <MESSAGE value="Updated burp-extender-api dependency to 2.1" />
     <MESSAGE value="Updated autogenerated UI component code." />
     <MESSAGE value="Rearranged tabs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged tabs." />
+    <MESSAGE value="Renamed project to burp-paramalyzer." />
+    <MESSAGE value="Param Tracker tab" />
+    <MESSAGE value="Directional Graph initial implementation." />
+    <MESSAGE value="Bulk commit - functional initialization." />
+    <MESSAGE value="Edge detection basically working." />
+    <MESSAGE value="Switched return on identifyPresence to void." />
+    <MESSAGE value="Basic table for map values." />
+    <MESSAGE value="Hooked up focus selection from map to value table." />
+    <MESSAGE value="Setup hooks to make positioning more dynamic." />
+    <MESSAGE value="Draggable boxes on the graph." />
+    <MESSAGE value="Added selected item label." />
+    <MESSAGE value="Added todo reminder for how this needs to be changed." />
+    <MESSAGE value="Added tracking of parameters by origin." />
+    <MESSAGE value="Added origin to label." />
+    <MESSAGE value="Added &quot;auth&quot; to secret hints." />
+    <MESSAGE value="Remove edge calculations and start organizing tracked parameters into ParamSign objects." />
+    <MESSAGE value="Modified workflow to push secrets from main tab to tracker tab instead of pulling." />
+    <MESSAGE value="Added reminder about layout." />
+    <MESSAGE value="New edge-hunting algorithm is basically working but there are way too many duplicates." />
+    <option name="LAST_COMMIT_MESSAGE" value="New edge-hunting algorithm is basically working but there are way too many duplicates." />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1109" y="352" key="#Plugins" timestamp="1574992972731">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="778" y="445" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1591918854973">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="1109" y="352" key="#Plugins/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574992972731" />
-    <state x="1083" y="394" key="#com.intellij.ide.util.MemberChooser" timestamp="1575124843596">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="778" y="445" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591918854973" />
+    <state x="622" y="304" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1592870134922">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="1083" y="394" key="#com.intellij.ide.util.MemberChooser/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575124843596" />
-    <state x="1105" y="301" key="CommitChangelistDialog2" timestamp="1574997588815">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="622" y="304" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1592870134922" />
+    <state x="554" y="164" key="CommitChangelistDialog2" timestamp="1592870240297">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="1105" y="301" key="CommitChangelistDialog2/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574997588815" />
-    <state width="1253" height="354" key="GridCell.Tab.0.bottom" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="554" y="164" key="CommitChangelistDialog2/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1592870240297" />
+    <state width="1538" height="269" key="GridCell.Tab.0.bottom" timestamp="1591927038037">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.bottom/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state width="1253" height="354" key="GridCell.Tab.0.center" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1538" height="269" key="GridCell.Tab.0.bottom/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591927038037" />
+    <state width="1538" height="269" key="GridCell.Tab.0.center" timestamp="1591927038037">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.center/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state width="1253" height="354" key="GridCell.Tab.0.left" timestamp="1575125221577">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1538" height="269" key="GridCell.Tab.0.center/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591927038037" />
+    <state width="1538" height="269" key="GridCell.Tab.0.left" timestamp="1591927038036">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.left/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221577" />
-    <state width="1253" height="354" key="GridCell.Tab.0.right" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1538" height="269" key="GridCell.Tab.0.left/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591927038036" />
+    <state width="1538" height="269" key="GridCell.Tab.0.right" timestamp="1591927038037">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.right/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state x="997" y="268" key="SettingsEditor" timestamp="1575219505697">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state width="1538" height="269" key="GridCell.Tab.0.right/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591927038037" />
+    <state x="681" y="277" key="RollbackChangesDialog" timestamp="1592869998731">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="997" y="268" key="SettingsEditor/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575219505697" />
-    <state x="476" y="113" width="1900" height="1188" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1574995814686">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="681" y="277" key="RollbackChangesDialog/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1592869998731" />
+    <state x="433" y="130" key="SettingsEditor" timestamp="1591919186946">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="476" y="113" width="1900" height="1188" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574995814686" />
-    <state x="1212" y="518" key="com.intellij.ide.util.TipDialog" timestamp="1574995558995">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="433" y="130" key="SettingsEditor/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1591919186946" />
+    <state x="476" y="273" width="1214" height="694" key="com.intellij.ide.util.TipDialog" timestamp="1592870121224">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="1212" y="518" key="com.intellij.ide.util.TipDialog/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574995558995" />
-    <state x="1173" y="330" width="672" height="677" key="run.anything.popup" timestamp="1574992781630">
-      <screen x="0" y="0" width="2560" height="1400" />
+    <state x="476" y="273" key="com.intellij.ide.util.TipDialog/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1592870121224" />
+    <state x="722" y="480" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592870332899">
+      <screen x="0" y="23" width="1792" height="1033" />
     </state>
-    <state x="1173" y="330" width="672" height="677" key="run.anything.popup/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574992781630" />
+    <state x="722" y="480" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-2560.23.2560.1417/0.23.1792.1033@0.23.1792.1033" timestamp="1592870332899" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />

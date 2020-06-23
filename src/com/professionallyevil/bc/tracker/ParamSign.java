@@ -60,5 +60,7 @@ public class ParamSign implements Comparable<ParamSign>{
         }
     }
 
+    // TODO: Make unit test.  The equals doesn't seem to work.
+
     // TODO:  Make this comparable, using the responseHash + signValue + url
 }
