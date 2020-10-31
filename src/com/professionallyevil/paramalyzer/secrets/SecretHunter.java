@@ -28,6 +28,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class SecretHunter implements IBurpExtender {
     private JPanel mainPanel;
@@ -35,6 +36,8 @@ public class SecretHunter implements IBurpExtender {
     private JButton importSecrets;
     private JButton removeImportedButton;
     private JButton addSecretButton;
+    private JButton editSelectedButton;
+    private JButton removeSelectedButton;
     private final SecretsTableModel secretsTableModel = new SecretsTableModel();
     private IBurpExtenderCallbacks callbacks;
 
@@ -74,6 +77,54 @@ public class SecretHunter implements IBurpExtender {
 
             }
         });
+        editSelectedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int selectedRow = secretsTable.getSelectedRow();
+                    Secret secret = secretsTableModel.getSecret(selectedRow);
+                    if (secret instanceof CustomSecret) {
+                        CustomSecret customSecret = (CustomSecret) secret;
+                        AddModifySecret dialog = new AddModifySecret(customSecret, new AddModifySecretListener() {
+                            @Override
+                            public void dialogAccepted(String name, boolean isRegex, String matchString) {
+                                customSecret.setName(name);
+                                if (isRegex) {
+                                    customSecret.setRegex(matchString);
+                                } else {
+                                    customSecret.setExactMatch(matchString);
+                                }
+                                secretsTableModel.fireTableRowsUpdated(selectedRow, selectedRow);
+                            }
+                        });
+                        dialog.pack();
+                        dialog.setLocationRelativeTo(mainPanel);
+                        dialog.setVisible(true);
+
+                    }
+
+            }
+        });
+        removeSelectedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int[] selectedRows = secretsTable.getSelectedRows();
+                java.util.List<Secret> toBeRemoved = new ArrayList<>();
+                for (int i = 0; i < selectedRows.length; i++) {
+                    toBeRemoved.add(secretsTableModel.getSecret(selectedRows[i]));
+                }
+                secretsTableModel.removeSecrets(toBeRemoved);
+            }
+        });
+
+        //  TODO: Investigate - why adding this logic in seems to cause glitchy table rendering.
+//        secretsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//            @Override
+//            public void valueChanged(ListSelectionEvent listSelectionEvent) {
+//                if (secretsTable.getSelectedColumnCount() > 0) {
+//                    editSelectedButton.setEnabled(secretsTableModel.getSecret(secretsTable.getSelectedRow()) instanceof CustomSecret);
+//                }
+//            }
+//        });
     }
 
     @Override
@@ -112,19 +163,25 @@ public class SecretHunter implements IBurpExtender {
         secretsTable = new JTable();
         scrollPane1.setViewportView(secretsTable);
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(6, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         importSecrets = new JButton();
         importSecrets.setText("Import Secrets");
         panel1.add(importSecrets, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panel1.add(spacer3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(spacer3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         removeImportedButton = new JButton();
         removeImportedButton.setText("Remove Imported");
         panel1.add(removeImportedButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         addSecretButton = new JButton();
         addSecretButton.setText("Add Secret");
         panel1.add(addSecretButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        editSelectedButton = new JButton();
+        editSelectedButton.setText("Edit Selected");
+        panel1.add(editSelectedButton, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        removeSelectedButton = new JButton();
+        removeSelectedButton.setText("Remove Selected");
+        panel1.add(removeSelectedButton, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**

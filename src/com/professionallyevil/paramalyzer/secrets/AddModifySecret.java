@@ -33,9 +33,7 @@ public class AddModifySecret extends JDialog {
     private JComboBox comboSecretType;
     private JTextField textSecretMatch;
     private JLabel instructionsLabel;
-    private Secret secret;
     private AddModifySecretListener listener;
-
 
     public AddModifySecret(CustomSecret secret, AddModifySecretListener listener) {
         setContentPane(contentPane);
@@ -43,13 +41,12 @@ public class AddModifySecret extends JDialog {
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
         if (secret != null) {
-            this.secret = secret;
             textSecretName.setText(secret.getName());
             comboSecretType.setSelectedIndex(secret.isRegex() ? 1 : 0);
             textSecretMatch.setText(secret.getMatchString());
+        } else {
+            comboSecretType.setSelectedIndex(0);
         }
-
-
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -137,7 +134,7 @@ public class AddModifySecret extends JDialog {
         panel3.add(label2, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         comboSecretType = new JComboBox();
         final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
-        defaultComboBoxModel1.addElement("String Match");
+        defaultComboBoxModel1.addElement("Exact Match");
         defaultComboBoxModel1.addElement("Regular Expression");
         comboSecretType.setModel(defaultComboBoxModel1);
         panel3.add(comboSecretType, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -147,7 +144,7 @@ public class AddModifySecret extends JDialog {
         textSecretMatch = new JTextField();
         panel3.add(textSecretMatch, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         instructionsLabel = new JLabel();
-        instructionsLabel.setText("<html>Choose a meaningful name for this secret and the match type (String or Regex) plus the match value / criteria.</html>");
+        instructionsLabel.setText("<html>Choose a name for this secret and the match type (Exact Match or Regex). Define the pattern in the Match field.</html>");
         panel3.add(instructionsLabel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setText("Instructions");

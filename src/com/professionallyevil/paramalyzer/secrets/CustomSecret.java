@@ -55,4 +55,18 @@ public class CustomSecret extends Secret{
             return exactMatch;
         }
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setRegex(String regexPattern) {
+        pattern = Pattern.compile(regexPattern);
+        isRegex = true;
+    }
+
+    public void setExactMatch(String matchString) {
+        exactMatch = matchString;
+        isRegex = false;
+    }
 }

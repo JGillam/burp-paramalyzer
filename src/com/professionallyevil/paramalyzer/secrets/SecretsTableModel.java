@@ -22,6 +22,8 @@ import java.util.List;
 
 public class SecretsTableModel extends AbstractTableModel {
 
+
+
     enum SecretsColumn {
         NAME("Name"),
         TYPE("Type");
@@ -78,6 +80,10 @@ public class SecretsTableModel extends AbstractTableModel {
         }
     }
 
+    public Secret getSecret(int row) {
+        return secrets.get(row);
+    }
+
     public void removeImported(){
         List<ParameterSecret> secretsToBeRemoved = new ArrayList<>();
         for (Secret s: secrets) {
@@ -89,5 +95,10 @@ public class SecretsTableModel extends AbstractTableModel {
             secrets.removeAll(secretsToBeRemoved);
             fireTableDataChanged();
         }
+    }
+
+    public void removeSecrets(List<Secret> toBeRemoved) {
+        secrets.removeAll(toBeRemoved);
+        fireTableDataChanged();
     }
 }
