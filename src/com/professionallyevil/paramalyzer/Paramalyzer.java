@@ -21,6 +21,7 @@ import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.professionallyevil.paramalyzer.deep.DeepAnalysisTab;
+import com.professionallyevil.paramalyzer.secrets.SecretHunter;
 import com.professionallyevil.paramalyzer.sessions.SessionAnalysisTab;
 
 import javax.swing.*;
@@ -68,6 +69,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JCheckBox showEncodedValues;
     private JCheckBox showFormatPrefix;
     private JCheckBox showDuplicates;
+    private JPanel secretsPanel;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -75,6 +77,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private ParamListModel paramListModel = new ParamListModel();
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
+    private SecretHunter secretHunter = new SecretHunter();
 
     private static final boolean DEBUG_STATUS = true;
     private static final String VERSION = "2.2.0";
@@ -363,6 +366,9 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 updateParamInstanceList();
             }
         });
+
+        secretsPanel.setLayout(new GridLayout(1, 1));
+        secretsPanel.add(secretHunter.getMainPanel());
     }
 
     private void updateParamInstanceList() {
@@ -613,37 +619,40 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel12.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         progressBar = new JProgressBar();
         panel12.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        secretsPanel = new JPanel();
+        secretsPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Secrets", secretsPanel);
         final JPanel panel13 = new JPanel();
-        panel13.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Cookies", panel13);
-        final Spacer spacer1 = new Spacer();
-        panel13.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        final JScrollPane scrollPane6 = new JScrollPane();
-        panel13.add(scrollPane6, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        cookieTable = new JTable();
-        scrollPane6.setViewportView(cookieTable);
-        saveCookieStatsButton = new JButton();
-        saveCookieStatsButton.setText("Save...");
-        saveCookieStatsButton.setToolTipText("Save these results to a CSV file.");
-        panel13.add(saveCookieStatsButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final Spacer spacer2 = new Spacer();
-        panel13.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel13.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Sessions", panel13);
+        sessionsTabbedPane = new JTabbedPane();
+        panel13.add(sessionsTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel14 = new JPanel();
         panel14.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Sessions", panel14);
-        sessionsTabbedPane = new JTabbedPane();
-        panel14.add(sessionsTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
-        final JPanel panel15 = new JPanel();
-        panel15.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        sessionsTabbedPane.addTab("Help", panel15);
-        final JScrollPane scrollPane7 = new JScrollPane();
-        scrollPane7.setEnabled(false);
-        panel15.add(scrollPane7, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        sessionsTabbedPane.addTab("Help", panel14);
+        final JScrollPane scrollPane6 = new JScrollPane();
+        scrollPane6.setEnabled(false);
+        panel14.add(scrollPane6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         sessionsHelpTextPane = new JTextArea();
         sessionsHelpTextPane.setEditable(false);
         sessionsHelpTextPane.setLineWrap(true);
         sessionsHelpTextPane.setText("This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.\n\nTo perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and \"Send to Paramalyzer\".  This will create a new tab next to this help tab.\n\nOnce in that tab, use the \"Verify Baseline\" button to make sure your request is  still producing authenticated responses, then press the \"Analyze\" button.");
-        scrollPane7.setViewportView(sessionsHelpTextPane);
+        scrollPane6.setViewportView(sessionsHelpTextPane);
+        final JPanel panel15 = new JPanel();
+        panel15.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Cookies", panel15);
+        final Spacer spacer1 = new Spacer();
+        panel15.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        final JScrollPane scrollPane7 = new JScrollPane();
+        panel15.add(scrollPane7, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        cookieTable = new JTable();
+        scrollPane7.setViewportView(cookieTable);
+        saveCookieStatsButton = new JButton();
+        saveCookieStatsButton.setText("Save...");
+        saveCookieStatsButton.setToolTipText("Save these results to a CSV file.");
+        panel15.add(saveCookieStatsButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final Spacer spacer2 = new Spacer();
+        panel15.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel16 = new JPanel();
         panel16.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabPane.addTab("Deep Analysis", panel16);

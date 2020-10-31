@@ -39,39 +39,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/scopes/Professionally_Evil.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/scopes/Professionally_Evil.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/burp/BurpExtender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/burp/BurpExtender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Base62.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Base62.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CookieStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CookieStatisticsTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/DetailsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/JSONParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/JSONParamParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/OriginSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstanceListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/PopupRequestResponseDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/RequestFetcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/RestParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/WorkerStatusListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -488,20 +463,6 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
     </task>
-    <task id="LOCAL-00004" summary="Fixed decoded field in table.  Added &quot;Deflected&quot;.">
-      <created>1450967932074</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1450967932074</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated class level docs">
-      <created>1450969557055</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1450969557055</updated>
-    </task>
     <task id="LOCAL-00006" summary="Fixed multiple format detection, including issue #2, issue #3">
       <created>1450977110319</created>
       <option name="number" value="00006" />
@@ -831,7 +792,21 @@
       <option name="project" value="LOCAL" />
       <updated>1574997589910</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Reorganized package structure.">
+      <created>1604151291205</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1604151291205</updated>
+    </task>
+    <task id="LOCAL-00054" summary="ignore aws config">
+      <created>1604151343217</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1604151343217</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -888,8 +863,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added popup menu to send request to Repeater." />
-    <MESSAGE value="Updated copyright." />
     <MESSAGE value="Deep analysis functionality updates." />
     <MESSAGE value="Project file cleanup." />
     <MESSAGE value="Cleared up some UI issues." />
@@ -913,13 +886,19 @@
     <MESSAGE value="Updated burp-extender-api dependency to 2.1" />
     <MESSAGE value="Updated autogenerated UI component code." />
     <MESSAGE value="Rearranged tabs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged tabs." />
+    <MESSAGE value="Reorganized package structure." />
+    <MESSAGE value="ignore aws config" />
+    <option name="LAST_COMMIT_MESSAGE" value="ignore aws config" />
   </component>
   <component name="WindowStateProjectService">
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604150069074">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604150069074" />
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser" timestamp="1604154458626">
+      <screen x="0" y="23" width="2560" height="1353" />
+    </state>
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604154458626" />
     <state x="1050" y="504" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604151099558">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
@@ -940,22 +919,22 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="319" y="219" width="1864" height="1020" key="DiffContextDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604068019754" />
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604151187042">
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604155920292">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604151187042" />
-    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604151187041">
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920292" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604155920291">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604151187041" />
-    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604151187041">
+    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920291" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604155920291">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604151187041" />
-    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604151187042">
+    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920291" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604155920292">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604151187042" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920292" />
     <state x="814" y="346" key="SettingsEditor" timestamp="1604087384720">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
@@ -964,6 +943,10 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="1098" y="649" key="VCS.ChangelistChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604067552255" />
+    <state x="1011" y="462" width="604" height="490" key="find.popup" timestamp="1604154781901">
+      <screen x="0" y="23" width="2560" height="1353" />
+    </state>
+    <state x="1011" y="462" width="604" height="490" key="find.popup/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604154781901" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
