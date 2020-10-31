@@ -100,3 +100,4 @@ hs_err_pid*
 /gradlew
 /.idea/markdown-navigator/
 /.idea/markdown-navigator.xml
+/.idea/aws.xml
