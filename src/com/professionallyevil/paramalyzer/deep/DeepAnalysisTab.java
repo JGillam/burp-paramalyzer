@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Jason Gillam
+ * Copyright (c) 2020 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,17 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer.deep;
 
 import burp.IBurpExtenderCallbacks;
 import burp.IRequestInfo;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.professionallyevil.paramalyzer.*;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
@@ -49,7 +51,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
     IBurpExtenderCallbacks callbacks;
     private String title;
 
-    DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
+    public DeepAnalysisTab(ParamInstance pi, Paramalyzer parent, IBurpExtenderCallbacks callbacks) {
         this.parent = parent;
         this.callbacks = callbacks;
         titleLabel.setText("Deep Analysis: [" + pi.getTypeName() + "] " + pi.getName() + " = " + pi.getDecodedValue() + "\n (Inferred Format: " + pi.getFormat() + ")");
@@ -64,7 +66,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
         listMatches.setModel(listModel);
 
         textDetails.setText("Processing...");
-        analyzer = new DeepAnalyzer(pi, ((ParametersTableModel) parent.parametersTable.getModel()).getEntries(), callbacks, this);
+        analyzer = new DeepAnalyzer(pi, ((ParametersTableModel) parent.getParametersTableModel()).getEntries(), callbacks, this);
         listMatches.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -86,7 +88,7 @@ public class DeepAnalysisTab implements WorkerStatusListener {
         analyzer.execute();
     }
 
-    JPanel getMainPanel() {
+    public JPanel getMainPanel() {
         return mainPanel;
     }
 
@@ -146,13 +148,13 @@ public class DeepAnalysisTab implements WorkerStatusListener {
         panel2.add(splitPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         splitPane1.setLeftComponent(scrollPane1);
-        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Matches"));
+        scrollPane1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Matches", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         listMatches = new JList();
         listMatches.setSelectionMode(0);
         scrollPane1.setViewportView(listMatches);
         final JScrollPane scrollPane2 = new JScrollPane();
         splitPane1.setRightComponent(scrollPane2);
-        scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Details"));
+        scrollPane2.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), "Details", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         textDetails = new JTextArea();
         scrollPane2.setViewportView(textDetails);
         final Spacer spacer2 = new Spacer();

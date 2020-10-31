@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer;
 
 
 import burp.IHttpRequestResponse;
@@ -24,7 +24,7 @@ import burp.IParameter;
  * Wrapper for IParam  so it can be used as a key in a Set properly
  **/
 public class ParamInstance implements IParameter, Comparable<ParamInstance> {
-    enum Format {
+    public enum Format {
         UNKNOWN("Unknown"),
         NUMERIC("Numeric"),
         TEXT("Word"),

@@ -14,16 +14,20 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer;
 
 import burp.*;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.professionallyevil.paramalyzer.deep.DeepAnalysisTab;
+import com.professionallyevil.paramalyzer.sessions.SessionAnalysisTab;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
+import javax.swing.table.TableModel;
 import javax.swing.text.Caret;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
@@ -58,7 +62,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JCheckBox showDecodedValuesCheckBox;
     private JTable cookieTable;
     private JButton saveCookieStatsButton;
-    protected JTabbedPane tabPane;
+    public JTabbedPane tabPane;
     private JTabbedPane sessionsTabbedPane;
     private JTextArea sessionsHelpTextPane;
     private JCheckBox showEncodedValues;
@@ -71,10 +75,9 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private ParamListModel paramListModel = new ParamListModel();
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
-    private int deepTabCount = 0;
 
     private static final boolean DEBUG_STATUS = true;
-    private static final String VERSION = "2.1.1";
+    private static final String VERSION = "2.2.0";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
@@ -380,6 +383,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         }
     }
 
+    public TableModel getParametersTableModel() {
+        return parametersTable.getModel();
+    }
+
     @Override
     public void setStatus(String statusText) {
         if (DEBUG_STATUS) {
@@ -521,11 +528,11 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel3.setMaximumSize(new Dimension(2147483647, 280));
         panel3.setPreferredSize(new Dimension(832, 250));
         splitPane1.setRightComponent(panel3);
-        panel3.setBorder(BorderFactory.createTitledBorder("Details"));
+        panel3.setBorder(BorderFactory.createTitledBorder(null, "Details", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new BorderLayout(0, 0));
         panel3.add(panel4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel4.setBorder(BorderFactory.createTitledBorder("Values"));
+        panel4.setBorder(BorderFactory.createTitledBorder(null, "Values", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane2 = new JScrollPane();
         scrollPane2.setMaximumSize(new Dimension(120, 32767));
         panel4.add(scrollPane2, BorderLayout.CENTER);
@@ -553,7 +560,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final JPanel panel6 = new JPanel();
         panel6.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1, true, false));
         panel3.add(panel6, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel6.setBorder(BorderFactory.createTitledBorder("What is it?"));
+        panel6.setBorder(BorderFactory.createTitledBorder(null, "What is it?", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane3 = new JScrollPane();
         panel6.add(scrollPane3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         analysisTextArea = new JTextArea();
@@ -563,10 +570,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final JPanel panel7 = new JPanel();
         panel7.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1, true, false));
         panel3.add(panel7, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel7.setBorder(BorderFactory.createTitledBorder("Req. / Resp."));
+        panel7.setBorder(BorderFactory.createTitledBorder(null, "Req. / Resp.", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JTabbedPane tabbedPane1 = new JTabbedPane();
         panel7.add(tabbedPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 2, false));
-        tabbedPane1.setBorder(BorderFactory.createTitledBorder("Message"));
+        tabbedPane1.setBorder(BorderFactory.createTitledBorder(null, "Message", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel8 = new JPanel();
         panel8.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane1.addTab("Request", panel8);
@@ -600,7 +607,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final JPanel panel12 = new JPanel();
         panel12.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel12, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-        panel12.setBorder(BorderFactory.createTitledBorder("Status"));
+        panel12.setBorder(BorderFactory.createTitledBorder(null, "Status", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         textFieldStatus = new JTextField();
         textFieldStatus.setEditable(false);
         panel12.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
@@ -646,10 +653,10 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final JPanel panel18 = new JPanel();
         panel18.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel17.add(panel18, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel18.setBorder(BorderFactory.createTitledBorder("Parameter Analysis"));
+        panel18.setBorder(BorderFactory.createTitledBorder(null, "Parameter Analysis", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane8 = new JScrollPane();
         panel18.add(scrollPane8, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        scrollPane8.setBorder(BorderFactory.createTitledBorder("Ignore These"));
+        scrollPane8.setBorder(BorderFactory.createTitledBorder(null, "Ignore These", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         ignore = new JTextArea();
         ignore.setText("__VIEWSTATE\n__VIEWSTATEGENERATOR");
         ignore.setToolTipText("List parameters with large values you want to skip over.");

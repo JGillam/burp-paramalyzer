@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
-
-import burp.IBurpExtenderCallbacks;
+package com.professionallyevil.paramalyzer;
 
 import javax.swing.*;
 import java.util.Set;
@@ -25,7 +23,7 @@ public class ParamInstanceListModel extends AbstractListModel<String> {
 
     private ParamInstance[] paramInstanceList = new ParamInstance[0];
 
-    void setListData(Set<ParamInstance> params){
+    public void setListData(Set<ParamInstance> params){
         int originalLength = paramInstanceList.length;
         ParamInstance[] newInstanceList = new ParamInstance[params.size()];
         paramInstanceList = params.toArray(newInstanceList);
@@ -42,7 +40,7 @@ public class ParamInstanceListModel extends AbstractListModel<String> {
         return "[" + paramInstanceList[index].getTypeName() +"] " + paramInstanceList[index].getName();
     }
 
-    ParamInstance getParamInstanceAt(int index) {
+    public ParamInstance getParamInstanceAt(int index) {
         return paramInstanceList[index];
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Jason Gillam
+ * Copyright (c) 2020 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,14 +14,16 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer.sessions;
 
 import burp.*;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
+import com.professionallyevil.paramalyzer.*;
 
 import javax.swing.*;
+import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -44,7 +46,7 @@ public class SessionAnalysisTab implements WorkerStatusListener {
     private SessionAnalysisTableModel sessionTableModel;
 
 
-    SessionAnalysisTab(Paramalyzer parent, IBurpExtenderCallbacks callbacks, byte[] request, IHttpService service) {
+    public SessionAnalysisTab(Paramalyzer parent, IBurpExtenderCallbacks callbacks, byte[] request, IHttpService service) {
         this.parent = parent;
         this.callbacks = callbacks;
         if (this.service == null) {
@@ -162,12 +164,12 @@ public class SessionAnalysisTab implements WorkerStatusListener {
         });
     }
 
-    void initializeTab() {
+    public void initializeTab() {
         horizontalSplitPane.setDividerLocation(0.35);
     }
 
 
-    JPanel getSessionTabPanel() {
+    public JPanel getSessionTabPanel() {
         return sessionTabPanel;
     }
 
@@ -217,13 +219,13 @@ public class SessionAnalysisTab implements WorkerStatusListener {
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         horizontalSplitPane.setLeftComponent(panel1);
-        panel1.setBorder(BorderFactory.createTitledBorder("Baseline Verification"));
+        panel1.setBorder(BorderFactory.createTitledBorder(null, "Baseline Verification", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         messageEditorPanel = new JPanel();
         messageEditorPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel1.add(messageEditorPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
         messageEditorPanel.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        scrollPane1.setBorder(BorderFactory.createTitledBorder("Request"));
+        scrollPane1.setBorder(BorderFactory.createTitledBorder(null, "Request", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         textAreaBaselineRequest = new JTextArea();
         textAreaBaselineRequest.setEditable(false);
         scrollPane1.setViewportView(textAreaBaselineRequest);
@@ -245,13 +247,13 @@ public class SessionAnalysisTab implements WorkerStatusListener {
         panel2.add(spacer1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         panel2.add(scrollPane2, new GridConstraints(2, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        scrollPane2.setBorder(BorderFactory.createTitledBorder("Response"));
+        scrollPane2.setBorder(BorderFactory.createTitledBorder(null, "Response", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         textAreaBaselineResponse = new JTextArea();
         scrollPane2.setViewportView(textAreaBaselineResponse);
         final JPanel panel4 = new JPanel();
         panel4.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
         horizontalSplitPane.setRightComponent(panel4);
-        panel4.setBorder(BorderFactory.createTitledBorder("Results Table"));
+        panel4.setBorder(BorderFactory.createTitledBorder(null, "Results Table", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JPanel panel5 = new JPanel();
         panel5.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel4.add(panel5, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -283,4 +285,5 @@ public class SessionAnalysisTab implements WorkerStatusListener {
     public JComponent $$$getRootComponent$$$() {
         return sessionTabPanel;
     }
+
 }

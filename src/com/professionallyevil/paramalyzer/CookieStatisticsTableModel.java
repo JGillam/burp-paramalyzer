@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer;
 
 import burp.IBurpExtenderCallbacks;
 

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer;
 
 import burp.*;
 
@@ -27,7 +27,7 @@ public class PopupRequestResponseDialog implements IMessageEditorController {
     IMessageEditor requestEditor;
     IMessageEditor responseEditor;
 
-    PopupRequestResponseDialog(IHttpRequestResponse requestResponse, IBurpExtenderCallbacks callbacks, Container parent, String title) {
+    public PopupRequestResponseDialog(IHttpRequestResponse requestResponse, IBurpExtenderCallbacks callbacks, Container parent, String title) {
         this.requestResponse = requestResponse;
         Frame parentFrame = JOptionPane.getFrameForComponent(parent);
         JDialog dialog = new JDialog(parentFrame, title);

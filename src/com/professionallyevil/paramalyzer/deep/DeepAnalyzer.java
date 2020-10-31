@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Jason Gillam
+ * Copyright (c) 2020 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.professionallyevil.bc;
+package com.professionallyevil.paramalyzer.deep;
 
 import burp.IBurpExtenderCallbacks;
 import burp.IRequestInfo;
+import com.professionallyevil.paramalyzer.*;
 
 import javax.swing.*;
 import java.io.PrintWriter;

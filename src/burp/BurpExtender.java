@@ -16,15 +16,15 @@
 
 package burp;
 
-import com.professionallyevil.bc.Paramalyzer;
+import com.professionallyevil.paramalyzer.Paramalyzer;
 
 public class BurpExtender implements IBurpExtender{
 
-    Paramalyzer bc = new Paramalyzer();
+    Paramalyzer paramalyzer = new Paramalyzer();
 
     @Override
     public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
-        bc.registerExtenderCallbacks(callbacks);
+        paramalyzer.registerExtenderCallbacks(callbacks);
 
     }
 }
