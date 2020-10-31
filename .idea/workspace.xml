@@ -38,15 +38,17 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Renamed &quot;interesting&quot; to &quot;secret&quot;">
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -463,20 +465,6 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
     </task>
-    <task id="LOCAL-00006" summary="Fixed multiple format detection, including issue #2, issue #3">
-      <created>1450977110319</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1450977110319</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Renamed Correlator to Paramalyser">
-      <created>1451767506571</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1451767506571</updated>
-    </task>
     <task id="LOCAL-00008" summary="Fixed some of the analyzer logic to make it work a bit better.">
       <created>1451769839726</created>
       <option name="number" value="00008" />
@@ -806,7 +794,21 @@
       <option name="project" value="LOCAL" />
       <updated>1604151343217</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="Initial setup of secrets table.">
+      <created>1604156605560</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1604156605560</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Renamed &quot;interesting&quot; to &quot;secret&quot;">
+      <created>1604156716103</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1604156716103</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -863,8 +865,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Deep analysis functionality updates." />
-    <MESSAGE value="Project file cleanup." />
     <MESSAGE value="Cleared up some UI issues." />
     <MESSAGE value="Added Session Analyzer tab." />
     <MESSAGE value="Fixed some member scopes." />
@@ -888,17 +888,19 @@
     <MESSAGE value="Rearranged tabs." />
     <MESSAGE value="Reorganized package structure." />
     <MESSAGE value="ignore aws config" />
-    <option name="LAST_COMMIT_MESSAGE" value="ignore aws config" />
+    <MESSAGE value="Initial setup of secrets table." />
+    <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
   </component>
   <component name="WindowStateProjectService">
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604150069074">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604150069074" />
-    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser" timestamp="1604154458626">
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser" timestamp="1604157731549">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604154458626" />
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604157731549" />
     <state x="1050" y="504" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604151099558">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
@@ -915,26 +917,30 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="1074" y="583" width="813" height="256" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604150315018" />
+    <state x="826" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1604157140036">
+      <screen x="0" y="23" width="2560" height="1353" />
+    </state>
+    <state x="826" y="23" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604157140036" />
     <state x="319" y="219" width="1864" height="1020" key="DiffContextDialog" timestamp="1604068019754">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="319" y="219" width="1864" height="1020" key="DiffContextDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604068019754" />
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604155920292">
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604156723144">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920292" />
-    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604155920291">
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604156723144">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920291" />
-    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604155920291">
+    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604156723143">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920291" />
-    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604155920292">
+    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723143" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604156723144">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604155920292" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
     <state x="814" y="346" key="SettingsEditor" timestamp="1604087384720">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>

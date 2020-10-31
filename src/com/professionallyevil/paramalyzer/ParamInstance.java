@@ -48,19 +48,19 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
         JWT("JWT", true);
 
         private String title;
-        private boolean interesting = false;
+        private boolean secret = false;
 
         private Format(String title) {
             this.title = title;
         }
 
-        private Format(String title, boolean interesting) { this.title = title; this.interesting = interesting; }
+        private Format(String title, boolean secret) { this.title = title; this.secret = secret; }
 
         public String getTitle(){
             return title;
         }
 
-        public boolean isSecret() {return interesting; }
+        public boolean isSecret() {return secret; }
 
 
         @Override

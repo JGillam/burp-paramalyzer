@@ -77,7 +77,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private ParamListModel paramListModel = new ParamListModel();
     private int lastSelectedRow = -1;
     private IHttpRequestResponse displayedRequest = null;
-    private SecretHunter secretHunter = new SecretHunter();
+    private SecretHunter secretHunter;
 
     private static final boolean DEBUG_STATUS = true;
     private static final String VERSION = "2.2.0";
@@ -85,6 +85,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
 
     public Paramalyzer() {
         parametersTable.setModel(paramsTableModel);
+        secretHunter = new SecretHunter(paramsTableModel);
         parametersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         beginAnalysisButton.addActionListener(new ActionListener() {
             @Override

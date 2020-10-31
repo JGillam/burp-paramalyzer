@@ -29,7 +29,7 @@ public class CorrelatedParam {
     Set<String> uniqueValues = new HashSet<>();
     SortedSet<ParamInstance> uniqueParamInstances = new TreeSet<>();
     int reflectedCount = 0;
-    boolean isInteresting = false;
+    boolean isSecret = false;
     Map<String, IHttpRequestResponse> seenParams = new HashMap<>();
     Map<ParamInstance,String> analysisText = new HashMap<>();
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
@@ -123,12 +123,12 @@ public class CorrelatedParam {
         return reflectedCount;
     }
 
-    public boolean isInteresting() {
-        return isInteresting;
+    public boolean isSecret() {
+        return isSecret;
     }
 
-    public void setInteresting(boolean s) {
-        isInteresting = s;
+    public void setSecret(boolean s) {
+        isSecret = s;
     }
 
     public SortedSet<ParamInstance> getParamInstances(boolean withDuplicates) {
@@ -188,11 +188,11 @@ public class CorrelatedParam {
         this.bestFormatPercent = totalCount > 0 ? 100 * bestCount / totalCount : 0;
 
         if (bestFormat.isSecret()){
-            isInteresting = true;
+            isSecret = true;
         } else {
             for (String hint : SECRET_HINTS) {
                 if (getSample().getName().toLowerCase().contains(hint)) {
-                    isInteresting = true;
+                    isSecret = true;
                 }
             }
         }

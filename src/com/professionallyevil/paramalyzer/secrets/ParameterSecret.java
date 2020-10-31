@@ -16,7 +16,18 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
-abstract class Secret {
+import com.professionallyevil.paramalyzer.CorrelatedParam;
 
-    abstract String getName();
+public class ParameterSecret extends Secret{
+    CorrelatedParam correlatedParam;
+
+    ParameterSecret(CorrelatedParam correlatedParam) {
+        this.correlatedParam = correlatedParam;
+    }
+
+
+    @Override
+    String getName() {
+        return correlatedParam.getSample().getName();
+    }
 }

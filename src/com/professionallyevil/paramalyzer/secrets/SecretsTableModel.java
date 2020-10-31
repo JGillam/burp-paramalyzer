@@ -16,12 +16,15 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
+import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SecretsTableModel implements TableModel {
+    List<TableModelListener> listeners = new ArrayList<>();
+
     enum SecretsColumn {
         NAME("Name");
 
@@ -75,11 +78,20 @@ public class SecretsTableModel implements TableModel {
 
     @Override
     public void addTableModelListener(TableModelListener tableModelListener) {
-
+        listeners.add(tableModelListener);
     }
 
     @Override
     public void removeTableModelListener(TableModelListener tableModelListener) {
+        listeners.remove(tableModelListener);
+    }
 
+    public void add(Secret secret){
+        if(!secrets.contains(secret)) {
+            secrets.add(secret);
+            for (TableModelListener l: listeners){
+                l.tableChanged(new TableModelEvent(this));
+            }
+        }
     }
 }
