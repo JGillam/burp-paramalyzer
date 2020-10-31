@@ -84,8 +84,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {
-        parametersTable.setModel(paramsTableModel);
         secretHunter = new SecretHunter(paramsTableModel);
+        parametersTable.setModel(paramsTableModel);
         parametersTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         beginAnalysisButton.addActionListener(new ActionListener() {
             @Override
@@ -430,6 +430,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.registerContextMenuFactory(this);
         callbacks.customizeUiComponent(mainPanel);
         callbacks.customizeUiComponent(sessionsHelpTextPane);
+        secretHunter.registerExtenderCallbacks(callbacks);
     }
 
     @Override

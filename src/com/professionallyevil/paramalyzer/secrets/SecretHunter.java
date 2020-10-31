@@ -16,6 +16,8 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
+import burp.IBurpExtender;
+import burp.IBurpExtenderCallbacks;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
@@ -27,12 +29,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SecretHunter {
+public class SecretHunter implements IBurpExtender {
     private JPanel mainPanel;
     private JTable secretsTable;
     private JButton importSecrets;
     private JButton removeImportedButton;
-    private SecretsTableModel secretsTableModel = new SecretsTableModel();
+    private JButton addSecretButton;
+    private final SecretsTableModel secretsTableModel = new SecretsTableModel();
+    private IBurpExtenderCallbacks callbacks;
 
     public SecretHunter(ParametersTableModel parametersTableModel) {
         secretsTable.setModel(secretsTableModel);
@@ -54,6 +58,27 @@ public class SecretHunter {
 
             }
         });
+        addSecretButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                AddModifySecret dialog = new AddModifySecret(null, new AddModifySecretListener() {
+                    @Override
+                    public void dialogAccepted(String name, boolean isRegex, String matchString) {
+                        CustomSecret secret = new CustomSecret(name, isRegex, matchString);
+                        secretsTableModel.add(secret);
+                    }
+                });
+                dialog.pack();
+                dialog.setLocationRelativeTo(mainPanel);
+                dialog.setVisible(true);
+
+            }
+        });
+    }
+
+    @Override
+    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
+        this.callbacks = callbacks;
     }
 
     public Component getMainPanel() {
@@ -87,16 +112,19 @@ public class SecretHunter {
         secretsTable = new JTable();
         scrollPane1.setViewportView(secretsTable);
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         importSecrets = new JButton();
         importSecrets.setText("Import Secrets");
         panel1.add(importSecrets, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panel1.add(spacer3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(spacer3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         removeImportedButton = new JButton();
         removeImportedButton.setText("Remove Imported");
         panel1.add(removeImportedButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        addSecretButton = new JButton();
+        addSecretButton.setText("Add Secret");
+        panel1.add(addSecretButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
     }
 
     /**
@@ -105,5 +133,6 @@ public class SecretHunter {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 
 }

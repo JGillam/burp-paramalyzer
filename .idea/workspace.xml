@@ -38,17 +38,15 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add support for tracking by origin">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="A very messy cherry pick merge. Hopefully didn't break anything.">
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/AddModifySecret.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/AddModifySecret.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/AddModifySecretListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/CustomSecret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-    </list>
-    <list id="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" name="Added tracking of parameters by origin." comment="Added tracking of parameters by origin.">
-      <changelist_data name="Jason" email="jason.gillam@gmail.com" date="1580606584000" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,6 +105,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -118,33 +117,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java">
-      <ranges>
-        <range start1="36" end1="37" start2="36" end2="40" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="38" end1="41" start2="41" end2="49" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="43" end1="46" start2="51" end2="55" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="48" end1="49" start2="57" end2="59" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="52" end1="54" start2="62" end2="63" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="67" end1="68" start2="76" end2="77" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="98" end1="98" start2="107" end2="111" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="125" end1="126" start2="138" end2="139" changelist="e52d7e04-34a3-4843-bac0-a9909541cffb" />
-        <range start1="193" end1="194" start2="206" end2="207" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java">
-      <ranges>
-        <range start1="100" end1="100" start2="100" end2="103" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="128" end1="130" start2="131" end2="135" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="132" end1="134" start2="137" end2="139" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="139" end1="141" start2="144" end2="144" changelist="e52d7e04-34a3-4843-bac0-a9909541cffb" />
-        <range start1="146" end1="148" start2="149" end2="153" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="150" end1="152" start2="155" end2="157" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-        <range start1="210" end1="211" start2="215" end2="216" changelist="e52d7e04-34a3-4843-bac0-a9909541cffb" />
-        <range start1="217" end1="244" start2="222" end2="249" changelist="e7be4a9e-aa38-47c1-afaa-e994017d3e8a" />
-      </ranges>
-    </file>
   </component>
   <component name="NamedScopeManager">
     <order>
@@ -473,8 +445,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
-        <item itemvalue="Gradle.burp-paramalyzer [build]" />
         <item itemvalue="Gradle.burp-paramalyzer [assemble]" />
+        <item itemvalue="Gradle.burp-paramalyzer [build]" />
         <item itemvalue="Gradle.burp-paramalyzer [classes]" />
         <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
       </list>
@@ -491,20 +463,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added a cookie tab.">
-      <created>1475075363431</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1475075363431</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added export button to export to csv file.">
-      <created>1475107269509</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107269509</updated>
     </task>
     <task id="LOCAL-00012" summary="Cleaned up formatting of cookie statistics table.">
       <created>1475107464176</created>
@@ -835,7 +793,21 @@
       <option name="project" value="LOCAL" />
       <updated>1604161719865</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="A very messy cherry pick merge. Hopefully didn't break anything.">
+      <created>1604169675845</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1604169675845</updated>
+    </task>
+    <task id="LOCAL-00060" summary="A very messy cherry pick merge. Hopefully didn't break anything.">
+      <created>1604169700531</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1604169700531</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -892,7 +864,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Renamed SessionTestRow to SessionTestCase" />
     <MESSAGE value="Added support for authorization header." />
     <MESSAGE value="Send to repeater." />
     <MESSAGE value="send response to comparer" />
@@ -917,17 +888,18 @@
     <MESSAGE value="Basic import of secrets from parameter table is working." />
     <MESSAGE value="Add support for type" />
     <MESSAGE value="Add support for tracking by origin" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add support for tracking by origin" />
+    <MESSAGE value="A very messy cherry pick merge. Hopefully didn't break anything." />
+    <option name="LAST_COMMIT_MESSAGE" value="A very messy cherry pick merge. Hopefully didn't break anything." />
   </component>
   <component name="WindowStateProjectService">
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604150069074">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604150069074" />
-    <state x="1126" y="439" key="#com.intellij.ide.util.MemberChooser" timestamp="1604161134789">
-      <screen x="0" y="23" width="2560" height="1417" />
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser" timestamp="1604174779024">
+      <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158404054" />
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604174779024" />
     <state x="1126" y="439" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161134789" />
     <state x="1050" y="504" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604151099558">
       <screen x="0" y="23" width="2560" height="1353" />
@@ -953,25 +925,25 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="382" y="171" width="1864" height="1020" key="DiffContextDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604169515143" />
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604167563343">
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604175320288">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604167563343" />
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604175320288" />
     <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
-    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604167563342">
+    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604175320287">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604167563342" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604175320287" />
     <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
-    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604167563341">
+    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604175320286">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604167563341" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604175320286" />
     <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247780" />
-    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604167563342">
+    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604175320288">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604167563342" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604175320288" />
     <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
     <state x="289" y="155" key="MergeDialog" timestamp="1604168955796">
       <screen x="0" y="23" width="2560" height="1353" />
@@ -985,6 +957,10 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="814" y="346" key="SettingsEditor/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604087384720" />
+    <state x="1180" y="508" key="UIDesigner.ListEditorDialog" timestamp="1604170035743">
+      <screen x="0" y="23" width="2560" height="1353" />
+    </state>
+    <state x="1180" y="508" key="UIDesigner.ListEditorDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604170035743" />
     <state x="1098" y="649" key="VCS.ChangelistChooser" timestamp="1604167804732">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
