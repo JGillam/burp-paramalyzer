@@ -34,24 +34,33 @@ public class CorrelatedParam {
     Map<ParamInstance,String> analysisText = new HashMap<>();
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
     int bestFormatPercent = 0;
-    private static final String[] SECRET_HINTS = {"session","key","user","password","token","ssn","auth"};
+    private static final String[] SECRET_HINTS = {"session","key","user","password","token","ssn"};
+    private static final String[] SECRET_IGNORE = {"true","false","0","1","null"};
+    private static Set<String> secretIgnore = new HashSet<>();
+    String origin;
 
-    CorrelatedParam(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
-                    IExtensionHelpers helpers) {
-        put(param, message, requestInfo, responseString, helpers);
+    static {
+        secretIgnore.addAll(Arrays.asList(SECRET_IGNORE));
     }
 
-    CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
-                    IExtensionHelpers helpers) {
-        put(param, message, requestInfo, responseString, helpers);
+    CorrelatedParam(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
+                    String origin, IExtensionHelpers helpers) {
+        this.origin = origin;
+        put(param, message, msgNum, requestInfo, responseString, helpers);
     }
 
-    CorrelatedParam(JSONParamInstance param) {
+    CorrelatedParam(RestParamInstance param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo,  String responseString,
+                    String origin, IExtensionHelpers helpers) {
+        this.origin = origin;
+        put(param, message, msgNum, requestInfo, responseString, helpers);
+    }
+
+    CorrelatedParam(JSONParamInstance param, String origin) {
+        this.origin = origin;
         put(param);
     }
 
-
-    public void put(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    public void put(IParameter param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
         ParamInstance pi = new ParamInstance(param, message);
         paramInstances.add(pi);
@@ -65,7 +74,7 @@ public class CorrelatedParam {
         checkReflection(param, responseString, helpers);
     }
 
-    public void put(RestParamInstance param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
+    public void put(RestParamInstance param, IHttpRequestResponse message, int msgNum, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
         paramInstances.add(param);
         addURL((requestInfo));
@@ -94,6 +103,10 @@ public class CorrelatedParam {
         } else{
             uniqueURLs.add(externalForm.substring(0, paramStart));
         }
+    }
+
+    public String getOrigin() {
+        return this.origin;
     }
 
     public void putSeenParam(String value, IHttpRequestResponse message) {
@@ -191,7 +204,7 @@ public class CorrelatedParam {
             isSecret = true;
         } else {
             for (String hint : SECRET_HINTS) {
-                if (getSample().getName().toLowerCase().contains(hint)) {
+                if (getSample().getName().toLowerCase().contains(hint) && !secretIgnore.contains(getSample().getValue().toLowerCase())) {
                     isSecret = true;
                 }
             }
