@@ -16,17 +16,15 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.TableModel;
+import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SecretsTableModel implements TableModel {
-    List<TableModelListener> listeners = new ArrayList<>();
+public class SecretsTableModel extends AbstractTableModel {
 
     enum SecretsColumn {
-        NAME("Name");
+        NAME("Name"),
+        TYPE("Type");
 
         String name;
         SecretsColumn(String name){
@@ -66,32 +64,30 @@ public class SecretsTableModel implements TableModel {
         Secret secret = secrets.get(row);
         if(SecretsColumn.NAME.ordinal() == column) {
             return secret.getName();
+        } else if(SecretsColumn.TYPE.ordinal() == column) {
+            return secret.getType();
         } else {
           return "?";
         }
     }
 
-    @Override
-    public void setValueAt(Object o, int row, int column) {
-
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener tableModelListener) {
-        listeners.add(tableModelListener);
-    }
-
-    @Override
-    public void removeTableModelListener(TableModelListener tableModelListener) {
-        listeners.remove(tableModelListener);
-    }
-
     public void add(Secret secret){
         if(!secrets.contains(secret)) {
             secrets.add(secret);
-            for (TableModelListener l: listeners){
-                l.tableChanged(new TableModelEvent(this));
+            fireTableDataChanged();
+        }
+    }
+
+    public void removeImported(){
+        List<ParameterSecret> secretsToBeRemoved = new ArrayList<>();
+        for (Secret s: secrets) {
+            if (s instanceof ParameterSecret) {
+                secretsToBeRemoved.add((ParameterSecret) s);
             }
+        }
+        if(secretsToBeRemoved.size() > 0) {
+            secrets.removeAll(secretsToBeRemoved);
+            fireTableDataChanged();
         }
     }
 }

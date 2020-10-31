@@ -38,13 +38,9 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Renamed &quot;interesting&quot; to &quot;secret&quot;">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" afterDir="false" />
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Basic import of secrets from parameter table is working.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
@@ -447,9 +443,9 @@
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
         <item itemvalue="Gradle.burp-paramalyzer [build]" />
+        <item itemvalue="Gradle.burp-paramalyzer [assemble]" />
         <item itemvalue="Gradle.burp-paramalyzer [classes]" />
         <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
-        <item itemvalue="Gradle.burp-paramalyzer [assemble]" />
       </list>
     </recent_temporary>
   </component>
@@ -464,13 +460,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed some of the analyzer logic to make it work a bit better.">
-      <created>1451769839726</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1451769839726</updated>
     </task>
     <task id="LOCAL-00009" summary="Minor change">
       <created>1451770468673</created>
@@ -808,7 +797,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604156716103</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="Basic import of secrets from parameter table is working.">
+      <created>1604158292477</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1604158292477</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -865,7 +861,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Cleared up some UI issues." />
     <MESSAGE value="Added Session Analyzer tab." />
     <MESSAGE value="Fixed some member scopes." />
     <MESSAGE value="Renamed SessionTestRow to SessionTestCase" />
@@ -890,17 +885,19 @@
     <MESSAGE value="ignore aws config" />
     <MESSAGE value="Initial setup of secrets table." />
     <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
+    <MESSAGE value="Basic import of secrets from parameter table is working." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic import of secrets from parameter table is working." />
   </component>
   <component name="WindowStateProjectService">
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604150069074">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="777" y="369" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604150069074" />
-    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser" timestamp="1604157731549">
-      <screen x="0" y="23" width="2560" height="1353" />
+    <state x="1126" y="439" key="#com.intellij.ide.util.MemberChooser" timestamp="1604161134789">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604157731549" />
+    <state x="1126" y="420" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158404054" />
+    <state x="1126" y="439" key="#com.intellij.ide.util.MemberChooser/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161134789" />
     <state x="1050" y="504" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1604151099558">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
@@ -925,22 +922,26 @@
       <screen x="0" y="23" width="2560" height="1353" />
     </state>
     <state x="319" y="219" width="1864" height="1020" key="DiffContextDialog/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604068019754" />
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604156723144">
-      <screen x="0" y="23" width="2560" height="1353" />
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom" timestamp="1604161247781">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
-    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604156723144">
-      <screen x="0" y="23" width="2560" height="1353" />
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158801153" />
+    <state width="2022" height="344" key="GridCell.Tab.0.bottom/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center" timestamp="1604161247781">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
-    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604156723143">
-      <screen x="0" y="23" width="2560" height="1353" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158801152" />
+    <state width="2022" height="344" key="GridCell.Tab.0.center/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left" timestamp="1604161247780">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723143" />
-    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604156723144">
-      <screen x="0" y="23" width="2560" height="1353" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158801152" />
+    <state width="2022" height="344" key="GridCell.Tab.0.left/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247780" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right" timestamp="1604161247781">
+      <screen x="0" y="23" width="2560" height="1417" />
     </state>
-    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604156723144" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1353/-1792.537.1792.1097@0.23.2560.1353" timestamp="1604158801153" />
+    <state width="2022" height="344" key="GridCell.Tab.0.right/0.23.2560.1417/-1792.537.1792.1033@0.23.2560.1417" timestamp="1604161247781" />
     <state x="814" y="346" key="SettingsEditor" timestamp="1604087384720">
       <screen x="0" y="23" width="2560" height="1353" />
     </state>

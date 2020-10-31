@@ -25,9 +25,15 @@ public class ParameterSecret extends Secret{
         this.correlatedParam = correlatedParam;
     }
 
-
     @Override
     String getName() {
         return correlatedParam.getSample().getName();
     }
+
+    @Override
+    String getType() {
+        return "Param ("+correlatedParam.getSample().getTypeName()+")";
+    }
+
+
 }

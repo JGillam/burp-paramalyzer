@@ -19,4 +19,6 @@ package com.professionallyevil.paramalyzer.secrets;
 abstract class Secret {
 
     abstract String getName();
+
+    abstract String getType();
 }
