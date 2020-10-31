@@ -34,7 +34,7 @@ public class CorrelatedParam {
     Map<ParamInstance,String> analysisText = new HashMap<>();
     ParamInstance.Format bestFormat = ParamInstance.Format.UNKNOWN;
     int bestFormatPercent = 0;
-    private static String[] INTERESTING_HINTS = {"session","key","user","password","token","ssn"};
+    private static final String[] SECRET_HINTS = {"session","key","user","password","token","ssn","auth"};
 
     CorrelatedParam(IParameter param, IHttpRequestResponse message, IRequestInfo requestInfo, String responseString,
                     IExtensionHelpers helpers) {
@@ -187,10 +187,10 @@ public class CorrelatedParam {
         this.bestFormat = bestFormat;
         this.bestFormatPercent = totalCount > 0 ? 100 * bestCount / totalCount : 0;
 
-        if (bestFormat.isInteresting()){
+        if (bestFormat.isSecret()){
             isInteresting = true;
         } else {
-            for (String hint : INTERESTING_HINTS) {
+            for (String hint : SECRET_HINTS) {
                 if (getSample().getName().toLowerCase().contains(hint)) {
                     isInteresting = true;
                 }

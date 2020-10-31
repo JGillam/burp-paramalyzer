@@ -26,7 +26,7 @@ public class ParametersTableModel extends AbstractTableModel {
 
     boolean showDecodedValues = true;
     List<CorrelatedParam> entries = new ArrayList<>();
-    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Interesting", "Decodeable", "Example Value"};
+    String[] columns = {"Name", "Type", "Requests", "Unique URLs", "Unique Values" , "Format", "Reflect %", "Secrets", "Decodeable", "Example Value"};
     Class[] columnClasses = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class, Integer.class, Boolean.class, Boolean.class, String.class};
     Map<CorrelatedParam, ParamInstance> samples = new HashMap<>();
 

@@ -60,7 +60,7 @@ public class ParamInstance implements IParameter, Comparable<ParamInstance> {
             return title;
         }
 
-        public boolean isInteresting() {return interesting; }
+        public boolean isSecret() {return interesting; }
 
 
         @Override
