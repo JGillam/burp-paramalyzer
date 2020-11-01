@@ -16,9 +16,23 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
-public abstract class Secret {
+import javax.swing.table.AbstractTableModel;
 
-    public abstract String getName();
+public class SecretIssuesTableModel extends AbstractTableModel {
 
-    public abstract String getType();
+
+    @Override
+    public int getRowCount() {
+        return 0;
+    }
+
+    @Override
+    public int getColumnCount() {
+        return 0;
+    }
+
+    @Override
+    public Object getValueAt(int i, int i1) {
+        return null;
+    }
 }
