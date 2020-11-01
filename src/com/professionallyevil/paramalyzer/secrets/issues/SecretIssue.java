@@ -47,12 +47,12 @@ abstract class SecretIssue implements IScanIssue {
 
     @Override
     public URL getUrl() {
-        return null;
+        return url;
     }
 
     @Override
     public IHttpService getHttpService() {
-        return null;
+        return service;
     }
 
     String getSecretName() {
