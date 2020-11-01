@@ -18,7 +18,7 @@ package com.professionallyevil.paramalyzer;
 
 import burp.IBurpExtenderCallbacks;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  */
 public class ParamAnalyzer {
 
-    enum ValuePattern {
+    public enum ValuePattern {
         URL_ENCODED("%[0-9a-zA-Z]{2}"),
         BASE64_ENCODED("^(?:[A-Za-z0-9+/]{4}(==)?)*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$"),
         BASE62_ENCODED("^[A-Za-z0-9]{1,11}$"),
@@ -79,7 +79,7 @@ public class ParamAnalyzer {
     }
 
 
-    private static Base62 base62 = new Base62();
+    private static final Base62 base62 = new Base62();
 
     public static boolean isBase62Encoded(String testValue) {
         return ValuePattern.BASE62_ENCODED.matches(testValue);
@@ -399,11 +399,7 @@ public class ParamAnalyzer {
                     + Character.digit(input.charAt(i+1), 16));
         }
         String output = input;
-        try {
-            output = new String(data, "ASCII");
-        } catch (UnsupportedEncodingException e) {
-            return input;
-        }
+        output = new String(data, StandardCharsets.US_ASCII);
 
         return output;
     }
@@ -417,8 +413,9 @@ public class ParamAnalyzer {
                 if (result) {
                     boolean dependencyMatch = false;
                     for (ValuePattern aMatch: shouldMatch) {
-                        if (aMatch.isDependency(testPattern.name())){
+                        if (aMatch.isDependency(testPattern.name())) {
                             dependencyMatch = true;
+                            break;
                         }
                     }
 

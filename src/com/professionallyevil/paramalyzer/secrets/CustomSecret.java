@@ -16,6 +16,9 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
+import burp.IRequestInfo;
+import burp.IResponseInfo;
+
 import java.util.regex.Pattern;
 
 public class CustomSecret extends Secret{
@@ -35,12 +38,12 @@ public class CustomSecret extends Secret{
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return name;
     }
 
     @Override
-    String getType() {
+    public String getType() {
         return isRegex?"Custom Regex":"Custom Match";
     }
 
@@ -68,5 +71,15 @@ public class CustomSecret extends Secret{
     public void setExactMatch(String matchString) {
         exactMatch = matchString;
         isRegex = false;
+    }
+
+    @Override
+    public String analyzeRequest(byte[] requestBytes, IRequestInfo requestInfo, SecretHelpers helpers) {
+        return null;
+    }
+
+    @Override
+    public String analyzeResponse(byte[] responseBytes, IResponseInfo responseInfo, SecretHelpers helpers) {
+        return null;
     }
 }
