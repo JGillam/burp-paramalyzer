@@ -48,6 +48,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JProgressBar progressBar;
     protected JTable parametersTable;
     private JButton clearButton;
+    private JButton exportButton;
     private JList<String> listValues;
     private JTextArea textAreaRequest;
     private JTextArea textAreaResponse;
@@ -118,6 +119,43 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 textAreaResponse.setText("");
                 analysisTextArea.setText("");
                 cookieStatisticsTableModel.clear();
+            }
+        });
+
+        exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser();
+                int result = chooser.showSaveDialog(mainPanel);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File f = chooser.getSelectedFile();
+                    try {
+                        PrintWriter w = new PrintWriter(new FileWriter(f));
+                        StringBuilder buf = new StringBuilder();
+                        for (int col = 0; col < paramsTableModel.getColumnCount(); col++) {
+                            buf.append(paramsTableModel.getColumnName(col));
+                            buf.append(';');
+                        }
+                        buf.deleteCharAt(buf.length() - 1);
+                        w.println(buf.toString());
+
+                        for (int row = 0; row < paramsTableModel.getRowCount(); row++) {
+                            buf = new StringBuilder();
+                            for (int col = 0; col < paramsTableModel.getColumnCount(); col++) {
+                                buf.append(paramsTableModel.getValueAt(row, col));
+                                buf.append(';');
+                            }
+                            buf.deleteCharAt(buf.length() - 1);
+                            w.println(buf.toString());
+                        }
+
+                        w.flush();
+                        w.close();
+                    } catch (IOException e1) {
+                        callbacks.printError("Unable to write to file: " + e1.getMessage());
+                    }
+                }
+
             }
         });
 
@@ -621,7 +659,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         progressBar = new JProgressBar();
         panel13.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JPanel panel14 = new JPanel();
-        panel14.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel14.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel14, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         final JScrollPane scrollPane8 = new JScrollPane();
         panel14.add(scrollPane8, new GridConstraints(1, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
@@ -638,6 +676,9 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         clearButton = new JButton();
         clearButton.setText("Clear");
         panel14.add(clearButton, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        exportButton = new JButton();
+        exportButton.setText("Export");
+        panel14.add(exportButton, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         beginAnalysisButton = new JButton();
         beginAnalysisButton.setText("Analyze");
         beginAnalysisButton.setToolTipText("Begin analysis of all requests in scope.");
