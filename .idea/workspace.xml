@@ -38,44 +38,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Apply patch from secret tracker functionality.">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/burp/BurpExtender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/burp/BurpExtender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Base62.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Base62.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CookieStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CookieStatisticsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CookieStatisticsTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatedParam.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatedParam.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/CorrelatorEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/CorrelatorEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DeepAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/DetailsListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/DetailsListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/JSONParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/JSONParamParser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/JSONParamParser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/OriginSearcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/OriginSearcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamInstanceListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamInstanceListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamListModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParamListModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParametersTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/ParametersTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/PopupRequestResponseDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/PopupRequestResponseDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RequestFetcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/RequestFetcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/RestParamInstance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/RestParamInstance.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalysisTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTableModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/SessionTestCase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionTestCase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/WorkerStatusListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/WorkerStatusListener.java" afterDir="false" />
-    </list>
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Merged in patch from previous secrets manager work." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -475,13 +438,6 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
     </task>
-    <task id="LOCAL-00009" summary="Minor change">
-      <created>1451770468673</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1451770468673</updated>
-    </task>
     <task id="LOCAL-00010" summary="Added a cookie tab.">
       <created>1475075363431</created>
       <option name="number" value="00010" />
@@ -818,7 +774,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604158292477</updated>
     </task>
-    <option name="localTasksCounter" value="58" />
+    <task id="LOCAL-00058" summary="Merged in patch from previous secrets manager work.">
+      <created>1658512672327</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1658512672327</updated>
+    </task>
+    <option name="localTasksCounter" value="59" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -875,7 +838,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added Session Analyzer tab." />
     <MESSAGE value="Fixed some member scopes." />
     <MESSAGE value="Renamed SessionTestRow to SessionTestCase" />
     <MESSAGE value="Added support for authorization header." />
@@ -900,7 +862,8 @@
     <MESSAGE value="Initial setup of secrets table." />
     <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
     <MESSAGE value="Basic import of secrets from parameter table is working." />
-    <option name="LAST_COMMIT_MESSAGE" value="Basic import of secrets from parameter table is working." />
+    <MESSAGE value="Merged in patch from previous secrets manager work." />
+    <option name="LAST_COMMIT_MESSAGE" value="Merged in patch from previous secrets manager work." />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
