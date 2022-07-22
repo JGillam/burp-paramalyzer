@@ -34,7 +34,7 @@ public class SecretHunter {
     private JButton removeImportedButton;
     private SecretsTableModel secretsTableModel = new SecretsTableModel();
 
-    public SecretHunter(ParametersTableModel parametersTableModel) {
+    public SecretHunter(final ParametersTableModel parametersTableModel) {
         secretsTable.setModel(secretsTableModel);
         importSecrets.addActionListener(new ActionListener() {
             @Override
