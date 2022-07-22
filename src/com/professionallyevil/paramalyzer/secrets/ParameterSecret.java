@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Jason Gillam
+ * Copyright (c) 2020 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,26 @@
  * limitations under the License.
  */
 
-package burp;
+package com.professionallyevil.paramalyzer.secrets;
 
-import com.professionallyevil.paramalyzer.Paramalyzer;
+import com.professionallyevil.paramalyzer.CorrelatedParam;
 
-public class BurpExtender implements IBurpExtender{
+public class ParameterSecret extends Secret{
+    CorrelatedParam correlatedParam;
 
-    Paramalyzer paramalyzer = new Paramalyzer();
+    ParameterSecret(CorrelatedParam correlatedParam) {
+        this.correlatedParam = correlatedParam;
+    }
 
     @Override
-    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
-        paramalyzer.registerExtenderCallbacks(callbacks);
-
+    String getName() {
+        return correlatedParam.getSample().getName();
     }
+
+    @Override
+    String getType() {
+        return "Param ("+correlatedParam.getSample().getTypeName()+")";
+    }
+
+
 }

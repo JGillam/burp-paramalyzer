@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Jason Gillam
+ * Copyright (c) 2020 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package burp;
+package com.professionallyevil.paramalyzer.secrets;
 
-import com.professionallyevil.paramalyzer.Paramalyzer;
+abstract class Secret {
 
-public class BurpExtender implements IBurpExtender{
+    abstract String getName();
 
-    Paramalyzer paramalyzer = new Paramalyzer();
-
-    @Override
-    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
-        paramalyzer.registerExtenderCallbacks(callbacks);
-
-    }
+    abstract String getType();
 }
