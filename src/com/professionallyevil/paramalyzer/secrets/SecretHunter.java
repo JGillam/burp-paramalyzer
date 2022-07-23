@@ -81,6 +81,7 @@ public class SecretHunter implements WorkerStatusListener {
         secretsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         secretResultsTable.setModel(secretResultsTableModel);
         secretResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        hunterProgressBar.setStringPainted(true);
 
         importSecrets.addActionListener(new ActionListener() {
             @Override
