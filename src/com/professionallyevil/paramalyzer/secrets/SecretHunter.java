@@ -50,6 +50,7 @@ public class SecretHunter implements WorkerStatusListener {
     private JPanel controlPanel;
     private JPanel topPanel;
     private JPanel bottomPanel;
+    private JButton removeSelectedButton;
     private SecretsTableModel secretsTableModel = new SecretsTableModel();
     private SecretResultsTableModel secretResultsTableModel = new SecretResultsTableModel();
 
@@ -77,7 +78,9 @@ public class SecretHunter implements WorkerStatusListener {
 
     public SecretHunter(final ParametersTableModel parametersTableModel) {
         secretsTable.setModel(secretsTableModel);
+        secretsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         secretResultsTable.setModel(secretResultsTableModel);
+        secretResultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
         importSecrets.addActionListener(new ActionListener() {
             @Override
@@ -141,6 +144,13 @@ public class SecretHunter implements WorkerStatusListener {
             }
         });
 
+        removeSelectedButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int[] selectedRows = secretsTable.getSelectedRows();
+                secretsTableModel.removeRows(selectedRows);
+            }
+        });
     }
 
     public void registerCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -180,26 +190,30 @@ public class SecretHunter implements WorkerStatusListener {
         secretsTable = new JTable();
         scrollPane1.setViewportView(secretsTable);
         controlPanel = new JPanel();
-        controlPanel.setLayout(new GridLayoutManager(7, 1, new Insets(0, 0, 0, 0), -1, -1));
+        controlPanel.setLayout(new GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
         topPanel.add(controlPanel, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(150, 280), null, 0, false));
         final Spacer spacer1 = new Spacer();
-        controlPanel.add(spacer1, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        controlPanel.add(spacer1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         removeImportedButton = new JButton();
-        removeImportedButton.setText("Remove Imported");
+        removeImportedButton.setText("Clear");
         controlPanel.add(removeImportedButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         huntSecrets = new JButton();
         huntSecrets.setText("Hunt Secrets!");
-        controlPanel.add(huntSecrets, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        controlPanel.add(huntSecrets, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         hunterProgressBar = new JProgressBar();
-        controlPanel.add(hunterProgressBar, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        controlPanel.add(hunterProgressBar, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         statusLabel = new JLabel();
         statusLabel.setText("Idle...");
-        controlPanel.add(statusLabel, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        controlPanel.add(statusLabel, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        controlPanel.add(spacer2, new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        controlPanel.add(spacer2, new GridConstraints(7, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         importSecrets = new JButton();
         importSecrets.setText("Import Secrets");
+        importSecrets.setToolTipText("Copy secrets from the main parameter table.");
         controlPanel.add(importSecrets, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        removeSelectedButton = new JButton();
+        removeSelectedButton.setText("Remove Selected");
+        controlPanel.add(removeSelectedButton, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         splitPane1.setRightComponent(bottomPanel);

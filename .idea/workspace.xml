@@ -38,13 +38,11 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="SecretHunterWorker base functionality">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Reorganized UI components to add split panes.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretResultsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretResultsTableModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +133,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "false",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH": "258",
     "WebServerToolWindowFactoryState": "false",
     "project.structure.last.edited": "Project",
@@ -431,14 +429,7 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
       <workItem from="1658514698100" duration="893000" />
-      <workItem from="1658516948433" duration="25389000" />
-    </task>
-    <task id="LOCAL-00016" summary="Updated version number to 1.0.0">
-      <created>1475108246077</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1475108246077</updated>
+      <workItem from="1658516948433" duration="26816000" />
     </task>
     <task id="LOCAL-00017" summary="Fixed NPE">
       <created>1475181692618</created>
@@ -776,7 +767,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658550428942</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="Reorganized UI components to add split panes.">
+      <created>1658580925862</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1658580925862</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -835,7 +833,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Add response time to table." />
     <MESSAGE value="Added a close button for session analysis tabs." />
     <MESSAGE value="Open correct tab when sending to Paramalyzer" />
     <MESSAGE value="Tidy up UI" />
@@ -860,7 +857,8 @@
     <MESSAGE value="Add secrets results table" />
     <MESSAGE value="Form updates" />
     <MESSAGE value="SecretHunterWorker base functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="SecretHunterWorker base functionality" />
+    <MESSAGE value="Reorganized UI components to add split panes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Reorganized UI components to add split panes." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

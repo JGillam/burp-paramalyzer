@@ -99,6 +99,18 @@ public class SecretsTableModel extends AbstractTableModel {
         }
     }
 
+    public void removeRows(int[] rows) {
+        List<ParameterSecret> secretsToBeRemoved = new ArrayList<>();
+        for(int i=0;i<rows.length;i++) {
+            secretsToBeRemoved.add((ParameterSecret) secrets.get(rows[i]));
+        }
+
+        if(secretsToBeRemoved.size() > 0) {
+            secrets.removeAll(secretsToBeRemoved);
+            fireTableDataChanged();
+        }
+    }
+
     public List<Secret> getSecretsList() {
         return secrets;
     }
