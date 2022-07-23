@@ -285,5 +285,4 @@ public class SessionAnalysisTab implements WorkerStatusListener {
     public JComponent $$$getRootComponent$$$() {
         return sessionTabPanel;
     }
-
 }
