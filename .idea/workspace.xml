@@ -38,16 +38,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Made final">
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/Paramalyzer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep/DeepAnalysisTab.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions/SessionAnalysisTab.java" afterDir="false" />
-    </list>
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add secrets results table" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -431,14 +422,7 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
       <workItem from="1658514698100" duration="893000" />
-      <workItem from="1658516948433" duration="8535000" />
-    </task>
-    <task id="LOCAL-00013" summary="Fixed column count">
-      <created>1475107630824</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107630824</updated>
+      <workItem from="1658516948433" duration="8847000" />
     </task>
     <task id="LOCAL-00014" summary="Make table sortable">
       <created>1475107834808</created>
@@ -776,7 +760,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658519128150</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Add secrets results table">
+      <created>1658537703736</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1658537703736</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -835,7 +826,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added support for authorization header." />
     <MESSAGE value="Send to repeater." />
     <MESSAGE value="send response to comparer" />
     <MESSAGE value="Add response time to table." />
@@ -860,7 +850,8 @@
     <MESSAGE value="Merged in patch from previous secrets manager work." />
     <MESSAGE value="remove legacy bc subfolder" />
     <MESSAGE value="Made final" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made final" />
+    <MESSAGE value="Add secrets results table" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add secrets results table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
