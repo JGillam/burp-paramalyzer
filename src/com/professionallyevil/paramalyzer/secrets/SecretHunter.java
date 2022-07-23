@@ -219,6 +219,7 @@ public class SecretHunter implements WorkerStatusListener {
         splitPane1.setRightComponent(bottomPanel);
         final JSplitPane splitPane2 = new JSplitPane();
         splitPane2.setDividerLocation(254);
+        splitPane2.setResizeWeight(0.5);
         bottomPanel.add(splitPane2, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
         splitPane2.setLeftComponent(scrollPane2);
