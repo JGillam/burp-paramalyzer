@@ -26,6 +26,8 @@ public class SecretsTableModel extends AbstractTableModel {
         NAME("Name"),
         TYPE("Type"),
 
+        EXAMPLE("Example Value"),
+
         ISSUES("Issues");
 
         String name;
@@ -74,6 +76,8 @@ public class SecretsTableModel extends AbstractTableModel {
             return secret.getType();
         } else if(SecretsColumn.ISSUES.ordinal() == column) {
             return secret.getResults().size();
+        } else if(SecretsColumn.EXAMPLE.ordinal() == column) {
+            return secret.getValues().get(0);
         } else {
           return "?";
         }

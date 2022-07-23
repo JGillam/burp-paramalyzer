@@ -38,10 +38,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Reorganized UI components to add split panes.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Implemented &quot;Remove Selected&quot; button">
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -429,14 +426,7 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
       <workItem from="1658514698100" duration="893000" />
-      <workItem from="1658516948433" duration="26816000" />
-    </task>
-    <task id="LOCAL-00017" summary="Fixed NPE">
-      <created>1475181692618</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1475181692618</updated>
+      <workItem from="1658516948433" duration="27282000" />
     </task>
     <task id="LOCAL-00018" summary="Added support for basic JSON objects. (lists not handled... yet)">
       <created>1481252026244</created>
@@ -774,7 +764,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658580925862</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Implemented &quot;Remove Selected&quot; button">
+      <created>1658584444947</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1658584444947</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -833,7 +830,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added a close button for session analysis tabs." />
     <MESSAGE value="Open correct tab when sending to Paramalyzer" />
     <MESSAGE value="Tidy up UI" />
     <MESSAGE value="Added more stuff to .gitignore." />
@@ -858,7 +854,8 @@
     <MESSAGE value="Form updates" />
     <MESSAGE value="SecretHunterWorker base functionality" />
     <MESSAGE value="Reorganized UI components to add split panes." />
-    <option name="LAST_COMMIT_MESSAGE" value="Reorganized UI components to add split panes." />
+    <MESSAGE value="Implemented &quot;Remove Selected&quot; button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented &quot;Remove Selected&quot; button" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
