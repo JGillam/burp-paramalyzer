@@ -38,7 +38,7 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add UI for included hashed equivalents">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add hunting for hashed equivalents.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" afterDir="false" />
     </list>
@@ -427,14 +427,7 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
       <workItem from="1658514698100" duration="893000" />
-      <workItem from="1658516948433" duration="31171000" />
-    </task>
-    <task id="LOCAL-00022" summary="Change default to ignore empty values.">
-      <created>1481257452340</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257452340</updated>
+      <workItem from="1658516948433" duration="33307000" />
     </task>
     <task id="LOCAL-00023" summary="Updated version number to 1.0.2">
       <created>1481257670298</created>
@@ -772,7 +765,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658587333985</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Add hunting for hashed equivalents.">
+      <created>1658588985431</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1658588985431</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -831,7 +831,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Put Deep Analysis tab close button in the same place as the session analysis tab." />
     <MESSAGE value="Added Type, Domains, and Paths to the Cookie Analysis Tab." />
     <MESSAGE value="Added origin response search." />
     <MESSAGE value="Added docs using mkdocs." />
@@ -856,7 +855,8 @@
     <MESSAGE value="Set resizeweight" />
     <MESSAGE value="show progress bar text." />
     <MESSAGE value="Add UI for included hashed equivalents" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add UI for included hashed equivalents" />
+    <MESSAGE value="Add hunting for hashed equivalents." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add hunting for hashed equivalents." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

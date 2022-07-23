@@ -126,6 +126,8 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
             byte[] digest = md.digest(value.getBytes());
             String hexDigest = bytesToHex(digest);
             if(!processedValues.contains(hexDigest)) {
+                processedValues.add(hexDigest.toUpperCase());
+                processedValues.add(hexDigest.toLowerCase());
                 newValues.add(bytesToHex(digest));
             }
         } catch (NoSuchAlgorithmException e) {
