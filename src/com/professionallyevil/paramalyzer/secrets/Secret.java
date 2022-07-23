@@ -26,7 +26,9 @@ abstract class Secret {
 
     abstract String getType();
 
-    abstract List<String> getValues();
+    abstract List<String> getValues(int max, boolean includeDecoded);
+
+    abstract String getExampleValue();
 
     public void setResults(List<SecretResult> results) {
         this.results = results;
@@ -35,4 +37,8 @@ abstract class Secret {
     public List<SecretResult> getResults() {
         return this.results;
     }
+
+    abstract boolean huntHashedValues();
+
+    abstract void setHuntHashedValues(boolean huntHashedValues);
 }

@@ -38,8 +38,13 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Set resizeweight">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="show progress bar text.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/ParameterSecret.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/Secret.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunterWorker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -426,14 +431,7 @@
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
       <workItem from="1658514698100" duration="893000" />
-      <workItem from="1658516948433" duration="27610000" />
-    </task>
-    <task id="LOCAL-00020" summary="Improved some of the pattern matching.">
-      <created>1481256990497</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1481256990497</updated>
+      <workItem from="1658516948433" duration="29849000" />
     </task>
     <task id="LOCAL-00021" summary="Skip reflection check for values less than 3 characters.">
       <created>1481257322992</created>
@@ -771,7 +769,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658585008051</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="show progress bar text.">
+      <created>1658585065356</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1658585065356</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -830,7 +835,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added more stuff to .gitignore." />
     <MESSAGE value="Uniform horizontal sizing of detail pane columns." />
     <MESSAGE value="Put Deep Analysis tab close button in the same place as the session analysis tab." />
     <MESSAGE value="Added Type, Domains, and Paths to the Cookie Analysis Tab." />
@@ -855,7 +859,8 @@
     <MESSAGE value="Implemented &quot;Remove Selected&quot; button" />
     <MESSAGE value="Add example value to secrets table" />
     <MESSAGE value="Set resizeweight" />
-    <option name="LAST_COMMIT_MESSAGE" value="Set resizeweight" />
+    <MESSAGE value="show progress bar text." />
+    <option name="LAST_COMMIT_MESSAGE" value="show progress bar text." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

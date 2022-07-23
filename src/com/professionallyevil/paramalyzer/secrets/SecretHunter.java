@@ -74,6 +74,7 @@ public class SecretHunter implements WorkerStatusListener {
     @Override
     public void done(Object result) {
         statusLabel.setText("Done.");
+        setProgress(100);
     }
 
     public SecretHunter(final ParametersTableModel parametersTableModel) {

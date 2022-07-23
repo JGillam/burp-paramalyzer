@@ -28,6 +28,8 @@ public class SecretsTableModel extends AbstractTableModel {
 
         EXAMPLE("Example Value"),
 
+        HUNT_HASHED("Hunt Hashed"),
+
         ISSUES("Issues");
 
         String name;
@@ -57,6 +59,8 @@ public class SecretsTableModel extends AbstractTableModel {
     public Class<?> getColumnClass(int i) {
         if(SecretsColumn.ISSUES.ordinal() == i) {
             return Integer.class;
+        } else if (SecretsColumn.HUNT_HASHED.ordinal() == i){
+            return Boolean.class;
         } else {
             return String.class;
         }
@@ -64,7 +68,11 @@ public class SecretsTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        return false;
+        if(SecretsColumn.HUNT_HASHED.ordinal() == column) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -77,7 +85,9 @@ public class SecretsTableModel extends AbstractTableModel {
         } else if(SecretsColumn.ISSUES.ordinal() == column) {
             return secret.getResults().size();
         } else if(SecretsColumn.EXAMPLE.ordinal() == column) {
-            return secret.getValues().get(0);
+            return secret.getExampleValue();
+        } else if(SecretsColumn.HUNT_HASHED.ordinal() == column) {
+            return secret.huntHashedValues();
         } else {
           return "?";
         }
@@ -122,5 +132,12 @@ public class SecretsTableModel extends AbstractTableModel {
     public void updateSecret(Secret secret) {
         int row = secrets.indexOf(secret);
         fireTableRowsUpdated(row, row);
+    }
+
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        if(SecretsColumn.HUNT_HASHED.ordinal() == columnIndex) {
+            Secret secret = secrets.get(rowIndex);
+            secret.setHuntHashedValues(!secret.huntHashedValues());
+        }
     }
 }

@@ -19,16 +19,22 @@ package com.professionallyevil.paramalyzer.secrets;
 import com.professionallyevil.paramalyzer.CorrelatedParam;
 import com.professionallyevil.paramalyzer.ParamInstance;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class ParameterSecret extends Secret{
     CorrelatedParam correlatedParam;
 
+    boolean huntHashedValues;
+
     ParameterSecret(CorrelatedParam correlatedParam) {
         this.correlatedParam = correlatedParam;
+        String name = correlatedParam.getSample().getName().toLowerCase();
+
+        // Guess if this is a non-hashed password that we want to hunt hashed equivalents.
+        ParamInstance.Format format = correlatedParam.getSample().getFormat();
+        if("password passwd".contains(name) && format == ParamInstance.Format.PRINTABLE) {
+            huntHashedValues = true;
+        }
     }
 
     @Override
@@ -42,15 +48,37 @@ public class ParameterSecret extends Secret{
     }
 
     @Override
-    List<String> getValues() {
+    List<String> getValues(int max, boolean includeDecoded) {
         Set<ParamInstance> instances = correlatedParam.getParamInstances(false);
         ArrayList<String> valueList = new ArrayList<>();
         for(Iterator<ParamInstance> instanceIterator = instances.iterator();instanceIterator.hasNext();) {
-            String nextValue = instanceIterator.next().getValue();
-            if(valueList.size()<10 && !valueList.contains(nextValue)) {
+            ParamInstance instance = instanceIterator.next();
+            String nextValue = instance.getValue();
+            if(valueList.size()<max && !valueList.contains(nextValue)) {
                 valueList.add(nextValue);
+            }
+            if(includeDecoded) {
+                String decodedValue = instance.getDecodedValue();
+                if (valueList.size()<max && !Objects.equals(decodedValue, nextValue)) {
+                    valueList.add(decodedValue);
+                }
             }
         }
         return valueList;
     }
+
+    @Override
+    String getExampleValue() {
+        return correlatedParam.getParamInstances(false).first().getValue();
+    }
+
+    @Override
+    public boolean huntHashedValues() {
+        return huntHashedValues;
+    }
+
+    public void setHuntHashedValues(boolean huntHashedValues) {
+        this.huntHashedValues = huntHashedValues;
+    }
+
 }

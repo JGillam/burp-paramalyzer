@@ -52,7 +52,7 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
             Secret secret = secretsIterator.next();
             publish("Hunting "+secret.getName()+"...");
             List<SecretResult> results = new ArrayList<>();
-            List<String> values = secret.getValues();
+            List<String> values = secret.getValues(20, true);
             List<String> newValues = new ArrayList<>();
             for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext();) {
                 String value = valueIterator.next();
