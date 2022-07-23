@@ -16,26 +16,56 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
+import burp.IBurpExtenderCallbacks;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.professionallyevil.paramalyzer.CorrelatedParam;
 import com.professionallyevil.paramalyzer.ParametersTableModel;
+import com.professionallyevil.paramalyzer.WorkerStatusListener;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class SecretHunter {
+public class SecretHunter implements WorkerStatusListener {
+    public static boolean DEBUG_STATUS = true;
     private JPanel mainPanel;
     private JTable secretsTable;
     private JButton importSecrets;
     private JButton removeImportedButton;
     private JProgressBar hunterProgressBar;
     private JTable secretResultsTable;
+    private JButton huntSecrets;
+    private JLabel statusLabel;
+    private JPanel editorPanel;
     private SecretsTableModel secretsTableModel = new SecretsTableModel();
     private SecretResultsTableModel secretResultsTableModel = new SecretResultsTableModel();
+
+    private IBurpExtenderCallbacks callbacks;
+
+    @Override
+    public void setStatus(String statusText) {
+
+        if (DEBUG_STATUS) {
+            callbacks.printOutput("STATUS: " + statusText);
+        }
+
+        statusLabel.setText(statusText);
+    }
+
+    @Override
+    public void setProgress(int percentDone) {
+        hunterProgressBar.setValue(percentDone);
+    }
+
+    @Override
+    public void done(Object result) {
+        statusLabel.setText("Done.");
+    }
 
     public SecretHunter(final ParametersTableModel parametersTableModel) {
         secretsTable.setModel(secretsTableModel);
@@ -59,7 +89,39 @@ public class SecretHunter {
 
             }
         });
+        huntSecrets.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SecretHunterWorker worker = new SecretHunterWorker(callbacks, SecretHunter.this, secretsTableModel);
+                worker.execute();
+            }
+        });
+
+        secretsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                Secret selectedSecret = secretsTableModel.getSecretsList().get(secretsTable.getSelectedRow());
+                secretResultsTableModel.setResults(selectedSecret.getResults());
+            }
+        });
+
+        secretResultsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                if (selectedResult != null) {
+                    // TODO: Add message viewer.
+                    //messageEditor.setMessage(selectedResult.getRequestResponse().getRequest(), true);
+                }
+            }
+        });
+
     }
+
+    public void registerCallbacks(IBurpExtenderCallbacks callbacks) {
+        this.callbacks = callbacks;
+    }
+
 
     public Component getMainPanel() {
         return mainPanel;
@@ -81,32 +143,41 @@ public class SecretHunter {
      */
     private void $$$setupUI$$$() {
         mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayoutManager(5, 2, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setLayout(new GridLayoutManager(6, 2, new Insets(0, 0, 0, 0), -1, -1));
         final Spacer spacer1 = new Spacer();
-        mainPanel.add(spacer1, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        mainPanel.add(spacer1, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        mainPanel.add(spacer2, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        mainPanel.add(spacer2, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        mainPanel.add(scrollPane1, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        mainPanel.add(scrollPane1, new GridConstraints(0, 0, 4, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         secretsTable = new JTable();
         scrollPane1.setViewportView(secretsTable);
         final JPanel panel1 = new JPanel();
-        panel1.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel1, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         importSecrets = new JButton();
         importSecrets.setText("Import Secrets");
         panel1.add(importSecrets, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        panel1.add(spacer3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel1.add(spacer3, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         removeImportedButton = new JButton();
         removeImportedButton.setText("Remove Imported");
         panel1.add(removeImportedButton, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        huntSecrets = new JButton();
+        huntSecrets.setText("Hunt Secrets!");
+        panel1.add(huntSecrets, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         hunterProgressBar = new JProgressBar();
         mainPanel.add(hunterProgressBar, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JScrollPane scrollPane2 = new JScrollPane();
-        mainPanel.add(scrollPane2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        mainPanel.add(scrollPane2, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         secretResultsTable = new JTable();
         scrollPane2.setViewportView(secretResultsTable);
+        statusLabel = new JLabel();
+        statusLabel.setText("Idle...");
+        mainPanel.add(statusLabel, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        editorPanel = new JPanel();
+        editorPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.add(editorPanel, new GridConstraints(4, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
     }
 
     /**
@@ -115,4 +186,5 @@ public class SecretHunter {
     public JComponent $$$getRootComponent$$$() {
         return mainPanel;
     }
+
 }

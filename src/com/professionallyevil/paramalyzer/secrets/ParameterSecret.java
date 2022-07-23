@@ -17,6 +17,12 @@
 package com.professionallyevil.paramalyzer.secrets;
 
 import com.professionallyevil.paramalyzer.CorrelatedParam;
+import com.professionallyevil.paramalyzer.ParamInstance;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 public class ParameterSecret extends Secret{
     CorrelatedParam correlatedParam;
@@ -35,5 +41,16 @@ public class ParameterSecret extends Secret{
         return "Param ("+correlatedParam.getSample().getTypeName()+")";
     }
 
-
+    @Override
+    List<String> getValues() {
+        Set<ParamInstance> instances = correlatedParam.getParamInstances(false);
+        ArrayList<String> valueList = new ArrayList<>();
+        for(Iterator<ParamInstance> instanceIterator = instances.iterator();instanceIterator.hasNext();) {
+            String nextValue = instanceIterator.next().getValue();
+            if(valueList.size()<10 && !valueList.contains(nextValue)) {
+                valueList.add(nextValue);
+            }
+        }
+        return valueList;
+    }
 }

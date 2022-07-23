@@ -24,7 +24,9 @@ public class SecretsTableModel extends AbstractTableModel {
 
     enum SecretsColumn {
         NAME("Name"),
-        TYPE("Type");
+        TYPE("Type"),
+
+        ISSUES("Issues");
 
         String name;
         SecretsColumn(String name){
@@ -51,7 +53,11 @@ public class SecretsTableModel extends AbstractTableModel {
 
     @Override
     public Class<?> getColumnClass(int i) {
-        return String.class;
+        if(SecretsColumn.ISSUES.ordinal() == i) {
+            return Integer.class;
+        } else {
+            return String.class;
+        }
     }
 
     @Override
@@ -66,6 +72,8 @@ public class SecretsTableModel extends AbstractTableModel {
             return secret.getName();
         } else if(SecretsColumn.TYPE.ordinal() == column) {
             return secret.getType();
+        } else if(SecretsColumn.ISSUES.ordinal() == column) {
+            return secret.getResults().size();
         } else {
           return "?";
         }
@@ -89,5 +97,14 @@ public class SecretsTableModel extends AbstractTableModel {
             secrets.removeAll(secretsToBeRemoved);
             fireTableDataChanged();
         }
+    }
+
+    public List<Secret> getSecretsList() {
+        return secrets;
+    }
+
+    public void updateSecret(Secret secret) {
+        int row = secrets.indexOf(secret);
+        fireTableRowsUpdated(row, row);
     }
 }

@@ -16,9 +16,23 @@
 
 package com.professionallyevil.paramalyzer.secrets;
 
+import java.util.ArrayList;
+import java.util.List;
+
 abstract class Secret {
+    List<SecretResult> results = new ArrayList<>();
 
     abstract String getName();
 
     abstract String getType();
+
+    abstract List<String> getValues();
+
+    public void setResults(List<SecretResult> results) {
+        this.results = results;
+    }
+
+    public List<SecretResult> getResults() {
+        return this.results;
+    }
 }

@@ -430,6 +430,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         callbacks.registerContextMenuFactory(this);
         callbacks.customizeUiComponent(mainPanel);
         callbacks.customizeUiComponent(sessionsHelpTextPane);
+        secretHunter.registerCallbacks(callbacks);
     }
 
     @Override
