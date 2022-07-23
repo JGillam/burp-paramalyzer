@@ -25,6 +25,8 @@ import com.professionallyevil.paramalyzer.WorkerStatusListener;
 import javax.swing.*;
 import java.io.PrintStream;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,6 +36,17 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
     private IBurpExtenderCallbacks callbacks;
     private WorkerStatusListener listener;
     private SecretsTableModel tableModel;
+
+    private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
+    public static String bytesToHex(byte[] bytes) {
+        char[] hexChars = new char[bytes.length * 2];
+        for (int j = 0; j < bytes.length; j++) {
+            int v = bytes[j] & 0xFF;
+            hexChars[j * 2] = HEX_ARRAY[v >>> 4];
+            hexChars[j * 2 + 1] = HEX_ARRAY[v & 0x0F];
+        }
+        return new String(hexChars);
+    }
 
     SecretHunterWorker(IBurpExtenderCallbacks callbacks, WorkerStatusListener l, SecretsTableModel tableModel) {
         this.callbacks = callbacks;
@@ -52,15 +65,7 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
             Secret secret = secretsIterator.next();
             publish("Hunting "+secret.getName()+"...");
             List<SecretResult> results = new ArrayList<>();
-            List<String> values = secret.getValues(20, true);
-            List<String> newValues = new ArrayList<>();
-            for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext();) {
-                String value = valueIterator.next();
-                if (!processedValues.contains(value)) {
-                    processedValues.add(value);
-                    newValues.add(value);
-                }
-            }
+            List<String> newValues = generateSearchValues(processedValues, secret);
             if (newValues.size() > 0) {
                 IHttpRequestResponse[] messages = callbacks.getProxyHistory();
                 for (int j = 0; j < messages.length; j++) {
@@ -93,6 +98,39 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
         publish("Done.");
 
         return "";
+    }
+
+    private List<String> generateSearchValues(List<String> processedValues, Secret secret) {
+        List<String> values = secret.getValues(20, true);
+        List<String> newValues = new ArrayList<>();
+
+        for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext();) {
+            String value = valueIterator.next();
+            if (!processedValues.contains(value)) {
+                processedValues.add(value);
+                newValues.add(value);
+            }
+            if(secret.huntHashedValues()) {
+                addHashedValue(newValues, processedValues, value, "MD5");
+                addHashedValue(newValues, processedValues, value, "SHA1");
+                addHashedValue(newValues, processedValues, value, "SHA256");
+            }
+        }
+        return newValues;
+    }
+
+    private void addHashedValue(List<String> newValues, List<String> processedValues, String value, String algorithm) {
+        try {
+            MessageDigest md = MessageDigest.getInstance(algorithm);
+            md.reset();
+            byte[] digest = md.digest(value.getBytes());
+            String hexDigest = bytesToHex(digest);
+            if(!processedValues.contains(hexDigest)) {
+                newValues.add(bytesToHex(digest));
+            }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
