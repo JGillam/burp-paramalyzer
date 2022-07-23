@@ -23,14 +23,17 @@ public class SecretResult {
     String issueName;
     String severity; // "High", "Medium", "Low", "Information" or "False positive"
 
+    String domain;
     IHttpRequestResponse requestResponse;
     boolean isResponse;
     int beginIndex;
 
-    public SecretResult(String value, String issueName, String severity) {
+    public SecretResult(String value, String issueName, String severity, IHttpRequestResponse requestResponse, String domain) {
         this.value = value;
         this.issueName = issueName;
         this.severity = severity;
+        this.requestResponse = requestResponse;
+        this.domain = domain;
     }
 
     public String getValue() {
@@ -55,5 +58,9 @@ public class SecretResult {
 
     public int getBeginIndex() {
         return beginIndex;
+    }
+
+    public String getDomain(){
+        return domain;
     }
 }

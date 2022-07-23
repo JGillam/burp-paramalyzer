@@ -53,7 +53,6 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
             publish("Hunting "+secret.getName()+"...");
             List<SecretResult> results = new ArrayList<>();
             List<String> values = secret.getValues();
-            callbacks.printOutput("Values length: "+values.size());
             List<String> newValues = new ArrayList<>();
             for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext();) {
                 String value = valueIterator.next();
@@ -62,10 +61,8 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
                     newValues.add(value);
                 }
             }
-            callbacks.printOutput("New values: " + newValues.size());
             if (newValues.size() > 0) {
                 IHttpRequestResponse[] messages = callbacks.getProxyHistory();
-                callbacks.printOutput("Retrieved messages: "+ messages.length);
                 for (int j = 0; j < messages.length; j++) {
                     publish(100 * j / messages.length);
                     IRequestInfo requestInfo = helpers.analyzeRequest(messages[j]);
@@ -79,12 +76,12 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
                             String request = helpers.bytesToString(messages[j].getRequest());
                             int index = request.indexOf(value);
                             if (index > -1) {
-                                results.add(new SecretResult(value, "secret in out of scope request", "High"));
+                                results.add(new SecretResult(value, "secret in out-of-scope request", "High", messages[j],url.getHost()));
                             }
                         } else {
                             int urlIndex = url.toString().indexOf(value);
                             if (urlIndex > -1) {
-                                results.add(new SecretResult(value, "secret in URL", "Medium"));
+                                results.add(new SecretResult(value, "secret in URL", "Medium", messages[j], url.getHost()));
                             }
                         }
                     }

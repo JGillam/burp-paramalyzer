@@ -25,7 +25,9 @@ public class SecretResultsTableModel extends AbstractTableModel {
     enum SecretResultsColumn {
         VALUE("Value"),
         SEVERITY("Severity"),
-        ISSUE_NAME("Issue Name");
+        ISSUE_NAME("Issue Name"),
+
+        HOST("Host");
 
         String name;
         SecretResultsColumn(String name)
@@ -70,6 +72,8 @@ public class SecretResultsTableModel extends AbstractTableModel {
             return secretResult.getSeverity();
         } else if(SecretResultsColumn.ISSUE_NAME.ordinal() == column) {
             return secretResult.getIssueName();
+        } else if(SecretResultsColumn.HOST.ordinal() == column) {
+            return secretResult.getDomain();
         } else {
             return "?";
         }
