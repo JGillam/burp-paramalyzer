@@ -26,21 +26,19 @@ import com.professionallyevil.paramalyzer.sessions.SessionAnalysisTab;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.Caret;
 import javax.swing.text.DefaultHighlighter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +58,6 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JTextArea textAreaResponse;
     private JCheckBox ignoreEmptyCheckBox;
     private JTextArea analysisTextArea;
-    private JButton highlightValueButton;
     private JTextArea ignore;
     private JCheckBox showDecodedValuesCheckBox;
     private JTable cookieTable;
@@ -72,6 +69,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JCheckBox showFormatPrefix;
     private JCheckBox showDuplicates;
     private JPanel secretsPanel;
+    private JComboBox highlightChoice;
+    private JTextField commentTextfield;
     private IBurpExtenderCallbacks callbacks;
     private CorrelatorEngine engine = null;
     private ParametersTableModel paramsTableModel = new ParametersTableModel();
@@ -135,44 +134,56 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         listValues.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
-                if (message != null) {
-                    String requestString = callbacks.getHelpers().bytesToString(message.getRequest());
-                    textAreaRequest.setText(requestString);
-                    textAreaRequest.getHighlighter().removeAllHighlights();
-                    displayedRequest = message;
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
+                        if (message != null) {
+                            String requestString = callbacks.getHelpers().bytesToString(message.getRequest());
+                            textAreaRequest.setText(requestString);
+                            textAreaRequest.getHighlighter().removeAllHighlights();
+                            displayedRequest = message;
 
-                    ParamInstance pi = paramListModel.getParamInstance(listValues.getSelectedIndex());
-                    String value = pi.getValue();
-                    int requestIndex = requestString.indexOf(value);
-                    if(requestIndex > -1) {
-                        try {
-                            textAreaRequest.getHighlighter().addHighlight(requestIndex, requestIndex + value.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
-                        } catch (BadLocationException ex) {
-                            // ignore (this should be impossible)
+                            ParamInstance pi = paramListModel.getParamInstance(listValues.getSelectedIndex());
+                            String value = pi.getValue();
+                            int requestIndex = requestString.indexOf(value);
+                            if (requestIndex > -1) {
+                                try {
+                                    textAreaRequest.getHighlighter().addHighlight(requestIndex, requestIndex + value.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
+                                } catch (BadLocationException ex) {
+                                    // ignore (this should be impossible)
+                                }
+                            }
+
+                            if (message.getResponse() != null && message.getResponse().length > 0) {
+                                textAreaResponse.setText(callbacks.getHelpers().bytesToString(message.getResponse()));
+                            } else {
+                                textAreaResponse.setText("");
+                            }
+
+                            analysisTextArea.setText(ParamAnalyzer.analyze(pi, callbacks));
+                            String highlightColor = message.getHighlight();
+                            if (highlightColor == null) {
+                                highlightColor = "none";
+                            }
+
+                            highlightChoice.setSelectedItem(highlightColor);
+                            commentTextfield.setText(message.getComment());
+                        } else {
+                            callbacks.printOutput("Message was null for: " + listValues.getSelectedIndex());
+                            textAreaResponse.setText("");
+                            textAreaRequest.getHighlighter().removeAllHighlights();
+                            textAreaRequest.setText("");
+                            analysisTextArea.setText("");
+                            displayedRequest = null;
+
                         }
+                        analysisTextArea.setCaretPosition(0);
+                        textAreaRequest.setCaretPosition(0);
+                        textAreaResponse.setCaretPosition(0);
+
                     }
-
-                    if (message.getResponse() != null && message.getResponse().length > 0) {
-                        textAreaResponse.setText(callbacks.getHelpers().bytesToString(message.getResponse()));
-                    } else {
-                        textAreaResponse.setText("");
-                    }
-
-                    analysisTextArea.setText(ParamAnalyzer.analyze(pi, callbacks));
-                } else {
-                    callbacks.printOutput("Message was null for: " + listValues.getSelectedIndex());
-                    textAreaResponse.setText("");
-                    textAreaRequest.getHighlighter().removeAllHighlights();
-                    textAreaRequest.setText("");
-                    analysisTextArea.setText("");
-                    displayedRequest = null;
-
-                }
-                analysisTextArea.setCaretPosition(0);
-                textAreaRequest.setCaretPosition(0);
-                textAreaResponse.setCaretPosition(0);
-
+                });
             }
         });
         textAreaRequest.addMouseListener(new MouseAdapter() {
@@ -306,18 +317,13 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 updateParamInstanceList();
             }
         });
-        highlightValueButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ParamInstance pi = paramListModel.getParamInstance(listValues.getSelectedIndex());
-                if (pi != null) {
-                    Caret caret = textAreaRequest.getCaret();
-                    caret.setSelectionVisible(true);
-                    caret.setDot(pi.getValueStart());
-                    caret.moveDot(pi.getValueEnd());
-                }
-            }
-        });
+
+        // TODO: determine if this needed to get reused to zoom to highlighted section
+//                    Caret caret = textAreaRequest.getCaret();
+//                    caret.setSelectionVisible(true);
+//                    caret.setDot(pi.getValueStart());
+//                    caret.moveDot(pi.getValueEnd());
+
         showDecodedValuesCheckBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -384,6 +390,46 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
 
         secretsPanel.setLayout(new GridLayout(1, 1));
         secretsPanel.add(secretHunter.getMainPanel());
+        highlightChoice.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
+                if (message != null && e.getStateChange() == ItemEvent.SELECTED) {
+                    String color = (String) highlightChoice.getSelectedItem();
+                    if ("none".equals(color)) {
+                        message.setHighlight(null);
+                    } else {
+                        message.setHighlight(color);
+                    }
+                }
+            }
+        });
+
+        commentTextfield.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
+                if (message != null) {
+                    message.setComment(commentTextfield.getText());
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
+                if (message != null) {
+                    message.setComment(commentTextfield.getText());
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
+                if (message != null) {
+                    message.setComment(commentTextfield.getText());
+                }
+            }
+        });
     }
 
     private void updateParamInstanceList() {
@@ -546,7 +592,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         parametersTable.setFillsViewportHeight(true);
         scrollPane1.setViewportView(parametersTable);
         final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1, true, false));
+        panel3.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
         panel3.setMaximumSize(new Dimension(2147483647, 280));
         panel3.setPreferredSize(new Dimension(832, 250));
         splitPane1.setRightComponent(panel3);
@@ -590,117 +636,132 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         analysisTextArea.setMinimumSize(new Dimension(100, 16));
         scrollPane3.setViewportView(analysisTextArea);
         final JPanel panel7 = new JPanel();
-        panel7.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1, true, false));
+        panel7.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel3.add(panel7, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel7.setBorder(BorderFactory.createTitledBorder(null, "Req. / Resp.", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel7.setBorder(BorderFactory.createTitledBorder(null, "Message", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JTabbedPane tabbedPane1 = new JTabbedPane();
-        panel7.add(tabbedPane1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 2, false));
-        tabbedPane1.setBorder(BorderFactory.createTitledBorder(null, "Message", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel7.add(tabbedPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         final JPanel panel8 = new JPanel();
-        panel8.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel8.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabbedPane1.addTab("Request", panel8);
         final JScrollPane scrollPane4 = new JScrollPane();
         panel8.add(scrollPane4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         textAreaRequest = new JTextArea();
         scrollPane4.setViewportView(textAreaRequest);
         final JPanel panel9 = new JPanel();
-        panel9.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabbedPane1.addTab("Response", panel9);
+        panel9.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel8.add(panel9, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        highlightChoice = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        defaultComboBoxModel1.addElement("none");
+        defaultComboBoxModel1.addElement("red");
+        defaultComboBoxModel1.addElement("orange");
+        defaultComboBoxModel1.addElement("yellow");
+        defaultComboBoxModel1.addElement("green");
+        defaultComboBoxModel1.addElement("cyan");
+        defaultComboBoxModel1.addElement("blue");
+        defaultComboBoxModel1.addElement("pink");
+        defaultComboBoxModel1.addElement("magenta");
+        defaultComboBoxModel1.addElement("gray");
+        highlightChoice.setModel(defaultComboBoxModel1);
+        panel9.add(highlightChoice, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        commentTextfield = new JTextField();
+        panel9.add(commentTextfield, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        final JPanel panel10 = new JPanel();
+        panel10.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabbedPane1.addTab("Response", panel10);
         final JScrollPane scrollPane5 = new JScrollPane();
-        panel9.add(scrollPane5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel10.add(scrollPane5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         textAreaResponse = new JTextArea();
         scrollPane5.setViewportView(textAreaResponse);
-        highlightValueButton = new JButton();
-        highlightValueButton.setText("Highlight Value");
-        panel7.add(highlightValueButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JPanel panel10 = new JPanel();
-        panel10.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel2.add(panel10, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(348, 95), null, 0, false));
         final JPanel panel11 = new JPanel();
-        panel11.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        panel10.add(panel11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        panel11.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel2.add(panel11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(348, 95), null, 0, false));
+        final JPanel panel12 = new JPanel();
+        panel12.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
+        panel11.add(panel12, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         beginAnalysisButton = new JButton();
         beginAnalysisButton.setText("Analyze");
         beginAnalysisButton.setToolTipText("Begin analysis of all requests in scope.");
-        panel11.add(beginAnalysisButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel12.add(beginAnalysisButton, new GridConstraints(0, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         clearButton = new JButton();
         clearButton.setText("Clear");
-        panel11.add(clearButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JPanel panel12 = new JPanel();
-        panel12.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        panel10.add(panel12, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-        panel12.setBorder(BorderFactory.createTitledBorder(null, "Status", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel12.add(clearButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JPanel panel13 = new JPanel();
+        panel13.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel11.add(panel13, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        panel13.setBorder(BorderFactory.createTitledBorder(null, "Status", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         textFieldStatus = new JTextField();
         textFieldStatus.setEditable(false);
-        panel12.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        panel13.add(textFieldStatus, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         progressBar = new JProgressBar();
-        panel12.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel13.add(progressBar, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         secretsPanel = new JPanel();
         secretsPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         tabPane.addTab("Secrets", secretsPanel);
-        final JPanel panel13 = new JPanel();
-        panel13.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Sessions", panel13);
-        sessionsTabbedPane = new JTabbedPane();
-        panel13.add(sessionsTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
         final JPanel panel14 = new JPanel();
         panel14.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        sessionsTabbedPane.addTab("Help", panel14);
+        tabPane.addTab("Sessions", panel14);
+        sessionsTabbedPane = new JTabbedPane();
+        panel14.add(sessionsTabbedPane, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(200, 200), null, 0, false));
+        final JPanel panel15 = new JPanel();
+        panel15.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        sessionsTabbedPane.addTab("Help", panel15);
         final JScrollPane scrollPane6 = new JScrollPane();
         scrollPane6.setEnabled(false);
-        panel14.add(scrollPane6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel15.add(scrollPane6, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         sessionsHelpTextPane = new JTextArea();
         sessionsHelpTextPane.setEditable(false);
         sessionsHelpTextPane.setLineWrap(true);
         sessionsHelpTextPane.setText("This tool will help determine which parameters are involved in maintaining session state, which can be particularly helpful when applications have a large number of cookies.\n\nTo perform session token analysis in Paramalyzer, find a working authenticated request in proxy history or from repeater, right-click, and \"Send to Paramalyzer\".  This will create a new tab next to this help tab.\n\nOnce in that tab, use the \"Verify Baseline\" button to make sure your request is  still producing authenticated responses, then press the \"Analyze\" button.");
         scrollPane6.setViewportView(sessionsHelpTextPane);
-        final JPanel panel15 = new JPanel();
-        panel15.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Cookies", panel15);
+        final JPanel panel16 = new JPanel();
+        panel16.setLayout(new GridLayoutManager(2, 3, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Cookies", panel16);
         final Spacer spacer1 = new Spacer();
-        panel15.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel16.add(spacer1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         final JScrollPane scrollPane7 = new JScrollPane();
-        panel15.add(scrollPane7, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel16.add(scrollPane7, new GridConstraints(0, 0, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         cookieTable = new JTable();
         scrollPane7.setViewportView(cookieTable);
         saveCookieStatsButton = new JButton();
         saveCookieStatsButton.setText("Save...");
         saveCookieStatsButton.setToolTipText("Save these results to a CSV file.");
-        panel15.add(saveCookieStatsButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel16.add(saveCookieStatsButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        panel15.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
-        final JPanel panel16 = new JPanel();
-        panel16.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Deep Analysis", panel16);
+        panel16.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel17 = new JPanel();
-        panel17.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Settings", panel17);
+        panel17.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Deep Analysis", panel17);
         final JPanel panel18 = new JPanel();
-        panel18.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel17.add(panel18, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel18.setBorder(BorderFactory.createTitledBorder(null, "Parameter Analysis", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel18.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Settings", panel18);
+        final JPanel panel19 = new JPanel();
+        panel19.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel18.add(panel19, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel19.setBorder(BorderFactory.createTitledBorder(null, "Parameter Analysis", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane8 = new JScrollPane();
-        panel18.add(scrollPane8, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel19.add(scrollPane8, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         scrollPane8.setBorder(BorderFactory.createTitledBorder(null, "Ignore These", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         ignore = new JTextArea();
         ignore.setText("__VIEWSTATE\n__VIEWSTATEGENERATOR");
         ignore.setToolTipText("List parameters with large values you want to skip over.");
         scrollPane8.setViewportView(ignore);
         final Spacer spacer3 = new Spacer();
-        panel18.add(spacer3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel19.add(spacer3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel18.add(spacer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel19.add(spacer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         ignoreEmptyCheckBox = new JCheckBox();
         ignoreEmptyCheckBox.setSelected(true);
         ignoreEmptyCheckBox.setText("Ignore Empty Values");
         ignoreEmptyCheckBox.setToolTipText("Skip processing parameters without values.");
-        panel18.add(ignoreEmptyCheckBox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel19.add(ignoreEmptyCheckBox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showDecodedValuesCheckBox = new JCheckBox();
         showDecodedValuesCheckBox.setSelected(true);
         showDecodedValuesCheckBox.setText("Show Decoded Values");
-        panel18.add(showDecodedValuesCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel19.add(showDecodedValuesCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
-        panel17.add(spacer5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel18.add(spacer5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**
