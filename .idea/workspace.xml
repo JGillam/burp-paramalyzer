@@ -10,19 +10,38 @@
       <artifact name="burp-paramalyzer" />
     </artifacts-to-build>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="BRANCH:feature-secrettracker" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Added docs using mkdocs.">
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamTracker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/ParamTrackerTab.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer_main.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/paramalyzer_test.iml" beforeDir="false" />
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add both upper and lowercase versions of hash equivalents.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.form" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/bc/Paramalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,37 +78,18 @@
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Source Sets" type="e897c970:GradleViewContributor$SourceSetsNode" />
-                <item name="main" type="396b929e:GradleViewContributor$SourceSetNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="paramalyzer" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="paramalyzer" type="f1a62948:ProjectNode" />
                 <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build" type="c8890929:TasksNode$1" />
+                <item name="documentation" type="c8890929:TasksNode$1" />
               </path>
               <path>
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="paramalyzer" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-                <item name="build setup" type="c8890929:TasksNode$1" />
+                <item name="Run Configurations" type="7b0102dc:RunConfigurationsNode" />
               </path>
             </expand>
             <select />
@@ -97,9 +97,6 @@
         </projects_view>
       </state>
     </system>
-  </component>
-  <component name="FavoritesManager">
-    <favorites_list name="burp-correlator" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -109,7 +106,15 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="NamedScopeManager">
     <order>
@@ -136,38 +141,32 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="GoToClass.includeLibraries" value="false" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
-    <property name="MemberChooser.showClasses" value="true" />
-    <property name="MemberChooser.sorted" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH" value="312" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW" value="true" />
-    <property name="UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH" value="385" />
-    <property name="add_unversioned_files" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547258486493" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.35977012" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;258&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.professionallyevil.bc" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.professionallyevil.paramalyzer.sessions" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/deep" />
+      <recent name="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/sessions" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -176,12 +175,14 @@
     </option>
   </component>
   <component name="RunManager" selected="Gradle.burp-paramalyzer [fatJar]">
-    <configuration default="true" type="AndroidRunConfigurationType">
+    <configuration default="true" type="AndroidRunConfigurationType" factoryName="Android App">
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
       <option name="DEPLOY_AS_INSTANT" value="false" />
       <option name="ARTIFACT_NAME" value="" />
       <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
       <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
       <option name="ACTIVITY_EXTRA_FLAGS" value="" />
       <option name="MODE" value="default_activity" />
@@ -190,41 +191,46 @@
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="AndroidTestRunConfigurationType">
+    <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
       <option name="TESTING_TYPE" value="0" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
+      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
       <option name="EXTRA_OPTIONS" value="" />
+      <option name="INCLUDE_GRADLE_EXTRA_OPTIONS" value="true" />
       <option name="CLEAR_LOGCAT" value="false" />
       <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
       <option name="FORCE_STOP_RUNNING_APP" value="true" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
-      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
-      <option name="PREFERRED_AVD" value="" />
       <option name="DEBUGGER_TYPE" value="Java" />
       <Java />
       <Profilers>
         <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
         <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -237,30 +243,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="TestNG">
-      <option name="TEST_OBJECT" value="CLASS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
       <Port>5050</Port>
-    </configuration>
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
-      <module name="" />
-      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
-      <option name="PROGRAM_PARAMETERS" />
-      <predefined_log_file enabled="true" id="idea.log" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -268,7 +253,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="burp-paramalyzer [buildDependents]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="burp-paramalyzer [assemble]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -279,12 +264,14 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="buildDependents" />
+            <option value="assemble" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="burp-paramalyzer [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -303,7 +290,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="burp-paramalyzer [classes]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -322,7 +311,9 @@
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="burp-paramalyzer [fatJar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -341,10 +332,12 @@
         </option>
         <option name="vmOptions" value="" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="burp-paramalyzer [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="burp-paramalyzer [processResources]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -355,12 +348,14 @@
         </option>
         <option name="taskNames">
           <list>
-            <option value="init" />
+            <option value="processResources" />
           </list>
         </option>
         <option name="vmOptions" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration name="burp-paramalyzer" type="GradleRunConfiguration" factoryName="Gradle">
@@ -377,7 +372,9 @@
         </option>
         <option name="vmOptions" value="" />
       </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
       <method v="2" />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -390,70 +387,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType" factoryName="Kotlin script">
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
       <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
       <module name="" />
-      <option name="filePath" />
-      <option name="vmParameters" />
-      <option name="alternativeJrePath" />
-      <option name="programParameters" />
-      <option name="passParentEnvs" value="true" />
-      <option name="workingDirectory" />
-      <option name="isAlternativeJrePathEnabled" value="false" />
-      <option name="VM_PARAMETERS" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
       <option name="PROGRAM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="WORKING_DIRECTORY" />
+      <predefined_log_file enabled="true" id="idea.log" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Gradle.burp-paramalyzer" />
+      <item itemvalue="Gradle.burp-paramalyzer [processResources]" />
       <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
       <item itemvalue="Gradle.burp-paramalyzer [build]" />
       <item itemvalue="Gradle.burp-paramalyzer [classes]" />
-      <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
-      <item itemvalue="Gradle.burp-paramalyzer [init]" />
+      <item itemvalue="Gradle.burp-paramalyzer [assemble]" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Gradle.burp-paramalyzer [fatJar]" />
         <item itemvalue="Gradle.burp-paramalyzer [build]" />
-        <item itemvalue="Gradle.burp-paramalyzer [buildDependents]" />
+        <item itemvalue="Gradle.burp-paramalyzer [processResources]" />
         <item itemvalue="Gradle.burp-paramalyzer [classes]" />
-        <item itemvalue="Gradle.burp-paramalyzer [init]" />
+        <item itemvalue="Gradle.burp-paramalyzer [assemble]" />
       </list>
     </recent_temporary>
   </component>
-  <component name="ServiceViewManager">
-    <option name="viewStates">
-      <list>
-        <serviceView>
-          <treeState>
-            <expand />
-            <select />
-          </treeState>
-        </serviceView>
-      </list>
-    </option>
-  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -464,146 +443,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1443106857644</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Fixed decoded field in table.  Added &quot;Deflected&quot;.">
-      <created>1450967932074</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1450967932074</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Updated class level docs">
-      <created>1450969557055</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1450969557055</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed multiple format detection, including issue #2, issue #3">
-      <created>1450977110319</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1450977110319</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Renamed Correlator to Paramalyser">
-      <created>1451767506571</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1451767506571</updated>
-    </task>
-    <task id="LOCAL-00008" summary="Fixed some of the analyzer logic to make it work a bit better.">
-      <created>1451769839726</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1451769839726</updated>
-    </task>
-    <task id="LOCAL-00009" summary="Minor change">
-      <created>1451770468673</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1451770468673</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Added a cookie tab.">
-      <created>1475075363431</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1475075363431</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added export button to export to csv file.">
-      <created>1475107269509</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107269509</updated>
-    </task>
-    <task id="LOCAL-00012" summary="Cleaned up formatting of cookie statistics table.">
-      <created>1475107464176</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107464176</updated>
-    </task>
-    <task id="LOCAL-00013" summary="Fixed column count">
-      <created>1475107630824</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107630824</updated>
-    </task>
-    <task id="LOCAL-00014" summary="Make table sortable">
-      <created>1475107834808</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1475107834808</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Fixed sorting of count column">
-      <created>1475108206280</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1475108206280</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Updated version number to 1.0.0">
-      <created>1475108246077</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1475108246077</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Fixed NPE">
-      <created>1475181692618</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1475181692618</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Added support for basic JSON objects. (lists not handled... yet)">
-      <created>1481252026244</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1481252026244</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Added recognition of JSON parameters.">
-      <created>1481256193341</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1481256193341</updated>
-    </task>
-    <task id="LOCAL-00020" summary="Improved some of the pattern matching.">
-      <created>1481256990497</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1481256990497</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Skip reflection check for values less than 3 characters.">
-      <created>1481257322992</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257322992</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Change default to ignore empty values.">
-      <created>1481257452340</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257452340</updated>
-    </task>
-    <task id="LOCAL-00023" summary="Updated version number to 1.0.2">
-      <created>1481257670298</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1481257670298</updated>
+      <workItem from="1658514698100" duration="893000" />
+      <workItem from="1658516948433" duration="33987000" />
+      <workItem from="1659198895894" duration="1752000" />
     </task>
     <task id="LOCAL-00024" summary="Revert file mode.">
       <created>1492549165234</created>
@@ -808,16 +650,174 @@
       <option name="project" value="LOCAL" />
       <updated>1574997589910</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Reorganized package structure.">
+      <created>1604151291205</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1604151291205</updated>
+    </task>
+    <task id="LOCAL-00054" summary="ignore aws config">
+      <created>1604151343217</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1604151343217</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Initial setup of secrets table.">
+      <created>1604156605560</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1604156605560</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Renamed &quot;interesting&quot; to &quot;secret&quot;">
+      <created>1604156716103</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1604156716103</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Basic import of secrets from parameter table is working.">
+      <created>1604158292477</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1604158292477</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Merged in patch from previous secrets manager work.">
+      <created>1658512672327</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1658512672327</updated>
+    </task>
+    <task id="LOCAL-00059" summary="remove legacy bc subfolder">
+      <created>1658516730759</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1658516730760</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Made final">
+      <created>1658518543825</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1658518543825</updated>
+    </task>
+    <task id="LOCAL-00061" summary="Made final">
+      <created>1658519128150</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1658519128150</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Add secrets results table">
+      <created>1658537703736</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1658537703736</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Form updates">
+      <created>1658537914938</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1658537914938</updated>
+    </task>
+    <task id="LOCAL-00064" summary="SecretHunterWorker base functionality">
+      <created>1658550428942</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1658550428942</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Reorganized UI components to add split panes.">
+      <created>1658580925862</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1658580925862</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Implemented &quot;Remove Selected&quot; button">
+      <created>1658584444947</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1658584444947</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Add example value to secrets table">
+      <created>1658584763015</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1658584763015</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Set resizeweight">
+      <created>1658585008051</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1658585008051</updated>
+    </task>
+    <task id="LOCAL-00069" summary="show progress bar text.">
+      <created>1658585065356</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1658585065356</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Add UI for included hashed equivalents">
+      <created>1658587333985</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1658587333985</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Add hunting for hashed equivalents.">
+      <created>1658588985431</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1658588985431</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Add both upper and lowercase versions of hash equivalents.">
+      <created>1658598808146</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1658598808146</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="1">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
-              <option name="COLUMN_ORDER" />
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature-secrettracker2" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
             </State>
           </value>
         </entry>
@@ -849,78 +849,36 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added popup menu to send request to Repeater." />
-    <MESSAGE value="Updated copyright." />
-    <MESSAGE value="Deep analysis functionality updates." />
-    <MESSAGE value="Project file cleanup." />
-    <MESSAGE value="Cleared up some UI issues." />
-    <MESSAGE value="Added Session Analyzer tab." />
-    <MESSAGE value="Fixed some member scopes." />
-    <MESSAGE value="Renamed SessionTestRow to SessionTestCase" />
-    <MESSAGE value="Added support for authorization header." />
-    <MESSAGE value="Send to repeater." />
-    <MESSAGE value="send response to comparer" />
-    <MESSAGE value="Add response time to table." />
-    <MESSAGE value="Added a close button for session analysis tabs." />
-    <MESSAGE value="Open correct tab when sending to Paramalyzer" />
-    <MESSAGE value="Tidy up UI" />
-    <MESSAGE value="Added more stuff to .gitignore." />
-    <MESSAGE value="Uniform horizontal sizing of detail pane columns." />
-    <MESSAGE value="Put Deep Analysis tab close button in the same place as the session analysis tab." />
-    <MESSAGE value="Added Type, Domains, and Paths to the Cookie Analysis Tab." />
     <MESSAGE value="Added origin response search." />
     <MESSAGE value="Added docs using mkdocs." />
     <MESSAGE value="Fixed quirky looking session help tab in dark mode." />
     <MESSAGE value="Updated burp-extender-api dependency to 2.1" />
     <MESSAGE value="Updated autogenerated UI component code." />
     <MESSAGE value="Rearranged tabs." />
-    <option name="LAST_COMMIT_MESSAGE" value="Rearranged tabs." />
+    <MESSAGE value="Reorganized package structure." />
+    <MESSAGE value="ignore aws config" />
+    <MESSAGE value="Initial setup of secrets table." />
+    <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
+    <MESSAGE value="Basic import of secrets from parameter table is working." />
+    <MESSAGE value="Merged in patch from previous secrets manager work." />
+    <MESSAGE value="remove legacy bc subfolder" />
+    <MESSAGE value="Made final" />
+    <MESSAGE value="Add secrets results table" />
+    <MESSAGE value="Form updates" />
+    <MESSAGE value="SecretHunterWorker base functionality" />
+    <MESSAGE value="Reorganized UI components to add split panes." />
+    <MESSAGE value="Implemented &quot;Remove Selected&quot; button" />
+    <MESSAGE value="Add example value to secrets table" />
+    <MESSAGE value="Set resizeweight" />
+    <MESSAGE value="show progress bar text." />
+    <MESSAGE value="Add UI for included hashed equivalents" />
+    <MESSAGE value="Add hunting for hashed equivalents." />
+    <MESSAGE value="Add both upper and lowercase versions of hash equivalents." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add both upper and lowercase versions of hash equivalents." />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="1109" y="352" key="#Plugins" timestamp="1574992972731">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1109" y="352" key="#Plugins/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574992972731" />
-    <state x="1083" y="394" key="#com.intellij.ide.util.MemberChooser" timestamp="1575124843596">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1083" y="394" key="#com.intellij.ide.util.MemberChooser/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575124843596" />
-    <state x="1105" y="301" key="CommitChangelistDialog2" timestamp="1574997588815">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1105" y="301" key="CommitChangelistDialog2/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574997588815" />
-    <state width="1253" height="354" key="GridCell.Tab.0.bottom" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.bottom/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state width="1253" height="354" key="GridCell.Tab.0.center" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.center/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state width="1253" height="354" key="GridCell.Tab.0.left" timestamp="1575125221577">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.left/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221577" />
-    <state width="1253" height="354" key="GridCell.Tab.0.right" timestamp="1575125221578">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state width="1253" height="354" key="GridCell.Tab.0.right/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575125221578" />
-    <state x="997" y="268" key="SettingsEditor" timestamp="1575219505697">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="997" y="268" key="SettingsEditor/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1575219505697" />
-    <state x="476" y="113" width="1900" height="1188" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1574995814686">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="476" y="113" width="1900" height="1188" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574995814686" />
-    <state x="1212" y="518" key="com.intellij.ide.util.TipDialog" timestamp="1574995558995">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1212" y="518" key="com.intellij.ide.util.TipDialog/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574995558995" />
-    <state x="1173" y="330" width="672" height="677" key="run.anything.popup" timestamp="1574992781630">
-      <screen x="0" y="0" width="2560" height="1400" />
-    </state>
-    <state x="1173" y="330" width="672" height="677" key="run.anything.popup/-3840.0.1920.1050/0.0.2560.1400@0.0.2560.1400" timestamp="1574992781630" />
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
