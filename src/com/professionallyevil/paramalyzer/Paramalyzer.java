@@ -20,7 +20,6 @@ import burp.*;
 import com.intellij.uiDesigner.core.GridConstraints;
 import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
-import com.professionallyevil.paramalyzer.deep.DeepAnalysisTab;
 import com.professionallyevil.paramalyzer.secrets.SecretHunter;
 import com.professionallyevil.paramalyzer.sessions.SessionAnalysisTab;
 
@@ -303,44 +302,6 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                             clipboard.setContents(contents, Paramalyzer.this);
                         }
                     });
-
-                    menu.add(new AbstractAction() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            try {
-                                int selected = listValues.getSelectedIndex();
-                                if (selected > -1) {
-                                    ParamInstance pi = paramListModel.getParamInstance(selected);
-                                    setProgress(0);
-                                    setStatus("Starting deep analysis of " + pi.getDecodedValue() + "...");
-                                    String label = pi.getName();
-                                    if (label.length() > 20) {
-                                        label = label.substring(0, 17) + "...";
-                                    }
-                                    callbacks.printOutput("Starting deep analysis...");
-                                    DeepAnalysisTab tab = new DeepAnalysisTab(pi, Paramalyzer.this, callbacks);
-                                    tabPane.add(label, tab.getMainPanel());
-                                    tab.setTitle(label);
-                                    tabPane.setSelectedIndex(tabPane.getTabCount() - 1);
-                                    tabPane.setToolTipTextAt(tabPane.getTabCount() - 1, pi.getName() + "=" + pi.getDecodedValue());
-                                    callbacks.customizeUiComponent(tab.getMainPanel());
-                                    tab.begin();
-                                }
-                            } catch (Throwable t) {
-                                callbacks.printError(t.getMessage());
-                            }
-                        }
-
-                        @Override
-                        public Object getValue(String key) {
-                            if (Action.NAME.equals(key)) {
-                                return "Deep Analysis";
-                            } else {
-                                return super.getValue(key);
-                            }
-                        }
-                    });
-
 
                     menu.show(listValues, e.getX(), e.getY());
                 }
@@ -772,37 +733,34 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final Spacer spacer2 = new Spacer();
         panel16.add(spacer2, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel17 = new JPanel();
-        panel17.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Deep Analysis", panel17);
+        panel17.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
+        tabPane.addTab("Settings", panel17);
         final JPanel panel18 = new JPanel();
-        panel18.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
-        tabPane.addTab("Settings", panel18);
-        final JPanel panel19 = new JPanel();
-        panel19.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
-        panel18.add(panel19, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel19.setBorder(BorderFactory.createTitledBorder(null, "Parameter Analysis", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        panel18.setLayout(new GridLayoutManager(4, 2, new Insets(0, 0, 0, 0), -1, -1));
+        panel17.add(panel18, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel18.setBorder(BorderFactory.createTitledBorder(null, "Parameter Analysis", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane8 = new JScrollPane();
-        panel19.add(scrollPane8, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel18.add(scrollPane8, new GridConstraints(0, 0, 3, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         scrollPane8.setBorder(BorderFactory.createTitledBorder(null, "Ignore These", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         ignore = new JTextArea();
         ignore.setText("__VIEWSTATE\n__VIEWSTATEGENERATOR");
         ignore.setToolTipText("List parameters with large values you want to skip over.");
         scrollPane8.setViewportView(ignore);
         final Spacer spacer3 = new Spacer();
-        panel19.add(spacer3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+        panel18.add(spacer3, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
-        panel19.add(spacer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel18.add(spacer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         ignoreEmptyCheckBox = new JCheckBox();
         ignoreEmptyCheckBox.setSelected(true);
         ignoreEmptyCheckBox.setText("Ignore Empty Values");
         ignoreEmptyCheckBox.setToolTipText("Skip processing parameters without values.");
-        panel19.add(ignoreEmptyCheckBox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel18.add(ignoreEmptyCheckBox, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         showDecodedValuesCheckBox = new JCheckBox();
         showDecodedValuesCheckBox.setSelected(true);
         showDecodedValuesCheckBox.setText("Show Decoded Values");
-        panel19.add(showDecodedValuesCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        panel18.add(showDecodedValuesCheckBox, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer5 = new Spacer();
-        panel18.add(spacer5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
+        panel17.add(spacer5, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }
 
     /**
