@@ -26,14 +26,15 @@ import com.professionallyevil.paramalyzer.WorkerStatusListener;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
 
 public class SecretHunter implements WorkerStatusListener {
     public static boolean DEBUG_STATUS = true;
@@ -51,6 +52,8 @@ public class SecretHunter implements WorkerStatusListener {
     private JPanel topPanel;
     private JPanel bottomPanel;
     private JButton removeSelectedButton;
+    private JComboBox colorCombo;
+    private JTextField commentText;
     private SecretsTableModel secretsTableModel = new SecretsTableModel();
     private SecretResultsTableModel secretResultsTableModel = new SecretResultsTableModel();
 
@@ -148,6 +151,13 @@ public class SecretHunter implements WorkerStatusListener {
                                 // do nothing
                             }
                             //messageEditor.setMessage(selectedResult.getRequestResponse().getRequest(), true);
+                            commentText.setText(selectedResult.getRequestResponse().getComment());
+                            String color = selectedResult.getRequestResponse().getHighlight();
+                            if (color == null) {
+                                color = "none";
+                            }
+                            colorCombo.setSelectedItem(color);
+
                         } else {
                             requestTextArea.setText("");
                         }
@@ -163,6 +173,56 @@ public class SecretHunter implements WorkerStatusListener {
                 secretsTableModel.removeRows(selectedRows);
             }
         });
+        colorCombo.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                if (selectedResult != null && e.getStateChange() == ItemEvent.SELECTED) {
+                    String color = (String) colorCombo.getSelectedItem();
+                    if ("none".equals(color)) {
+                        selectedResult.getRequestResponse().setHighlight(null);
+                    } else {
+                        selectedResult.getRequestResponse().setHighlight(color);
+                    }
+                }
+            }
+        });
+
+        commentText.getDocument().addDocumentListener(new DocumentListener() {
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                if (selectedResult != null) {
+                    selectedResult.getRequestResponse().setComment(commentText.getText());
+                }
+            }
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                if (selectedResult != null) {
+                    selectedResult.getRequestResponse().setComment(commentText.getText());
+                }
+            }
+
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                if (selectedResult != null) {
+                    selectedResult.getRequestResponse().setComment(commentText.getText());
+                }
+            }
+        });
+
+//        commentText.addFocusListener(new FocusAdapter() {
+//            @Override
+//            public void focusLost(FocusEvent e) {
+//                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+//                if (selectedResult != null) {
+//                    selectedResult.getRequestResponse().setComment(commentText.getText());
+//                }
+//            }
+//        });
     }
 
     public void registerCallbacks(IBurpExtenderCallbacks callbacks) {
@@ -240,13 +300,33 @@ public class SecretHunter implements WorkerStatusListener {
         secretResultsTable = new JTable();
         scrollPane2.setViewportView(secretResultsTable);
         editorPanel = new JPanel();
-        editorPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        editorPanel.setLayout(new GridLayoutManager(2, 1, new Insets(0, 0, 0, 0), -1, -1));
         splitPane2.setRightComponent(editorPanel);
         editorPanel.setBorder(BorderFactory.createTitledBorder(null, "Selected Request", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
         final JScrollPane scrollPane3 = new JScrollPane();
         editorPanel.add(scrollPane3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         requestTextArea = new JTextArea();
         scrollPane3.setViewportView(requestTextArea);
+        final JPanel panel1 = new JPanel();
+        panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
+        editorPanel.add(panel1, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
+        panel1.setBorder(BorderFactory.createTitledBorder(null, "Highlight / Comment", TitledBorder.DEFAULT_JUSTIFICATION, TitledBorder.DEFAULT_POSITION, null, null));
+        colorCombo = new JComboBox();
+        final DefaultComboBoxModel defaultComboBoxModel1 = new DefaultComboBoxModel();
+        defaultComboBoxModel1.addElement("none");
+        defaultComboBoxModel1.addElement("red");
+        defaultComboBoxModel1.addElement("orange");
+        defaultComboBoxModel1.addElement("yellow");
+        defaultComboBoxModel1.addElement("green");
+        defaultComboBoxModel1.addElement("cyan");
+        defaultComboBoxModel1.addElement("blue");
+        defaultComboBoxModel1.addElement("pink");
+        defaultComboBoxModel1.addElement("magenta");
+        defaultComboBoxModel1.addElement("gray");
+        colorCombo.setModel(defaultComboBoxModel1);
+        panel1.add(colorCombo, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        commentText = new JTextField();
+        panel1.add(commentText, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
     }
 
     /**
