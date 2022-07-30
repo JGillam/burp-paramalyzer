@@ -18,6 +18,8 @@ package com.professionallyevil.paramalyzer.secrets;
 
 import burp.IHttpRequestResponse;
 
+import java.util.Objects;
+
 public class SecretResult {
     String value;
     String issueName;
@@ -28,12 +30,14 @@ public class SecretResult {
     boolean isResponse;
     int beginIndex;
 
-    public SecretResult(String value, String issueName, String severity, IHttpRequestResponse requestResponse, String domain) {
+    public SecretResult(String value, String issueName, String severity, IHttpRequestResponse requestResponse, String domain, int beginIndex) {
         this.value = value;
         this.issueName = issueName;
         this.severity = severity;
         this.requestResponse = requestResponse;
         this.domain = domain;
+        this.beginIndex = this.getBeginIndex();
+        this.isResponse = true;
     }
 
     public String getValue() {
@@ -62,5 +66,18 @@ public class SecretResult {
 
     public String getDomain(){
         return domain;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        SecretResult that = (SecretResult) o;
+        return value.equals(that.value) && issueName.equals(that.issueName) && severity.equals(that.severity) && domain.equals(that.domain) && (beginIndex==that.beginIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value, issueName, severity, domain, beginIndex);
     }
 }

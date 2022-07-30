@@ -81,12 +81,12 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
                             String request = helpers.bytesToString(messages[j].getRequest());
                             int index = request.indexOf(value);
                             if (index > -1) {
-                                results.add(new SecretResult(value, "secret in out-of-scope request", "High", messages[j],url.getHost()));
+                                results.add(new SecretResult(value, "secret in out-of-scope request", "High", messages[j],url.getHost(), index));
                             }
                         } else {
                             int urlIndex = url.toString().indexOf(value);
                             if (urlIndex > -1) {
-                                results.add(new SecretResult(value, "secret in URL", "Medium", messages[j], url.getHost()));
+                                results.add(new SecretResult(value, "secret in URL", "Medium", messages[j], url.getHost(), urlIndex));
                             }
                         }
                     }
