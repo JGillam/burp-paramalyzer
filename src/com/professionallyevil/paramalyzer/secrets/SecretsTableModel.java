@@ -122,6 +122,7 @@ public class SecretsTableModel extends AbstractTableModel {
         if(secretsToBeRemoved.size() > 0) {
             secrets.removeAll(secretsToBeRemoved);
             fireTableDataChanged();
+            fireTableStructureChanged();
         }
     }
 

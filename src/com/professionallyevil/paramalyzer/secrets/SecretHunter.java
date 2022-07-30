@@ -113,36 +113,46 @@ public class SecretHunter implements WorkerStatusListener {
         secretsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Secret selectedSecret = secretsTableModel.getSecretsList().get(secretsTable.getSelectedRow());
-                secretResultsTableModel.setResults(selectedSecret.getResults());
+                SwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        Secret selectedSecret = secretsTableModel.getSecretsList().get(secretsTable.getSelectedRow());
+                        secretResultsTableModel.setResults(selectedSecret.getResults());
+                    }
+                });
             }
         });
 
         secretResultsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                Highlighter highlighter = requestTextArea.getHighlighter();
+                SwingUtilities.invokeLater(new Runnable(){
+                    @Override
+                    public void run() {
+                        Highlighter highlighter = requestTextArea.getHighlighter();
 
-                highlighter.removeAllHighlights();
-                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
-                if (selectedResult != null) {
-                    byte[] requestBytes = selectedResult.requestResponse.getRequest();
-                    String requestString = callbacks.getHelpers().bytesToString(requestBytes);
-                    requestTextArea.setText(requestString);
-                    String highlightValue = selectedResult.getValue();
-                    int index = requestString.indexOf(highlightValue);
-                    try {
-                        highlighter.addHighlight(index, index + highlightValue.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
-                        Rectangle viewRect = requestTextArea.modelToView(index);
-                        // Scroll to make the rectangle visible
-                        requestTextArea.scrollRectToVisible(viewRect);
-                    } catch (BadLocationException ex) {
-                        // do nothing
+                        highlighter.removeAllHighlights();
+                        SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                        if (selectedResult != null) {
+                            byte[] requestBytes = selectedResult.requestResponse.getRequest();
+                            String requestString = callbacks.getHelpers().bytesToString(requestBytes);
+                            requestTextArea.setText(requestString);
+                            String highlightValue = selectedResult.getValue();
+                            int index = requestString.indexOf(highlightValue);
+                            try {
+                                highlighter.addHighlight(index, index + highlightValue.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
+                                Rectangle viewRect = requestTextArea.modelToView(index);
+                                // Scroll to make the rectangle visible
+                                requestTextArea.scrollRectToVisible(viewRect);
+                            } catch (BadLocationException ex) {
+                                // do nothing
+                            }
+                            //messageEditor.setMessage(selectedResult.getRequestResponse().getRequest(), true);
+                        } else {
+                            requestTextArea.setText("");
+                        }
                     }
-                    //messageEditor.setMessage(selectedResult.getRequestResponse().getRequest(), true);
-                } else {
-                    requestTextArea.setText("");
-                }
+                });
             }
         });
 
