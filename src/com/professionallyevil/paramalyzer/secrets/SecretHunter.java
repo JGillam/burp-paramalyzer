@@ -126,7 +126,7 @@ public class SecretHunter implements WorkerStatusListener {
         secretResultsTable.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
-                SwingUtilities.invokeLater(new Runnable(){
+                SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
                         Highlighter highlighter = requestTextArea.getHighlighter();
@@ -200,6 +200,7 @@ public class SecretHunter implements WorkerStatusListener {
         final JScrollPane scrollPane1 = new JScrollPane();
         topPanel.add(scrollPane1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(453, 280), null, 0, false));
         secretsTable = new JTable();
+        secretsTable.setAutoCreateRowSorter(true);
         scrollPane1.setViewportView(secretsTable);
         controlPanel = new JPanel();
         controlPanel.setLayout(new GridLayoutManager(8, 1, new Insets(0, 0, 0, 0), -1, -1));
