@@ -29,7 +29,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.Caret;
+import javax.swing.text.DefaultHighlighter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -135,10 +137,21 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
             public void valueChanged(ListSelectionEvent e) {
                 IHttpRequestResponse message = paramListModel.getMessageForIndex(listValues.getSelectedIndex());
                 if (message != null) {
-                    textAreaRequest.setText(callbacks.getHelpers().bytesToString(message.getRequest()));
+                    String requestString = callbacks.getHelpers().bytesToString(message.getRequest());
+                    textAreaRequest.setText(requestString);
+                    textAreaRequest.getHighlighter().removeAllHighlights();
                     displayedRequest = message;
 
                     ParamInstance pi = paramListModel.getParamInstance(listValues.getSelectedIndex());
+                    String value = pi.getValue();
+                    int requestIndex = requestString.indexOf(value);
+                    if(requestIndex > -1) {
+                        try {
+                            textAreaRequest.getHighlighter().addHighlight(requestIndex, requestIndex + value.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
+                        } catch (BadLocationException ex) {
+                            // ignore (this should be impossible)
+                        }
+                    }
 
                     if (message.getResponse() != null && message.getResponse().length > 0) {
                         textAreaResponse.setText(callbacks.getHelpers().bytesToString(message.getResponse()));
@@ -150,6 +163,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 } else {
                     callbacks.printOutput("Message was null for: " + listValues.getSelectedIndex());
                     textAreaResponse.setText("");
+                    textAreaRequest.getHighlighter().removeAllHighlights();
                     textAreaRequest.setText("");
                     analysisTextArea.setText("");
                     displayedRequest = null;
