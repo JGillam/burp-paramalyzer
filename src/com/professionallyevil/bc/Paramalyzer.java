@@ -48,6 +48,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private JProgressBar progressBar;
     protected JTable parametersTable;
     private JButton clearButton;
+    private JButton exportButton;
     private JList<String> listValues;
     private JTextArea textAreaRequest;
     private JTextArea textAreaResponse;
@@ -118,6 +119,43 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                 textAreaResponse.setText("");
                 analysisTextArea.setText("");
                 cookieStatisticsTableModel.clear();
+            }
+        });
+
+        exportButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser chooser = new JFileChooser();
+                int result = chooser.showSaveDialog(mainPanel);
+                if (result == JFileChooser.APPROVE_OPTION) {
+                    File f = chooser.getSelectedFile();
+                    try {
+                        PrintWriter w = new PrintWriter(new FileWriter(f));
+                        StringBuilder buf = new StringBuilder();
+                        for (int col = 0; col < paramsTableModel.getColumnCount(); col++) {
+                            buf.append(paramsTableModel.getColumnName(col));
+                            buf.append(';');
+                        }
+                        buf.deleteCharAt(buf.length() - 1);
+                        w.println(buf.toString());
+
+                        for (int row = 0; row < paramsTableModel.getRowCount(); row++) {
+                            buf = new StringBuilder();
+                            for (int col = 0; col < paramsTableModel.getColumnCount(); col++) {
+                                buf.append(paramsTableModel.getValueAt(row, col));
+                                buf.append(';');
+                            }
+                            buf.deleteCharAt(buf.length() - 1);
+                            w.println(buf.toString());
+                        }
+
+                        w.flush();
+                        w.close();
+                    } catch (IOException e1) {
+                        callbacks.printError("Unable to write to file: " + e1.getMessage());
+                    }
+                }
+
             }
         });
 
