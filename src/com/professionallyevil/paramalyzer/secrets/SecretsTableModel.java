@@ -69,11 +69,7 @@ public class SecretsTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int column) {
-        if(SecretsColumn.HUNT_HASHED.ordinal() == column) {
-            return true;
-        } else {
-            return false;
-        }
+        return SecretsColumn.HUNT_HASHED.ordinal() == column;
     }
 
     @Override

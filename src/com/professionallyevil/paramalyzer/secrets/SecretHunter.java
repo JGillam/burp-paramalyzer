@@ -54,8 +54,8 @@ public class SecretHunter implements WorkerStatusListener {
     private JButton removeSelectedButton;
     private JComboBox colorCombo;
     private JTextField commentText;
-    private SecretsTableModel secretsTableModel = new SecretsTableModel();
-    private SecretResultsTableModel secretResultsTableModel = new SecretResultsTableModel();
+    private final SecretsTableModel secretsTableModel = new SecretsTableModel();
+    private final SecretResultsTableModel secretResultsTableModel = new SecretResultsTableModel();
 
     private IBurpExtenderCallbacks callbacks;
 
@@ -214,16 +214,6 @@ public class SecretHunter implements WorkerStatusListener {
                 }
             }
         });
-
-//        commentText.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
-//                if (selectedResult != null) {
-//                    selectedResult.getRequestResponse().setComment(commentText.getText());
-//                }
-//            }
-//        });
     }
 
     public void registerCallbacks(IBurpExtenderCallbacks callbacks) {

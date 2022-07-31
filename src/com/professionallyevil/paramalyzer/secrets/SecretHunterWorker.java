@@ -31,9 +31,9 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class SecretHunterWorker extends SwingWorker<String, Object> {
-    private IBurpExtenderCallbacks callbacks;
-    private WorkerStatusListener listener;
-    private SecretsTableModel tableModel;
+    private final IBurpExtenderCallbacks callbacks;
+    private final WorkerStatusListener listener;
+    private final SecretsTableModel tableModel;
 
     private static final char[] HEX_ARRAY = "0123456789ABCDEF".toCharArray();
     public static String bytesToHex(byte[] bytes) {
