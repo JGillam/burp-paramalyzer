@@ -75,7 +75,6 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
 
                     for (Iterator<String> valueIterator = newValues.iterator(); valueIterator.hasNext(); ) {
                         String value = valueIterator.next();
-                        callbacks.printOutput("Hunting value: "+value);
 
                         if (!isInScope) {
                             String request = helpers.bytesToString(messages[j].getRequest());
@@ -134,7 +133,6 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
         md.reset();
         byte[] digest = md.digest(value.getBytes());
         String hexDigest = bytesToHex(digest);
-        callbacks.printOutput("Adding hexDigest of "+value+" for "+algorithm+" "+hexDigest);
         return hexDigest;
     }
 

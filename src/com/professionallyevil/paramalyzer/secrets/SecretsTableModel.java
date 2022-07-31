@@ -18,6 +18,7 @@ package com.professionallyevil.paramalyzer.secrets;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class SecretsTableModel extends AbstractTableModel {
@@ -140,5 +141,13 @@ public class SecretsTableModel extends AbstractTableModel {
             Secret secret = secrets.get(rowIndex);
             secret.setHuntHashedValues(!secret.huntHashedValues());
         }
+    }
+
+    public void clearIssues() {
+        for(Iterator<Secret> secretIterator = secrets.listIterator();secretIterator.hasNext();) {
+            Secret nextSecret = secretIterator.next();
+            nextSecret.clearResults();
+        }
+        fireTableDataChanged();
     }
 }

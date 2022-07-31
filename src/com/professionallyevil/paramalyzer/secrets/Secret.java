@@ -41,4 +41,8 @@ abstract class Secret {
     abstract boolean huntHashedValues();
 
     abstract void setHuntHashedValues(boolean huntHashedValues);
+
+    public void clearResults(){
+        results.clear();
+    }
 }

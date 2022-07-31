@@ -108,6 +108,7 @@ public class SecretHunter implements WorkerStatusListener {
         huntSecrets.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                secretsTableModel.clearIssues();
                 SecretHunterWorker worker = new SecretHunterWorker(callbacks, SecretHunter.this, secretsTableModel);
                 worker.execute();
             }
