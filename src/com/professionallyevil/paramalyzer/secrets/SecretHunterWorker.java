@@ -27,9 +27,7 @@ import java.io.PrintStream;
 import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 public class SecretHunterWorker extends SwingWorker<String, Object> {
@@ -58,7 +56,8 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
     protected String doInBackground() throws Exception {
         listener.setProgress(0);
         List<Secret> secrets = tableModel.getSecretsList();
-        List<String> processedValues = new ArrayList<>();
+        Set<String> processedValues = new HashSet<>();
+        processedValues.add("");  // skip empty strings
 
         IExtensionHelpers helpers = callbacks.getHelpers();
         for (Iterator<Secret> secretsIterator = secrets.listIterator(); secretsIterator.hasNext(); ) {
@@ -76,6 +75,7 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
 
                     for (Iterator<String> valueIterator = newValues.iterator(); valueIterator.hasNext(); ) {
                         String value = valueIterator.next();
+                        callbacks.printOutput("Hunting value: "+value);
 
                         if (!isInScope) {
                             String request = helpers.bytesToString(messages[j].getRequest());
@@ -100,39 +100,42 @@ public class SecretHunterWorker extends SwingWorker<String, Object> {
         return "";
     }
 
-    private List<String> generateSearchValues(List<String> processedValues, Secret secret) {
+    private List<String> generateSearchValues(Set<String> processedValues, Secret secret) {
         List<String> values = secret.getValues(20, true);
-        List<String> newValues = new ArrayList<>();
 
-        for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext();) {
-            String value = valueIterator.next();
-            if (!processedValues.contains(value)) {
-                processedValues.add(value);
-                newValues.add(value);
+        if (secret.huntHashedValues()) {
+            Set<String> hashedValues = new HashSet<>();
+
+            for (Iterator<String> valueIterator = values.iterator(); valueIterator.hasNext(); ) {
+                String nextValue = valueIterator.next();
+
+
+                for (String algorithm : Arrays.asList("MD5", "SHA1", "SHA256")) {
+                    try {
+                        String hashedValue = generateHashedValue(nextValue, algorithm);
+                        hashedValues.add(hashedValue);
+                        hashedValues.add(hashedValue.toLowerCase());
+                    } catch (NoSuchAlgorithmException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
-            if(secret.huntHashedValues()) {
-                addHashedValue(newValues, processedValues, value, "MD5");
-                addHashedValue(newValues, processedValues, value, "SHA1");
-                addHashedValue(newValues, processedValues, value, "SHA256");
-            }
+
+            values.addAll(hashedValues);
         }
-        return newValues;
+
+        values.removeAll(processedValues);
+        processedValues.addAll(values);
+        return values;
     }
 
-    private void addHashedValue(List<String> newValues, List<String> processedValues, String value, String algorithm) {
-        try {
-            MessageDigest md = MessageDigest.getInstance(algorithm);
-            md.reset();
-            byte[] digest = md.digest(value.getBytes());
-            String hexDigest = bytesToHex(digest);
-            if(!processedValues.contains(hexDigest)) {
-                processedValues.add(hexDigest.toUpperCase());
-                processedValues.add(hexDigest.toLowerCase());
-                newValues.add(bytesToHex(digest));
-            }
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
+    private String generateHashedValue(String value, String algorithm) throws NoSuchAlgorithmException{
+        MessageDigest md = MessageDigest.getInstance(algorithm);
+        md.reset();
+        byte[] digest = md.digest(value.getBytes());
+        String hexDigest = bytesToHex(digest);
+        callbacks.printOutput("Adding hexDigest of "+value+" for "+algorithm+" "+hexDigest);
+        return hexDigest;
     }
 
     @Override
