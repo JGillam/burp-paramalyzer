@@ -81,7 +81,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
     private SecretHunter secretHunter;
 
     private static final boolean DEBUG_STATUS = true;
-    private static final String VERSION = "2.2.0";
+    private static final String VERSION = "2.2.1";
     private static final String EXTENSION_NAME = "Paramalyzer";
 
     public Paramalyzer() {

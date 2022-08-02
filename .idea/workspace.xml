@@ -38,10 +38,8 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Add both upper and lowercase versions of hash equivalents.">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="cleanup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretHunter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/professionallyevil/paramalyzer/secrets/SecretsTableModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,11 +147,13 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.SHOW&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;258&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.WIDTH&quot;: &quot;339&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propGUI&quot;
   }
 }</component>
@@ -446,55 +446,7 @@
       <workItem from="1658514698100" duration="893000" />
       <workItem from="1658516948433" duration="33987000" />
       <workItem from="1659198895894" duration="1752000" />
-    </task>
-    <task id="LOCAL-00024" summary="Revert file mode.">
-      <created>1492549165234</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1492549165234</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Added detection of base62 encoding.">
-      <created>1492552219172</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1492552219172</updated>
-    </task>
-    <task id="LOCAL-00026" summary="Added skeleton for deep analysis functionality.">
-      <created>1492569065680</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1492569065680</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Deep Analysis feature added.">
-      <created>1492620819075</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1492620819075</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Added popup menu to send request to Repeater.">
-      <created>1492631201386</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1492631201386</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Updated copyright.">
-      <created>1492631289670</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1492631289670</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Deep analysis functionality updates.">
-      <created>1545328262701</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1545328262701</updated>
+      <workItem from="1659227009778" duration="5469000" />
     </task>
     <task id="LOCAL-00031" summary="Project file cleanup.">
       <created>1545328295069</created>
@@ -790,7 +742,56 @@
       <option name="project" value="LOCAL" />
       <updated>1658598808146</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="Fixed merge issues from including Export button (thanks for Export implementation @Rhynorater)">
+      <created>1659211335650</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1659211335650</updated>
+    </task>
+    <task id="LOCAL-00074" summary="Removed the Deep Analysis feature, which has been replaced with Secrets Hunter">
+      <created>1659211790733</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1659211790733</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Added a bit more detail regarding how to build from source.">
+      <created>1659211813753</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1659211813753</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Bump the version number">
+      <created>1659292842151</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1659292842152</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Reworked value generation for seaching for values.">
+      <created>1659294237131</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1659294237131</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Added clear, cleaned up code">
+      <created>1659294965040</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1659294965041</updated>
+    </task>
+    <task id="LOCAL-00079" summary="cleanup">
+      <created>1659295031828</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1659295031828</updated>
+    </task>
+    <option name="localTasksCounter" value="80" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -849,13 +850,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added origin response search." />
-    <MESSAGE value="Added docs using mkdocs." />
-    <MESSAGE value="Fixed quirky looking session help tab in dark mode." />
-    <MESSAGE value="Updated burp-extender-api dependency to 2.1" />
-    <MESSAGE value="Updated autogenerated UI component code." />
-    <MESSAGE value="Rearranged tabs." />
-    <MESSAGE value="Reorganized package structure." />
     <MESSAGE value="ignore aws config" />
     <MESSAGE value="Initial setup of secrets table." />
     <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
@@ -874,7 +868,14 @@
     <MESSAGE value="Add UI for included hashed equivalents" />
     <MESSAGE value="Add hunting for hashed equivalents." />
     <MESSAGE value="Add both upper and lowercase versions of hash equivalents." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add both upper and lowercase versions of hash equivalents." />
+    <MESSAGE value="Fixed merge issues from including Export button (thanks for Export implementation @Rhynorater)" />
+    <MESSAGE value="Removed the Deep Analysis feature, which has been replaced with Secrets Hunter" />
+    <MESSAGE value="Added a bit more detail regarding how to build from source." />
+    <MESSAGE value="Bump the version number" />
+    <MESSAGE value="Reworked value generation for seaching for values." />
+    <MESSAGE value="Added clear, cleaned up code" />
+    <MESSAGE value="cleanup" />
+    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
