@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Jason Gillam" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Cookie Analysis - Paramalyzer Docs</title>
+    <title>Secrets Hunter - Paramalyzer Docs</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Cookie Analysis";
-        var mkdocs_page_input_path = "cookie-analysis.md";
+        var mkdocs_page_name = "Secrets Hunter";
+        var mkdocs_page_input_path = "secrets-hunter.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -48,13 +48,15 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../parameter-analysis/">Parameter Analysis</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../secrets-hunter/">Secrets Hunter</a>
-                  </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Cookie Analysis</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Secrets Hunter</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#exporting">Exporting</a>
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a>
     </li>
     </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cookie-analysis/">Cookie Analysis</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../session-analysis/">Session Analysis</a>
                   </li>
@@ -74,9 +76,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Paramalyzer Tools &raquo;</li>
-      <li>Cookie Analysis</li>
+      <li>Secrets Hunter</li>
     <li class="wy-breadcrumbs-aside">
-        <a href="https://github.com/JGillam/burp-paramalyzer/edit/master/docs/cookie-analysis.md"
+        <a href="https://github.com/JGillam/burp-paramalyzer/edit/master/docs/secrets-hunter.md"
           class="icon icon-github"> Edit on GitHub</a>
     </li>
   </ul>
@@ -85,29 +87,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="cookie-analysis">Cookie Analysis<a class="headerlink" href="#cookie-analysis" title="Permanent link">&para;</a></h1>
-<p>The cookie analysis tab provides a table of cookies found in the proxy history.  This table can be used to quickly determine
-which cookies where set with unsecure settings.  The following screenshot is an example:</p>
-<p><img alt="Cookies Tab" src="../screenshots/04-cookies.png" />
-<a href="../screenshots/04-cookies.png">View Full Size</a></p>
-<p>This table contains the following fields:</p>
+                <h1 id="secrets-hunter">Secrets Hunter<a class="headerlink" href="#secrets-hunter" title="Permanent link">&para;</a></h1>
+<p>The purpose of this tool is to leverage the data that has already been collected by paramalyzer to search for the exposure 
+of secrets. In this context, a secret is any type of information that is intended to be kept within the scope of the application 
+(i.e. between the application and the user). Secrets Hunter looks for the following types of exposure:</p>
 <ul>
-<li><strong>Name</strong>: The name of the cookie</li>
-<li><strong>Count</strong>: A count of the number of times the cookie was set.</li>
-<li><strong>HttpOnly Flag</strong>: Indicator of how frequently the HttpOnly flag was set for this cookie.</li>
-<li><strong>Secure Flag</strong>: Indicator of how frequently the Secure flag was set for this cookie.</li>
-<li><strong>Type</strong>: Is this a Session cookie or a Persistent cookie?  Persistent cookies have an expiration or max-age value set, and will be saved to disk. Session cookies only stay in memory until the browser is closed.</li>
-<li><strong>Domains</strong>: A list of domains for which this cookie was set. Look for cases where a cookie is overly-scoped such that it works across all subdomains.</li>
-<li><strong>Paths</strong>: A list of paths for which this cookie was set.</li>
+<li>A secret value is found in a url</li>
+<li>A secret value is found in any out-of-scope request</li>
 </ul>
-<h2 id="exporting">Exporting<a class="headerlink" href="#exporting" title="Permanent link">&para;</a></h2>
-<p>There is a <code>Save</code> button at the bottom of the tab that can be used to export this entire table as a csv file.</p>
+<p>This tool relies heavily on the target scope setting in Burp Suite.</p>
+<h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
+<p>On the main parameter table you may have noticed the <em>Secret</em> column. </p>
+<p><img alt="Parameters Tab" src="../screenshots/09-secrets-parameters-tab-v2-2-1.png" />
+<a href="../screenshots/09-secrets-parameters-tab-v2-2-1.png">View Full Size</a></p>
+<p>Paramalyzer will try to guess secrets for you, but this process works best if you curate that list (the <em>Secret</em> checkboxes are editable). 
+Go through your parameters and check the box for any parameters that you would not want leaked to a third party. Uncheck 
+the box for parameters that don't matter, such as those that only have blank values or perhaps show an index number rather 
+than a sensitive value.</p>
+<p>Next, take a look at the secrets tab:
+<img alt="Secrets Tab" src="../screenshots/09-secrets-secrethunter-tab-v2-2-1.png" />
+<a href="../screenshots/09-secrets-secrethunter-tab-v2-2-1.png">View Full Size</a></p>
+<p>You can follow the numbers in the screenshot to see the general workflow for this tab is as follows:</p>
+<ol>
+<li>Press the <em>Import Secrets</em> button. This will bring all the secrets over that you selected on the Parameters tab. If you missed some, simply press <em>Clear</em>, fix your list in the Parameters tab, and hit this <em>Import Secrets</em> button again.</li>
+<li>You can further curate your list by removing anything that doesn't belong here. Searching for secrets can take a while when you have a lot of proxy history, so it is best that this list only be as long as necessary.</li>
+<li>Check boxes for <em>Hunt Hashed</em> for items that you might expect to be hashed (passwords is an example). This makes the search take longer, as it will search for MD5, SHA1, and SHA256 versions (upper and lowercase) of each secret value.</li>
+<li>Press the <em>Hunt Secrets!</em> button, and wait for the search to complete.</li>
+<li>For any secret that lists an issue count more than zero, select it and review the results list.</li>
+<li>You can select any item on the results list to see where the value was found in the request.</li>
+</ol>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Currently, Secrets Hunter will only search for the first 20 unique values for any given parameter.</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../secrets-hunter/" class="btn btn-neutral float-left" title="Secrets Hunter"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../session-analysis/" class="btn btn-neutral float-right" title="Session Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../parameter-analysis/" class="btn btn-neutral float-left" title="Parameter Analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../cookie-analysis/" class="btn btn-neutral float-right" title="Cookie Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -134,10 +152,10 @@ which cookies where set with unsecure settings.  The following screenshot is an 
         </span>
     
     
-      <span><a href="../secrets-hunter/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../parameter-analysis/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../session-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../cookie-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

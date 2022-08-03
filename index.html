@@ -1,127 +1,92 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="None">
-  <meta name="author" content="Jason Gillam">
-  <link rel="shortcut icon" href="img/favicon.ico">
-  <title>Paramalyzer Overview - Paramalyzer Docs</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Paramalyzer Overview";
-    var mkdocs_page_input_path = "index.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="js/jquery-2.1.1.min.js" defer></script>
-  <script src="js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" /><meta name="author" content="Jason Gillam" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Paramalyzer Docs</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Paramalyzer Overview";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href="." class="icon icon-home"> Paramalyzer Docs</a>
-        <div role="search">
+          <a href="." class="icon icon-home"> Paramalyzer Docs
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1 current">
-		
-    <a class="current" href=".">Paramalyzer Overview</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l2"><a href="#paramalyzer-overview">Paramalyzer Overview</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l3" href="#what-does-it-do">What does it do?</a></li>
-        
-            <li><a class="toctree-l3" href="#installation">Installation</a></li>
-        
-            <li><a class="toctree-l3" href="#basic-usage-tips">Basic Usage Tips</a></li>
-        
-        </ul>
-    
-
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href=".">Paramalyzer Overview</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#what-does-it-do">What does it do?</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#basic-usage-tips">Basic Usage Tips</a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Paramalyzer Tools</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="parameter-analysis/">Parameter Analysis</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="cookie-analysis/">Cookie Analysis</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="session-analysis/">Session Analysis</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+              </ul>
+              <p class="caption"><span class="caption-text">Paramalyzer Tools</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="parameter-analysis/">Parameter Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="secrets-hunter/">Secrets Hunter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="cookie-analysis/">Cookie Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="session-analysis/">Session Analysis</a>
+                  </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href=".">Paramalyzer Docs</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Paramalyzer Docs</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".">Docs</a> &raquo;</li>
-    
-      
-    
-    <li>Paramalyzer Overview</li>
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+      <li>Paramalyzer Overview</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/JGillam/burp-paramalyzer/edit/master/docs/index.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="paramalyzer-overview">Paramalyzer Overview<a class="headerlink" href="#paramalyzer-overview" title="Permanent link">&para;</a></h1>
 <p>Paramalyzer is a <a href="https://portswigger.net/">Burp Suite</a> extension authored by Jason Gillam of <a href="https://www.secureideas.com">Secure Ideas</a>.
@@ -134,9 +99,9 @@ decoding parameters, and determining which parameters are reflected in the respo
 <p>As of version 2.0, this extension also helps specifically with certain aspects of session cookies, which can help a penetration
 tester find certain types of authentication and authorization flaws.</p>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link">&para;</a></h2>
-<p>Until Paramalyzer is made available in the Burp Suite BApp Store, the only option is to install the .jar file manually.
-To do so, first visit the <a href="https://github.com/JGillam/burp-paramalyzer/releases">Paramalyzer releases on GitHub</a>
-and download the latest release .jar file.  Then in the Burp Extender tab, press the <code>Add</code> button, find and select the downloaded
+<p>Paramalyzer is available in the Burp Suite BApp Store; however, the version in the store may be behind the latest release.
+You can find the latest release as a downloadable .jar file under <a href="https://github.com/JGillam/burp-paramalyzer/releases">GitHub Paramalyzer releases</a>.
+Download it and then in the Burp Extender tab, press the <code>Add</code> button, find and select the downloaded
 .jar file.  The resulting screen should look something like the following screenshot:</p>
 <p><img alt="Extender Screenshot" src="screenshots/01-extender.png" /></p>
 <p>Notice the addition of the Paramalyzer tab on the far right of the main tab pane.</p>
@@ -144,7 +109,7 @@ and download the latest release .jar file.  Then in the Burp Extender tab, press
 <p>When using Paramalyzer, it is important to understand that you must start with good baseline data.  The following tips will
 help:</p>
 <ul>
-<li>Paramalyzer analyzes your proxy history. Therefore you must manually visit all of the functionality in the application
+<li>Paramalyzer analyzes your proxy history. Therefore, you must manually visit all the functionality in the application
 in your browser while pointed at your Burp Suite proxy.
 This is the best-practice for manual penetration tests anyway, as you must understand how the application works in order
 accurately identify vulnerabilities.</li>
@@ -154,37 +119,32 @@ accurately identify vulnerabilities.</li>
 <li>Log out and back in with the same user account. Capture proxy history for all user functions (i.e. login, logout,
  forgot password, registration, change password, change profile, etc...)</li>
 <li>If applicable, visit the site in different roles (e.g. regular use, admin user).</li>
+<li>The goal of all of this is to produce a solid baseline of the application's inputs for Paramalyzer to process.</li>
 </ul>
 <p>Once you have completed the basic mapping, you can then move on to using Paramalyzer's tools, found on the main set of
 tabs in the extension:</p>
 <ol>
 <li><a href="parameter-analysis/">Parameters</a>: Analysis of in-scope parameters.</li>
+<li><a href="secrets-hunter/">Secrets</a>: Look for sensitive information leakage.</li>
 <li><a href="cookie-analysis/">Cookies</a>: High-level analysis of cookies found in the proxy history.</li>
 <li><a href="session-analysis/">Sessions</a>: In-depth analysis of session cookies and headers for a given request.</li>
 </ol>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="parameter-analysis/" class="btn btn-neutral float-right" title="Parameter Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -192,25 +152,33 @@ tabs in the extension:</p>
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/JGillam/burp-paramalyzer/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-      
-        <span style="margin-left: 15px"><a href="parameter-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/JGillam/burp-paramalyzer" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+    
+      <span><a href="parameter-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
     <script src="js/theme.js" defer></script>
       <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.0.4
-Build Date UTC : 2018-12-28 02:54:54
+MkDocs version : 1.3.1
+Build Date UTC : 2022-08-03 15:46:28.051125+00:00
 -->

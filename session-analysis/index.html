@@ -1,131 +1,93 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Jason Gillam">
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Session Analysis - Paramalyzer Docs</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Session Analysis";
-    var mkdocs_page_input_path = "session-analysis.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Jason Gillam" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Session Analysis - Paramalyzer Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Session Analysis";
+        var mkdocs_page_input_path = "session-analysis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Paramalyzer Docs</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> Paramalyzer Docs
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Paramalyzer Overview</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Paramalyzer Tools</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../parameter-analysis/">Parameter Analysis</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Paramalyzer Overview</a>
                 </li>
-                <li class="">
-                    
-    <a class="" href="../cookie-analysis/">Cookie Analysis</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">Session Analysis</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#session-analysis">Session Analysis</a></li>
-    
-        <ul>
-        
-            <li><a class="toctree-l4" href="#send-to-paramalyzer">Send to Paramalyzer</a></li>
-        
-            <li><a class="toctree-l4" href="#session-analysis-tab">Session Analysis Tab</a></li>
-        
-            <li><a class="toctree-l4" href="#find-origin-response">Find Origin Response</a></li>
-        
-        </ul>
-    
-
+              </ul>
+              <p class="caption"><span class="caption-text">Paramalyzer Tools</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../parameter-analysis/">Parameter Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../secrets-hunter/">Secrets Hunter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cookie-analysis/">Cookie Analysis</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Session Analysis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#send-to-paramalyzer">Send to Paramalyzer</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#session-analysis-tab">Session Analysis Tab</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#find-origin-response">Find Origin Response</a>
+    </li>
     </ul>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                  </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Paramalyzer Docs</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Paramalyzer Docs</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-        
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Paramalyzer Tools &raquo;</li>
-        
-      
-    
-    <li>Session Analysis</li>
+      <li>Session Analysis</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/JGillam/burp-paramalyzer/edit/master/docs/session-analysis.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="session-analysis">Session Analysis<a class="headerlink" href="#session-analysis" title="Permanent link">&para;</a></h1>
 <p>The Session Analysis functionality of Paramalyzer will, provided a baseline request, issue a series of test case requests
@@ -162,27 +124,20 @@ set to the value in the baseline request.</li>
 of Burp, which means right-clicking on these items will provide options to send them to other Burp tools.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="../cookie-analysis/" class="btn btn-neutral" title="Cookie Analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../cookie-analysis/" class="btn btn-neutral float-left" title="Cookie Analysis"><span class="icon icon-circle-arrow-left"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -190,20 +145,28 @@ of Burp, which means right-clicking on these items will provide options to send 
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/JGillam/burp-paramalyzer/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href="../cookie-analysis/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/JGillam/burp-paramalyzer" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href="../cookie-analysis/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

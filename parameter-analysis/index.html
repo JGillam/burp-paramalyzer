@@ -1,133 +1,109 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  <meta name="author" content="Jason Gillam">
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Parameter Analysis - Paramalyzer Docs</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Parameter Analysis";
-    var mkdocs_page_input_path = "parameter-analysis.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="author" content="Jason Gillam" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Parameter Analysis - Paramalyzer Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Parameter Analysis";
+        var mkdocs_page_input_path = "parameter-analysis.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Paramalyzer Docs</a>
-        <div role="search">
+          <a href=".." class="icon icon-home"> Paramalyzer Docs
+        </a><div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
   </form>
 </div>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Paramalyzer Overview</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Paramalyzer Tools</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">Parameter Analysis</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#parameter-analysis">Parameter Analysis</a></li>
-    
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Paramalyzer Overview</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Paramalyzer Tools</span></p>
+              <ul class="current">
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Parameter Analysis</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#workflow">Workflow</a>
         <ul>
-        
-            <li><a class="toctree-l4" href="#usage">Usage</a></li>
-        
-            <li><a class="toctree-l4" href="#workflow">Workflow</a></li>
-        
-            <li><a class="toctree-l4" href="#deep-analysis">Deep Analysis</a></li>
-        
-            <li><a class="toctree-l4" href="#supported-formats">Supported Formats</a></li>
-        
+    <li class="toctree-l3"><a class="reference internal" href="#1-main-table">1 - Main Table</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-values-list">2 - Values List</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-what-is-it">3 - What is it?</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-req-resp">4 - Req / Resp</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-highlight-comment">5 - Highlight / Comment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#6-export">6 - Export</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#7-clear">7 - Clear</a>
+    </li>
         </ul>
-    
-
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#supported-formats">Supported Formats</a>
+    </li>
     </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../cookie-analysis/">Cookie Analysis</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../session-analysis/">Session Analysis</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../secrets-hunter/">Secrets Hunter</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cookie-analysis/">Cookie Analysis</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../session-analysis/">Session Analysis</a>
+                  </li>
+              </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Paramalyzer Docs</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">Paramalyzer Docs</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-        
+    <li><a href=".." class="icon icon-home" alt="Docs"></a> &raquo;</li>
           <li>Paramalyzer Tools &raquo;</li>
-        
-      
-    
-    <li>Parameter Analysis</li>
+      <li>Parameter Analysis</li>
     <li class="wy-breadcrumbs-aside">
-      
         <a href="https://github.com/JGillam/burp-paramalyzer/edit/master/docs/parameter-analysis.md"
           class="icon icon-github"> Edit on GitHub</a>
-      
     </li>
   </ul>
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="parameter-analysis">Parameter Analysis<a class="headerlink" href="#parameter-analysis" title="Permanent link">&para;</a></h1>
 <h2 id="usage">Usage<a class="headerlink" href="#usage" title="Permanent link">&para;</a></h2>
@@ -135,9 +111,10 @@
 <p>Once you have mapped out your application you can go to the Paramalyzer tab and proceed.  If you have items that you know
 should be ignored from this analysis, then make sure they are listed in the <code>Ignore These</code> box. VIEWSTATE parameters are
 listed there for you by default.</p>
+<p><em>IMPORTANT: Paramalyzer examines your proxy history to understand the application's parameters. It will get confused by attack payloads in the proxy history, so it is best to run Paramalyzer after mapping the app but before you start injecting attack payloads.</em></p>
 <p>Then press the Analyze button as seen in the image below: </p>
-<p><img alt="Analyzer Tab" src="../screenshots/02-analyzer-parameters.png" />
-<a href="../screenshots/02-analyzer-parameters.png">View Full Size</a></p>
+<p><img alt="Analyzer Tab" src="../screenshots/02-analyzer-parameters-v2-2-1.png" />
+<a href="../screenshots/02-analyzer-parameters-v2-2-1.png">View Full Size</a></p>
 <p>Analysis may take several seconds when covering a long proxy history.  Paramalyzer will make its best effort to identify 
 each request parameter present, including:</p>
 <ul>
@@ -149,8 +126,8 @@ each request parameter present, including:</p>
 </ul>
 <p>The specific rules used to find parameters are determined by Burp Suite.</p>
 <p>Once the analysis is complete, the screen should look something like the following example:</p>
-<p><img alt="Analyzer Tab Complete" src="../screenshots/03-analyzer-parameters.png" /> 
-<a href="../screenshots/03-analyzer-parameters.png">View Full Size</a> </p>
+<p><img alt="Analyzer Tab Complete" src="../screenshots/03-analyzer-parameters-v2-2-1.png" /> 
+<a href="../screenshots/03-analyzer-parameters-v2-2-1.png">View Full Size</a> </p>
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
 <p>The usual workflow, using the above screenshot as a reference, is as follows:</p>
 <h3 id="1-main-table">1 - Main Table<a class="headerlink" href="#1-main-table" title="Permanent link">&para;</a></h3>
@@ -163,39 +140,38 @@ each request parameter present, including:</p>
 <li><strong>Unique Values</strong>: A count of the number of unique values for the given parameter.  Useful for finding parameters that never change or that change frequently.</li>
 <li><strong>Format</strong>: Paramalyzer makes its best effort to determine the real format of the parameter. This includes recursive decoding as needed. See <a href="#supported-formats">Supported Formats</a> for a list of analyzed formats.</li>
 <li><strong>Reflect %</strong>: What percentage of the parameters were found reflected in the response?  This is helpful for finding potential XSS candidates.</li>
-<li><strong>Deflected?</strong>: This will be checked if reflected values are a decoded version of the input.</li>
+<li><strong>Secret</strong>: This editable field designates this parameter as a secret. Paramalyzer will attempt to guess some of these for you. More on secrets later. </li>
 <li><strong>Decodable</strong>: If the parameter value appears to be encoded in a recognized format (e.g. URL-encoded, base64-encoded)</li>
 <li><strong>Example Value</strong>: Display an example value for this parameter. By default this will show the decoded version of the value if it is encoded.</li>
 </ul>
 <p>Look through the table for interesting values.  This will depend on the application but the types of things you are looking for will include:</p>
 <ul>
-<li>Parameters that get reflected could potentially be used for XSS or HTML-injection.</li>
-<li>Parameters containing secrets, like sessions or user information</li>
-<li>Hashes</li>
-<li>Parameters used to control business logic / flow</li>
+<li>Parameters that get consistently reflected could potentially be used for XSS or HTML-injection.</li>
+<li>Parameters containing secrets, like sessions or user information could be exposed.</li>
+<li>Hashes may have originated with interesting or sensitive information.</li>
+<li>Consider which parameters are used to control business logic / flow</li>
 </ul>
 <h3 id="2-values-list">2 - Values List<a class="headerlink" href="#2-values-list" title="Permanent link">&para;</a></h3>
 <p>When you click on a parameter in the main table, its list of unique values is displayed in the bottom-left corner.
 By right-clicking any value in the list you will see the following context menu:</p>
 <ul>
 <li><strong>Copy List to Clipboard</strong>: Sometimes useful when you need to pull a list for a report or as input into another tool such as <em>Intruder</em>.</li>
-<li><strong>Deep Analysis</strong>: Will perform additional analysis on this value, as described in the <a href="#deep-analysis">Deep Analysis</a> section below.</li>
 </ul>
 <h3 id="3-what-is-it">3 - What is it?<a class="headerlink" href="#3-what-is-it" title="Permanent link">&para;</a></h3>
 <p>When you select an item from the Values List, Paramalyzer will explain how it derived the Format of the value. In the example 
 screenshot it is telling us that it found this value to be 40 hexadecimal characters, which is consistent with a SHA-1 value.
 If Paramalyzer was able to decode the value, then each decoding step will be explained here as well.</p>
 <h3 id="4-req-resp">4 - Req / Resp<a class="headerlink" href="#4-req-resp" title="Permanent link">&para;</a></h3>
-<p>The request and response containing the selected value will be available here.  By right-clicking anywhere in the request
-box you will presented with the options to Highlight the request in your Proxy History (to help you find it) or to send
-it directly to <em>Repeater</em>. </p>
-<h2 id="deep-analysis">Deep Analysis<a class="headerlink" href="#deep-analysis" title="Permanent link">&para;</a></h2>
-<p>If you elected to right-click on a value in the Values List and selected Deep Analysis, Paramalyzer will open a new tab as follows.
-<img alt="Deep Analysis" src="../screenshots/03c-deep2.png" />
-<a href="../screenshots/03c-deep2.png">View Full Size</a></p>
-<p>Paramalyzer will search through the Proxy History for additional occurrences of this value.  Specifically, if you perform
-Deep Analysis on any hash value (e.g. MD5, SHA-1), it will hash every other value to see if any of them match. This may be
-useful for determining where the application may be using a hash derived from predictable inputs.</p>
+<p>The request and response containing the selected value will be available here.  The value will by highlighted in pink. 
+By right-clicking anywhere in the request box you will have the option to send it directly to <em>Repeater</em>. </p>
+<h3 id="5-highlight-comment">5 - Highlight / Comment<a class="headerlink" href="#5-highlight-comment" title="Permanent link">&para;</a></h3>
+<p>You can select a highlight color and add a comment below the message box. These settings affect this message in the proxy 
+history tab, which can help you find the request or response later.</p>
+<h3 id="6-export">6 - Export<a class="headerlink" href="#6-export" title="Permanent link">&para;</a></h3>
+<p>The parameter table may be exported to a parsable format (semicolon-delimited).</p>
+<h3 id="7-clear">7 - Clear<a class="headerlink" href="#7-clear" title="Permanent link">&para;</a></h3>
+<p>In the event that you add more information to the proxy history or change your application scope, you can use the <em>Clear</em> 
+button to reset Paramalyzer and make it ready to <em>Analyze</em> again.  </p>
 <h2 id="supported-formats">Supported Formats<a class="headerlink" href="#supported-formats" title="Permanent link">&para;</a></h2>
 <p>Paramalyzer can recognize several different formats of data, as follows:</p>
 <ul>
@@ -220,29 +196,21 @@ useful for determining where the application may be using a hash derived from pr
 </ul>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../cookie-analysis/" class="btn btn-neutral float-right" title="Cookie Analysis">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href=".." class="btn btn-neutral" title="Paramalyzer Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Paramalyzer Overview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../secrets-hunter/" class="btn btn-neutral float-right" title="Secrets Hunter">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -250,22 +218,30 @@ useful for determining where the application may be using a hash derived from pr
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-          <a href="https://github.com/JGillam/burp-paramalyzer/" class="fa fa-github" style="float: left; color: #fcfcfc"> GitHub</a>
-      
-      
-        <span><a href=".." style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../cookie-analysis/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+        <span>
+          <a href="https://github.com/JGillam/burp-paramalyzer" class="fa fa-github" style="color: #fcfcfc"> GitHub</a>
+        </span>
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../secrets-hunter/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
       <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
