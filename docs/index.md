@@ -15,9 +15,9 @@ tester find certain types of authentication and authorization flaws.
 
 ## Installation
 
-Until Paramalyzer is made available in the Burp Suite BApp Store, the only option is to install the .jar file manually.
-To do so, first visit the [Paramalyzer releases on GitHub](https://github.com/JGillam/burp-paramalyzer/releases)
-and download the latest release .jar file.  Then in the Burp Extender tab, press the `Add` button, find and select the downloaded
+Paramalyzer is available in the Burp Suite BApp Store; however, the version in the store may be behind the latest release.
+You can find the latest release as a downloadable .jar file under [GitHub Paramalyzer releases](https://github.com/JGillam/burp-paramalyzer/releases).
+Download it and then in the Burp Extender tab, press the `Add` button, find and select the downloaded
 .jar file.  The resulting screen should look something like the following screenshot:
 
 ![Extender Screenshot](screenshots/01-extender.png)
@@ -29,7 +29,7 @@ Notice the addition of the Paramalyzer tab on the far right of the main tab pane
 When using Paramalyzer, it is important to understand that you must start with good baseline data.  The following tips will
 help:
 
-* Paramalyzer analyzes your proxy history. Therefore you must manually visit all of the functionality in the application
+* Paramalyzer analyzes your proxy history. Therefore, you must manually visit all the functionality in the application
 in your browser while pointed at your Burp Suite proxy.
 This is the best-practice for manual penetration tests anyway, as you must understand how the application works in order
 accurately identify vulnerabilities.
@@ -39,11 +39,13 @@ accurately identify vulnerabilities.
 * Log out and back in with the same user account. Capture proxy history for all user functions (i.e. login, logout,
  forgot password, registration, change password, change profile, etc...)
 * If applicable, visit the site in different roles (e.g. regular use, admin user).
+* The goal of all of this is to produce a solid baseline of the application's inputs for Paramalyzer to process.
 
 Once you have completed the basic mapping, you can then move on to using Paramalyzer's tools, found on the main set of
 tabs in the extension:
 
 1. [Parameters](parameter-analysis.md): Analysis of in-scope parameters.
-1. [Cookies](cookie-analysis.md): High-level analysis of cookies found in the proxy history.
-1. [Sessions](session-analysis.md): In-depth analysis of session cookies and headers for a given request.
+2. [Secrets](secrets-hunter.md): Look for sensitive information leakage.
+3. [Cookies](cookie-analysis.md): High-level analysis of cookies found in the proxy history.
+4. [Sessions](session-analysis.md): In-depth analysis of session cookies and headers for a given request.
 

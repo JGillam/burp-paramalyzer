@@ -10,5 +10,6 @@ nav:
   - 'Paramalyzer Overview': 'index.md'
   - 'Paramalyzer Tools':
     - 'Parameter Analysis': 'parameter-analysis.md'
+    - 'Secrets Hunter': 'secrets-hunter.md'
     - 'Cookie Analysis': 'cookie-analysis.md'
     - 'Session Analysis': 'session-analysis.md'

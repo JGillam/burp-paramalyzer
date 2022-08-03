@@ -5,7 +5,7 @@ The purpose of this extension is to improve efficiency of manual parameter analy
 
 ## Docs
 
-[Read the docs](http://jgillam.github.io/burp-paramalyzer/)
+[Read the docs](https://jgillam.github.io/burp-paramalyzer/)
 
 ## Issues and Enhancements
 Use the Issues tab above to report any problems or enhancement requests.

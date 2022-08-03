@@ -38,8 +38,17 @@
     </select>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="cleanup">
+    <list default="true" id="e52d7e04-34a3-4843-bac0-a9909541cffb" name="Default" comment="Bump version to 2.2.1">
+      <change afterPath="$PROJECT_DIR$/docs/secrets-hunter.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/index.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/parameter-analysis.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/parameter-analysis.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/screenshots/02-analyzer-parameters.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/screenshots/03-analyzer-parameters.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/screenshots/03b-deep.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/screenshots/03c-deep2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mkdocs.yml" beforeDir="false" afterPath="$PROJECT_DIR$/mkdocs.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -447,20 +456,7 @@
       <workItem from="1658516948433" duration="33987000" />
       <workItem from="1659198895894" duration="1752000" />
       <workItem from="1659227009778" duration="5469000" />
-    </task>
-    <task id="LOCAL-00031" summary="Project file cleanup.">
-      <created>1545328295069</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1545328295069</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Cleared up some UI issues.">
-      <created>1545332249357</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1545332249357</updated>
+      <workItem from="1659473295115" duration="7619000" />
     </task>
     <task id="LOCAL-00033" summary="Added Session Analyzer tab.">
       <created>1545452695059</created>
@@ -791,7 +787,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659295031828</updated>
     </task>
-    <option name="localTasksCounter" value="80" />
+    <task id="LOCAL-00080" summary="Added title to comment / highlight section">
+      <created>1659473451779</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1659473451779</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Bump version to 2.2.1">
+      <created>1659473547789</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1659473547789</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -850,8 +860,6 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="ignore aws config" />
-    <MESSAGE value="Initial setup of secrets table." />
     <MESSAGE value="Renamed &quot;interesting&quot; to &quot;secret&quot;" />
     <MESSAGE value="Basic import of secrets from parameter table is working." />
     <MESSAGE value="Merged in patch from previous secrets manager work." />
@@ -875,7 +883,9 @@
     <MESSAGE value="Reworked value generation for seaching for values." />
     <MESSAGE value="Added clear, cleaned up code" />
     <MESSAGE value="cleanup" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleanup" />
+    <MESSAGE value="Added title to comment / highlight section" />
+    <MESSAGE value="Bump version to 2.2.1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bump version to 2.2.1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
