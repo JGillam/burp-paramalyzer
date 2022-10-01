@@ -299,6 +299,7 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
         int count = 0;
         for (String part: parts) {
             String[] pair = part.split("=");
+            String value = (pair.length==1)?"":pair[1];
             String key = pair[0].trim().toUpperCase();
             switch(key) {
                 case "HTTPONLY":
@@ -308,16 +309,16 @@ public class CorrelatorEngine extends SwingWorker<String, Object> {
                     secure = true;
                     break;
                 case "EXPIRES":
-                    expires = pair[1].trim();
+                    expires = value.trim();
                     break;
                 case "MAX-AGE":
-                    maxAge = pair[1].trim();
+                    maxAge = value.trim();
                     break;
                 case "DOMAIN":
-                    domain = pair[1].trim();
+                    domain = value.trim();
                     break;
                 case "PATH":
-                    path = pair[1].trim();
+                    path = value.trim();
                     break;
                 default:
                     // pass
