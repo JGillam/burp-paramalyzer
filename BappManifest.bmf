@@ -10,3 +10,4 @@ Author: Jason Gillam
 ShortDescription: Improves efficiency of manual parameter analysis for web penetration tests and helps find sensitive information leakage.
 EntryPoint: build/libs/paramalyzer-all.jar
 BuildCommand: gradle fatJar
+SupportedProducts: Pro, Community
