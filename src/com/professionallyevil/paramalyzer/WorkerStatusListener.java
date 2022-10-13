@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 Jason Gillam
+ * Copyright (c) 2019 Jason Gillam
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,17 +14,17 @@
  * limitations under the License.
  */
 
-package burp;
+package com.professionallyevil.paramalyzer;
 
-import com.professionallyevil.paramalyzer.Paramalyzer;
+/**
+ * Simple listener to receive progress updates while analysis is underway.
+ */
+public interface WorkerStatusListener {
 
-public class BurpExtender implements IBurpExtender{
+    void setStatus(String statusText);
 
-    Paramalyzer paramalyzer = new Paramalyzer();
+    void setProgress(int percentDone);
 
-    @Override
-    public void registerExtenderCallbacks(IBurpExtenderCallbacks callbacks) {
-        paramalyzer.registerExtenderCallbacks(callbacks);
+    void done(Object result);
 
-    }
 }

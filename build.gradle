@@ -5,8 +5,9 @@ repositories {
 }
 
 dependencies {
-    compile 'net.portswigger.burp.extender:burp-extender-api:1.7.13'
+    compile 'net.portswigger.burp.extender:burp-extender-api:2.1'
     compile 'com.intellij:forms_rt:7.0.3'
+    compile group: 'org.json', name: 'json', version: '20190722'
 }
 
 sourceSets {
@@ -18,7 +19,7 @@ sourceSets {
 }
 
 task fatJar(type: Jar) {
-    baseName = project.name + '-all'
+    archiveBaseName = project.name + '-all'
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }

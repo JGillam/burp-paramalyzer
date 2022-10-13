@@ -2,11 +2,12 @@ Uuid: 0ac13c45adff4e31a3ca8dc76dd6286c
 ExtensionType: 1
 Name: Paramalyzer
 RepoName: paramalyzer
-ScreenVersion: 2.0
-SerialVersion: 6
+ScreenVersion: 2.2.2
+SerialVersion: 7
 MinPlatformVersion: 0
 ProOnly: False
 Author: Jason Gillam
-ShortDescription: Improves efficiency of manual parameter analysis for web penetration tests.
+ShortDescription: Improves efficiency of manual parameter analysis for web penetration tests and helps find sensitive information leakage.
 EntryPoint: build/libs/paramalyzer-all.jar
 BuildCommand: gradle fatJar
+SupportedProducts: Pro, Community
