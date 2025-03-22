@@ -22,6 +22,7 @@ import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.Spacer;
 import com.professionallyevil.paramalyzer.CorrelatedParam;
 import com.professionallyevil.paramalyzer.ParametersTableModel;
+import com.professionallyevil.paramalyzer.UIUtils;
 import com.professionallyevil.paramalyzer.WorkerStatusListener;
 
 import javax.swing.*;
@@ -30,9 +31,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
+import com.professionallyevil.paramalyzer.UIUtils;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -80,7 +79,7 @@ public class SecretHunter implements WorkerStatusListener {
         setProgress(100);
     }
 
-    public SecretHunter(final ParametersTableModel parametersTableModel) {
+    public SecretHunter(final ParametersTableModel parametersTableModel) {        
         secretsTable.setModel(secretsTableModel);
         secretsTable.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
         secretResultsTable.setModel(secretResultsTableModel);
@@ -120,8 +119,12 @@ public class SecretHunter implements WorkerStatusListener {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        Secret selectedSecret = secretsTableModel.getSecretsList().get(secretsTable.getSelectedRow());
-                        secretResultsTableModel.setResults(selectedSecret.getResults());
+                        int selectedRow = secretsTable.getSelectedRow();
+                        if (selectedRow >= 0) {
+                            int modelRow = secretsTable.convertRowIndexToModel(selectedRow);
+                            Secret selectedSecret = secretsTableModel.getSecretsList().get(modelRow);
+                            secretResultsTableModel.setResults(selectedSecret.getResults());
+                        }
                     }
                 });
             }
@@ -132,33 +135,26 @@ public class SecretHunter implements WorkerStatusListener {
             public void valueChanged(ListSelectionEvent e) {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
-                    public void run() {
-                        Highlighter highlighter = requestTextArea.getHighlighter();
-
-                        highlighter.removeAllHighlights();
-                        SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                    public void run() {                                                
+                        SecretResult selectedResult = getSelectedSecretResult();
                         if (selectedResult != null) {
                             byte[] requestBytes = selectedResult.requestResponse.getRequest();
                             String requestString = callbacks.getHelpers().bytesToString(requestBytes);
                             requestTextArea.setText(requestString);
-                            String highlightValue = selectedResult.getValue();
-                            int index = requestString.indexOf(highlightValue);
-                            try {
-                                highlighter.addHighlight(index, index + highlightValue.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
-                                Rectangle viewRect = requestTextArea.modelToView(index);
-                                // Scroll to make the rectangle visible
-                                requestTextArea.scrollRectToVisible(viewRect);
-                            } catch (BadLocationException ex) {
-                                // do nothing
-                            }
+                            requestTextArea.setCaretPosition(0); // Set caret position to top
+                            SwingUtilities.invokeLater(() -> {
+                                // Only scroll if you want to see the highlight
+                                UIUtils.highlightText(requestTextArea, selectedResult.getValue(), true);
+                            });
+
                             //messageEditor.setMessage(selectedResult.getRequestResponse().getRequest(), true);
+
                             commentText.setText(selectedResult.getRequestResponse().getComment());
                             String color = selectedResult.getRequestResponse().getHighlight();
                             if (color == null) {
                                 color = "none";
                             }
                             colorCombo.setSelectedItem(color);
-
                         } else {
                             requestTextArea.setText("");
                         }
@@ -177,7 +173,7 @@ public class SecretHunter implements WorkerStatusListener {
         colorCombo.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                SecretResult selectedResult = secretResultsTableModel.secretResults.get(secretResultsTable.getSelectedRow());
+                SecretResult selectedResult = getSelectedSecretResult();
                 if (selectedResult != null && e.getStateChange() == ItemEvent.SELECTED) {
                     String color = (String) colorCombo.getSelectedItem();
                     if ("none".equals(color)) {
@@ -220,9 +216,17 @@ public class SecretHunter implements WorkerStatusListener {
         this.callbacks = callbacks;
     }
 
-
     public Component getMainPanel() {
         return mainPanel;
+    }
+
+    private SecretResult getSelectedSecretResult() {
+        int selectedRow = secretResultsTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            int modelRow = secretResultsTable.convertRowIndexToModel(selectedRow);
+            return secretResultsTableModel.secretResults.get(modelRow);
+        }
+        return null;
     }
 
     {
@@ -297,6 +301,8 @@ public class SecretHunter implements WorkerStatusListener {
         final JScrollPane scrollPane3 = new JScrollPane();
         editorPanel.add(scrollPane3, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         requestTextArea = new JTextArea();
+        // Enable line wrapping
+        UIUtils.wrap(requestTextArea);
         scrollPane3.setViewportView(requestTextArea);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));

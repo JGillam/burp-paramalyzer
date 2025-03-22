@@ -30,8 +30,6 @@ import javax.swing.event.DocumentListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableModel;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultHighlighter;
 import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.ClipboardOwner;
@@ -178,19 +176,14 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
                         if (message != null) {
                             String requestString = callbacks.getHelpers().bytesToString(message.getRequest());
                             textAreaRequest.setText(requestString);
-                            textAreaRequest.getHighlighter().removeAllHighlights();
+                            textAreaRequest.setCaretPosition(0);
                             displayedRequest = message;
 
                             ParamInstance pi = paramListModel.getParamInstance(listValues.getSelectedIndex());
                             String value = pi.getValue();
-                            int requestIndex = requestString.indexOf(value);
-                            if (requestIndex > -1) {
-                                try {
-                                    textAreaRequest.getHighlighter().addHighlight(requestIndex, requestIndex + value.length(), new DefaultHighlighter.DefaultHighlightPainter(Color.pink));
-                                } catch (BadLocationException ex) {
-                                    // ignore (this should be impossible)
-                                }
-                            }
+                            SwingUtilities.invokeLater(() -> {
+                                UIUtils.highlightText(textAreaRequest, value, true);
+                            });
 
                             if (message.getResponse() != null && message.getResponse().length > 0) {
                                 textAreaResponse.setText(callbacks.getHelpers().bytesToString(message.getResponse()));
@@ -216,9 +209,7 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
 
                         }
                         analysisTextArea.setCaretPosition(0);
-                        textAreaRequest.setCaretPosition(0);
                         textAreaResponse.setCaretPosition(0);
-
                     }
                 });
             }
@@ -647,6 +638,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         panel8.add(scrollPane4, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         textAreaRequest = new JTextArea();
         scrollPane4.setViewportView(textAreaRequest);
+        // Enable line wrapping
+        UIUtils.wrap(textAreaRequest);
         final JPanel panel9 = new JPanel();
         panel9.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel8.add(panel9, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
@@ -673,7 +666,8 @@ public class Paramalyzer implements IBurpExtender, ITab, WorkerStatusListener, C
         final JScrollPane scrollPane5 = new JScrollPane();
         panel10.add(scrollPane5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
         textAreaResponse = new JTextArea();
-        scrollPane5.setViewportView(textAreaResponse);
+        UIUtils.wrap(textAreaResponse);
+        scrollPane5.setViewportView(textAreaResponse);        
         final JPanel panel11 = new JPanel();
         panel11.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), -1, -1));
         panel2.add(panel11, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(348, 95), null, 0, false));
